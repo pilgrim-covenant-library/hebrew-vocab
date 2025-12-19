@@ -398,7 +398,7 @@ export default function SettingsPage() {
                 <div>
                   <p className="font-medium">Audio Pronunciation</p>
                   <p className="text-sm text-muted-foreground">
-                    Play Greek word pronunciation
+                    Play Hebrew word pronunciation
                   </p>
                 </div>
               </div>
@@ -849,10 +849,10 @@ export default function SettingsPage() {
         {/* App Info */}
         <Card>
           <CardContent className="py-6 text-center">
-            <p className="text-lg font-bold text-primary mb-1">Koine Greek Vocab</p>
+            <p className="text-lg font-bold text-primary mb-1">Biblical Hebrew Vocab</p>
             <p className="text-sm text-muted-foreground">Version 0.1.0</p>
             <p className="text-xs text-muted-foreground mt-2">
-              Master New Testament Greek with spaced repetition
+              Master Biblical Hebrew with spaced repetition
             </p>
           </CardContent>
         </Card>

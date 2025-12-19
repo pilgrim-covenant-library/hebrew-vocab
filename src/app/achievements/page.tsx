@@ -61,7 +61,7 @@ const ACHIEVEMENTS: Achievement[] = [
   },
   {
     id: 'five_hundred_words',
-    name: 'Greek Scholar',
+    name: 'Hebrew Scholar',
     description: 'Learn 500 words',
     icon: <Award className="w-6 h-6" />,
     category: 'learning',
@@ -173,7 +173,7 @@ const ACHIEVEMENTS: Achievement[] = [
   },
   {
     id: 'level_25',
-    name: 'Greek Enthusiast',
+    name: 'Hebrew Enthusiast',
     description: 'Reach Level 25',
     icon: <Trophy className="w-6 h-6" />,
     category: 'special',
@@ -181,7 +181,7 @@ const ACHIEVEMENTS: Achievement[] = [
   },
   {
     id: 'level_50',
-    name: 'Koine Master',
+    name: 'Hebrew Master',
     description: 'Reach Level 50',
     icon: <Trophy className="w-6 h-6" />,
     category: 'special',

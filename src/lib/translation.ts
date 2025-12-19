@@ -346,7 +346,7 @@ export function scoreTranslation(
       feedback: 'Please enter a translation.',
       keyTermsFound: [],
       keyTermsMissed: keyTerms,
-      suggestions: ['Try translating the Greek text word by word first.'],
+      suggestions: ['Try translating the Hebrew text word by word first.'],
     };
   }
 

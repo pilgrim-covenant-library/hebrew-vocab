@@ -401,7 +401,7 @@ export default function TranslationPage() {
 
               {/* Hebrew text */}
               <div className="text-center mb-4">
-                <p className="text-2xl font-hebrew leading-relaxed mb-2" dir="rtl">{currentVerse.greek}</p>
+                <p className="text-2xl font-hebrew leading-relaxed mb-2" dir="rtl">{currentVerse.hebrew || currentVerse.greek}</p>
                 <p className="text-sm text-muted-foreground italic">
                   {currentVerse.transliteration}
                 </p>

@@ -9,24 +9,24 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Koine Greek Vocab | Master NT Greek',
+  title: 'Biblical Hebrew Vocab | Master Hebrew',
   description:
-    'Master New Testament Greek vocabulary with spaced repetition, flashcards, quizzes, and more. Perfect for seminary students.',
+    'Master Biblical Hebrew vocabulary with spaced repetition, flashcards, quizzes, and more. Perfect for seminary students.',
   keywords: [
-    'Koine Greek',
-    'New Testament',
-    'Greek vocabulary',
+    'Biblical Hebrew',
+    'Old Testament',
+    'Hebrew vocabulary',
     'seminary',
     'flashcards',
     'spaced repetition',
     'Bible study',
   ],
-  authors: [{ name: 'Koine Vocab' }],
+  authors: [{ name: 'Hebrew Vocab' }],
   manifest: '/manifest.json',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: 'Koine Greek',
+    title: 'Hebrew Vocab',
   },
   icons: {
     icon: [

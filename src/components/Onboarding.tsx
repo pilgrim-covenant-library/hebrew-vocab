@@ -14,8 +14,8 @@ interface OnboardingProps {
 const STEPS = [
   {
     icon: BookOpen,
-    title: 'Welcome to Koine Greek Vocab!',
-    description: 'Master New Testament Greek vocabulary with our spaced repetition system. Study smarter, not harder.',
+    title: 'Welcome to Biblical Hebrew Vocab!',
+    description: 'Master Biblical Hebrew vocabulary with our spaced repetition system. Study smarter, not harder.',
     color: 'text-primary',
     bgColor: 'bg-primary/10',
   },

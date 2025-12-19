@@ -57,7 +57,7 @@ export default function GrammarPage() {
           </Link>
           <div>
             <h1 className="text-lg font-semibold">Grammar</h1>
-            <p className="text-xs text-muted-foreground">Master Greek morphology</p>
+            <p className="text-xs text-muted-foreground">Master Hebrew morphology</p>
           </div>
         </div>
       </header>
@@ -68,9 +68,9 @@ export default function GrammarPage() {
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-purple-500/10 mb-4">
             <BookOpen className="w-8 h-8 text-purple-600 dark:text-purple-400" />
           </div>
-          <h2 className="text-2xl font-bold mb-2">Greek Grammar Tools</h2>
+          <h2 className="text-2xl font-bold mb-2">Hebrew Grammar Tools</h2>
           <p className="text-muted-foreground max-w-md mx-auto">
-            Explore noun declensions, verb conjugations, and practice parsing Greek words.
+            Explore noun patterns, verb conjugations, and practice parsing Hebrew words.
           </p>
         </div>
 
@@ -78,7 +78,7 @@ export default function GrammarPage() {
         <div className="space-y-4">
           <GrammarModeCard
             title="Word Parser"
-            description="Look up any Greek word and see its full morphological breakdown"
+            description="Look up any Hebrew word and see its full morphological breakdown"
             icon={Search}
             href="/grammar/parser"
             color="blue"
@@ -106,20 +106,20 @@ export default function GrammarPage() {
           <h3 className="font-semibold mb-3">Quick Reference</h3>
           <div className="grid grid-cols-2 gap-4 text-sm">
             <div>
-              <p className="font-medium text-muted-foreground mb-1">5 Cases</p>
-              <p>Nominative, Genitive, Dative, Accusative, Vocative</p>
+              <p className="font-medium text-muted-foreground mb-1">7 Binyanim</p>
+              <p>Qal, Niphal, Piel, Pual, Hiphil, Hophal, Hithpael</p>
             </div>
             <div>
-              <p className="font-medium text-muted-foreground mb-1">6 Tenses</p>
-              <p>Present, Imperfect, Future, Aorist, Perfect, Pluperfect</p>
+              <p className="font-medium text-muted-foreground mb-1">Conjugations</p>
+              <p>Perfect, Imperfect, Imperative, Infinitive, Participle</p>
             </div>
             <div>
-              <p className="font-medium text-muted-foreground mb-1">3 Voices</p>
-              <p>Active, Middle, Passive</p>
+              <p className="font-medium text-muted-foreground mb-1">Noun States</p>
+              <p>Absolute, Construct</p>
             </div>
             <div>
-              <p className="font-medium text-muted-foreground mb-1">4 Moods</p>
-              <p>Indicative, Subjunctive, Optative, Imperative</p>
+              <p className="font-medium text-muted-foreground mb-1">Gender & Number</p>
+              <p>Masculine/Feminine, Singular/Plural/Dual</p>
             </div>
           </div>
         </div>

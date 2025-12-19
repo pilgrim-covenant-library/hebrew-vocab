@@ -59,7 +59,7 @@ export default function LoginPage() {
           </Link>
           <CardTitle className="text-2xl">Welcome Back</CardTitle>
           <p className="text-muted-foreground mt-2">
-            Sign in to continue your Greek learning journey
+            Sign in to continue your Hebrew learning journey
           </p>
         </CardHeader>
         <CardContent>

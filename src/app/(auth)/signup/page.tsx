@@ -89,7 +89,7 @@ export default function SignupPage() {
               <ArrowLeft className="w-4 h-4 mr-1" />
               Back to app
             </Link>
-            <CardTitle className="text-2xl">Join Koine Greek</CardTitle>
+            <CardTitle className="text-2xl">Join Biblical Hebrew</CardTitle>
             <p className="text-muted-foreground mt-2">
               How will you be using this app?
             </p>
@@ -109,7 +109,7 @@ export default function SignupPage() {
                 <div>
                   <h3 className="font-semibold text-lg">I&apos;m a Student</h3>
                   <p className="text-sm text-muted-foreground mt-1">
-                    Learn Greek vocabulary with flashcards, quizzes, and track your progress
+                    Learn Hebrew vocabulary with flashcards, quizzes, and track your progress
                   </p>
                 </div>
               </div>
@@ -129,7 +129,7 @@ export default function SignupPage() {
                 <div>
                   <h3 className="font-semibold text-lg">I&apos;m a Teacher</h3>
                   <p className="text-sm text-muted-foreground mt-1">
-                    Monitor student progress and help them master Greek vocabulary
+                    Monitor student progress and help them master Hebrew vocabulary
                   </p>
                 </div>
               </div>

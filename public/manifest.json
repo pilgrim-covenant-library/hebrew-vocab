@@ -1,7 +1,7 @@
 {
-  "name": "Koine Greek Vocab",
-  "short_name": "Koine Greek",
-  "description": "Master New Testament Greek vocabulary with spaced repetition",
+  "name": "Biblical Hebrew Vocab",
+  "short_name": "Hebrew Vocab",
+  "description": "Master Biblical Hebrew vocabulary with spaced repetition",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

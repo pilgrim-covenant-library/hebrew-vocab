@@ -282,7 +282,7 @@ export default function FlashcardsPage() {
     } else if (!hasAnyProgress) {
       // New user with no progress
       title = "Ready to start learning?";
-      message = "Select your tier preferences in Settings and begin your Greek vocabulary journey!";
+      message = "Select your tier preferences in Settings and begin your Hebrew vocabulary journey!";
       actionText = "Get Started";
       actionHref = "/learn";
     }
