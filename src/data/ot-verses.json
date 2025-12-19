@@ -1,0 +1,843 @@
+{
+  "books": [
+    {
+      "id": "gen",
+      "name": "Genesis",
+      "hebrewName": "בְּרֵאשִׁית",
+      "chapters": 50
+    },
+    {
+      "id": "exod",
+      "name": "Exodus",
+      "hebrewName": "שְׁמוֹת",
+      "chapters": 40
+    },
+    {
+      "id": "lev",
+      "name": "Leviticus",
+      "hebrewName": "וַיִּקְרָא",
+      "chapters": 27
+    },
+    {
+      "id": "deut",
+      "name": "Deuteronomy",
+      "hebrewName": "דְּבָרִים",
+      "chapters": 34
+    },
+    {
+      "id": "josh",
+      "name": "Joshua",
+      "hebrewName": "יְהוֹשֻׁעַ",
+      "chapters": 24
+    },
+    {
+      "id": "ps",
+      "name": "Psalms",
+      "hebrewName": "תְּהִלִּים",
+      "chapters": 150
+    },
+    {
+      "id": "prov",
+      "name": "Proverbs",
+      "hebrewName": "מִשְׁלֵי",
+      "chapters": 31
+    },
+    {
+      "id": "isa",
+      "name": "Isaiah",
+      "hebrewName": "יְשַׁעְיָהוּ",
+      "chapters": 66
+    },
+    {
+      "id": "jer",
+      "name": "Jeremiah",
+      "hebrewName": "יִרְמְיָהוּ",
+      "chapters": 52
+    },
+    {
+      "id": "dan",
+      "name": "Daniel",
+      "hebrewName": "דָּנִיֵּאל",
+      "chapters": 12
+    },
+    {
+      "id": "mic",
+      "name": "Micah",
+      "hebrewName": "מִיכָה",
+      "chapters": 7
+    },
+    {
+      "id": "hab",
+      "name": "Habakkuk",
+      "hebrewName": "חֲבַקּוּק",
+      "chapters": 3
+    },
+    {
+      "id": "mal",
+      "name": "Malachi",
+      "hebrewName": "מַלְאָכִי",
+      "chapters": 3
+    }
+  ],
+  "verses": [
+    {
+      "id": "gen_1_1",
+      "book": "gen",
+      "chapter": 1,
+      "verse": 1,
+      "reference": "Genesis 1:1",
+      "hebrew": "בְּרֵאשִׁית בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם וְאֵת הָאָרֶץ׃",
+      "transliteration": "",
+      "referenceTranslation": "¶ In the beginning God created the heaven and the earth.",
+      "keyTerms": [
+        "beginning",
+        "created",
+        "God",
+        "heaven",
+        "earth"
+      ],
+      "difficulty": 1,
+      "notes": "The opening verse of the Hebrew Bible. Contains the key verb bara (create).",
+      "tier": 1
+    },
+    {
+      "id": "gen_1_3",
+      "book": "gen",
+      "chapter": 1,
+      "verse": 3,
+      "reference": "Genesis 1:3",
+      "hebrew": "וַיֹּאמֶר אֱלֹהִים יְהִי אֹור וַיְהִי־אֹור׃",
+      "transliteration": "",
+      "referenceTranslation": "¶ And God said, Let there be light: and there was light.",
+      "keyTerms": [
+        "said",
+        "God",
+        "light"
+      ],
+      "difficulty": 1,
+      "notes": "First divine speech. Simple syntax.",
+      "tier": 1
+    },
+    {
+      "id": "gen_1_27",
+      "book": "gen",
+      "chapter": 1,
+      "verse": 27,
+      "reference": "Genesis 1:27",
+      "hebrew": "וַיִּבְרָא אֱלֹהִים ׀ אֶת־הָאָדָם בְּצַלְמֹו בְּצֶלֶם אֱלֹהִים בָּרָא אֹתֹו זָכָר וּנְקֵבָה בָּרָא אֹתָם׃",
+      "transliteration": "",
+      "referenceTranslation": "So God created man in his [own] image, in the image of God created he him; male and female created he them.",
+      "keyTerms": [
+        "created",
+        "image",
+        "God",
+        "male",
+        "female"
+      ],
+      "difficulty": 2,
+      "notes": "Imago Dei - humanity created in God's image.",
+      "tier": 2
+    },
+    {
+      "id": "gen_12_1",
+      "book": "gen",
+      "chapter": 12,
+      "verse": 1,
+      "reference": "Genesis 12:1",
+      "hebrew": "וַיֹּאמֶר יְהוָה אֶל־אַבְרָם לֶךְ־לְךָ מֵאַרְצְךָ וּמִמֹּולַדְתְּךָ וּמִבֵּית אָבִיךָ אֶל־הָאָרֶץ אֲשֶׁר אַרְאֶךָּ׃",
+      "transliteration": "",
+      "referenceTranslation": "¶ Now the LORD had said unto Abram, Get thee out of thy country, and from thy kindred, and from thy father's house, unto a land that I will shew thee:",
+      "keyTerms": [
+        "LORD",
+        "said",
+        "Abram",
+        "go",
+        "land",
+        "show"
+      ],
+      "difficulty": 2,
+      "notes": "The call of Abram. Imperative verb lekh-lekha.",
+      "tier": 2
+    },
+    {
+      "id": "gen_15_6",
+      "book": "gen",
+      "chapter": 15,
+      "verse": 6,
+      "reference": "Genesis 15:6",
+      "hebrew": "וְהֶאֱמִן בַּיהוָה וַיַּחְשְׁבֶהָ לֹּו צְדָקָה׃",
+      "transliteration": "",
+      "referenceTranslation": "And he believed in the LORD; and he counted it to him for righteousness.",
+      "keyTerms": [
+        "believed",
+        "LORD",
+        "counted",
+        "righteousness"
+      ],
+      "difficulty": 2,
+      "notes": "Key verse on faith and righteousness.",
+      "tier": 2
+    },
+    {
+      "id": "gen_22_14",
+      "book": "gen",
+      "chapter": 22,
+      "verse": 14,
+      "reference": "Genesis 22:14",
+      "hebrew": "וַיִּקְרָא אַבְרָהָם שֵׁם־הַמָּקֹום הַהוּא יְהוָה ׀ יִרְאֶה אֲשֶׁר יֵאָמֵר הַיֹּום בְּהַר יְהוָה יֵרָאֶה׃",
+      "transliteration": "",
+      "referenceTranslation": "And Abraham called the name of that place Jehovahjireh: as it is said [to] this day, In the mount of the LORD it shall be seen.",
+      "keyTerms": [
+        "Abraham",
+        "called",
+        "place",
+        "LORD",
+        "provide",
+        "mountain"
+      ],
+      "difficulty": 2,
+      "notes": "Yahweh Yireh - The LORD will provide.",
+      "tier": 2
+    },
+    {
+      "id": "exod_3_14",
+      "book": "exod",
+      "chapter": 3,
+      "verse": 14,
+      "reference": "Exodus 3:14",
+      "hebrew": "וַיֹּאמֶר אֱלֹהִים אֶל־מֹשֶׁה אֶהְיֶה אֲשֶׁר אֶהְיֶה וַיֹּאמֶר כֹּה תֹאמַר לִבְנֵי יִשְׂרָאֵל אֶהְיֶה שְׁלָחַנִי אֲלֵיכֶם׃",
+      "transliteration": "",
+      "referenceTranslation": "And God said unto Moses, I AM THAT I AM: and he said, Thus shalt thou say unto the children of Israel, I AM hath sent me unto you.",
+      "keyTerms": [
+        "God",
+        "said",
+        "Moses",
+        "I AM"
+      ],
+      "difficulty": 2,
+      "notes": "The divine name revealed. Ehyeh Asher Ehyeh.",
+      "tier": 2
+    },
+    {
+      "id": "exod_20_2",
+      "book": "exod",
+      "chapter": 20,
+      "verse": 2,
+      "reference": "Exodus 20:2",
+      "hebrew": "אָנֹכִי יְהוָה אֱלֹהֶיךָ אֲשֶׁר הֹוצֵאתִיךָ מֵאֶרֶץ מִצְרַיִם מִבֵּית עֲבָדִים׃",
+      "transliteration": "",
+      "referenceTranslation": "I [am] the LORD thy God, which have brought thee out of the land of Egypt, out of the house of bondage.",
+      "keyTerms": [
+        "LORD",
+        "God",
+        "brought",
+        "Egypt",
+        "house",
+        "bondage"
+      ],
+      "difficulty": 2,
+      "notes": "Preface to the Ten Commandments.",
+      "tier": 2
+    },
+    {
+      "id": "exod_20_3",
+      "book": "exod",
+      "chapter": 20,
+      "verse": 3,
+      "reference": "Exodus 20:3",
+      "hebrew": "לֹא יִהְיֶה־לְךָ  אֱלֹהִים אֲחֵרִים עַל־פָּנָיַ ׃",
+      "transliteration": "",
+      "referenceTranslation": "Thou shalt have no other gods before me.",
+      "keyTerms": [
+        "gods",
+        "before",
+        "me"
+      ],
+      "difficulty": 1,
+      "notes": "First commandment.",
+      "tier": 1
+    },
+    {
+      "id": "lev_19_18",
+      "book": "lev",
+      "chapter": 19,
+      "verse": 18,
+      "reference": "Leviticus 19:18",
+      "hebrew": "לֹא־תִקֹּם וְלֹא־תִטֹּר אֶת־בְּנֵי עַמֶּךָ וְאָהַבְתָּ לְרֵעֲךָ כָּמֹוךָ אֲנִי יְהוָה׃",
+      "transliteration": "",
+      "referenceTranslation": "Thou shalt not avenge, nor bear any grudge against the children of thy people, but thou shalt love thy neighbour as thyself: I [am] the LORD.",
+      "keyTerms": [
+        "love",
+        "neighbor",
+        "yourself"
+      ],
+      "difficulty": 2,
+      "notes": "Love your neighbor as yourself.",
+      "tier": 2
+    },
+    {
+      "id": "deut_6_4",
+      "book": "deut",
+      "chapter": 6,
+      "verse": 4,
+      "reference": "Deuteronomy 6:4",
+      "hebrew": "שְׁמַע  יִשְׂרָאֵל יְהוָה אֱלֹהֵינוּ יְהוָה ׀ אֶחָד ׃",
+      "transliteration": "",
+      "referenceTranslation": "¶ Hear, O Israel: The LORD our God [is] one LORD:",
+      "keyTerms": [
+        "Hear",
+        "Israel",
+        "LORD",
+        "God",
+        "one"
+      ],
+      "difficulty": 1,
+      "notes": "The Shema - central confession of Judaism.",
+      "tier": 1
+    },
+    {
+      "id": "deut_6_5",
+      "book": "deut",
+      "chapter": 6,
+      "verse": 5,
+      "reference": "Deuteronomy 6:5",
+      "hebrew": "וְאָהַבְתָּ אֵת יְהוָה אֱלֹהֶיךָ בְּכָל־לְבָבְךָ וּבְכָל־נַפְשְׁךָ וּבְכָל־מְאֹדֶךָ׃",
+      "transliteration": "",
+      "referenceTranslation": "And thou shalt love the LORD thy God with all thine heart, and with all thy soul, and with all thy might.",
+      "keyTerms": [
+        "love",
+        "LORD",
+        "God",
+        "heart",
+        "soul",
+        "might"
+      ],
+      "difficulty": 2,
+      "notes": "The greatest commandment.",
+      "tier": 2
+    },
+    {
+      "id": "josh_1_9",
+      "book": "josh",
+      "chapter": 1,
+      "verse": 9,
+      "reference": "Joshua 1:9",
+      "hebrew": "הֲלֹוא צִוִּיתִיךָ חֲזַק וֶאֱמָץ אַל־תַּעֲרֹץ וְאַל־תֵּחָת כִּי עִמְּךָ יְהוָה אֱלֹהֶיךָ בְּכֹל אֲשֶׁר תֵּלֵךְ׃  פ",
+      "transliteration": "",
+      "referenceTranslation": "Have not I commanded thee? Be strong and of a good courage; be not afraid, neither be thou dismayed: for the LORD thy God [is] with thee whithersoever thou goest.",
+      "keyTerms": [
+        "strong",
+        "courageous",
+        "afraid",
+        "LORD",
+        "God"
+      ],
+      "difficulty": 2,
+      "notes": "Encouragement to Joshua.",
+      "tier": 2
+    },
+    {
+      "id": "ps_1_1",
+      "book": "ps",
+      "chapter": 1,
+      "verse": 1,
+      "reference": "Psalms 1:1",
+      "hebrew": "אַשְׁרֵי־הָאִישׁ  אֲשֶׁר ׀ לֹא הָלַךְ בַּעֲצַת רְשָׁעִים וּבְדֶרֶךְ חַטָּאִים לֹא עָמָד וּבְמֹושַׁב לֵצִים לֹא יָשָׁב׃",
+      "transliteration": "",
+      "referenceTranslation": "¶ Blessed [is] the man that walketh not in the counsel of the ungodly, nor standeth in the way of sinners, nor sitteth in the seat of the scornful.",
+      "keyTerms": [
+        "blessed",
+        "man",
+        "walk",
+        "counsel",
+        "wicked"
+      ],
+      "difficulty": 2,
+      "notes": "Opening of the Psalter. Ashrei ha-ish.",
+      "tier": 2
+    },
+    {
+      "id": "ps_19_1",
+      "book": "ps",
+      "chapter": 19,
+      "verse": 1,
+      "reference": "Psalms 19:1",
+      "hebrew": "לַמְנַצֵּחַ מִזְמֹור לְדָוִד׃",
+      "transliteration": "",
+      "referenceTranslation": "¶ To the chief Musician, A Psalm of David. The heavens declare the glory of God; and the firmament sheweth his handywork.",
+      "keyTerms": [
+        "heavens",
+        "declare",
+        "glory",
+        "God"
+      ],
+      "difficulty": 2,
+      "notes": "Creation praises God.",
+      "tier": 2
+    },
+    {
+      "id": "ps_23_1",
+      "book": "ps",
+      "chapter": 23,
+      "verse": 1,
+      "reference": "Psalms 23:1",
+      "hebrew": "מִזְמֹור לְדָוִד יְהוָה רֹעִי לֹא אֶחְסָר׃",
+      "transliteration": "",
+      "referenceTranslation": "¶ A Psalm of David. The LORD [is] my shepherd; I shall not want.",
+      "keyTerms": [
+        "LORD",
+        "shepherd",
+        "want"
+      ],
+      "difficulty": 1,
+      "notes": "The most famous psalm.",
+      "tier": 1
+    },
+    {
+      "id": "ps_23_4",
+      "book": "ps",
+      "chapter": 23,
+      "verse": 4,
+      "reference": "Psalms 23:4",
+      "hebrew": "גַּם כִּי־אֵלֵךְ בְּגֵיא צַלְמָוֶת לֹא־אִירָא רָע כִּי־אַתָּה עִמָּדִי שִׁבְטְךָ וּמִשְׁעַנְתֶּךָ הֵמָּה יְנַחֲמֻנִי׃",
+      "transliteration": "",
+      "referenceTranslation": "Yea, though I walk through the valley of the shadow of death, I will fear no evil: for thou [art] with me; thy rod and thy staff they comfort me.",
+      "keyTerms": [
+        "walk",
+        "valley",
+        "shadow",
+        "death",
+        "fear",
+        "evil"
+      ],
+      "difficulty": 2,
+      "notes": "Comfort in the face of death.",
+      "tier": 2
+    },
+    {
+      "id": "ps_46_1",
+      "book": "ps",
+      "chapter": 46,
+      "verse": 1,
+      "reference": "Psalms 46:1",
+      "hebrew": "לַמְנַצֵּחַ לִבְנֵי־קֹרַח עַל־עֲלָמֹות שִׁיר׃",
+      "transliteration": "",
+      "referenceTranslation": "¶ To the chief Musician for the sons of Korah, A Song upon Alamoth. God [is] our refuge and strength, a very present help in trouble.",
+      "keyTerms": [
+        "God",
+        "refuge",
+        "strength",
+        "help",
+        "trouble"
+      ],
+      "difficulty": 2,
+      "notes": "A mighty fortress.",
+      "tier": 2
+    },
+    {
+      "id": "ps_51_10",
+      "book": "ps",
+      "chapter": 51,
+      "verse": 10,
+      "reference": "Psalms 51:10",
+      "hebrew": "תַּשְׁמִיעֵנִי שָׂשֹׂון וְשִׂמְחָה תָּגֵלְנָה עֲצָמֹות דִּכִּיתָ׃",
+      "transliteration": "",
+      "referenceTranslation": "Create in me a clean heart, O God; and renew a right spirit within me.",
+      "keyTerms": [
+        "create",
+        "clean",
+        "heart",
+        "God",
+        "renew",
+        "spirit"
+      ],
+      "difficulty": 2,
+      "notes": "David's prayer for cleansing.",
+      "tier": 2
+    },
+    {
+      "id": "ps_100_3",
+      "book": "ps",
+      "chapter": 100,
+      "verse": 3,
+      "reference": "Psalms 100:3",
+      "hebrew": "דְּעוּ כִּי־יְהוָה הוּא אֱלֹהִים הוּא־עָשָׂנוּ [וְלֹא כ] (וְלֹו ק) אֲנַחְנוּ עַמֹּו וְצֹאן מַרְעִיתֹו׃",
+      "transliteration": "",
+      "referenceTranslation": "Know ye that the LORD he [is] God: [it is] he [that] hath made us, and not we ourselves; [we are] his people, and the sheep of his pasture.",
+      "keyTerms": [
+        "know",
+        "LORD",
+        "God",
+        "made",
+        "people",
+        "sheep"
+      ],
+      "difficulty": 2,
+      "notes": "We are His people.",
+      "tier": 2
+    },
+    {
+      "id": "ps_119_105",
+      "book": "ps",
+      "chapter": 119,
+      "verse": 105,
+      "reference": "Psalms 119:105",
+      "hebrew": "נֵר־לְרַגְלִי דְבָרֶךָ וְאֹור לִנְתִיבָתִי׃",
+      "transliteration": "",
+      "referenceTranslation": "¶ NUN. Thy word [is] a lamp unto my feet, and a light unto my path.",
+      "keyTerms": [
+        "word",
+        "lamp",
+        "feet",
+        "light",
+        "path"
+      ],
+      "difficulty": 2,
+      "notes": "The Word as light.",
+      "tier": 2
+    },
+    {
+      "id": "ps_139_14",
+      "book": "ps",
+      "chapter": 139,
+      "verse": 14,
+      "reference": "Psalms 139:14",
+      "hebrew": "אֹודְךָ עַל כִּי נֹורָאֹות נִפְלֵיתִי נִפְלָאִים מַעֲשֶׂיךָ וְנַפְשִׁי יֹדַעַת מְאֹד׃",
+      "transliteration": "",
+      "referenceTranslation": "I will praise thee; for I am fearfully [and] wonderfully made: marvellous [are] thy works; and [that] my soul knoweth right well.",
+      "keyTerms": [
+        "praise",
+        "fearfully",
+        "wonderfully",
+        "made"
+      ],
+      "difficulty": 2,
+      "notes": "Fearfully and wonderfully made.",
+      "tier": 2
+    },
+    {
+      "id": "prov_1_7",
+      "book": "prov",
+      "chapter": 1,
+      "verse": 7,
+      "reference": "Proverbs 1:7",
+      "hebrew": "יִרְאַת יְהוָה רֵאשִׁית דָּעַת חָכְמָה וּמוּסָר אֱוִילִים בָּזוּ׃  פ",
+      "transliteration": "",
+      "referenceTranslation": "¶ The fear of the LORD [is] the beginning of knowledge: [but] fools despise wisdom and instruction.",
+      "keyTerms": [
+        "fear",
+        "LORD",
+        "beginning",
+        "knowledge"
+      ],
+      "difficulty": 2,
+      "notes": "Theme verse of Proverbs.",
+      "tier": 2
+    },
+    {
+      "id": "prov_3_5",
+      "book": "prov",
+      "chapter": 3,
+      "verse": 5,
+      "reference": "Proverbs 3:5",
+      "hebrew": "בְּטַח אֶל־יְהוָה בְּכָל־לִבֶּךָ וְאֶל־בִּינָתְךָ אַל־תִּשָּׁעֵן׃",
+      "transliteration": "",
+      "referenceTranslation": "Trust in the LORD with all thine heart; and lean not unto thine own understanding.",
+      "keyTerms": [
+        "trust",
+        "LORD",
+        "heart",
+        "lean",
+        "understanding"
+      ],
+      "difficulty": 2,
+      "notes": "Trust in the LORD.",
+      "tier": 2
+    },
+    {
+      "id": "prov_3_6",
+      "book": "prov",
+      "chapter": 3,
+      "verse": 6,
+      "reference": "Proverbs 3:6",
+      "hebrew": "בְּכָל־דְּרָכֶיךָ דָעֵהוּ וְהוּא יְיַשֵּׁר אֹרְחֹתֶיךָ׃",
+      "transliteration": "",
+      "referenceTranslation": "In all thy ways acknowledge him, and he shall direct thy paths.",
+      "keyTerms": [
+        "ways",
+        "acknowledge",
+        "direct",
+        "paths"
+      ],
+      "difficulty": 2,
+      "notes": "Acknowledge Him in all your ways.",
+      "tier": 2
+    },
+    {
+      "id": "isa_6_3",
+      "book": "isa",
+      "chapter": 6,
+      "verse": 3,
+      "reference": "Isaiah 6:3",
+      "hebrew": "וְקָרָא זֶה אֶל־זֶה וְאָמַר קָדֹושׁ ׀ קָדֹושׁ קָדֹושׁ יְהוָה צְבָאֹות מְלֹא כָל־הָאָרֶץ כְּבֹודֹו׃",
+      "transliteration": "",
+      "referenceTranslation": "And one cried unto another, and said, Holy, holy, holy, [is] the LORD of hosts: the whole earth [is] full of his glory.",
+      "keyTerms": [
+        "holy",
+        "LORD",
+        "hosts",
+        "earth",
+        "full",
+        "glory"
+      ],
+      "difficulty": 2,
+      "notes": "The Trisagion - Holy, Holy, Holy.",
+      "tier": 2
+    },
+    {
+      "id": "isa_7_14",
+      "book": "isa",
+      "chapter": 7,
+      "verse": 14,
+      "reference": "Isaiah 7:14",
+      "hebrew": "לָכֵן יִתֵּן אֲדֹנָי הוּא לָכֶם אֹות הִנֵּה הָעַלְמָה הָרָה וְיֹלֶדֶת בֵּן וְקָרָאת שְׁמֹו עִמָּנוּ אֵל׃",
+      "transliteration": "",
+      "referenceTranslation": "Therefore the Lord himself shall give you a sign; Behold, a virgin shall conceive, and bear a son, and shall call his name Immanuel.",
+      "keyTerms": [
+        "virgin",
+        "conceive",
+        "bear",
+        "son",
+        "Immanuel"
+      ],
+      "difficulty": 2,
+      "notes": "Immanuel prophecy.",
+      "tier": 2
+    },
+    {
+      "id": "isa_9_6",
+      "book": "isa",
+      "chapter": 9,
+      "verse": 6,
+      "reference": "Isaiah 9:6",
+      "hebrew": "[לְמַרְבֵּה כ] (לְמַרְבֵּה  ק) הַמִּשְׂרָה וּלְשָׁלֹום אֵין־קֵץ עַל־כִּסֵּא דָוִד וְעַל־מַמְלַכְתֹּו לְהָכִין אֹתָהּ וּלְסַעֲדָהּ בְּמִשְׁפָּט וּבִצְדָקָה מֵעַתָּה וְעַד־עֹולָם קִנְאַת יְהוָה צְבָאֹות תַּעֲשֶׂה־זֹּאת׃    ס",
+      "transliteration": "",
+      "referenceTranslation": "For unto us a child is born, unto us a son is given: and the government shall be upon his shoulder: and his name shall be called Wonderful, Counsellor, The mighty God, The everlasting Father, The Prince of Peace.",
+      "keyTerms": [
+        "child",
+        "born",
+        "son",
+        "given",
+        "government",
+        "shoulder"
+      ],
+      "difficulty": 3,
+      "notes": "Messianic prophecy - names of the child.",
+      "tier": 3
+    },
+    {
+      "id": "isa_40_31",
+      "book": "isa",
+      "chapter": 40,
+      "verse": 31,
+      "reference": "Isaiah 40:31",
+      "hebrew": "וְקֹויֵ יְהוָה יַחֲלִיפוּ כֹחַ יַעֲלוּ אֵבֶר כַּנְּשָׁרִים יָרוּצוּ וְלֹא יִיגָעוּ יֵלְכוּ וְלֹא יִיעָפוּ׃  פ",
+      "transliteration": "",
+      "referenceTranslation": "But they that wait upon the LORD shall renew [their] strength; they shall mount up with wings as eagles; they shall run, and not be weary; [and] they shall walk, and not faint.",
+      "keyTerms": [
+        "wait",
+        "LORD",
+        "renew",
+        "strength",
+        "wings",
+        "eagles"
+      ],
+      "difficulty": 2,
+      "notes": "Those who wait on the LORD.",
+      "tier": 2
+    },
+    {
+      "id": "isa_53_5",
+      "book": "isa",
+      "chapter": 53,
+      "verse": 5,
+      "reference": "Isaiah 53:5",
+      "hebrew": "וְהוּא מְחֹלָל מִפְּשָׁעֵנוּ מְדֻכָּא מֵעֲוֹנֹתֵינוּ מוּסַר שְׁלֹומֵנוּ עָלָיו וּבַחֲבֻרָתֹו נִרְפָּא־לָנוּ׃",
+      "transliteration": "",
+      "referenceTranslation": "But he [was] wounded for our transgressions, [he was] bruised for our iniquities: the chastisement of our peace [was] upon him; and with his stripes we are healed.",
+      "keyTerms": [
+        "wounded",
+        "transgressions",
+        "bruised",
+        "iniquities",
+        "peace",
+        "healed"
+      ],
+      "difficulty": 3,
+      "notes": "The Suffering Servant.",
+      "tier": 3
+    },
+    {
+      "id": "isa_53_6",
+      "book": "isa",
+      "chapter": 53,
+      "verse": 6,
+      "reference": "Isaiah 53:6",
+      "hebrew": "כֻּלָּנוּ כַּצֹּאן תָּעִינוּ אִישׁ לְדַרְכֹּו פָּנִינוּ וַיהוָה הִפְגִּיעַ בֹּו אֵת עֲוֹן כֻּלָּנוּ׃",
+      "transliteration": "",
+      "referenceTranslation": "All we like sheep have gone astray; we have turned every one to his own way; and the LORD hath laid on him the iniquity of us all.",
+      "keyTerms": [
+        "sheep",
+        "astray",
+        "way",
+        "LORD",
+        "laid",
+        "iniquity"
+      ],
+      "difficulty": 2,
+      "notes": "All we like sheep.",
+      "tier": 2
+    },
+    {
+      "id": "isa_55_8",
+      "book": "isa",
+      "chapter": 55,
+      "verse": 8,
+      "reference": "Isaiah 55:8",
+      "hebrew": "כִּי לֹא מַחְשְׁבֹותַי מַחְשְׁבֹותֵיכֶם וְלֹא דַרְכֵיכֶם דְּרָכָי נְאֻם יְהוָה׃",
+      "transliteration": "",
+      "referenceTranslation": "For my thoughts [are] not your thoughts, neither [are] your ways my ways, saith the LORD.",
+      "keyTerms": [
+        "thoughts",
+        "ways",
+        "LORD"
+      ],
+      "difficulty": 2,
+      "notes": "God's ways are higher.",
+      "tier": 2
+    },
+    {
+      "id": "jer_29_11",
+      "book": "jer",
+      "chapter": 29,
+      "verse": 11,
+      "reference": "Jeremiah 29:11",
+      "hebrew": "כִּי אָנֹכִי יָדַעְתִּי אֶת־הַמַּחֲשָׁבֹת אֲשֶׁר אָנֹכִי חֹשֵׁב עֲלֵיכֶם נְאֻם־יְהוָה מַחְשְׁבֹות שָׁלֹום וְלֹא לְרָעָה לָתֵת לָכֶם אַחֲרִית וְתִקְוָה׃",
+      "transliteration": "",
+      "referenceTranslation": "For I know the thoughts that I think toward you, saith the LORD, thoughts of peace, and not of evil, to give you an expected end.",
+      "keyTerms": [
+        "know",
+        "thoughts",
+        "think",
+        "peace",
+        "evil",
+        "future",
+        "hope"
+      ],
+      "difficulty": 2,
+      "notes": "Plans for hope and a future.",
+      "tier": 2
+    },
+    {
+      "id": "jer_31_33",
+      "book": "jer",
+      "chapter": 31,
+      "verse": 33,
+      "reference": "Jeremiah 31:33",
+      "hebrew": "כִּי זֹאת הַבְּרִית אֲשֶׁר אֶכְרֹת אֶת־בֵּית יִשְׂרָאֵל אַחֲרֵי הַיָּמִים הָהֵם נְאֻם־יְהוָה נָתַתִּי אֶת־תֹּורָתִי בְּקִרְבָּם וְעַל־לִבָּם אֶכְתֲּבֶנָּה וְהָיִיתִי לָהֶם לֵאלֹהִים וְהֵמָּה יִהְיוּ־לִי לְעָם׃",
+      "transliteration": "",
+      "referenceTranslation": "But this [shall be] the covenant that I will make with the house of Israel; After those days, saith the LORD, I will put my law in their inward parts, and write it in their hearts; and will be their God, and they shall be my people.",
+      "keyTerms": [
+        "covenant",
+        "law",
+        "hearts",
+        "God",
+        "people"
+      ],
+      "difficulty": 3,
+      "notes": "The New Covenant promise.",
+      "tier": 3
+    },
+    {
+      "id": "dan_3_17",
+      "book": "dan",
+      "chapter": 3,
+      "verse": 17,
+      "reference": "Daniel 3:17",
+      "hebrew": "הֵן אִיתַי אֱלָהַנָא דִּי־אֲנַחְנָא פָלְחִין יָכִל לְשֵׁיזָבוּתַנָא מִן־אַתּוּן נוּרָא יָקִדְתָּא וּמִן־יְדָךְ מַלְכָּא יְשֵׁיזִב׃",
+      "transliteration": "",
+      "referenceTranslation": "If it be [so], our God whom we serve is able to deliver us from the burning fiery furnace, and he will deliver [us] out of thine hand, O king.",
+      "keyTerms": [
+        "God",
+        "serve",
+        "able",
+        "deliver",
+        "furnace",
+        "fire"
+      ],
+      "difficulty": 2,
+      "notes": "Faith of Shadrach, Meshach, Abednego.",
+      "tier": 2
+    },
+    {
+      "id": "mic_6_8",
+      "book": "mic",
+      "chapter": 6,
+      "verse": 8,
+      "reference": "Micah 6:8",
+      "hebrew": "הִגִּיד לְךָ אָדָם מַה־טֹּוב וּמָה־יְהוָה דֹּורֵשׁ מִמְּךָ כִּי אִם־עֲשֹׂות מִשְׁפָּט וְאַהֲבַת חֶסֶד וְהַצְנֵעַ לֶכֶת עִם־אֱלֹהֶיךָ׃  פ",
+      "transliteration": "",
+      "referenceTranslation": "He hath shewed thee, O man, what [is] good; and what doth the LORD require of thee, but to do justly, and to love mercy, and to walk humbly with thy God?",
+      "keyTerms": [
+        "showed",
+        "good",
+        "require",
+        "justice",
+        "mercy",
+        "walk",
+        "humbly",
+        "God"
+      ],
+      "difficulty": 2,
+      "notes": "What does the LORD require?",
+      "tier": 2
+    },
+    {
+      "id": "hab_2_4",
+      "book": "hab",
+      "chapter": 2,
+      "verse": 4,
+      "reference": "Habakkuk 2:4",
+      "hebrew": "הִנֵּה עֻפְּלָה לֹא־יָשְׁרָה נַפְשֹׁו בֹּו וְצַדִּיק בֶּאֱמוּנָתֹו יִחְיֶה׃",
+      "transliteration": "",
+      "referenceTranslation": "Behold, his soul [which] is lifted up is not upright in him: but the just shall live by his faith.",
+      "keyTerms": [
+        "just",
+        "live",
+        "faith"
+      ],
+      "difficulty": 2,
+      "notes": "The righteous shall live by faith.",
+      "tier": 2
+    },
+    {
+      "id": "mal_3_10",
+      "book": "mal",
+      "chapter": 3,
+      "verse": 10,
+      "reference": "Malachi 3:10",
+      "hebrew": "הָבִיאוּ אֶת־כָּל־הַמַּעֲשֵׂר אֶל־בֵּית הָאֹוצָר וִיהִי טֶרֶף בְּבֵיתִי וּבְחָנוּנִי נָא בָּזֹאת אָמַר יְהוָה צְבָאֹות אִם־לֹא אֶפְתַּח לָכֶם אֵת אֲרֻבֹּות הַשָּׁמַיִם וַהֲרִיקֹתִי לָכֶם בְּרָכָה עַד־בְּלִי־דָי׃",
+      "transliteration": "",
+      "referenceTranslation": "Bring ye all the tithes into the storehouse, that there may be meat in mine house, and prove me now herewith, saith the LORD of hosts, if I will not open you the windows of heaven, and pour you out a blessing, that [there shall] not [be room] enough [to receive it].",
+      "keyTerms": [
+        "tithes",
+        "storehouse",
+        "prove",
+        "blessings"
+      ],
+      "difficulty": 2,
+      "notes": "Bring the whole tithe.",
+      "tier": 2
+    }
+  ]
+}

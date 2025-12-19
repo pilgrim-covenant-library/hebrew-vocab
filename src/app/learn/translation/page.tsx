@@ -20,8 +20,8 @@ import { Button } from '@/components/ui/Button';
 import { Card, CardContent } from '@/components/ui/Card';
 import { cn, shuffle as shuffleArray } from '@/lib/utils';
 import { scoreTranslation, calculateTranslationXP } from '@/lib/translation';
-import ntVersesData from '@/data/nt-verses.json';
-import type { NTVerse, NTBook, TranslationResult } from '@/types';
+import otVersesData from '@/data/ot-verses.json';
+import type { BibleVerse, BibleBook, TranslationResult } from '@/types';
 
 type TranslationMode = 'random' | 'sequential';
 
@@ -42,7 +42,7 @@ export default function TranslationPage() {
   const [showBookSelector, setShowBookSelector] = useState(false);
 
   // Session state
-  const [verses, setVerses] = useState<NTVerse[]>([]);
+  const [verses, setVerses] = useState<BibleVerse[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [userTranslation, setUserTranslation] = useState('');
   const [result, setResult] = useState<TranslationResult | null>(null);
@@ -62,8 +62,8 @@ export default function TranslationPage() {
   const [sessionComplete, setSessionComplete] = useState(false);
   const [mounted, setMounted] = useState(false);
 
-  const books = ntVersesData.books as NTBook[];
-  const allVerses = ntVersesData.verses as NTVerse[];
+  const books = otVersesData.books as BibleBook[];
+  const allVerses = otVersesData.verses as BibleVerse[];
 
   useEffect(() => {
     setMounted(true);
