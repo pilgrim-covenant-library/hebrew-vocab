@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, BookOpen, Sparkles, Quote, ChevronRight, Users, BookMarked, Landmark } from 'lucide-react';
+import { ArrowLeft, BookOpen, Sparkles, Quote, ChevronRight, Users, BookMarked, Landmark, Church, Castle, Palette, Scroll, GraduationCap } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Card, CardContent } from '@/components/ui/Card';
 import { cn } from '@/lib/utils';
@@ -17,9 +17,14 @@ import {
 } from '@/data/inspiration/stories';
 
 const categoryIcons: Record<StoryCategory, React.ReactNode> = {
+  patristic: <Church className="w-5 h-5" />,
+  medieval: <Castle className="w-5 h-5" />,
+  renaissance: <Palette className="w-5 h-5" />,
   reformer: <Landmark className="w-5 h-5" />,
   puritan: <BookMarked className="w-5 h-5" />,
   westminster: <Users className="w-5 h-5" />,
+  enlightenment: <Scroll className="w-5 h-5" />,
+  modern: <GraduationCap className="w-5 h-5" />,
 };
 
 export default function InspirationPage() {
@@ -33,9 +38,14 @@ export default function InspirationPage() {
 
   const categories: Array<{ key: StoryCategory | 'all'; label: string }> = [
     { key: 'all', label: 'All' },
+    { key: 'patristic', label: 'Early Church' },
+    { key: 'medieval', label: 'Medieval' },
+    { key: 'renaissance', label: 'Renaissance' },
     { key: 'reformer', label: 'Reformers' },
     { key: 'puritan', label: 'Puritans' },
     { key: 'westminster', label: 'Westminster' },
+    { key: 'enlightenment', label: 'Enlightenment' },
+    { key: 'modern', label: 'Modern' },
   ];
 
   return (
@@ -69,8 +79,8 @@ export default function InspirationPage() {
               </div>
             </div>
             <p className="text-sm text-muted-foreground">
-              Learn how the great Reformers, Puritans, and Westminster Divines mastered Biblical Hebrew
-              and used it to advance the gospel. Their stories inspire us to pursue the same goal.
+              From the Early Church Fathers to modern scholars, discover how Christians throughout history
+              mastered Biblical Hebrew and used it to advance the gospel. Their stories inspire us to pursue the same goal.
             </p>
           </div>
         </section>
@@ -112,14 +122,14 @@ export default function InspirationPage() {
         {/* Category Legend */}
         <section className="mt-8 pt-6 border-t">
           <h3 className="text-sm font-medium text-muted-foreground mb-4">Categories</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {(['reformer', 'puritan', 'westminster'] as StoryCategory[]).map((cat) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            {(['patristic', 'medieval', 'renaissance', 'reformer', 'puritan', 'westminster', 'enlightenment', 'modern'] as StoryCategory[]).map((cat) => (
               <div key={cat} className="flex items-start gap-3">
                 <div className={cn('p-2 rounded-lg text-white shrink-0', CATEGORY_INFO[cat].bgColor)}>
                   {categoryIcons[cat]}
                 </div>
                 <div>
-                  <h4 className="font-medium">{CATEGORY_INFO[cat].label}</h4>
+                  <h4 className="font-medium text-sm">{CATEGORY_INFO[cat].label}</h4>
                   <p className="text-xs text-muted-foreground">
                     {getStoriesByCategory(cat).length} stories
                   </p>
