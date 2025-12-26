@@ -1,891 +1,807 @@
 {
-  "nouns": {
-    "second_masculine": {
-      "name": "2nd Declension Masculine",
-      "example": "λόγος",
-      "meaning": "word",
-      "endings": {
-        "singular": {
-          "nominative": "-ος",
-          "genitive": "-ου",
-          "dative": "-ῳ",
-          "accusative": "-ον",
-          "vocative": "-ε"
-        },
-        "plural": {
-          "nominative": "-οι",
-          "genitive": "-ων",
-          "dative": "-οις",
-          "accusative": "-ους",
-          "vocative": "-οι"
-        }
-      },
-      "forms": {
-        "singular": {
-          "nominative": "λόγος",
-          "genitive": "λόγου",
-          "dative": "λόγῳ",
-          "accusative": "λόγον",
-          "vocative": "λόγε"
-        },
-        "plural": {
-          "nominative": "λόγοι",
-          "genitive": "λόγων",
-          "dative": "λόγοις",
-          "accusative": "λόγους",
-          "vocative": "λόγοι"
-        }
-      }
-    },
-    "second_neuter": {
-      "name": "2nd Declension Neuter",
-      "example": "ἔργον",
-      "meaning": "work",
-      "endings": {
-        "singular": {
-          "nominative": "-ον",
-          "genitive": "-ου",
-          "dative": "-ῳ",
-          "accusative": "-ον",
-          "vocative": "-ον"
-        },
-        "plural": {
-          "nominative": "-α",
-          "genitive": "-ων",
-          "dative": "-οις",
-          "accusative": "-α",
-          "vocative": "-α"
-        }
-      },
-      "forms": {
-        "singular": {
-          "nominative": "ἔργον",
-          "genitive": "ἔργου",
-          "dative": "ἔργῳ",
-          "accusative": "ἔργον",
-          "vocative": "ἔργον"
-        },
-        "plural": {
-          "nominative": "ἔργα",
-          "genitive": "ἔργων",
-          "dative": "ἔργοις",
-          "accusative": "ἔργα",
-          "vocative": "ἔργα"
-        }
-      }
-    },
-    "first_feminine_eta": {
-      "name": "1st Declension Feminine (η)",
-      "example": "ἀρχή",
-      "meaning": "beginning",
-      "endings": {
-        "singular": {
-          "nominative": "-η",
-          "genitive": "-ης",
-          "dative": "-ῃ",
-          "accusative": "-ην",
-          "vocative": "-η"
-        },
-        "plural": {
-          "nominative": "-αι",
-          "genitive": "-ων",
-          "dative": "-αις",
-          "accusative": "-ας",
-          "vocative": "-αι"
-        }
-      },
-      "forms": {
-        "singular": {
-          "nominative": "ἀρχή",
-          "genitive": "ἀρχῆς",
-          "dative": "ἀρχῇ",
-          "accusative": "ἀρχήν",
-          "vocative": "ἀρχή"
-        },
-        "plural": {
-          "nominative": "ἀρχαί",
-          "genitive": "ἀρχῶν",
-          "dative": "ἀρχαῖς",
-          "accusative": "ἀρχάς",
-          "vocative": "ἀρχαί"
-        }
-      }
-    },
-    "first_feminine_alpha_pure": {
-      "name": "1st Declension Feminine (α pure)",
-      "example": "καρδία",
-      "meaning": "heart",
-      "endings": {
-        "singular": {
-          "nominative": "-α",
-          "genitive": "-ας",
-          "dative": "-ᾳ",
-          "accusative": "-αν",
-          "vocative": "-α"
-        },
-        "plural": {
-          "nominative": "-αι",
-          "genitive": "-ων",
-          "dative": "-αις",
-          "accusative": "-ας",
-          "vocative": "-αι"
-        }
-      },
-      "forms": {
-        "singular": {
-          "nominative": "καρδία",
-          "genitive": "καρδίας",
-          "dative": "καρδίᾳ",
-          "accusative": "καρδίαν",
-          "vocative": "καρδία"
-        },
-        "plural": {
-          "nominative": "καρδίαι",
-          "genitive": "καρδιῶν",
-          "dative": "καρδίαις",
-          "accusative": "καρδίας",
-          "vocative": "καρδίαι"
-        }
-      }
-    },
-    "first_masculine": {
-      "name": "1st Declension Masculine",
-      "example": "μαθητής",
-      "meaning": "disciple",
-      "endings": {
-        "singular": {
-          "nominative": "-ης",
-          "genitive": "-ου",
-          "dative": "-ῃ",
-          "accusative": "-ην",
-          "vocative": "-α"
-        },
-        "plural": {
-          "nominative": "-αι",
-          "genitive": "-ων",
-          "dative": "-αις",
-          "accusative": "-ας",
-          "vocative": "-αι"
-        }
-      },
-      "forms": {
-        "singular": {
-          "nominative": "μαθητής",
-          "genitive": "μαθητοῦ",
-          "dative": "μαθητῇ",
-          "accusative": "μαθητήν",
-          "vocative": "μαθητά"
-        },
-        "plural": {
-          "nominative": "μαθηταί",
-          "genitive": "μαθητῶν",
-          "dative": "μαθηταῖς",
-          "accusative": "μαθητάς",
-          "vocative": "μαθηταί"
-        }
-      }
-    },
-    "third_consonant_stem": {
-      "name": "3rd Declension (consonant stem)",
-      "example": "σάρξ",
-      "meaning": "flesh",
-      "endings": {
-        "singular": {
-          "nominative": "-",
-          "genitive": "-ος",
-          "dative": "-ι",
-          "accusative": "-α",
-          "vocative": "-"
-        },
-        "plural": {
-          "nominative": "-ες",
-          "genitive": "-ων",
-          "dative": "-σι(ν)",
-          "accusative": "-ας",
-          "vocative": "-ες"
-        }
-      },
-      "forms": {
-        "singular": {
-          "nominative": "σάρξ",
-          "genitive": "σαρκός",
-          "dative": "σαρκί",
-          "accusative": "σάρκα",
-          "vocative": "σάρξ"
-        },
-        "plural": {
-          "nominative": "σάρκες",
-          "genitive": "σαρκῶν",
-          "dative": "σαρξί(ν)",
-          "accusative": "σάρκας",
-          "vocative": "σάρκες"
-        }
-      }
-    },
-    "third_neuter_mat": {
-      "name": "3rd Declension Neuter (-μα)",
-      "example": "ὄνομα",
-      "meaning": "name",
-      "endings": {
-        "singular": {
-          "nominative": "-μα",
-          "genitive": "-ματος",
-          "dative": "-ματι",
-          "accusative": "-μα",
-          "vocative": "-μα"
-        },
-        "plural": {
-          "nominative": "-ματα",
-          "genitive": "-μάτων",
-          "dative": "-μασι(ν)",
-          "accusative": "-ματα",
-          "vocative": "-ματα"
-        }
-      },
-      "forms": {
-        "singular": {
-          "nominative": "ὄνομα",
-          "genitive": "ὀνόματος",
-          "dative": "ὀνόματι",
-          "accusative": "ὄνομα",
-          "vocative": "ὄνομα"
-        },
-        "plural": {
-          "nominative": "ὀνόματα",
-          "genitive": "ὀνομάτων",
-          "dative": "ὀνόμασι(ν)",
-          "accusative": "ὀνόματα",
-          "vocative": "ὀνόματα"
-        }
-      }
-    }
-  },
-  "article": {
-    "name": "The Definite Article",
-    "forms": {
-      "masculine": {
-        "singular": {
-          "nominative": "ὁ",
-          "genitive": "τοῦ",
-          "dative": "τῷ",
-          "accusative": "τόν"
-        },
-        "plural": {
-          "nominative": "οἱ",
-          "genitive": "τῶν",
-          "dative": "τοῖς",
-          "accusative": "τούς"
-        }
-      },
-      "feminine": {
-        "singular": {
-          "nominative": "ἡ",
-          "genitive": "τῆς",
-          "dative": "τῇ",
-          "accusative": "τήν"
-        },
-        "plural": {
-          "nominative": "αἱ",
-          "genitive": "τῶν",
-          "dative": "ταῖς",
-          "accusative": "τάς"
-        }
-      },
-      "neuter": {
-        "singular": {
-          "nominative": "τό",
-          "genitive": "τοῦ",
-          "dative": "τῷ",
-          "accusative": "τό"
-        },
-        "plural": {
-          "nominative": "τά",
-          "genitive": "τῶν",
-          "dative": "τοῖς",
-          "accusative": "τά"
-        }
-      }
-    }
-  },
   "verbs": {
-    "present_active_indicative": {
-      "name": "Present Active Indicative",
-      "example": "λύω",
-      "meaning": "I loose",
-      "endings": {
+    "qal": {
+      "name": "Qal (קַל)",
+      "meaning": "Simple active - the basic meaning of the root",
+      "paradigmVerb": "קָטַל",
+      "paradigmRoot": "קטל",
+      "paradigmMeaning": "to kill",
+      "perfect": {
+        "name": "Perfect (קָטַל)",
+        "description": "Completed action",
         "singular": {
-          "1st": "-ω",
-          "2nd": "-εις",
-          "3rd": "-ει"
+          "3ms": { "form": "קָטַל", "translation": "he killed" },
+          "3fs": { "form": "קָטְלָה", "translation": "she killed" },
+          "2ms": { "form": "קָטַלְתָּ", "translation": "you (m.s.) killed" },
+          "2fs": { "form": "קָטַלְתְּ", "translation": "you (f.s.) killed" },
+          "1cs": { "form": "קָטַלְתִּי", "translation": "I killed" }
         },
         "plural": {
-          "1st": "-ομεν",
-          "2nd": "-ετε",
-          "3rd": "-ουσι(ν)"
+          "3cp": { "form": "קָטְלוּ", "translation": "they killed" },
+          "2mp": { "form": "קְטַלְתֶּם", "translation": "you (m.p.) killed" },
+          "2fp": { "form": "קְטַלְתֶּן", "translation": "you (f.p.) killed" },
+          "1cp": { "form": "קָטַלְנוּ", "translation": "we killed" }
         }
       },
-      "forms": {
+      "imperfect": {
+        "name": "Imperfect (יִקְטֹל)",
+        "description": "Incomplete/ongoing action",
         "singular": {
-          "1st": "λύω",
-          "2nd": "λύεις",
-          "3rd": "λύει"
+          "3ms": { "form": "יִקְטֹל", "translation": "he will kill" },
+          "3fs": { "form": "תִּקְטֹל", "translation": "she will kill" },
+          "2ms": { "form": "תִּקְטֹל", "translation": "you (m.s.) will kill" },
+          "2fs": { "form": "תִּקְטְלִי", "translation": "you (f.s.) will kill" },
+          "1cs": { "form": "אֶקְטֹל", "translation": "I will kill" }
         },
         "plural": {
-          "1st": "λύομεν",
-          "2nd": "λύετε",
-          "3rd": "λύουσι(ν)"
+          "3mp": { "form": "יִקְטְלוּ", "translation": "they (m.) will kill" },
+          "3fp": { "form": "תִּקְטֹלְנָה", "translation": "they (f.) will kill" },
+          "2mp": { "form": "תִּקְטְלוּ", "translation": "you (m.p.) will kill" },
+          "2fp": { "form": "תִּקְטֹלְנָה", "translation": "you (f.p.) will kill" },
+          "1cp": { "form": "נִקְטֹל", "translation": "we will kill" }
         }
       },
-      "translations": {
+      "imperative": {
+        "name": "Imperative (קְטֹל)",
+        "description": "Command form",
         "singular": {
-          "1st": "I loose",
-          "2nd": "you loose",
-          "3rd": "he/she/it looses"
+          "2ms": { "form": "קְטֹל", "translation": "kill! (m.s.)" },
+          "2fs": { "form": "קִטְלִי", "translation": "kill! (f.s.)" }
         },
         "plural": {
-          "1st": "we loose",
-          "2nd": "you (pl) loose",
-          "3rd": "they loose"
+          "2mp": { "form": "קִטְלוּ", "translation": "kill! (m.p.)" },
+          "2fp": { "form": "קְטֹלְנָה", "translation": "kill! (f.p.)" }
+        }
+      },
+      "infinitive": {
+        "construct": { "form": "קְטֹל", "translation": "to kill" },
+        "absolute": { "form": "קָטוֹל", "translation": "killing (emphatic)" }
+      },
+      "participle": {
+        "active": {
+          "ms": { "form": "קֹטֵל", "translation": "killing / one who kills" },
+          "fs": { "form": "קֹטֶלֶת", "translation": "killing (f.)" },
+          "mp": { "form": "קֹטְלִים", "translation": "killing (m.p.)" },
+          "fp": { "form": "קֹטְלוֹת", "translation": "killing (f.p.)" }
+        },
+        "passive": {
+          "ms": { "form": "קָטוּל", "translation": "killed" },
+          "fs": { "form": "קְטוּלָה", "translation": "killed (f.)" },
+          "mp": { "form": "קְטוּלִים", "translation": "killed (m.p.)" },
+          "fp": { "form": "קְטוּלוֹת", "translation": "killed (f.p.)" }
         }
       }
     },
-    "present_middle_passive_indicative": {
-      "name": "Present Middle/Passive Indicative",
-      "example": "λύομαι",
-      "meaning": "I am loosed / I loose for myself",
-      "endings": {
+    "niphal": {
+      "name": "Niphal (נִפְעַל)",
+      "meaning": "Simple passive or reflexive - action received or done to oneself",
+      "paradigmVerb": "נִקְטַל",
+      "paradigmRoot": "קטל",
+      "paradigmMeaning": "to be killed",
+      "perfect": {
+        "name": "Perfect (נִקְטַל)",
+        "description": "Completed passive action",
         "singular": {
-          "1st": "-ομαι",
-          "2nd": "-ῃ / -ει",
-          "3rd": "-εται"
+          "3ms": { "form": "נִקְטַל", "translation": "he was killed" },
+          "3fs": { "form": "נִקְטְלָה", "translation": "she was killed" },
+          "2ms": { "form": "נִקְטַלְתָּ", "translation": "you (m.s.) were killed" },
+          "2fs": { "form": "נִקְטַלְתְּ", "translation": "you (f.s.) were killed" },
+          "1cs": { "form": "נִקְטַלְתִּי", "translation": "I was killed" }
         },
         "plural": {
-          "1st": "-ομεθα",
-          "2nd": "-εσθε",
-          "3rd": "-ονται"
+          "3cp": { "form": "נִקְטְלוּ", "translation": "they were killed" },
+          "2mp": { "form": "נִקְטַלְתֶּם", "translation": "you (m.p.) were killed" },
+          "2fp": { "form": "נִקְטַלְתֶּן", "translation": "you (f.p.) were killed" },
+          "1cp": { "form": "נִקְטַלְנוּ", "translation": "we were killed" }
         }
       },
-      "forms": {
+      "imperfect": {
+        "name": "Imperfect (יִקָּטֵל)",
+        "description": "Incomplete passive action",
         "singular": {
-          "1st": "λύομαι",
-          "2nd": "λύῃ",
-          "3rd": "λύεται"
+          "3ms": { "form": "יִקָּטֵל", "translation": "he will be killed" },
+          "3fs": { "form": "תִּקָּטֵל", "translation": "she will be killed" },
+          "2ms": { "form": "תִּקָּטֵל", "translation": "you (m.s.) will be killed" },
+          "2fs": { "form": "תִּקָּטְלִי", "translation": "you (f.s.) will be killed" },
+          "1cs": { "form": "אֶקָּטֵל", "translation": "I will be killed" }
         },
         "plural": {
-          "1st": "λυόμεθα",
-          "2nd": "λύεσθε",
-          "3rd": "λύονται"
+          "3mp": { "form": "יִקָּטְלוּ", "translation": "they (m.) will be killed" },
+          "3fp": { "form": "תִּקָּטַלְנָה", "translation": "they (f.) will be killed" },
+          "2mp": { "form": "תִּקָּטְלוּ", "translation": "you (m.p.) will be killed" },
+          "2fp": { "form": "תִּקָּטַלְנָה", "translation": "you (f.p.) will be killed" },
+          "1cp": { "form": "נִקָּטֵל", "translation": "we will be killed" }
+        }
+      },
+      "imperative": {
+        "name": "Imperative (הִקָּטֵל)",
+        "description": "Passive command",
+        "singular": {
+          "2ms": { "form": "הִקָּטֵל", "translation": "be killed! (m.s.)" },
+          "2fs": { "form": "הִקָּטְלִי", "translation": "be killed! (f.s.)" }
+        },
+        "plural": {
+          "2mp": { "form": "הִקָּטְלוּ", "translation": "be killed! (m.p.)" },
+          "2fp": { "form": "הִקָּטַלְנָה", "translation": "be killed! (f.p.)" }
+        }
+      },
+      "infinitive": {
+        "construct": { "form": "הִקָּטֵל", "translation": "to be killed" },
+        "absolute": { "form": "נִקְטוֹל / הִקָּטֹל", "translation": "being killed (emphatic)" }
+      },
+      "participle": {
+        "ms": { "form": "נִקְטָל", "translation": "being killed" },
+        "fs": { "form": "נִקְטֶלֶת", "translation": "being killed (f.)" },
+        "mp": { "form": "נִקְטָלִים", "translation": "being killed (m.p.)" },
+        "fp": { "form": "נִקְטָלוֹת", "translation": "being killed (f.p.)" }
+      }
+    },
+    "piel": {
+      "name": "Piel (פִּעֵל)",
+      "meaning": "Intensive active - intensified, factitive, or denominative action",
+      "paradigmVerb": "קִטֵּל",
+      "paradigmRoot": "קטל",
+      "paradigmMeaning": "to slaughter (intensive killing)",
+      "perfect": {
+        "name": "Perfect (קִטֵּל)",
+        "description": "Completed intensive action",
+        "singular": {
+          "3ms": { "form": "קִטֵּל", "translation": "he slaughtered" },
+          "3fs": { "form": "קִטְּלָה", "translation": "she slaughtered" },
+          "2ms": { "form": "קִטַּלְתָּ", "translation": "you (m.s.) slaughtered" },
+          "2fs": { "form": "קִטַּלְתְּ", "translation": "you (f.s.) slaughtered" },
+          "1cs": { "form": "קִטַּלְתִּי", "translation": "I slaughtered" }
+        },
+        "plural": {
+          "3cp": { "form": "קִטְּלוּ", "translation": "they slaughtered" },
+          "2mp": { "form": "קִטַּלְתֶּם", "translation": "you (m.p.) slaughtered" },
+          "2fp": { "form": "קִטַּלְתֶּן", "translation": "you (f.p.) slaughtered" },
+          "1cp": { "form": "קִטַּלְנוּ", "translation": "we slaughtered" }
+        }
+      },
+      "imperfect": {
+        "name": "Imperfect (יְקַטֵּל)",
+        "description": "Incomplete intensive action",
+        "singular": {
+          "3ms": { "form": "יְקַטֵּל", "translation": "he will slaughter" },
+          "3fs": { "form": "תְּקַטֵּל", "translation": "she will slaughter" },
+          "2ms": { "form": "תְּקַטֵּל", "translation": "you (m.s.) will slaughter" },
+          "2fs": { "form": "תְּקַטְּלִי", "translation": "you (f.s.) will slaughter" },
+          "1cs": { "form": "אֲקַטֵּל", "translation": "I will slaughter" }
+        },
+        "plural": {
+          "3mp": { "form": "יְקַטְּלוּ", "translation": "they (m.) will slaughter" },
+          "3fp": { "form": "תְּקַטֵּלְנָה", "translation": "they (f.) will slaughter" },
+          "2mp": { "form": "תְּקַטְּלוּ", "translation": "you (m.p.) will slaughter" },
+          "2fp": { "form": "תְּקַטֵּלְנָה", "translation": "you (f.p.) will slaughter" },
+          "1cp": { "form": "נְקַטֵּל", "translation": "we will slaughter" }
+        }
+      },
+      "imperative": {
+        "name": "Imperative (קַטֵּל)",
+        "description": "Intensive command",
+        "singular": {
+          "2ms": { "form": "קַטֵּל", "translation": "slaughter! (m.s.)" },
+          "2fs": { "form": "קַטְּלִי", "translation": "slaughter! (f.s.)" }
+        },
+        "plural": {
+          "2mp": { "form": "קַטְּלוּ", "translation": "slaughter! (m.p.)" },
+          "2fp": { "form": "קַטֵּלְנָה", "translation": "slaughter! (f.p.)" }
+        }
+      },
+      "infinitive": {
+        "construct": { "form": "קַטֵּל", "translation": "to slaughter" },
+        "absolute": { "form": "קַטֵּל", "translation": "slaughtering (emphatic)" }
+      },
+      "participle": {
+        "ms": { "form": "מְקַטֵּל", "translation": "slaughtering" },
+        "fs": { "form": "מְקַטֶּלֶת", "translation": "slaughtering (f.)" },
+        "mp": { "form": "מְקַטְּלִים", "translation": "slaughtering (m.p.)" },
+        "fp": { "form": "מְקַטְּלוֹת", "translation": "slaughtering (f.p.)" }
+      }
+    },
+    "pual": {
+      "name": "Pual (פֻּעַל)",
+      "meaning": "Intensive passive - the passive of Piel",
+      "paradigmVerb": "קֻטַּל",
+      "paradigmRoot": "קטל",
+      "paradigmMeaning": "to be slaughtered",
+      "perfect": {
+        "name": "Perfect (קֻטַּל)",
+        "description": "Completed intensive passive action",
+        "singular": {
+          "3ms": { "form": "קֻטַּל", "translation": "he was slaughtered" },
+          "3fs": { "form": "קֻטְּלָה", "translation": "she was slaughtered" },
+          "2ms": { "form": "קֻטַּלְתָּ", "translation": "you (m.s.) were slaughtered" },
+          "2fs": { "form": "קֻטַּלְתְּ", "translation": "you (f.s.) were slaughtered" },
+          "1cs": { "form": "קֻטַּלְתִּי", "translation": "I was slaughtered" }
+        },
+        "plural": {
+          "3cp": { "form": "קֻטְּלוּ", "translation": "they were slaughtered" },
+          "2mp": { "form": "קֻטַּלְתֶּם", "translation": "you (m.p.) were slaughtered" },
+          "2fp": { "form": "קֻטַּלְתֶּן", "translation": "you (f.p.) were slaughtered" },
+          "1cp": { "form": "קֻטַּלְנוּ", "translation": "we were slaughtered" }
+        }
+      },
+      "imperfect": {
+        "name": "Imperfect (יְקֻטַּל)",
+        "description": "Incomplete intensive passive action",
+        "singular": {
+          "3ms": { "form": "יְקֻטַּל", "translation": "he will be slaughtered" },
+          "3fs": { "form": "תְּקֻטַּל", "translation": "she will be slaughtered" },
+          "2ms": { "form": "תְּקֻטַּל", "translation": "you (m.s.) will be slaughtered" },
+          "2fs": { "form": "תְּקֻטְּלִי", "translation": "you (f.s.) will be slaughtered" },
+          "1cs": { "form": "אֲקֻטַּל", "translation": "I will be slaughtered" }
+        },
+        "plural": {
+          "3mp": { "form": "יְקֻטְּלוּ", "translation": "they (m.) will be slaughtered" },
+          "3fp": { "form": "תְּקֻטַּלְנָה", "translation": "they (f.) will be slaughtered" },
+          "2mp": { "form": "תְּקֻטְּלוּ", "translation": "you (m.p.) will be slaughtered" },
+          "2fp": { "form": "תְּקֻטַּלְנָה", "translation": "you (f.p.) will be slaughtered" },
+          "1cp": { "form": "נְקֻטַּל", "translation": "we will be slaughtered" }
+        }
+      },
+      "participle": {
+        "ms": { "form": "מְקֻטָּל", "translation": "being slaughtered" },
+        "fs": { "form": "מְקֻטֶּלֶת", "translation": "being slaughtered (f.)" },
+        "mp": { "form": "מְקֻטָּלִים", "translation": "being slaughtered (m.p.)" },
+        "fp": { "form": "מְקֻטָּלוֹת", "translation": "being slaughtered (f.p.)" }
+      }
+    },
+    "hiphil": {
+      "name": "Hiphil (הִפְעִיל)",
+      "meaning": "Causative active - causing the action of the root",
+      "paradigmVerb": "הִקְטִיל",
+      "paradigmRoot": "קטל",
+      "paradigmMeaning": "to cause to kill",
+      "perfect": {
+        "name": "Perfect (הִקְטִיל)",
+        "description": "Completed causative action",
+        "singular": {
+          "3ms": { "form": "הִקְטִיל", "translation": "he caused to kill" },
+          "3fs": { "form": "הִקְטִילָה", "translation": "she caused to kill" },
+          "2ms": { "form": "הִקְטַלְתָּ", "translation": "you (m.s.) caused to kill" },
+          "2fs": { "form": "הִקְטַלְתְּ", "translation": "you (f.s.) caused to kill" },
+          "1cs": { "form": "הִקְטַלְתִּי", "translation": "I caused to kill" }
+        },
+        "plural": {
+          "3cp": { "form": "הִקְטִילוּ", "translation": "they caused to kill" },
+          "2mp": { "form": "הִקְטַלְתֶּם", "translation": "you (m.p.) caused to kill" },
+          "2fp": { "form": "הִקְטַלְתֶּן", "translation": "you (f.p.) caused to kill" },
+          "1cp": { "form": "הִקְטַלְנוּ", "translation": "we caused to kill" }
+        }
+      },
+      "imperfect": {
+        "name": "Imperfect (יַקְטִיל)",
+        "description": "Incomplete causative action",
+        "singular": {
+          "3ms": { "form": "יַקְטִיל", "translation": "he will cause to kill" },
+          "3fs": { "form": "תַּקְטִיל", "translation": "she will cause to kill" },
+          "2ms": { "form": "תַּקְטִיל", "translation": "you (m.s.) will cause to kill" },
+          "2fs": { "form": "תַּקְטִילִי", "translation": "you (f.s.) will cause to kill" },
+          "1cs": { "form": "אַקְטִיל", "translation": "I will cause to kill" }
+        },
+        "plural": {
+          "3mp": { "form": "יַקְטִילוּ", "translation": "they (m.) will cause to kill" },
+          "3fp": { "form": "תַּקְטֵלְנָה", "translation": "they (f.) will cause to kill" },
+          "2mp": { "form": "תַּקְטִילוּ", "translation": "you (m.p.) will cause to kill" },
+          "2fp": { "form": "תַּקְטֵלְנָה", "translation": "you (f.p.) will cause to kill" },
+          "1cp": { "form": "נַקְטִיל", "translation": "we will cause to kill" }
+        }
+      },
+      "imperative": {
+        "name": "Imperative (הַקְטֵל)",
+        "description": "Causative command",
+        "singular": {
+          "2ms": { "form": "הַקְטֵל", "translation": "cause to kill! (m.s.)" },
+          "2fs": { "form": "הַקְטִילִי", "translation": "cause to kill! (f.s.)" }
+        },
+        "plural": {
+          "2mp": { "form": "הַקְטִילוּ", "translation": "cause to kill! (m.p.)" },
+          "2fp": { "form": "הַקְטֵלְנָה", "translation": "cause to kill! (f.p.)" }
+        }
+      },
+      "infinitive": {
+        "construct": { "form": "הַקְטִיל", "translation": "to cause to kill" },
+        "absolute": { "form": "הַקְטֵל", "translation": "causing to kill (emphatic)" }
+      },
+      "participle": {
+        "ms": { "form": "מַקְטִיל", "translation": "causing to kill" },
+        "fs": { "form": "מַקְטִילָה", "translation": "causing to kill (f.)" },
+        "mp": { "form": "מַקְטִילִים", "translation": "causing to kill (m.p.)" },
+        "fp": { "form": "מַקְטִילוֹת", "translation": "causing to kill (f.p.)" }
+      }
+    },
+    "hophal": {
+      "name": "Hophal (הָפְעַל)",
+      "meaning": "Causative passive - the passive of Hiphil",
+      "paradigmVerb": "הָקְטַל",
+      "paradigmRoot": "קטל",
+      "paradigmMeaning": "to be caused to kill",
+      "perfect": {
+        "name": "Perfect (הָקְטַל)",
+        "description": "Completed causative passive action",
+        "singular": {
+          "3ms": { "form": "הָקְטַל", "translation": "he was caused to kill" },
+          "3fs": { "form": "הָקְטְלָה", "translation": "she was caused to kill" },
+          "2ms": { "form": "הָקְטַלְתָּ", "translation": "you (m.s.) were caused to kill" },
+          "2fs": { "form": "הָקְטַלְתְּ", "translation": "you (f.s.) were caused to kill" },
+          "1cs": { "form": "הָקְטַלְתִּי", "translation": "I was caused to kill" }
+        },
+        "plural": {
+          "3cp": { "form": "הָקְטְלוּ", "translation": "they were caused to kill" },
+          "2mp": { "form": "הָקְטַלְתֶּם", "translation": "you (m.p.) were caused to kill" },
+          "2fp": { "form": "הָקְטַלְתֶּן", "translation": "you (f.p.) were caused to kill" },
+          "1cp": { "form": "הָקְטַלְנוּ", "translation": "we were caused to kill" }
+        }
+      },
+      "imperfect": {
+        "name": "Imperfect (יָקְטַל)",
+        "description": "Incomplete causative passive action",
+        "singular": {
+          "3ms": { "form": "יָקְטַל", "translation": "he will be caused to kill" },
+          "3fs": { "form": "תָּקְטַל", "translation": "she will be caused to kill" },
+          "2ms": { "form": "תָּקְטַל", "translation": "you (m.s.) will be caused to kill" },
+          "2fs": { "form": "תָּקְטְלִי", "translation": "you (f.s.) will be caused to kill" },
+          "1cs": { "form": "אָקְטַל", "translation": "I will be caused to kill" }
+        },
+        "plural": {
+          "3mp": { "form": "יָקְטְלוּ", "translation": "they (m.) will be caused to kill" },
+          "3fp": { "form": "תָּקְטַלְנָה", "translation": "they (f.) will be caused to kill" },
+          "2mp": { "form": "תָּקְטְלוּ", "translation": "you (m.p.) will be caused to kill" },
+          "2fp": { "form": "תָּקְטַלְנָה", "translation": "you (f.p.) will be caused to kill" },
+          "1cp": { "form": "נָקְטַל", "translation": "we will be caused to kill" }
+        }
+      },
+      "participle": {
+        "ms": { "form": "מָקְטָל", "translation": "being caused to kill" },
+        "fs": { "form": "מָקְטֶלֶת", "translation": "being caused to kill (f.)" },
+        "mp": { "form": "מָקְטָלִים", "translation": "being caused to kill (m.p.)" },
+        "fp": { "form": "מָקְטָלוֹת", "translation": "being caused to kill (f.p.)" }
+      }
+    },
+    "hithpael": {
+      "name": "Hithpael (הִתְפַּעֵל)",
+      "meaning": "Reflexive or reciprocal - action done to oneself or to each other",
+      "paradigmVerb": "הִתְקַטֵּל",
+      "paradigmRoot": "קטל",
+      "paradigmMeaning": "to kill oneself / each other",
+      "perfect": {
+        "name": "Perfect (הִתְקַטֵּל)",
+        "description": "Completed reflexive action",
+        "singular": {
+          "3ms": { "form": "הִתְקַטֵּל", "translation": "he killed himself" },
+          "3fs": { "form": "הִתְקַטְּלָה", "translation": "she killed herself" },
+          "2ms": { "form": "הִתְקַטַּלְתָּ", "translation": "you (m.s.) killed yourself" },
+          "2fs": { "form": "הִתְקַטַּלְתְּ", "translation": "you (f.s.) killed yourself" },
+          "1cs": { "form": "הִתְקַטַּלְתִּי", "translation": "I killed myself" }
+        },
+        "plural": {
+          "3cp": { "form": "הִתְקַטְּלוּ", "translation": "they killed themselves/each other" },
+          "2mp": { "form": "הִתְקַטַּלְתֶּם", "translation": "you (m.p.) killed yourselves" },
+          "2fp": { "form": "הִתְקַטַּלְתֶּן", "translation": "you (f.p.) killed yourselves" },
+          "1cp": { "form": "הִתְקַטַּלְנוּ", "translation": "we killed ourselves" }
+        }
+      },
+      "imperfect": {
+        "name": "Imperfect (יִתְקַטֵּל)",
+        "description": "Incomplete reflexive action",
+        "singular": {
+          "3ms": { "form": "יִתְקַטֵּל", "translation": "he will kill himself" },
+          "3fs": { "form": "תִּתְקַטֵּל", "translation": "she will kill herself" },
+          "2ms": { "form": "תִּתְקַטֵּל", "translation": "you (m.s.) will kill yourself" },
+          "2fs": { "form": "תִּתְקַטְּלִי", "translation": "you (f.s.) will kill yourself" },
+          "1cs": { "form": "אֶתְקַטֵּל", "translation": "I will kill myself" }
+        },
+        "plural": {
+          "3mp": { "form": "יִתְקַטְּלוּ", "translation": "they will kill themselves" },
+          "3fp": { "form": "תִּתְקַטֵּלְנָה", "translation": "they (f.) will kill themselves" },
+          "2mp": { "form": "תִּתְקַטְּלוּ", "translation": "you (m.p.) will kill yourselves" },
+          "2fp": { "form": "תִּתְקַטֵּלְנָה", "translation": "you (f.p.) will kill yourselves" },
+          "1cp": { "form": "נִתְקַטֵּל", "translation": "we will kill ourselves" }
+        }
+      },
+      "imperative": {
+        "name": "Imperative (הִתְקַטֵּל)",
+        "description": "Reflexive command",
+        "singular": {
+          "2ms": { "form": "הִתְקַטֵּל", "translation": "kill yourself! (m.s.)" },
+          "2fs": { "form": "הִתְקַטְּלִי", "translation": "kill yourself! (f.s.)" }
+        },
+        "plural": {
+          "2mp": { "form": "הִתְקַטְּלוּ", "translation": "kill yourselves! (m.p.)" },
+          "2fp": { "form": "הִתְקַטֵּלְנָה", "translation": "kill yourselves! (f.p.)" }
+        }
+      },
+      "infinitive": {
+        "construct": { "form": "הִתְקַטֵּל", "translation": "to kill oneself" },
+        "absolute": { "form": "הִתְקַטֵּל", "translation": "killing oneself (emphatic)" }
+      },
+      "participle": {
+        "ms": { "form": "מִתְקַטֵּל", "translation": "killing oneself" },
+        "fs": { "form": "מִתְקַטֶּלֶת", "translation": "killing oneself (f.)" },
+        "mp": { "form": "מִתְקַטְּלִים", "translation": "killing oneself (m.p.)" },
+        "fp": { "form": "מִתְקַטְּלוֹת", "translation": "killing oneself (f.p.)" }
+      }
+    }
+  },
+  "nouns": {
+    "segolate_masculine": {
+      "name": "Segolate Nouns (Masculine)",
+      "description": "Nouns with two seghols (ֶ) in the base form, derived from original monosyllabic patterns",
+      "example": "מֶלֶךְ",
+      "meaning": "king",
+      "pattern": "segolate",
+      "forms": {
+        "absoluteSingular": "מֶלֶךְ",
+        "constructSingular": "מֶלֶךְ",
+        "absolutePlural": "מְלָכִים",
+        "constructPlural": "מַלְכֵי"
+      },
+      "withSuffixes": {
+        "singular": {
+          "1cs": { "form": "מַלְכִּי", "meaning": "my king" },
+          "2ms": { "form": "מַלְכְּךָ", "meaning": "your (m.s.) king" },
+          "2fs": { "form": "מַלְכֵּךְ", "meaning": "your (f.s.) king" },
+          "3ms": { "form": "מַלְכּוֹ", "meaning": "his king" },
+          "3fs": { "form": "מַלְכָּהּ", "meaning": "her king" },
+          "1cp": { "form": "מַלְכֵּנוּ", "meaning": "our king" },
+          "2mp": { "form": "מַלְכְּכֶם", "meaning": "your (m.p.) king" },
+          "2fp": { "form": "מַלְכְּכֶן", "meaning": "your (f.p.) king" },
+          "3mp": { "form": "מַלְכָּם", "meaning": "their (m.) king" },
+          "3fp": { "form": "מַלְכָּן", "meaning": "their (f.) king" }
         }
       }
     },
-    "imperfect_active_indicative": {
-      "name": "Imperfect Active Indicative",
-      "example": "ἔλυον",
-      "meaning": "I was loosing",
-      "endings": {
-        "singular": {
-          "1st": "-ον",
-          "2nd": "-ες",
-          "3rd": "-ε(ν)"
-        },
-        "plural": {
-          "1st": "-ομεν",
-          "2nd": "-ετε",
-          "3rd": "-ον"
-        }
-      },
+    "segolate_feminine": {
+      "name": "Segolate Nouns (Feminine)",
+      "description": "Feminine segolate nouns with ת ending",
+      "example": "מַלְכָּה",
+      "meaning": "queen",
+      "pattern": "segolate",
       "forms": {
-        "singular": {
-          "1st": "ἔλυον",
-          "2nd": "ἔλυες",
-          "3rd": "ἔλυε(ν)"
-        },
-        "plural": {
-          "1st": "ἐλύομεν",
-          "2nd": "ἐλύετε",
-          "3rd": "ἔλυον"
-        }
+        "absoluteSingular": "מַלְכָּה",
+        "constructSingular": "מַלְכַּת",
+        "absolutePlural": "מְלָכוֹת",
+        "constructPlural": "מַלְכוֹת"
       }
     },
-    "future_active_indicative": {
-      "name": "Future Active Indicative",
-      "example": "λύσω",
-      "meaning": "I will loose",
-      "endings": {
-        "singular": {
-          "1st": "-σω",
-          "2nd": "-σεις",
-          "3rd": "-σει"
-        },
-        "plural": {
-          "1st": "-σομεν",
-          "2nd": "-σετε",
-          "3rd": "-σουσι(ν)"
-        }
-      },
+    "qatal_masculine": {
+      "name": "Qatal Pattern (Masculine)",
+      "description": "Two syllable nouns with qamets-patach pattern",
+      "example": "דָּבָר",
+      "meaning": "word, thing",
+      "pattern": "qatal",
       "forms": {
-        "singular": {
-          "1st": "λύσω",
-          "2nd": "λύσεις",
-          "3rd": "λύσει"
-        },
-        "plural": {
-          "1st": "λύσομεν",
-          "2nd": "λύσετε",
-          "3rd": "λύσουσι(ν)"
-        }
+        "absoluteSingular": "דָּבָר",
+        "constructSingular": "דְּבַר",
+        "absolutePlural": "דְּבָרִים",
+        "constructPlural": "דִּבְרֵי"
       }
     },
-    "aorist_active_indicative": {
-      "name": "Aorist Active Indicative (1st/Weak)",
-      "example": "ἔλυσα",
-      "meaning": "I loosed",
-      "endings": {
-        "singular": {
-          "1st": "-σα",
-          "2nd": "-σας",
-          "3rd": "-σε(ν)"
-        },
-        "plural": {
-          "1st": "-σαμεν",
-          "2nd": "-σατε",
-          "3rd": "-σαν"
-        }
-      },
+    "qatol_masculine": {
+      "name": "Qatol Pattern (Masculine)",
+      "description": "Nouns with qamets-holem pattern, often stative adjectives",
+      "example": "גָּדוֹל",
+      "meaning": "great, large",
+      "pattern": "qatol",
       "forms": {
-        "singular": {
-          "1st": "ἔλυσα",
-          "2nd": "ἔλυσας",
-          "3rd": "ἔλυσε(ν)"
-        },
-        "plural": {
-          "1st": "ἐλύσαμεν",
-          "2nd": "ἐλύσατε",
-          "3rd": "ἔλυσαν"
-        }
+        "absoluteSingular": "גָּדוֹל",
+        "constructSingular": "גְּדוֹל",
+        "absolutePlural": "גְּדוֹלִים",
+        "constructPlural": "גְּדוֹלֵי"
       }
     },
-    "aorist_active_indicative_second": {
-      "name": "Aorist Active Indicative (2nd/Strong)",
-      "example": "ἔβαλον",
-      "meaning": "I threw",
-      "endings": {
-        "singular": {
-          "1st": "-ον",
-          "2nd": "-ες",
-          "3rd": "-ε(ν)"
-        },
-        "plural": {
-          "1st": "-ομεν",
-          "2nd": "-ετε",
-          "3rd": "-ον"
-        }
-      },
-      "forms": {
-        "singular": {
-          "1st": "ἔβαλον",
-          "2nd": "ἔβαλες",
-          "3rd": "ἔβαλε(ν)"
-        },
-        "plural": {
-          "1st": "ἐβάλομεν",
-          "2nd": "ἐβάλετε",
-          "3rd": "ἔβαλον"
-        }
+    "dual_nouns": {
+      "name": "Dual Number",
+      "description": "Special form for pairs - body parts, paired objects",
+      "examples": [
+        { "singular": "יָד", "dual": "יָדַיִם", "meaning": "hand / hands (two)" },
+        { "singular": "עַיִן", "dual": "עֵינַיִם", "meaning": "eye / eyes (two)" },
+        { "singular": "אֹזֶן", "dual": "אָזְנַיִם", "meaning": "ear / ears (two)" },
+        { "singular": "רֶגֶל", "dual": "רַגְלַיִם", "meaning": "foot / feet (two)" },
+        { "singular": "שָׁמַיִם", "dual": "שָׁמַיִם", "meaning": "heavens (always dual)" }
+      ]
+    }
+  },
+  "weakVerbs": {
+    "pe_nun": {
+      "name": "Pe-Nun Verbs (פ״נ)",
+      "description": "Verbs with Nun as the first root letter - Nun often assimilates before consonants",
+      "example": { "hebrew": "נָתַן", "meaning": "to give" },
+      "characteristics": [
+        "Nun assimilates (merges with dagesh) before consonants",
+        "In Qal imperfect, loses the nun: יִתֵּן not *יִנְתֵּן",
+        "Imperative may lose initial nun: תֵּן"
+      ],
+      "paradigm": {
+        "qal_perfect_3ms": "נָתַן",
+        "qal_imperfect_3ms": "יִתֵּן",
+        "qal_imperative_2ms": "תֵּן",
+        "niphal_perfect_3ms": "נִתַּן"
       }
     },
-    "perfect_active_indicative": {
-      "name": "Perfect Active Indicative",
-      "example": "λέλυκα",
-      "meaning": "I have loosed",
-      "endings": {
-        "singular": {
-          "1st": "-κα",
-          "2nd": "-κας",
-          "3rd": "-κε(ν)"
-        },
-        "plural": {
-          "1st": "-καμεν",
-          "2nd": "-κατε",
-          "3rd": "-κασι(ν) / -καν"
-        }
-      },
-      "forms": {
-        "singular": {
-          "1st": "λέλυκα",
-          "2nd": "λέλυκας",
-          "3rd": "λέλυκε(ν)"
-        },
-        "plural": {
-          "1st": "λελύκαμεν",
-          "2nd": "λελύκατε",
-          "3rd": "λελύκασι(ν)"
-        }
+    "pe_yod": {
+      "name": "Pe-Yod/Vav Verbs (פ״י / פ״ו)",
+      "description": "Verbs with Yod or original Vav as the first root letter",
+      "example": { "hebrew": "יָשַׁב", "meaning": "to sit, dwell" },
+      "characteristics": [
+        "Original Vav became Yod in most forms",
+        "Qal imperfect often has shureq: יֵשֵׁב",
+        "Hiphil shows the original Vav: הוֹשִׁיב"
+      ],
+      "paradigm": {
+        "qal_perfect_3ms": "יָשַׁב",
+        "qal_imperfect_3ms": "יֵשֵׁב",
+        "qal_imperative_2ms": "שֵׁב",
+        "hiphil_perfect_3ms": "הוֹשִׁיב"
       }
     },
-    "present_active_subjunctive": {
-      "name": "Present Active Subjunctive",
-      "example": "λύω (subj)",
-      "meaning": "that I might loose",
-      "endings": {
-        "singular": {
-          "1st": "-ω",
-          "2nd": "-ῃς",
-          "3rd": "-ῃ"
-        },
-        "plural": {
-          "1st": "-ωμεν",
-          "2nd": "-ητε",
-          "3rd": "-ωσι(ν)"
-        }
-      },
-      "forms": {
-        "singular": {
-          "1st": "λύω",
-          "2nd": "λύῃς",
-          "3rd": "λύῃ"
-        },
-        "plural": {
-          "1st": "λύωμεν",
-          "2nd": "λύητε",
-          "3rd": "λύωσι(ν)"
-        }
+    "pe_aleph": {
+      "name": "Pe-Aleph Verbs (פ״א)",
+      "description": "Verbs with Aleph as the first root letter - guttural behavior",
+      "example": { "hebrew": "אָכַל", "meaning": "to eat" },
+      "characteristics": [
+        "Aleph is guttural - prefers compound shewa",
+        "Imperfect first person singular is אֹכַל (not *אֶאְכֹל)",
+        "Some verbs have Aleph quiesce"
+      ],
+      "paradigm": {
+        "qal_perfect_3ms": "אָכַל",
+        "qal_imperfect_3ms": "יֹאכַל",
+        "qal_imperfect_1cs": "אֹכַל"
       }
     },
-    "aorist_active_subjunctive": {
-      "name": "Aorist Active Subjunctive",
-      "example": "λύσω (subj)",
-      "meaning": "that I might loose",
-      "endings": {
-        "singular": {
-          "1st": "-σω",
-          "2nd": "-σῃς",
-          "3rd": "-σῃ"
-        },
-        "plural": {
-          "1st": "-σωμεν",
-          "2nd": "-σητε",
-          "3rd": "-σωσι(ν)"
-        }
-      },
-      "forms": {
-        "singular": {
-          "1st": "λύσω",
-          "2nd": "λύσῃς",
-          "3rd": "λύσῃ"
-        },
-        "plural": {
-          "1st": "λύσωμεν",
-          "2nd": "λύσητε",
-          "3rd": "λύσωσι(ν)"
-        }
+    "ayin_vav": {
+      "name": "Ayin-Vav/Yod Verbs (ע״ו / ע״י)",
+      "description": "Hollow verbs with Vav or Yod as the middle root letter",
+      "example": { "hebrew": "קוּם", "meaning": "to arise, stand" },
+      "characteristics": [
+        "Middle root letter is a vowel letter (mater)",
+        "Root appears biconsonantal in many forms",
+        "Perfect uses shureq, imperfect uses qamets"
+      ],
+      "paradigm": {
+        "qal_perfect_3ms": "קָם",
+        "qal_imperfect_3ms": "יָקוּם",
+        "qal_imperative_2ms": "קוּם",
+        "hiphil_perfect_3ms": "הֵקִים"
       }
     },
-    "present_active_imperative": {
-      "name": "Present Active Imperative",
-      "example": "λῦε",
-      "meaning": "loose! (keep loosing)",
-      "endings": {
-        "singular": {
-          "2nd": "-ε",
-          "3rd": "-έτω"
-        },
-        "plural": {
-          "2nd": "-ετε",
-          "3rd": "-έτωσαν / -όντων"
-        }
-      },
-      "forms": {
-        "singular": {
-          "2nd": "λῦε",
-          "3rd": "λυέτω"
-        },
-        "plural": {
-          "2nd": "λύετε",
-          "3rd": "λυέτωσαν"
-        }
+    "lamed_he": {
+      "name": "Lamed-He Verbs (ל״ה)",
+      "description": "Verbs with He as the third root letter (originally Yod/Vav)",
+      "example": { "hebrew": "גָּלָה", "meaning": "to uncover, reveal" },
+      "characteristics": [
+        "Third root letter is a vowel letter",
+        "He appears in pause and some forms",
+        "Perfect 3ms ends in ה, 3fs ends in תָה"
+      ],
+      "paradigm": {
+        "qal_perfect_3ms": "גָּלָה",
+        "qal_perfect_3fs": "גָּלְתָה",
+        "qal_imperfect_3ms": "יִגְלֶה",
+        "qal_imperative_2ms": "גְּלֵה"
       }
     },
-    "aorist_active_imperative": {
-      "name": "Aorist Active Imperative",
-      "example": "λῦσον",
-      "meaning": "loose! (just do it)",
-      "endings": {
-        "singular": {
-          "2nd": "-σον",
-          "3rd": "-σάτω"
-        },
-        "plural": {
-          "2nd": "-σατε",
-          "3rd": "-σάτωσαν"
-        }
-      },
-      "forms": {
-        "singular": {
-          "2nd": "λῦσον",
-          "3rd": "λυσάτω"
-        },
-        "plural": {
-          "2nd": "λύσατε",
-          "3rd": "λυσάτωσαν"
-        }
+    "lamed_aleph": {
+      "name": "Lamed-Aleph Verbs (ל״א)",
+      "description": "Verbs with Aleph as the third root letter",
+      "example": { "hebrew": "מָצָא", "meaning": "to find" },
+      "characteristics": [
+        "Final Aleph often quiesces (becomes silent)",
+        "Qamets before quiescent Aleph",
+        "Similar to Lamed-He in some respects"
+      ],
+      "paradigm": {
+        "qal_perfect_3ms": "מָצָא",
+        "qal_perfect_3fs": "מָצְאָה",
+        "qal_imperfect_3ms": "יִמְצָא"
+      }
+    },
+    "geminate": {
+      "name": "Geminate Verbs (ע״ע)",
+      "description": "Verbs with identical second and third root letters",
+      "example": { "hebrew": "סָבַב", "meaning": "to surround" },
+      "characteristics": [
+        "Second and third radicals are the same",
+        "Often contracted in certain forms",
+        "May show doubling with dagesh forte"
+      ],
+      "paradigm": {
+        "qal_perfect_3ms": "סָבַב",
+        "qal_imperfect_3ms": "יָסֹב",
+        "hiphil_perfect_3ms": "הֵסֵב"
       }
     }
   },
   "pronouns": {
-    "personal_first": {
-      "name": "1st Person Personal Pronoun",
-      "meaning": "I / we",
+    "independent": {
+      "name": "Independent Personal Pronouns",
+      "description": "Stand-alone pronouns used for emphasis or as subjects",
       "forms": {
         "singular": {
-          "nominative": "ἐγώ",
-          "genitive": "ἐμοῦ / μου",
-          "dative": "ἐμοί / μοι",
-          "accusative": "ἐμέ / με"
+          "1cs": { "form": "אֲנִי / אָנֹכִי", "meaning": "I" },
+          "2ms": { "form": "אַתָּה", "meaning": "you (m.s.)" },
+          "2fs": { "form": "אַתְּ", "meaning": "you (f.s.)" },
+          "3ms": { "form": "הוּא", "meaning": "he / it (m.)" },
+          "3fs": { "form": "הִיא", "meaning": "she / it (f.)" }
         },
         "plural": {
-          "nominative": "ἡμεῖς",
-          "genitive": "ἡμῶν",
-          "dative": "ἡμῖν",
-          "accusative": "ἡμᾶς"
+          "1cp": { "form": "אֲנַחְנוּ", "meaning": "we" },
+          "2mp": { "form": "אַתֶּם", "meaning": "you (m.p.)" },
+          "2fp": { "form": "אַתֶּן / אַתֵּנָה", "meaning": "you (f.p.)" },
+          "3mp": { "form": "הֵם / הֵמָּה", "meaning": "they (m.)" },
+          "3fp": { "form": "הֵן / הֵנָּה", "meaning": "they (f.)" }
         }
       }
     },
-    "personal_second": {
-      "name": "2nd Person Personal Pronoun",
-      "meaning": "you",
-      "forms": {
-        "singular": {
-          "nominative": "σύ",
-          "genitive": "σοῦ / σου",
-          "dative": "σοί / σοι",
-          "accusative": "σέ / σε"
-        },
-        "plural": {
-          "nominative": "ὑμεῖς",
-          "genitive": "ὑμῶν",
-          "dative": "ὑμῖν",
-          "accusative": "ὑμᾶς"
+    "demonstrative": {
+      "name": "Demonstrative Pronouns",
+      "description": "Used to point out specific items",
+      "near": {
+        "name": "Near (this/these)",
+        "forms": {
+          "ms": { "form": "זֶה", "meaning": "this (m.)" },
+          "fs": { "form": "זֹאת", "meaning": "this (f.)" },
+          "cp": { "form": "אֵלֶּה", "meaning": "these" }
+        }
+      },
+      "far": {
+        "name": "Far (that/those)",
+        "forms": {
+          "ms": { "form": "הוּא / הַהוּא", "meaning": "that (m.)" },
+          "fs": { "form": "הִיא / הַהִיא", "meaning": "that (f.)" },
+          "mp": { "form": "הֵם / הָהֵם", "meaning": "those (m.)" },
+          "fp": { "form": "הֵן / הָהֵן", "meaning": "those (f.)" }
         }
       }
     },
-    "personal_third": {
-      "name": "3rd Person Personal Pronoun",
-      "meaning": "he / she / it / they",
+    "interrogative": {
+      "name": "Interrogative Pronouns",
+      "description": "Used to ask questions",
       "forms": {
-        "masculine": {
-          "singular": {
-            "nominative": "αὐτός",
-            "genitive": "αὐτοῦ",
-            "dative": "αὐτῷ",
-            "accusative": "αὐτόν"
-          },
-          "plural": {
-            "nominative": "αὐτοί",
-            "genitive": "αὐτῶν",
-            "dative": "αὐτοῖς",
-            "accusative": "αὐτούς"
-          }
-        },
-        "feminine": {
-          "singular": {
-            "nominative": "αὐτή",
-            "genitive": "αὐτῆς",
-            "dative": "αὐτῇ",
-            "accusative": "αὐτήν"
-          },
-          "plural": {
-            "nominative": "αὐταί",
-            "genitive": "αὐτῶν",
-            "dative": "αὐταῖς",
-            "accusative": "αὐτάς"
-          }
-        },
-        "neuter": {
-          "singular": {
-            "nominative": "αὐτό",
-            "genitive": "αὐτοῦ",
-            "dative": "αὐτῷ",
-            "accusative": "αὐτό"
-          },
-          "plural": {
-            "nominative": "αὐτά",
-            "genitive": "αὐτῶν",
-            "dative": "αὐτοῖς",
-            "accusative": "αὐτά"
-          }
-        }
-      }
-    },
-    "demonstrative_this": {
-      "name": "Demonstrative Pronoun (this/these)",
-      "meaning": "this, these",
-      "forms": {
-        "masculine": {
-          "singular": {
-            "nominative": "οὗτος",
-            "genitive": "τούτου",
-            "dative": "τούτῳ",
-            "accusative": "τοῦτον"
-          },
-          "plural": {
-            "nominative": "οὗτοι",
-            "genitive": "τούτων",
-            "dative": "τούτοις",
-            "accusative": "τούτους"
-          }
-        },
-        "feminine": {
-          "singular": {
-            "nominative": "αὕτη",
-            "genitive": "ταύτης",
-            "dative": "ταύτῃ",
-            "accusative": "ταύτην"
-          },
-          "plural": {
-            "nominative": "αὗται",
-            "genitive": "τούτων",
-            "dative": "ταύταις",
-            "accusative": "ταύτας"
-          }
-        },
-        "neuter": {
-          "singular": {
-            "nominative": "τοῦτο",
-            "genitive": "τούτου",
-            "dative": "τούτῳ",
-            "accusative": "τοῦτο"
-          },
-          "plural": {
-            "nominative": "ταῦτα",
-            "genitive": "τούτων",
-            "dative": "τούτοις",
-            "accusative": "ταῦτα"
-          }
-        }
-      }
-    },
-    "demonstrative_that": {
-      "name": "Demonstrative Pronoun (that/those)",
-      "meaning": "that, those",
-      "forms": {
-        "masculine": {
-          "singular": {
-            "nominative": "ἐκεῖνος",
-            "genitive": "ἐκείνου",
-            "dative": "ἐκείνῳ",
-            "accusative": "ἐκεῖνον"
-          },
-          "plural": {
-            "nominative": "ἐκεῖνοι",
-            "genitive": "ἐκείνων",
-            "dative": "ἐκείνοις",
-            "accusative": "ἐκείνους"
-          }
-        },
-        "feminine": {
-          "singular": {
-            "nominative": "ἐκείνη",
-            "genitive": "ἐκείνης",
-            "dative": "ἐκείνῃ",
-            "accusative": "ἐκείνην"
-          },
-          "plural": {
-            "nominative": "ἐκεῖναι",
-            "genitive": "ἐκείνων",
-            "dative": "ἐκείναις",
-            "accusative": "ἐκείνας"
-          }
-        },
-        "neuter": {
-          "singular": {
-            "nominative": "ἐκεῖνο",
-            "genitive": "ἐκείνου",
-            "dative": "ἐκείνῳ",
-            "accusative": "ἐκεῖνο"
-          },
-          "plural": {
-            "nominative": "ἐκεῖνα",
-            "genitive": "ἐκείνων",
-            "dative": "ἐκείνοις",
-            "accusative": "ἐκεῖνα"
-          }
-        }
+        "who": { "form": "מִי", "meaning": "who?" },
+        "what": { "form": "מָה / מֶה", "meaning": "what?" },
+        "which": { "form": "אֵי", "meaning": "which? where?" }
       }
     },
     "relative": {
       "name": "Relative Pronoun",
+      "description": "Used to introduce relative clauses",
+      "form": "אֲשֶׁר",
       "meaning": "who, which, that",
+      "usage": "Indeclinable - same form for all genders and numbers"
+    }
+  },
+  "pronominalSuffixes": {
+    "onSingularNouns": {
+      "name": "Pronominal Suffixes on Singular Nouns",
+      "description": "Attached to singular nouns to show possession",
+      "example": "סוּס (horse)",
       "forms": {
-        "masculine": {
-          "singular": {
-            "nominative": "ὅς",
-            "genitive": "οὗ",
-            "dative": "ᾧ",
-            "accusative": "ὅν"
-          },
-          "plural": {
-            "nominative": "οἵ",
-            "genitive": "ὧν",
-            "dative": "οἷς",
-            "accusative": "οὕς"
-          }
-        },
-        "feminine": {
-          "singular": {
-            "nominative": "ἥ",
-            "genitive": "ἧς",
-            "dative": "ᾗ",
-            "accusative": "ἥν"
-          },
-          "plural": {
-            "nominative": "αἵ",
-            "genitive": "ὧν",
-            "dative": "αἷς",
-            "accusative": "ἅς"
-          }
-        },
-        "neuter": {
-          "singular": {
-            "nominative": "ὅ",
-            "genitive": "οὗ",
-            "dative": "ᾧ",
-            "accusative": "ὅ"
-          },
-          "plural": {
-            "nominative": "ἅ",
-            "genitive": "ὧν",
-            "dative": "οἷς",
-            "accusative": "ἅ"
-          }
-        }
+        "1cs": { "suffix": "ִי", "example": "סוּסִי", "meaning": "my horse" },
+        "2ms": { "suffix": "ְךָ", "example": "סוּסְךָ", "meaning": "your (m.s.) horse" },
+        "2fs": { "suffix": "ֵךְ", "example": "סוּסֵךְ", "meaning": "your (f.s.) horse" },
+        "3ms": { "suffix": "וֹ", "example": "סוּסוֹ", "meaning": "his horse" },
+        "3fs": { "suffix": "ָהּ", "example": "סוּסָהּ", "meaning": "her horse" },
+        "1cp": { "suffix": "ֵנוּ", "example": "סוּסֵנוּ", "meaning": "our horse" },
+        "2mp": { "suffix": "ְכֶם", "example": "סוּסְכֶם", "meaning": "your (m.p.) horse" },
+        "2fp": { "suffix": "ְכֶן", "example": "סוּסְכֶן", "meaning": "your (f.p.) horse" },
+        "3mp": { "suffix": "ָם", "example": "סוּסָם", "meaning": "their (m.) horse" },
+        "3fp": { "suffix": "ָן", "example": "סוּסָן", "meaning": "their (f.) horse" }
+      }
+    },
+    "onPluralNouns": {
+      "name": "Pronominal Suffixes on Plural Nouns",
+      "description": "Attached to plural nouns (uses construct plural form)",
+      "example": "סוּסִים (horses) → סוּסֵי (construct)",
+      "forms": {
+        "1cs": { "suffix": "ַי", "example": "סוּסַי", "meaning": "my horses" },
+        "2ms": { "suffix": "ֶיךָ", "example": "סוּסֶיךָ", "meaning": "your (m.s.) horses" },
+        "2fs": { "suffix": "ַיִךְ", "example": "סוּסַיִךְ", "meaning": "your (f.s.) horses" },
+        "3ms": { "suffix": "ָיו", "example": "סוּסָיו", "meaning": "his horses" },
+        "3fs": { "suffix": "ֶיהָ", "example": "סוּסֶיהָ", "meaning": "her horses" },
+        "1cp": { "suffix": "ֵינוּ", "example": "סוּסֵינוּ", "meaning": "our horses" },
+        "2mp": { "suffix": "ֵיכֶם", "example": "סוּסֵיכֶם", "meaning": "your (m.p.) horses" },
+        "2fp": { "suffix": "ֵיכֶן", "example": "סוּסֵיכֶן", "meaning": "your (f.p.) horses" },
+        "3mp": { "suffix": "ֵיהֶם", "example": "סוּסֵיהֶם", "meaning": "their (m.) horses" },
+        "3fp": { "suffix": "ֵיהֶן", "example": "סוּסֵיהֶן", "meaning": "their (f.) horses" }
+      }
+    },
+    "onVerbs": {
+      "name": "Object Suffixes on Verbs",
+      "description": "Attached to verbs to show direct object",
+      "example": "שָׁמַר (he guarded)",
+      "forms": {
+        "1cs": { "suffix": "ַנִי / ֵנִי", "example": "שְׁמָרַנִי", "meaning": "he guarded me" },
+        "2ms": { "suffix": "ְךָ", "example": "שְׁמָרְךָ", "meaning": "he guarded you (m.s.)" },
+        "2fs": { "suffix": "ֵךְ", "example": "שְׁמָרֵךְ", "meaning": "he guarded you (f.s.)" },
+        "3ms": { "suffix": "וֹ / ֵהוּ", "example": "שְׁמָרוֹ", "meaning": "he guarded him" },
+        "3fs": { "suffix": "ָהּ", "example": "שְׁמָרָהּ", "meaning": "he guarded her" },
+        "1cp": { "suffix": "ָנוּ", "example": "שְׁמָרָנוּ", "meaning": "he guarded us" },
+        "2mp": { "suffix": "ְכֶם", "example": "שְׁמָרְכֶם", "meaning": "he guarded you (m.p.)" },
+        "2fp": { "suffix": "ְכֶן", "example": "שְׁמָרְכֶן", "meaning": "he guarded you (f.p.)" },
+        "3mp": { "suffix": "ָם", "example": "שְׁמָרָם", "meaning": "he guarded them (m.)" },
+        "3fp": { "suffix": "ָן", "example": "שְׁמָרָן", "meaning": "he guarded them (f.)" }
       }
     }
   },
-  "caseDescriptions": {
-    "nominative": "Subject of the verb; names the doer of the action",
-    "genitive": "Shows possession ('of'), source, separation, or description",
-    "dative": "Indirect object ('to/for'), location ('in/at'), or means ('by/with')",
-    "accusative": "Direct object; receives the action of the verb",
-    "vocative": "Direct address; used when speaking to someone"
+  "particles": {
+    "article": {
+      "name": "The Definite Article (הַ)",
+      "description": "Hebrew has no indefinite article; definiteness is marked with הַ prefix",
+      "basicForm": "הַ",
+      "rules": [
+        { "context": "Before most consonants", "form": "הַ + dagesh", "example": "הַמֶּלֶךְ (the king)" },
+        { "context": "Before gutturals (א, ה, ח, ע)", "form": "הָ (qamets)", "example": "הָאִישׁ (the man)" },
+        { "context": "Before ח, ע with qamets", "form": "הֶ (seghol)", "example": "הֶחָכָם (the wise one)" },
+        { "context": "Before unaccented ה, ח, ע", "form": "הַ", "example": "הַהַר (the mountain)" }
+      ]
+    },
+    "inseparablePrepositions": {
+      "name": "Inseparable Prepositions",
+      "description": "Single-letter prepositions attached directly to words",
+      "forms": [
+        { "form": "בְּ", "meaning": "in, at, with, by", "example": "בְּבַיִת (in a house)" },
+        { "form": "כְּ", "meaning": "like, as, according to", "example": "כְּמֶלֶךְ (like a king)" },
+        { "form": "לְ", "meaning": "to, for, at", "example": "לְדָוִד (to/for David)" },
+        { "form": "מִ", "meaning": "from (contracted מִן)", "example": "מִבַּיִת (from a house)" }
+      ],
+      "withArticle": {
+        "description": "When combined with the article, the ה is dropped",
+        "pattern": "בַּ, כַּ, לַ, מֵהַ",
+        "example": "בַּמֶּלֶךְ (in the king) from בְּ + הַמֶּלֶךְ"
+      }
+    },
+    "vavConjunction": {
+      "name": "Vav Conjunction",
+      "description": "The most common conjunction, meaning 'and'",
+      "forms": [
+        { "form": "וְ", "context": "Before most consonants", "example": "וְאִישׁ (and a man)" },
+        { "form": "וּ", "context": "Before ב, מ, פ and shewa", "example": "וּמֶלֶךְ (and a king)" },
+        { "form": "וָ", "context": "Before monosyllables, accented syllables", "example": "וָאָרֶץ (and land)" },
+        { "form": "וֶ", "context": "Before compound shewa", "example": "וֶאֱמֶת (and truth)" }
+      ]
+    },
+    "directObjectMarker": {
+      "name": "Direct Object Marker (אֵת)",
+      "description": "Marks definite direct objects",
+      "form": "אֵת",
+      "withSuffixes": {
+        "1cs": "אֹתִי",
+        "2ms": "אֹתְךָ",
+        "2fs": "אֹתָךְ",
+        "3ms": "אֹתוֹ",
+        "3fs": "אֹתָהּ",
+        "1cp": "אֹתָנוּ",
+        "2mp": "אֶתְכֶם",
+        "2fp": "אֶתְכֶן",
+        "3mp": "אֹתָם",
+        "3fp": "אֹתָן"
+      },
+      "usage": "Used before definite nouns (with article, proper names, or suffixes)"
+    }
   },
-  "tenseDescriptions": {
-    "present": "Ongoing or repeated action (imperfective aspect)",
-    "imperfect": "Past continuous action ('was doing')",
-    "future": "Action yet to occur",
-    "aorist": "Simple occurrence; undefined aspect (often past)",
-    "perfect": "Completed action with ongoing results",
-    "pluperfect": "Past completed action with past results"
+  "stateDescriptions": {
+    "absolute": "The independent, stand-alone form of a noun",
+    "construct": "The bound form, used when a noun is connected to another noun in a genitive relationship"
   },
-  "voiceDescriptions": {
-    "active": "Subject performs the action",
-    "middle": "Subject acts on/for itself",
-    "passive": "Subject receives the action"
+  "binyanDescriptions": {
+    "qal": "Simple active - the basic, dictionary meaning of the root",
+    "niphal": "Simple passive/reflexive - action received or done to oneself",
+    "piel": "Intensive active - intensified, repeated, or factitive action",
+    "pual": "Intensive passive - the passive of Piel",
+    "hiphil": "Causative active - causing someone/something to do the action",
+    "hophal": "Causative passive - the passive of Hiphil",
+    "hithpael": "Reflexive/reciprocal - action done to oneself or to each other"
   },
-  "moodDescriptions": {
-    "indicative": "Statement of fact or question",
-    "subjunctive": "Possibility, purpose, or uncertainty",
-    "optative": "Wish or remote possibility",
-    "imperative": "Command or request"
+  "conjugationDescriptions": {
+    "perfect": "Completed action (often past tense in narrative)",
+    "imperfect": "Incomplete/ongoing action (often future or habitual)",
+    "imperative": "Command or request (only 2nd person)",
+    "infinitive_construct": "Verbal noun - 'to verb' (bound form)",
+    "infinitive_absolute": "Emphatic verbal noun - often used for emphasis",
+    "participle": "Verbal adjective - describing ongoing action or state"
   }
 }

@@ -6,6 +6,8 @@ import { createInitialProgress, updateWordProgress, isDue } from '@/lib/srs';
 import { checkAchievements, ACHIEVEMENTS } from '@/lib/achievements';
 import { sanitizeProgress, sanitizeUserStats, sanitizeStudyHistory, migrateLastReviewDate } from '@/lib/dataValidation';
 import vocabularyData from '@/data/vocabulary.json';
+import { syncWithFallback } from '@/lib/syncQueue';
+import { syncProgressToCloud, getProgressFromCloud, type SyncedProgress } from '@/lib/firebase';
 
 // Snapshot of state before a review (for undo functionality)
 interface ReviewSnapshot {
@@ -117,6 +119,10 @@ interface UserState {
   isLeech: (wordId: string) => boolean;
   // Blind mode toggle
   setBlindMode: (enabled: boolean) => void;
+  // Cloud sync
+  syncToCloud: (uid: string) => Promise<void>;
+  loadFromCloud: (uid: string) => Promise<boolean>;
+  mergeCloudData: (cloudData: SyncedProgress) => void;
 }
 
 export const useUserStore = create<UserState>()(
@@ -475,9 +481,138 @@ export const useUserStore = create<UserState>()(
       setBlindMode: (enabled: boolean) => {
         set({ blindMode: enabled });
       },
+
+      // Cloud sync - sync local progress to cloud
+      syncToCloud: async (uid: string) => {
+        const { stats, progress } = get();
+
+        // Convert progress to serializable format
+        const wordsData: SyncedProgress['words'] = {};
+        Object.entries(progress).forEach(([wordId, p]) => {
+          wordsData[wordId] = {
+            easeFactor: p.easeFactor,
+            interval: p.interval,
+            repetitions: p.repetitions,
+            maxRepetitions: p.maxRepetitions,
+            nextReview: p.nextReview instanceof Date ? p.nextReview.toISOString() : p.nextReview,
+            lastReview: p.lastReview instanceof Date ? p.lastReview.toISOString() : p.lastReview,
+            lastQuality: p.lastQuality,
+            timesReviewed: p.timesReviewed,
+            timesCorrect: p.timesCorrect,
+          };
+        });
+
+        const syncData: SyncedProgress = {
+          words: wordsData,
+          stats: {
+            xp: stats.xp,
+            level: stats.level,
+            streak: stats.streak,
+            longestStreak: stats.longestStreak,
+            lastStudyDate: stats.lastStudyDate instanceof Date
+              ? stats.lastStudyDate.toISOString()
+              : stats.lastStudyDate,
+            achievements: stats.achievements,
+            wordsLearned: stats.wordsLearned,
+            wordsInProgress: stats.wordsInProgress,
+            totalReviews: stats.totalReviews,
+            correctReviews: stats.correctReviews,
+          },
+          lastSynced: new Date(),
+        };
+
+        // Use syncWithFallback for offline-first queuing
+        await syncWithFallback(
+          () => syncProgressToCloud(uid, syncData),
+          'progress'
+        );
+      },
+
+      // Cloud sync - load progress from cloud
+      loadFromCloud: async (uid: string) => {
+        try {
+          const cloudData = await getProgressFromCloud(uid);
+          if (cloudData) {
+            get().mergeCloudData(cloudData);
+            return true;
+          }
+          return false;
+        } catch (error) {
+          console.error('[UserStore] Failed to load from cloud:', error);
+          return false;
+        }
+      },
+
+      // Merge cloud data with local data (cloud wins for conflicts based on lastSynced)
+      mergeCloudData: (cloudData: SyncedProgress) => {
+        const { stats, progress } = get();
+
+        // Merge word progress (take the one with higher repetitions/reviews)
+        const mergedProgress: Record<string, WordProgress> = { ...progress };
+
+        Object.entries(cloudData.words).forEach(([wordId, cloudWord]) => {
+          const localWord = progress[wordId];
+
+          if (!localWord) {
+            // Word exists only in cloud - add it
+            mergedProgress[wordId] = {
+              wordId,
+              easeFactor: cloudWord.easeFactor,
+              interval: cloudWord.interval,
+              repetitions: cloudWord.repetitions,
+              maxRepetitions: cloudWord.maxRepetitions,
+              nextReview: new Date(cloudWord.nextReview),
+              lastReview: cloudWord.lastReview ? new Date(cloudWord.lastReview) : null,
+              lastQuality: cloudWord.lastQuality,
+              timesReviewed: cloudWord.timesReviewed,
+              timesCorrect: cloudWord.timesCorrect,
+            };
+          } else {
+            // Word exists in both - take the one with more reviews
+            if (cloudWord.timesReviewed > localWord.timesReviewed) {
+              mergedProgress[wordId] = {
+                wordId,
+                easeFactor: cloudWord.easeFactor,
+                interval: cloudWord.interval,
+                repetitions: cloudWord.repetitions,
+                maxRepetitions: cloudWord.maxRepetitions,
+                nextReview: new Date(cloudWord.nextReview),
+                lastReview: cloudWord.lastReview ? new Date(cloudWord.lastReview) : null,
+                lastQuality: cloudWord.lastQuality,
+                timesReviewed: cloudWord.timesReviewed,
+                timesCorrect: cloudWord.timesCorrect,
+              };
+            }
+          }
+        });
+
+        // Merge stats (take higher values)
+        const mergedStats: UserStats = {
+          ...stats,
+          xp: Math.max(stats.xp, cloudData.stats.xp),
+          level: Math.max(stats.level, cloudData.stats.level),
+          streak: Math.max(stats.streak, cloudData.stats.streak),
+          longestStreak: Math.max(stats.longestStreak, cloudData.stats.longestStreak),
+          wordsLearned: Math.max(stats.wordsLearned, cloudData.stats.wordsLearned),
+          wordsInProgress: Object.values(mergedProgress).filter(
+            (p) => p.timesReviewed > 0 && (p.maxRepetitions || p.repetitions) < 5
+          ).length,
+          totalReviews: Math.max(stats.totalReviews, cloudData.stats.totalReviews),
+          correctReviews: Math.max(stats.correctReviews, cloudData.stats.correctReviews),
+          // Merge achievements (union of both)
+          achievements: [...new Set([...stats.achievements, ...cloudData.stats.achievements])],
+        };
+
+        set({
+          stats: mergedStats,
+          progress: mergedProgress,
+        });
+
+        console.log('[UserStore] Merged cloud data successfully');
+      },
     }),
     {
-      name: 'koine-user-store',
+      name: 'hebrew-user-store',
       // Custom serialization for Date objects with data validation
       storage: {
         getItem: (name) => {

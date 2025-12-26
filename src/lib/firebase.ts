@@ -20,9 +20,12 @@ import {
   query,
   where,
   getDocs,
+  orderBy,
   serverTimestamp,
   type Firestore,
+  type FieldValue,
 } from 'firebase/firestore';
+import type { SectionId, SectionProgress, Homework1Progress, HomeworkSubmission } from '@/types/homework';
 
 // Firebase configuration - Replace with your own config
 const firebaseConfig = {
@@ -326,3 +329,179 @@ export function onAuthChange(callback: (user: User | null) => void): () => void 
   if (!auth) return () => {};
   return onAuthStateChanged(auth, callback);
 }
+
+// =============================================================================
+// Homework Sync Functions
+// =============================================================================
+
+// Firestore-safe type for homework progress
+interface FirestoreHomeworkProgress {
+  id: string;
+  status: 'not_started' | 'in_progress' | 'completed';
+  sections: Record<string, SectionProgress>;
+  currentSection: number;
+  startedAt?: number;
+  completedAt?: number;
+  totalScore: number;
+  totalPossible: number;
+  lastSynced: FieldValue;
+}
+
+/**
+ * Sync homework progress to Firestore
+ */
+export async function syncHomeworkToCloud(
+  uid: string,
+  homeworkId: string,
+  progress: Homework1Progress
+): Promise<void> {
+  if (!firestore) throw new Error('Firebase not initialized');
+
+  const docRef = doc(firestore, 'homework', uid, 'assignments', homeworkId);
+
+  // Convert sections Record to plain object for Firestore
+  const sectionsData: Record<string, SectionProgress> = {};
+  for (const key in progress.sections) {
+    sectionsData[key] = progress.sections[key as unknown as SectionId];
+  }
+
+  const data: FirestoreHomeworkProgress = {
+    id: progress.id,
+    status: progress.status,
+    sections: sectionsData,
+    currentSection: progress.currentSection,
+    startedAt: progress.startedAt,
+    completedAt: progress.completedAt,
+    totalScore: progress.totalScore,
+    totalPossible: progress.totalPossible,
+    lastSynced: serverTimestamp(),
+  };
+
+  await setDoc(docRef, data, { merge: true });
+}
+
+/**
+ * Get homework progress from Firestore
+ */
+export async function getHomeworkFromCloud(
+  uid: string,
+  homeworkId: string
+): Promise<Homework1Progress | null> {
+  if (!firestore) throw new Error('Firebase not initialized');
+
+  const docRef = doc(firestore, 'homework', uid, 'assignments', homeworkId);
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    const data = docSnap.data();
+
+    // Convert sections back to proper Record type
+    const sections: Record<SectionId, SectionProgress> = {
+      1: data.sections['1'] || data.sections[1],
+      2: data.sections['2'] || data.sections[2],
+      3: data.sections['3'] || data.sections[3],
+      4: data.sections['4'] || data.sections[4],
+      5: data.sections['5'] || data.sections[5],
+    };
+
+    return {
+      id: data.id,
+      status: data.status,
+      sections,
+      currentSection: data.currentSection as SectionId,
+      startedAt: data.startedAt,
+      completedAt: data.completedAt,
+      totalScore: data.totalScore,
+      totalPossible: data.totalPossible,
+    };
+  }
+
+  return null;
+}
+
+/**
+ * Get all homework assignments for a student (for teacher dashboard)
+ */
+export async function getStudentHomework(
+  studentUid: string
+): Promise<{ hw1?: Homework1Progress }> {
+  if (!firestore) throw new Error('Firebase not initialized');
+
+  const result: { hw1?: Homework1Progress } = {};
+
+  try {
+    const hw1 = await getHomeworkFromCloud(studentUid, 'hw1');
+    if (hw1) {
+      result.hw1 = hw1;
+    }
+  } catch (error) {
+    console.error('Error fetching student homework:', error);
+  }
+
+  return result;
+}
+
+/**
+ * Submit homework result to the homeworkSubmissions collection
+ * Called when a student completes homework
+ */
+export async function submitHomeworkResult(
+  studentUid: string,
+  hwId: string,
+  userInfo: { displayName: string | null; email: string | null },
+  score: number,
+  totalPossible: number,
+  sections: Record<string, { score: number; totalQuestions: number; status: string }>
+): Promise<void> {
+  if (!firestore) throw new Error('Firebase not initialized');
+
+  const percentage = totalPossible > 0 ? Math.round((score / totalPossible) * 100) : 0;
+
+  await setDoc(doc(firestore, 'homeworkSubmissions', studentUid), {
+    studentUid,
+    homeworkId: hwId,
+    status: 'completed',
+    completedAt: serverTimestamp(),
+    score,
+    totalPossible,
+    percentage,
+    displayName: userInfo.displayName,
+    email: userInfo.email,
+    sections,
+  });
+}
+
+/**
+ * Get all homework submissions (for teacher dashboard)
+ * Returns all completed homework submissions sorted by completion date
+ */
+export async function getAllHomeworkSubmissions(): Promise<HomeworkSubmission[]> {
+  if (!firestore) throw new Error('Firebase not initialized');
+
+  const submissionsQuery = query(
+    collection(firestore, 'homeworkSubmissions'),
+    orderBy('completedAt', 'desc')
+  );
+
+  const snapshot = await getDocs(submissionsQuery);
+
+  return snapshot.docs.map((docSnap) => {
+    const data = docSnap.data();
+    return {
+      studentUid: docSnap.id,
+      homeworkId: data.homeworkId,
+      status: 'completed' as const,
+      completedAt: data.completedAt?.toDate() || new Date(),
+      score: data.score,
+      totalPossible: data.totalPossible,
+      percentage: data.percentage,
+      displayName: data.displayName,
+      email: data.email,
+      sections: data.sections,
+    };
+  });
+}
+
+// Aliases for backward compatibility
+export const loadProgressFromCloud = getProgressFromCloud;
+export const loadHomeworkFromCloud = getHomeworkFromCloud;

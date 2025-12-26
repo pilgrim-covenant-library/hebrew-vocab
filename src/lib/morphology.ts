@@ -21,6 +21,22 @@ export type GrammaticalNumber = 'singular' | 'plural' | 'dual';
 export type GrammaticalGender = 'masculine' | 'feminine' | 'common';
 export type Person = '1st' | '2nd' | '3rd';
 
+// Weak verb pattern types
+export type WeakVerbPattern =
+  | 'strong'      // Regular/strong verb (no weak letters)
+  | 'pe-nun'      // First radical is נ (e.g., נפל - fall)
+  | 'pe-yod'      // First radical is י (e.g., ישׁב - sit)
+  | 'pe-aleph'    // First radical is א (e.g., אמר - say)
+  | 'pe-guttural' // First radical is guttural (ע, ח, ה)
+  | 'ayin-vav'    // Middle radical is ו (e.g., קום - arise)
+  | 'ayin-yod'    // Middle radical is י (e.g., שׂים - put)
+  | 'ayin-guttural' // Middle radical is guttural
+  | 'lamed-he'    // Third radical is ה (e.g., בנה - build)
+  | 'lamed-aleph' // Third radical is א (e.g., מצא - find)
+  | 'lamed-guttural' // Third radical is guttural
+  | 'geminate'    // Second and third radicals are same (e.g., סבב - surround)
+  | 'doubly-weak' // Two weak radicals (e.g., היה - be);
+
 export interface ParsedNoun {
   partOfSpeech: 'noun';
   lexicalForm: string;
@@ -511,4 +527,416 @@ export function hasGuttural(root: string): { has: boolean; position?: 'first' | 
   }
 
   return { has: false };
+}
+
+// ============================================
+// ENHANCED WEAK VERB PATTERN DETECTION
+// ============================================
+
+export const WEAK_PATTERN_LABELS: Record<WeakVerbPattern, string> = {
+  'strong': 'Strong',
+  'pe-nun': 'Pe-Nun (פ״נ)',
+  'pe-yod': 'Pe-Yod (פ״י)',
+  'pe-aleph': 'Pe-Aleph (פ״א)',
+  'pe-guttural': 'Pe-Guttural',
+  'ayin-vav': 'Ayin-Vav (ע״ו)',
+  'ayin-yod': 'Ayin-Yod (ע״י)',
+  'ayin-guttural': 'Ayin-Guttural',
+  'lamed-he': 'Lamed-He (ל״ה)',
+  'lamed-aleph': 'Lamed-Aleph (ל״א)',
+  'lamed-guttural': 'Lamed-Guttural',
+  'geminate': 'Geminate (ע״ע)',
+  'doubly-weak': 'Doubly Weak',
+};
+
+export const WEAK_PATTERN_DESCRIPTIONS: Record<WeakVerbPattern, string> = {
+  'strong': 'A regular verb with no weak consonants. Follows standard conjugation patterns.',
+  'pe-nun': 'First radical is נ. The נ often assimilates (disappears) into the following consonant.',
+  'pe-yod': 'First radical is י. The י often drops out or changes to other vowels.',
+  'pe-aleph': 'First radical is א. The א is quiescent (silent) and affects vowel patterns.',
+  'pe-guttural': 'First radical is a guttural (ה, ח, ע). Gutturals prefer compound shewa and a-class vowels.',
+  'ayin-vav': 'Middle radical is ו (originally). These "hollow" verbs have unique conjugations.',
+  'ayin-yod': 'Middle radical is י (originally). Similar to Ayin-Vav but with i-class vowels.',
+  'ayin-guttural': 'Middle radical is a guttural. Affects vowel patterns in the word.',
+  'lamed-he': 'Third radical is ה. The final ה is a vowel letter, not a true consonant.',
+  'lamed-aleph': 'Third radical is א. The א is often quiescent, affecting final syllables.',
+  'lamed-guttural': 'Third radical is a guttural. Affects final vowel patterns.',
+  'geminate': 'Second and third radicals are the same letter. Often contracts in conjugation.',
+  'doubly-weak': 'Has weakness in two positions. Combines multiple weak verb behaviors.',
+};
+
+/**
+ * Enhanced weak verb pattern identification with full classification.
+ */
+export function identifyWeakPattern(root: string): WeakVerbPattern {
+  // Remove vowel points for analysis
+  const cleanRoot = root.replace(/[\u0591-\u05C7]/g, '');
+  const chars = [...cleanRoot].filter(c => /[\u05D0-\u05EA]/.test(c));
+
+  if (chars.length !== 3) return 'strong';
+
+  const [first, second, third] = chars;
+  const gutturals = ['א', 'ה', 'ח', 'ע'];
+  const weaknesses: string[] = [];
+
+  // Check first radical
+  if (first === 'נ') weaknesses.push('pe-nun');
+  else if (first === 'י') weaknesses.push('pe-yod');
+  else if (first === 'א') weaknesses.push('pe-aleph');
+  else if (gutturals.includes(first)) weaknesses.push('pe-guttural');
+
+  // Check middle radical
+  if (second === 'ו') weaknesses.push('ayin-vav');
+  else if (second === 'י') weaknesses.push('ayin-yod');
+  else if (gutturals.includes(second)) weaknesses.push('ayin-guttural');
+
+  // Check third radical
+  if (third === 'ה') weaknesses.push('lamed-he');
+  else if (third === 'א') weaknesses.push('lamed-aleph');
+  else if (gutturals.includes(third)) weaknesses.push('lamed-guttural');
+
+  // Check geminate
+  if (second === third) weaknesses.push('geminate');
+
+  // Determine pattern
+  if (weaknesses.length === 0) return 'strong';
+  if (weaknesses.length >= 2) return 'doubly-weak';
+  return weaknesses[0] as WeakVerbPattern;
+}
+
+/**
+ * Extract the three-letter root from a Hebrew word.
+ * This is a simplified extraction that works for many common patterns.
+ */
+export function extractRoot(word: string): string | null {
+  // Remove vowel points and cantillation
+  const cleanWord = word.replace(/[\u0591-\u05C7]/g, '');
+  // Extract only Hebrew letters
+  const letters = [...cleanWord].filter(c => /[\u05D0-\u05EA]/.test(c));
+
+  // Common prefixes to remove
+  const prefixes = ['ה', 'ו', 'ב', 'כ', 'ל', 'מ', 'נ', 'ת', 'י', 'א'];
+  // Common suffixes to remove
+  const suffixes = ['ה', 'ו', 'י', 'ם', 'ן', 'ת'];
+
+  // Try to identify 3-letter root
+  if (letters.length === 3) return letters.join('');
+
+  if (letters.length > 3) {
+    // Try removing common prefix
+    let root = [...letters];
+    if (prefixes.includes(root[0])) {
+      root = root.slice(1);
+    }
+    // Try removing common suffix
+    if (root.length > 3 && suffixes.includes(root[root.length - 1])) {
+      root = root.slice(0, -1);
+    }
+    if (root.length === 3) return root.join('');
+  }
+
+  return letters.length >= 3 ? letters.slice(0, 3).join('') : null;
+}
+
+// ============================================
+// FULL PARSING QUESTION GENERATORS
+// ============================================
+
+export interface FullParsingQuestion {
+  word: string;
+  hebrew: string;
+  transliteration: string;
+  gloss: string;
+  definition: string;
+  correctParsing: ParsedMorphology;
+  formattedParsing: string;
+  abbreviatedParsing: string;
+  root?: string;
+  weakPattern?: WeakVerbPattern;
+}
+
+export interface VocabularyWord {
+  id: string;
+  hebrew: string;
+  transliteration: string;
+  gloss: string;
+  definition: string;
+  partOfSpeech: string;
+  morphology?: {
+    gender?: string;
+    number?: string;
+    binyan?: string;
+    root?: string;
+  };
+}
+
+/**
+ * Generate a full parsing question from a vocabulary word.
+ */
+export function generateFullParsingQuestion(word: VocabularyWord): FullParsingQuestion | null {
+  const pos = word.partOfSpeech.toLowerCase();
+
+  let parsed: ParsedMorphology;
+  let weakPattern: WeakVerbPattern | undefined;
+
+  if (pos === 'verb') {
+    const binyan = (word.morphology?.binyan as Binyan) || 'qal';
+    const root = word.morphology?.root || extractRoot(word.hebrew);
+
+    if (root) {
+      weakPattern = identifyWeakPattern(root);
+    }
+
+    parsed = {
+      partOfSpeech: 'verb',
+      lexicalForm: word.hebrew,
+      binyan,
+      conjugation: 'perfect' as HebrewConjugation,
+      person: '3rd',
+      gender: 'masculine' as GrammaticalGender,
+      number: 'singular' as GrammaticalNumber,
+      root: root || undefined,
+    };
+  } else if (pos === 'noun') {
+    parsed = {
+      partOfSpeech: 'noun',
+      lexicalForm: word.hebrew,
+      gender: (word.morphology?.gender as GrammaticalGender) || 'masculine',
+      number: (word.morphology?.number as GrammaticalNumber) || 'singular',
+      state: 'absolute' as GrammaticalCase,
+    };
+  } else if (pos === 'adjective') {
+    parsed = {
+      partOfSpeech: 'adjective',
+      lexicalForm: word.hebrew,
+      gender: (word.morphology?.gender as GrammaticalGender) || 'masculine',
+      number: 'singular' as GrammaticalNumber,
+      state: 'absolute' as GrammaticalCase,
+    };
+  } else if (pos === 'pronoun') {
+    parsed = {
+      partOfSpeech: 'pronoun',
+      lexicalForm: word.hebrew,
+      person: '3rd',
+      gender: 'masculine' as GrammaticalGender,
+      number: 'singular' as GrammaticalNumber,
+      type: 'personal',
+    };
+  } else if (pos === 'preposition' || pos === 'conjunction' || pos === 'adverb') {
+    parsed = {
+      partOfSpeech: 'particle',
+      lexicalForm: word.hebrew,
+      type: pos === 'preposition' ? 'preposition' : pos === 'conjunction' ? 'conjunction' : 'other',
+    };
+  } else {
+    return null;
+  }
+
+  return {
+    word: word.id,
+    hebrew: word.hebrew,
+    transliteration: word.transliteration,
+    gloss: word.gloss,
+    definition: word.definition,
+    correctParsing: parsed,
+    formattedParsing: formatMorphology(parsed),
+    abbreviatedParsing: formatMorphologyAbbrev(parsed),
+    root: parsed.partOfSpeech === 'verb' ? (parsed as ParsedVerb).root : undefined,
+    weakPattern,
+  };
+}
+
+/**
+ * Generate plausible wrong parsings for quiz options.
+ */
+export function generatePlausibleWrongParsings(
+  correctParsing: ParsedMorphology,
+  count: number = 3
+): ParsedMorphology[] {
+  const wrongParsings: ParsedMorphology[] = [];
+
+  if (correctParsing.partOfSpeech === 'verb') {
+    const verbParsing = correctParsing as ParsedVerb;
+
+    // Wrong binyan
+    const wrongBinyanim = ALL_BINYANIM.filter(b => b !== verbParsing.binyan);
+    if (wrongBinyanim.length > 0) {
+      wrongParsings.push({
+        ...verbParsing,
+        binyan: wrongBinyanim[Math.floor(Math.random() * wrongBinyanim.length)],
+      });
+    }
+
+    // Wrong conjugation
+    const wrongConjs = ALL_CONJUGATIONS.filter(c => c !== verbParsing.conjugation);
+    if (wrongConjs.length > 0) {
+      wrongParsings.push({
+        ...verbParsing,
+        conjugation: wrongConjs[Math.floor(Math.random() * wrongConjs.length)],
+      });
+    }
+
+    // Wrong person/gender/number combination
+    if (verbParsing.person && verbParsing.gender && verbParsing.number) {
+      const wrongPersons = ALL_PERSONS.filter(p => p !== verbParsing.person);
+      wrongParsings.push({
+        ...verbParsing,
+        person: wrongPersons[Math.floor(Math.random() * wrongPersons.length)],
+        gender: verbParsing.gender === 'masculine' ? 'feminine' : 'masculine',
+      });
+    }
+  } else if (correctParsing.partOfSpeech === 'noun' || correctParsing.partOfSpeech === 'adjective') {
+    const nounParsing = correctParsing as ParsedNoun;
+
+    // Wrong gender
+    wrongParsings.push({
+      ...nounParsing,
+      gender: nounParsing.gender === 'masculine' ? 'feminine' : 'masculine',
+    });
+
+    // Wrong number
+    const wrongNums = ALL_NUMBERS.filter(n => n !== nounParsing.number);
+    wrongParsings.push({
+      ...nounParsing,
+      number: wrongNums[Math.floor(Math.random() * wrongNums.length)],
+    });
+
+    // Wrong state
+    wrongParsings.push({
+      ...nounParsing,
+      state: nounParsing.state === 'absolute' ? 'construct' : 'absolute',
+    });
+  }
+
+  // Shuffle and return requested count
+  return wrongParsings.sort(() => Math.random() - 0.5).slice(0, count);
+}
+
+/**
+ * Generate a complete quiz question with correct answer and distractors.
+ */
+export function generateParsingQuiz(
+  word: VocabularyWord,
+  questionType: 'binyan' | 'full' | 'gender' | 'number' | 'weak-pattern' = 'full'
+): MorphologyQuestion | null {
+  const fullQuestion = generateFullParsingQuestion(word);
+  if (!fullQuestion) return null;
+
+  switch (questionType) {
+    case 'binyan':
+      if (fullQuestion.correctParsing.partOfSpeech !== 'verb') return null;
+      const verbParsing = fullQuestion.correctParsing as ParsedVerb;
+      return {
+        word: fullQuestion.hebrew,
+        lexicalForm: fullQuestion.hebrew,
+        gloss: fullQuestion.gloss,
+        correctAnswer: BINYAN_LABELS[verbParsing.binyan],
+        options: generateOptions(verbParsing.binyan, ALL_BINYANIM).map(b => BINYAN_LABELS[b]),
+        questionType: 'binyan',
+        hint: getBinyanDescription(verbParsing.binyan),
+      };
+
+    case 'weak-pattern':
+      if (!fullQuestion.weakPattern || fullQuestion.weakPattern === 'strong') return null;
+      const allPatterns: WeakVerbPattern[] = [
+        'strong', 'pe-nun', 'pe-yod', 'pe-aleph', 'ayin-vav', 'ayin-yod',
+        'lamed-he', 'lamed-aleph', 'geminate'
+      ];
+      return {
+        word: fullQuestion.hebrew,
+        lexicalForm: fullQuestion.hebrew,
+        gloss: fullQuestion.gloss,
+        correctAnswer: WEAK_PATTERN_LABELS[fullQuestion.weakPattern],
+        options: generateOptions(fullQuestion.weakPattern, allPatterns).map(p => WEAK_PATTERN_LABELS[p]),
+        questionType: 'full',
+        hint: WEAK_PATTERN_DESCRIPTIONS[fullQuestion.weakPattern],
+      };
+
+    case 'gender':
+      if (fullQuestion.correctParsing.partOfSpeech !== 'noun' &&
+          fullQuestion.correctParsing.partOfSpeech !== 'adjective') return null;
+      const nounParsing = fullQuestion.correctParsing as ParsedNoun;
+      return generateGenderQuestion(
+        fullQuestion.hebrew,
+        fullQuestion.hebrew,
+        fullQuestion.gloss,
+        nounParsing.gender
+      );
+
+    case 'number':
+      if (fullQuestion.correctParsing.partOfSpeech !== 'noun' &&
+          fullQuestion.correctParsing.partOfSpeech !== 'adjective') return null;
+      const nounParsing2 = fullQuestion.correctParsing as ParsedNoun;
+      return generateNumberQuestion(
+        fullQuestion.hebrew,
+        fullQuestion.hebrew,
+        fullQuestion.gloss,
+        nounParsing2.number
+      );
+
+    case 'full':
+    default:
+      const wrongParsings = generatePlausibleWrongParsings(fullQuestion.correctParsing);
+      const options = [
+        fullQuestion.formattedParsing,
+        ...wrongParsings.map(p => formatMorphology(p))
+      ].sort(() => Math.random() - 0.5);
+
+      return {
+        word: fullQuestion.hebrew,
+        lexicalForm: fullQuestion.hebrew,
+        gloss: fullQuestion.gloss,
+        correctAnswer: fullQuestion.formattedParsing,
+        options,
+        questionType: 'full',
+      };
+  }
+}
+
+/**
+ * Filter vocabulary words by criteria for practice sessions.
+ */
+export function filterVocabularyForPractice(
+  words: VocabularyWord[],
+  options: {
+    partOfSpeech?: string[];
+    binyan?: Binyan[];
+    weakPattern?: WeakVerbPattern[];
+    maxTier?: number;
+    limit?: number;
+  }
+): VocabularyWord[] {
+  let filtered = [...words];
+
+  if (options.partOfSpeech && options.partOfSpeech.length > 0) {
+    filtered = filtered.filter(w =>
+      options.partOfSpeech!.includes(w.partOfSpeech.toLowerCase())
+    );
+  }
+
+  if (options.binyan && options.binyan.length > 0) {
+    filtered = filtered.filter(w =>
+      w.partOfSpeech.toLowerCase() === 'verb' &&
+      w.morphology?.binyan &&
+      options.binyan!.includes(w.morphology.binyan as Binyan)
+    );
+  }
+
+  if (options.weakPattern && options.weakPattern.length > 0) {
+    filtered = filtered.filter(w => {
+      if (w.partOfSpeech.toLowerCase() !== 'verb') return false;
+      const root = w.morphology?.root || extractRoot(w.hebrew);
+      if (!root) return false;
+      const pattern = identifyWeakPattern(root);
+      return options.weakPattern!.includes(pattern);
+    });
+  }
+
+  // Shuffle and limit
+  filtered = filtered.sort(() => Math.random() - 0.5);
+  if (options.limit) {
+    filtered = filtered.slice(0, options.limit);
+  }
+
+  return filtered;
 }

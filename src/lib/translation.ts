@@ -1,4 +1,4 @@
-import type { NTVerse, TranslationResult } from '@/types';
+import type { BibleVerse, TranslationResult } from '@/types';
 
 /**
  * Translation Scoring Algorithm
@@ -24,67 +24,141 @@ const STOP_WORDS = new Set([
   'such', 'any', 'own'
 ]);
 
-// Synonym mappings for common biblical terms
+// Synonym mappings for Biblical Hebrew terms (80+ entries)
+// Includes Hebrew transliterations and common English translations
 const SYNONYMS: Record<string, string[]> = {
-  'lord': ['master', 'sovereign'],
-  'god': ['deity', 'divine'],
-  'faith': ['belief', 'trust'],
-  'believe': ['trust', 'have faith'],
-  'love': ['charity', 'affection'],
-  'sin': ['transgression', 'wrongdoing', 'iniquity'],
-  'save': ['deliver', 'rescue'],
-  'salvation': ['deliverance', 'redemption'],
-  'grace': ['favor', 'unmerited favor'],
-  'righteous': ['just', 'upright'],
-  'righteousness': ['justice', 'uprightness'],
-  'eternal': ['everlasting', 'forever'],
-  'life': ['living'],
-  'death': ['die', 'dying'],
-  'spirit': ['ghost'],
-  'holy': ['sacred', 'divine'],
-  'kingdom': ['reign', 'rule'],
-  'heaven': ['heavens', 'sky'],
-  'word': ['message', 'logos'],
-  'truth': ['true', 'reality'],
-  'light': ['brightness', 'illumination'],
-  'darkness': ['dark', 'shadow'],
-  'glory': ['splendor', 'majesty', 'glorious'],
-  'power': ['might', 'strength', 'authority'],
-  'son': ['child'],
-  'father': ['dad', 'papa'],
-  'christ': ['messiah', 'anointed'],
-  'jesus': ['yeshua'],
-  'disciples': ['followers', 'students'],
-  'apostle': ['messenger', 'sent one'],
-  'repent': ['turn', 'change mind'],
-  'baptize': ['immerse', 'wash'],
-  'forgive': ['pardon', 'absolve'],
-  'forgiveness': ['pardon', 'absolution'],
-  'confess': ['acknowledge', 'admit'],
-  'witness': ['testimony', 'testify'],
-  'blessed': ['happy', 'fortunate'],
-  'wrath': ['anger', 'fury'],
-  'mercy': ['compassion', 'pity'],
-  'peace': ['tranquility', 'harmony'],
-  'joy': ['gladness', 'happiness', 'rejoice'],
-  'hope': ['expectation', 'trust'],
-  'flesh': ['body', 'human nature'],
-  'world': ['cosmos', 'earth'],
-  'soul': ['life', 'self'],
-  'heart': ['mind', 'inner being'],
-  'church': ['assembly', 'congregation', 'ekklesia'],
-  'scripture': ['scriptures', 'writings', 'bible'],
-  'prophet': ['prophets'],
-  'law': ['commandment', 'torah'],
-  'covenant': ['testament', 'agreement'],
-  'sacrifice': ['offering'],
-  'priest': ['priesthood'],
-  'temple': ['sanctuary'],
-  'worship': ['praise', 'adore'],
-  'pray': ['prayer'],
-  'preach': ['proclaim', 'announce'],
-  'gospel': ['good news', 'good tidings'],
-  'resurrection': ['raised', 'rise'],
+  // Divine names and titles
+  'lord': ['master', 'sovereign', 'adonai', 'yahweh', 'yhwh', 'jehovah'],
+  'god': ['deity', 'divine', 'elohim', 'el', 'eloah', 'almighty'],
+  'almighty': ['el shaddai', 'shaddai', 'all-powerful', 'omnipotent'],
+  'yahweh': ['lord', 'yhwh', 'jehovah', 'the lord', 'adonai'],
+
+  // Key Hebrew theological concepts
+  'covenant': ['berit', 'testament', 'agreement', 'pact', 'treaty'],
+  'torah': ['law', 'instruction', 'teaching', 'commandment', 'pentateuch'],
+  'law': ['torah', 'commandment', 'instruction', 'statute', 'ordinance'],
+  'steadfast love': ['hesed', 'lovingkindness', 'loyal love', 'mercy', 'unfailing love', 'covenant love'],
+  'hesed': ['steadfast love', 'lovingkindness', 'mercy', 'kindness', 'loyal love'],
+  'righteousness': ['tsedaqah', 'justice', 'uprightness', 'rightness', 'vindication'],
+  'glory': ['kavod', 'splendor', 'majesty', 'honor', 'weight', 'presence'],
+  'peace': ['shalom', 'wholeness', 'completeness', 'welfare', 'prosperity', 'well-being'],
+  'holy': ['qadosh', 'sacred', 'set apart', 'sanctified', 'consecrated'],
+  'holiness': ['qodesh', 'sanctity', 'sacredness', 'consecration'],
+  'salvation': ['yeshuah', 'deliverance', 'rescue', 'victory', 'help'],
+  'sin': ['het', 'transgression', 'iniquity', 'avon', 'pesha', 'wrongdoing', 'offense'],
+  'iniquity': ['avon', 'sin', 'guilt', 'punishment', 'perversity'],
+  'transgression': ['pesha', 'rebellion', 'sin', 'trespass', 'revolt'],
+
+  // Hebrew concepts for soul/spirit/heart
+  'spirit': ['ruach', 'breath', 'wind', 'spirit of god'],
+  'soul': ['nefesh', 'life', 'self', 'person', 'being', 'creature'],
+  'heart': ['lev', 'mind', 'inner being', 'will', 'understanding', 'levav'],
+  'strength': ['koach', 'power', 'might', 'force', 'ability'],
+
+  // Common Hebrew verbs and their translations
+  'hear': ['shema', 'listen', 'obey', 'heed', 'pay attention'],
+  'keep': ['shamar', 'guard', 'watch', 'observe', 'protect', 'preserve'],
+  'bless': ['barakh', 'praise', 'kneel', 'blessing'],
+  'blessed': ['barukh', 'happy', 'fortunate', 'praiseworthy'],
+  'fear': ['yirah', 'reverence', 'awe', 'respect', 'terror', 'dread'],
+  'remember': ['zakar', 'recall', 'be mindful', 'mention', 'commemorate'],
+  'know': ['yada', 'understand', 'recognize', 'perceive', 'experience'],
+  'say': ['amar', 'speak', 'tell', 'declare', 'command'],
+  'go': ['halak', 'walk', 'come', 'proceed', 'live'],
+  'come': ['bo', 'enter', 'arrive', 'go in', 'approach'],
+  'give': ['natan', 'put', 'set', 'grant', 'bestow', 'deliver'],
+  'see': ['raah', 'look', 'perceive', 'behold', 'observe', 'appear'],
+  'make': ['asah', 'do', 'create', 'accomplish', 'produce', 'work'],
+  'create': ['bara', 'make', 'form', 'fashion', 'shape'],
+  'dwell': ['yashav', 'sit', 'remain', 'stay', 'inhabit', 'settle'],
+  'return': ['shuv', 'turn', 'repent', 'come back', 'restore'],
+  'repent': ['shuv', 'turn', 'return', 'change', 'relent'],
+  'trust': ['batach', 'rely', 'have confidence', 'be secure'],
+  'seek': ['darash', 'inquire', 'search', 'require', 'care for'],
+  'call': ['qara', 'proclaim', 'summon', 'invite', 'name', 'read'],
+  'love': ['ahav', 'ahavah', 'affection', 'desire'],
+  'serve': ['avad', 'work', 'worship', 'till', 'labor'],
+  'worship': ['avad', 'serve', 'bow down', 'prostrate'],
+  'judge': ['shaphat', 'govern', 'rule', 'vindicate', 'decide'],
+  'save': ['yasha', 'deliver', 'rescue', 'help', 'victory'],
+
+  // People and roles
+  'prophet': ['navi', 'seer', 'spokesman', 'prophets'],
+  'priest': ['kohen', 'priesthood', 'minister'],
+  'king': ['melek', 'ruler', 'sovereign', 'monarch'],
+  'servant': ['eved', 'slave', 'bondservant', 'worker'],
+  'son': ['ben', 'child', 'descendant', 'member'],
+  'daughter': ['bat', 'girl', 'young woman'],
+  'father': ['av', 'ancestor', 'forefather', 'patriarch'],
+  'mother': ['em', 'parent'],
+  'people': ['am', 'nation', 'folk', 'kinsmen'],
+  'nation': ['goy', 'people', 'gentile', 'nations'],
+  'israel': ['jacob', 'israelites', 'hebrew'],
+  'man': ['ish', 'adam', 'husband', 'person', 'human'],
+  'woman': ['ishah', 'wife', 'female'],
+  'messiah': ['mashiach', 'anointed', 'anointed one', 'christ'],
+
+  // Places and things
+  'land': ['eretz', 'earth', 'ground', 'country', 'territory'],
+  'heaven': ['shamayim', 'sky', 'heavens', 'firmament'],
+  'earth': ['eretz', 'land', 'ground', 'world'],
+  'house': ['bayit', 'home', 'household', 'temple', 'family', 'dynasty'],
+  'city': ['ir', 'town'],
+  'temple': ['heikhal', 'sanctuary', 'palace', 'house of god'],
+  'altar': ['mizbeach', 'place of sacrifice'],
+  'tabernacle': ['mishkan', 'dwelling', 'tent of meeting'],
+  'mountain': ['har', 'hill', 'mount'],
+  'wilderness': ['midbar', 'desert', 'wasteland'],
+  'water': ['mayim', 'waters', 'sea'],
+  'sea': ['yam', 'waters', 'ocean', 'west'],
+  'river': ['nahar', 'stream', 'flood'],
+
+  // Time words
+  'day': ['yom', 'time', 'today'],
+  'night': ['lailah', 'evening', 'darkness'],
+  'year': ['shanah', 'years', 'age'],
+  'forever': ['olam', 'eternal', 'everlasting', 'perpetual', 'ancient'],
+  'eternal': ['olam', 'forever', 'everlasting', 'perpetual'],
+  'beginning': ['reshit', 'first', 'start', 'chief'],
+
+  // Religious practice
+  'sacrifice': ['zebach', 'korban', 'offering', 'slaughter'],
+  'offering': ['korban', 'sacrifice', 'oblation', 'gift'],
+  'burnt offering': ['olah', 'holocaust', 'whole burnt offering'],
+  'prayer': ['tefillah', 'supplication', 'intercession'],
+  'praise': ['tehillah', 'hallelujah', 'thanksgiving', 'glory'],
+  'sabbath': ['shabbat', 'rest', 'cease'],
+  'atonement': ['kippur', 'covering', 'expiation', 'propitiation'],
+
+  // Abstract concepts
+  'word': ['davar', 'matter', 'thing', 'affair', 'message'],
+  'truth': ['emet', 'faithfulness', 'true', 'reliable', 'trustworthy'],
+  'faithfulness': ['emunah', 'faith', 'trust', 'steadfastness', 'reliability'],
+  'wisdom': ['chokmah', 'skill', 'understanding', 'wise'],
+  'understanding': ['binah', 'insight', 'discernment', 'intelligence'],
+  'knowledge': ['daat', 'knowing', 'understanding', 'perception'],
+  'life': ['chayyim', 'living', 'alive', 'lifetime'],
+  'death': ['mavet', 'die', 'dying', 'dead', 'mot'],
+  'good': ['tov', 'pleasant', 'beautiful', 'better', 'well'],
+  'evil': ['ra', 'bad', 'wicked', 'disaster', 'calamity', 'wrong'],
+  'way': ['derek', 'road', 'path', 'journey', 'manner', 'conduct'],
+  'name': ['shem', 'reputation', 'fame', 'renown'],
+  'face': ['panim', 'presence', 'before', 'surface'],
+  'hand': ['yad', 'power', 'authority', 'side'],
+  'eye': ['ayin', 'sight', 'appearance', 'spring'],
+  'voice': ['qol', 'sound', 'noise', 'thunder'],
+
+  // Actions and states
+  'wrath': ['af', 'anger', 'fury', 'rage', 'nose'],
+  'anger': ['af', 'wrath', 'fury', 'rage'],
+  'mercy': ['racham', 'compassion', 'pity', 'womb'],
+  'compassion': ['rachamim', 'mercy', 'tender mercies', 'pity'],
+  'joy': ['simchah', 'gladness', 'happiness', 'rejoice', 'mirth'],
+  'hope': ['tiqvah', 'expectation', 'cord'],
+  'light': ['or', 'brightness', 'illumination', 'daylight'],
+  'darkness': ['choshek', 'dark', 'obscurity', 'night'],
+  'blood': ['dam', 'bloodshed', 'lifeblood'],
+  'flesh': ['basar', 'body', 'meat', 'mankind'],
 };
 
 /**
@@ -332,7 +406,7 @@ function generateSuggestions(
  * Returns a score from 0-10 with detailed feedback
  */
 export function scoreTranslation(
-  verse: NTVerse,
+  verse: BibleVerse,
   userTranslation: string
 ): TranslationResult {
   const userTokens = tokenize(userTranslation);
