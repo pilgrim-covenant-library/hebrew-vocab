@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { BookOpen, Brain, Keyboard, Trophy, Settings, ChevronRight, Languages, TrendingUp, BookType } from 'lucide-react';
+import { BookOpen, Brain, Keyboard, Trophy, Settings, ChevronRight, Languages, TrendingUp, BookType, Sparkles } from 'lucide-react';
 import { useUserStore } from '@/stores/userStore';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { XPBar } from '@/components/XPBar';
@@ -203,6 +203,13 @@ export default function Dashboard() {
               title="Grammar"
               description="Binyanim, verb forms, noun patterns"
               color="bg-rose-500"
+            />
+            <LearningModeCard
+              href="/inspiration"
+              icon={<Sparkles className="w-6 h-6" />}
+              title="Inspiration"
+              description="Stories of Reformers who mastered Hebrew"
+              color="bg-amber-500"
             />
           </div>
         </section>
