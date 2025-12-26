@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { BookOpen, Brain, Keyboard, Trophy, Settings, ChevronRight, Languages, TrendingUp, BookType, Sparkles } from 'lucide-react';
+import { BookOpen, Brain, Keyboard, Trophy, Settings, ChevronRight, Languages, TrendingUp, BookType, Sparkles, Library, BookCopy } from 'lucide-react';
 import { useUserStore } from '@/stores/userStore';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { XPBar } from '@/components/XPBar';
@@ -210,6 +210,27 @@ export default function Dashboard() {
               title="Inspiration"
               description="Stories of Reformers who mastered Hebrew"
               color="bg-amber-500"
+            />
+            <LearningModeCard
+              href="/tdot"
+              icon={<Library className="w-6 h-6" />}
+              title="TDOT Dictionary"
+              description="Deep theological word studies from TDOT"
+              color="bg-indigo-500"
+            />
+            <LearningModeCard
+              href="/vine"
+              icon={<BookOpen className="w-6 h-6" />}
+              title="Vine's OT"
+              description="Accessible Hebrew word studies"
+              color="bg-violet-500"
+            />
+            <LearningModeCard
+              href="/synonyms"
+              icon={<BookCopy className="w-6 h-6" />}
+              title="Hebrew Synonyms"
+              description="Compare words English translates the same"
+              color="bg-teal-500"
             />
           </div>
         </section>

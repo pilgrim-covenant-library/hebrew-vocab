@@ -1,0 +1,460 @@
+{
+  "entries": [
+    {
+      "id": "love-ahavah",
+      "category": "emotion",
+      "englishWord": "Love",
+      "hebrew": "אַהֲבָה",
+      "transliteration": "ahavah",
+      "strongs": "H160",
+      "shortDef": "love, affection",
+      "etymology": "From the verb אָהַב (ahav), 'to love.' The root appears across Semitic languages. The noun אַהֲבָה represents the abstract quality or feeling of love.",
+      "otUsage": "This noun occurs 40 times in the OT. It describes: (1) romantic love (Song of Songs 2:4-5), (2) familial love (Gen 29:20), (3) friendship love (1 Sam 18:3), and (4) divine love (Jer 31:3). The verb form אָהַב is much more common (210x).",
+      "keyPassages": [
+        {
+          "reference": "Deuteronomy 6:5",
+          "hebrew": "וְאָהַבְתָּ אֵת יְהוָה אֱלֹהֶיךָ",
+          "significance": "The command to love God - showing that love can be commanded because it involves choice and action, not just feeling."
+        },
+        {
+          "reference": "Song of Songs 8:6",
+          "hebrew": "כִּי־עַזָּה כַמָּוֶת אַהֲבָה",
+          "significance": "Love is as strong as death - expressing the powerful, unquenchable nature of true love."
+        }
+      ],
+      "theologicalNote": "Hebrew אַהֲבָה encompasses a broad range of love, from romantic to divine. Unlike ḥesed (covenant love), ahavah emphasizes the emotional affection aspect. God's ahavah for Israel is foundational to the covenant relationship.",
+      "relatedWords": [
+        {
+          "hebrew": "אָהַב",
+          "transliteration": "ahav",
+          "relationship": "Verb form - to love"
+        },
+        {
+          "hebrew": "חֶסֶד",
+          "transliteration": "ḥesed",
+          "relationship": "Covenant love - emphasizes loyalty aspect"
+        }
+      ],
+      "tags": ["emotion", "relationship", "song-of-songs"],
+      "vineRef": "p. 142"
+    },
+    {
+      "id": "peace-shalom",
+      "category": "covenant",
+      "englishWord": "Peace",
+      "hebrew": "שָׁלוֹם",
+      "transliteration": "shalom",
+      "strongs": "H7965",
+      "shortDef": "peace, wholeness, welfare, completeness",
+      "etymology": "From שָׁלֵם (shalem), 'to be complete, sound.' Shalom is not merely absence of conflict but positive well-being, wholeness, and flourishing.",
+      "otUsage": "Occurs 237 times. Used as: (1) greeting/farewell (Gen 29:6), (2) state of well-being (Ps 4:8), (3) peace between people/nations (1 Kings 5:12), (4) covenant blessing (Num 6:26), (5) messianic promise (Isa 9:6-7).",
+      "keyPassages": [
+        {
+          "reference": "Numbers 6:26",
+          "hebrew": "יִשָּׂא יְהוָה פָּנָיו אֵלֶיךָ וְיָשֵׂם לְךָ שָׁלוֹם",
+          "significance": "The Aaronic blessing concludes with shalom - summarizing all covenant blessings."
+        },
+        {
+          "reference": "Isaiah 9:6",
+          "hebrew": "וַיִּקְרָא שְׁמוֹ... שַׂר־שָׁלוֹם",
+          "significance": "The Messiah is the Prince of Peace - one who will establish perfect shalom."
+        }
+      ],
+      "theologicalNote": "Shalom represents the comprehensive blessing of covenant relationship with God. It encompasses physical health, material prosperity, relational harmony, and spiritual well-being. Sin disrupts shalom; redemption restores it.",
+      "relatedWords": [
+        {
+          "hebrew": "שָׁלֵם",
+          "transliteration": "shalem",
+          "relationship": "Complete, whole - the root concept behind shalom"
+        },
+        {
+          "hebrew": "שִׁלֵּם",
+          "transliteration": "shillem",
+          "relationship": "To make restitution, repay - restoring shalom"
+        }
+      ],
+      "tags": ["covenant", "blessing", "messianic", "essential"],
+      "vineRef": "p. 171"
+    },
+    {
+      "id": "truth-emet",
+      "category": "covenant",
+      "englishWord": "Truth",
+      "hebrew": "אֱמֶת",
+      "transliteration": "emet",
+      "strongs": "H571",
+      "shortDef": "truth, faithfulness, reliability",
+      "etymology": "From אָמַן (aman), 'to be firm, established.' Emet combines the ideas of truth (correspondence to reality) and faithfulness (reliability over time).",
+      "otUsage": "Occurs 127 times. Key uses: (1) truthful speech (Prov 12:19), (2) God's faithfulness (Ps 25:10), (3) God's word as truth (Ps 119:160), (4) paired with ḥesed as 'steadfast love and faithfulness' (Exod 34:6).",
+      "keyPassages": [
+        {
+          "reference": "Exodus 34:6",
+          "hebrew": "רַב־חֶסֶד וֶאֱמֶת",
+          "significance": "God is abundant in steadfast love and truth - His character is reliable."
+        },
+        {
+          "reference": "Psalm 119:160",
+          "hebrew": "רֹאשׁ־דְּבָרְךָ אֱמֶת",
+          "significance": "The sum of God's word is truth - Scripture is entirely reliable."
+        }
+      ],
+      "theologicalNote": "Emet describes what is stable, reliable, and trustworthy. When applied to God, it affirms that He keeps His promises and His words correspond to reality. Truth in Hebrew is not abstract but personal and relational.",
+      "relatedWords": [
+        {
+          "hebrew": "אָמֵן",
+          "transliteration": "amen",
+          "relationship": "So be it - affirming something as true and reliable"
+        },
+        {
+          "hebrew": "אֱמוּנָה",
+          "transliteration": "emunah",
+          "relationship": "Faithfulness, faith - trustworthiness"
+        }
+      ],
+      "tags": ["covenant", "divine-attribute", "essential"],
+      "vineRef": "p. 268"
+    },
+    {
+      "id": "heart-lev",
+      "category": "emotion",
+      "englishWord": "Heart",
+      "hebrew": "לֵב",
+      "transliteration": "lev",
+      "strongs": "H3820",
+      "shortDef": "heart, mind, will",
+      "etymology": "The physical heart, extended metaphorically to the inner person. In Hebrew thought, the heart is the center of intellect, will, and emotion - not just feelings.",
+      "otUsage": "One of the most frequent words in the OT (850+ times). Refers to: (1) the physical organ (2 Sam 18:14), (2) emotions (Ps 13:2), (3) will and intention (Exod 35:29), (4) intellect and understanding (1 Kings 3:12), (5) moral character (Gen 6:5).",
+      "keyPassages": [
+        {
+          "reference": "Deuteronomy 6:5",
+          "hebrew": "בְּכָל־לְבָבְךָ",
+          "significance": "Love God with all your heart - total devotion of the whole inner person."
+        },
+        {
+          "reference": "Proverbs 4:23",
+          "hebrew": "מִכָּל־מִשְׁמָר נְצֹר לִבֶּךָ",
+          "significance": "Guard your heart - for it is the source of life and determines conduct."
+        }
+      ],
+      "theologicalNote": "The heart in Hebrew encompasses what we divide between heart (emotions), mind (intellect), and will (decisions). It is the control center of the whole person. This is why heart transformation is central to biblical religion.",
+      "relatedWords": [
+        {
+          "hebrew": "לֵבָב",
+          "transliteration": "levav",
+          "relationship": "Alternate form of heart - same meaning"
+        },
+        {
+          "hebrew": "נֶפֶשׁ",
+          "transliteration": "nephesh",
+          "relationship": "Soul, life - the whole animated person"
+        }
+      ],
+      "tags": ["anthropology", "emotion", "essential"],
+      "vineRef": "p. 107"
+    },
+    {
+      "id": "lord-adonai",
+      "category": "god",
+      "englishWord": "Lord",
+      "hebrew": "אֲדֹנָי",
+      "transliteration": "adonai",
+      "strongs": "H136",
+      "shortDef": "Lord, master, sovereign",
+      "etymology": "From אָדוֹן (adon), 'lord, master.' The -ai ending is likely a first person suffix ('my lord') that became a divine title. Used as substitute pronunciation for YHWH.",
+      "otUsage": "Occurs 439 times. Used of: (1) human masters/lords (Gen 24:9), (2) God as sovereign Lord (Josh 3:11), (3) substitute for YHWH in Jewish reading tradition. Often combined with YHWH: 'Lord YHWH' (אֲדֹנָי יְהוִה).",
+      "keyPassages": [
+        {
+          "reference": "Isaiah 6:1",
+          "hebrew": "רָאִיתִי אֶת־אֲדֹנָי יֹשֵׁב עַל־כִּסֵּא",
+          "significance": "Isaiah sees Adonai on His throne - emphasizing divine sovereignty."
+        },
+        {
+          "reference": "Psalm 110:1",
+          "hebrew": "נְאֻם יְהוָה לַאדֹנִי",
+          "significance": "YHWH speaks to 'my Lord' - a messianic psalm cited by Jesus (Matt 22:44)."
+        }
+      ],
+      "theologicalNote": "Adonai emphasizes God's lordship and sovereignty. Combined with YHWH, it expresses both God's covenant relationship (YHWH) and His absolute authority (Adonai). In Jewish tradition, Adonai is spoken when reading YHWH.",
+      "relatedWords": [
+        {
+          "hebrew": "יְהוָה",
+          "transliteration": "YHWH",
+          "relationship": "The covenant name of God - 'I AM'"
+        },
+        {
+          "hebrew": "אָדוֹן",
+          "transliteration": "adon",
+          "relationship": "Lord, master - used of human rulers"
+        }
+      ],
+      "tags": ["god", "divine-name", "essential"],
+      "vineRef": "p. 140"
+    },
+    {
+      "id": "word-davar",
+      "category": "god",
+      "englishWord": "Word",
+      "hebrew": "דָּבָר",
+      "transliteration": "davar",
+      "strongs": "H1697",
+      "shortDef": "word, thing, matter, event",
+      "etymology": "From דָּבַר (davar), 'to speak.' The Hebrew concept unites word and reality - a word is not just sound but a thing that accomplishes something.",
+      "otUsage": "Extremely frequent (1,455x). Means both 'word' and 'thing/matter.' Used for: (1) human speech (Gen 11:1), (2) God's creative word (Gen 1:3), (3) prophetic word (Jer 1:4), (4) events/matters (Gen 22:1), (5) the Ten Words/Commandments (Exod 34:28).",
+      "keyPassages": [
+        {
+          "reference": "Genesis 1:3",
+          "hebrew": "וַיֹּאמֶר אֱלֹהִים יְהִי אוֹר",
+          "significance": "God's word creates - word and reality are united."
+        },
+        {
+          "reference": "Isaiah 55:11",
+          "hebrew": "כֵּן יִהְיֶה דְבָרִי אֲשֶׁר יֵצֵא מִפִּי",
+          "significance": "God's word accomplishes His purpose - it is effective, not empty."
+        }
+      ],
+      "theologicalNote": "The Hebrew view of 'word' is dynamic - words do things. God's davar creates, reveals, and accomplishes. This theology of the word underlies the NT logos concept and the power of Scripture.",
+      "relatedWords": [
+        {
+          "hebrew": "אָמַר",
+          "transliteration": "amar",
+          "relationship": "To say - simple speaking (vs. דָּבַר which implies content)"
+        },
+        {
+          "hebrew": "מִלָּה",
+          "transliteration": "millah",
+          "relationship": "Word - more common in later/Aramaic texts"
+        }
+      ],
+      "tags": ["god", "prophecy", "creation", "essential"],
+      "vineRef": "p. 290"
+    },
+    {
+      "id": "righteousness-tsedeq",
+      "category": "law",
+      "englishWord": "Righteousness",
+      "hebrew": "צֶדֶק",
+      "transliteration": "tsedeq",
+      "strongs": "H6664",
+      "shortDef": "righteousness, justice, rightness",
+      "etymology": "From the root צדק denoting what is right, straight, or as it should be. Encompasses both ethical righteousness and legal justice.",
+      "otUsage": "Occurs 123 times (plus feminine צְדָקָה 159x). Used of: (1) ethical conduct (Deut 16:20), (2) just weights/measures (Lev 19:36), (3) legal justice (Ps 9:8), (4) divine attribute (Ps 89:14), (5) saving righteousness (Isa 51:5-6).",
+      "keyPassages": [
+        {
+          "reference": "Genesis 15:6",
+          "hebrew": "וְהֶאֱמִן בַּיהוָה וַיַּחְשְׁבֶהָ לּוֹ צְדָקָה",
+          "significance": "Abraham believed and it was credited as righteousness - foundational for Paul's doctrine of justification."
+        },
+        {
+          "reference": "Isaiah 45:8",
+          "hebrew": "הַרְעִיפוּ שָׁמַיִם מִמַּעַל וּשְׁחָקִים יִזְּלוּ־צֶדֶק",
+          "significance": "Righteousness comes from God - it is His gift, not human achievement."
+        }
+      ],
+      "theologicalNote": "Tsedeq is both attribute and action. God is righteous (His character) and does righteousness (His actions). In Isaiah, God's righteousness becomes salvific - His righteous intervention to save His people. This prepares for NT imputed righteousness.",
+      "relatedWords": [
+        {
+          "hebrew": "צַדִּיק",
+          "transliteration": "tsaddiq",
+          "relationship": "Righteous person - one who conforms to the standard"
+        },
+        {
+          "hebrew": "מִשְׁפָּט",
+          "transliteration": "mishpat",
+          "relationship": "Justice, judgment - often paired with tsedeq"
+        }
+      ],
+      "tags": ["law", "ethics", "salvation", "essential"],
+      "vineRef": "p. 202"
+    },
+    {
+      "id": "blessing-berakah",
+      "category": "covenant",
+      "englishWord": "Blessing",
+      "hebrew": "בְּרָכָה",
+      "transliteration": "berakah",
+      "strongs": "H1293",
+      "shortDef": "blessing, praise, gift",
+      "etymology": "From בָּרַךְ (barak), 'to bless, kneel.' The connection to kneeling suggests blessing involves both reception (kneeling before God) and transmission (God bending to bless).",
+      "otUsage": "Occurs 71 times. Used for: (1) patriarchal blessings (Gen 27:36), (2) covenant blessing (Deut 28:2), (3) praise to God (Ps 103:1), (4) gifts/presents (Gen 33:11), (5) the opposite of curse (Deut 11:26-28).",
+      "keyPassages": [
+        {
+          "reference": "Genesis 12:2",
+          "hebrew": "וַאֲבָרֶכְךָ... וֶהְיֵה בְּרָכָה",
+          "significance": "God's promise to Abraham - he will be blessed and be a blessing."
+        },
+        {
+          "reference": "Numbers 6:24-26",
+          "hebrew": "יְבָרֶכְךָ יְהוָה וְיִשְׁמְרֶךָ",
+          "significance": "The Aaronic blessing - the comprehensive blessing of God's people."
+        }
+      ],
+      "theologicalNote": "Blessing in the OT is not just well-wishing but effective divine power transmitted through words. God's blessing brings fruitfulness, success, and prosperity. The covenant is structured around blessing for obedience and curse for disobedience.",
+      "relatedWords": [
+        {
+          "hebrew": "בָּרַךְ",
+          "transliteration": "barak",
+          "relationship": "To bless - the verb form"
+        },
+        {
+          "hebrew": "קְלָלָה",
+          "transliteration": "qelalah",
+          "relationship": "Curse - the opposite of blessing"
+        }
+      ],
+      "tags": ["covenant", "blessing", "patriarchs", "essential"],
+      "vineRef": "p. 23"
+    },
+    {
+      "id": "wisdom-chokmah",
+      "category": "wisdom",
+      "englishWord": "Wisdom",
+      "hebrew": "חָכְמָה",
+      "transliteration": "chokmah",
+      "strongs": "H2451",
+      "shortDef": "wisdom, skill, experience",
+      "etymology": "From חָכַם (chakam), 'to be wise.' Encompasses practical skill, ethical insight, and intellectual understanding - not mere theoretical knowledge.",
+      "otUsage": "Occurs 153 times, concentrated in Proverbs, Job, and Ecclesiastes. Includes: (1) craftsmanship skill (Exod 28:3), (2) practical wisdom (Prov 1:2), (3) personified Wisdom (Prov 8), (4) divine wisdom (Job 28), (5) royal wisdom (1 Kings 3:28).",
+      "keyPassages": [
+        {
+          "reference": "Proverbs 1:7",
+          "hebrew": "יִרְאַת יְהוָה רֵאשִׁית דָּעַת",
+          "significance": "The fear of YHWH is the beginning of knowledge - wisdom has a religious foundation."
+        },
+        {
+          "reference": "Proverbs 8:22",
+          "hebrew": "יְהוָה קָנָנִי רֵאשִׁית דַּרְכּוֹ",
+          "significance": "Wisdom personified as present at creation - christological implications."
+        }
+      ],
+      "theologicalNote": "Biblical wisdom is not secular cleverness but skill for living according to God's design. It begins with reverence for God and is expressed in righteous conduct. Personified Wisdom in Proverbs 8 points forward to Christ, 'the wisdom of God' (1 Cor 1:24).",
+      "relatedWords": [
+        {
+          "hebrew": "חָכָם",
+          "transliteration": "chakam",
+          "relationship": "Wise person - one possessing wisdom"
+        },
+        {
+          "hebrew": "בִּינָה",
+          "transliteration": "binah",
+          "relationship": "Understanding, insight - discernment aspect of wisdom"
+        }
+      ],
+      "tags": ["wisdom", "proverbs", "essential"],
+      "vineRef": "p. 283"
+    },
+    {
+      "id": "sin-chata",
+      "category": "sin",
+      "englishWord": "Sin",
+      "hebrew": "חָטָא",
+      "transliteration": "chata",
+      "strongs": "H2398",
+      "shortDef": "to sin, miss the mark, go wrong",
+      "etymology": "The basic meaning is 'to miss' a target (Judg 20:16). Applied ethically, it means missing God's standard - falling short of what He requires.",
+      "otUsage": "The root appears 595 times in various forms. Noun חַטָּאת (chattat) means 'sin' or 'sin offering.' Used of: (1) sins against God (Gen 39:9), (2) sins against people (Gen 42:22), (3) unintentional sins (Lev 4:2), (4) the sin offering that atones for sin.",
+      "keyPassages": [
+        {
+          "reference": "Genesis 4:7",
+          "hebrew": "לַפֶּתַח חַטָּאת רֹבֵץ",
+          "significance": "Sin crouches at the door - personifying sin as a predator."
+        },
+        {
+          "reference": "Psalm 51:4",
+          "hebrew": "לְךָ לְבַדְּךָ חָטָאתִי",
+          "significance": "David's confession - all sin is ultimately against God."
+        }
+      ],
+      "theologicalNote": "Chata is the most common word for sin, emphasizing failure to meet a standard. Unlike 'avon (guilt/iniquity) or pesha' (rebellion), chata focuses on the deviation from God's way. The same word for 'sin' and 'sin offering' shows that sin requires atonement.",
+      "relatedWords": [
+        {
+          "hebrew": "עָוֺן",
+          "transliteration": "avon",
+          "relationship": "Iniquity, guilt - emphasizes the twisted nature of sin"
+        },
+        {
+          "hebrew": "פֶּשַׁע",
+          "transliteration": "pesha",
+          "relationship": "Transgression, rebellion - willful violation"
+        }
+      ],
+      "tags": ["sin", "atonement", "essential"],
+      "vineRef": "p. 229"
+    },
+    {
+      "id": "sacrifice-zebach",
+      "category": "worship",
+      "englishWord": "Sacrifice",
+      "hebrew": "זֶבַח",
+      "transliteration": "zebach",
+      "strongs": "H2077",
+      "shortDef": "sacrifice, offering",
+      "etymology": "From זָבַח (zavach), 'to slaughter, sacrifice.' Specifically denotes animal sacrifice, especially the peace/fellowship offering where the worshiper ate a portion.",
+      "otUsage": "Occurs 162 times. Primary uses: (1) peace offerings (Lev 3), (2) general term for sacrifice (Ps 40:6), (3) pagan sacrifices (2 Kings 10:19), (4) covenant meals (Exod 24:5). Distinguished from עֹלָה (burnt offering) which is wholly consumed.",
+      "keyPassages": [
+        {
+          "reference": "1 Samuel 15:22",
+          "hebrew": "הַחֵפֶץ לַיהוָה בְּעֹלוֹת וּזְבָחִים כִּשְׁמֹעַ בְּקוֹל יְהוָה",
+          "significance": "Obedience is better than sacrifice - inner attitude matters more than ritual."
+        },
+        {
+          "reference": "Psalm 51:17",
+          "hebrew": "זִבְחֵי אֱלֹהִים רוּחַ נִשְׁבָּרָה",
+          "significance": "The sacrifice God desires is a broken spirit - internal not merely external."
+        }
+      ],
+      "theologicalNote": "The sacrificial system taught that sin requires death (substitution) and that communion with God requires sacrifice. The peace offering (zebach shelamim) emphasized fellowship - sharing a meal with God. All sacrifices pointed forward to Christ's once-for-all sacrifice.",
+      "relatedWords": [
+        {
+          "hebrew": "עֹלָה",
+          "transliteration": "olah",
+          "relationship": "Burnt offering - wholly consumed, emphasizing total dedication"
+        },
+        {
+          "hebrew": "קָרְבָּן",
+          "transliteration": "qorban",
+          "relationship": "Offering, gift - general term for what is brought near to God"
+        }
+      ],
+      "tags": ["worship", "atonement", "leviticus"],
+      "vineRef": "p. 208"
+    },
+    {
+      "id": "praise-hallel",
+      "category": "worship",
+      "englishWord": "Praise",
+      "hebrew": "הָלַל",
+      "transliteration": "halal",
+      "strongs": "H1984",
+      "shortDef": "to praise, boast, shine",
+      "etymology": "The root has two meanings: (1) to shine, flash (Isa 13:10), (2) to praise, boast. 'Hallelujah' (הַלְלוּ־יָהּ) means 'Praise YHWH!'",
+      "otUsage": "Occurs 165 times in the Piel ('to praise'). Concentrated in Psalms (99x). Used for: (1) praising God (Ps 146-150), (2) human boasting (Prov 27:1), (3) the deranged acting 'mad' (1 Sam 21:13). The 'Hallel' Psalms (113-118) were sung at festivals.",
+      "keyPassages": [
+        {
+          "reference": "Psalm 150:6",
+          "hebrew": "כֹּל הַנְּשָׁמָה תְּהַלֵּל יָהּ הַלְלוּ־יָהּ",
+          "significance": "Let everything that has breath praise YHWH - the climax of the Psalter."
+        },
+        {
+          "reference": "Psalm 113:1",
+          "hebrew": "הַלְלוּ יָהּ הַלְלוּ עַבְדֵי יְהוָה",
+          "significance": "The opening of the Egyptian Hallel sung at Passover - the context of the Last Supper."
+        }
+      ],
+      "theologicalNote": "Praise is humanity's highest calling - we were made to glorify God. The Psalter structures worship around praise, moving from lament to praise. Hallelujah carries into the NT and will be the eternal song of the redeemed (Rev 19:1-6).",
+      "relatedWords": [
+        {
+          "hebrew": "יָדָה",
+          "transliteration": "yadah",
+          "relationship": "To give thanks, confess - often paired with halal"
+        },
+        {
+          "hebrew": "שָׁבַח",
+          "transliteration": "shavach",
+          "relationship": "To praise, commend - similar meaning"
+        }
+      ],
+      "tags": ["worship", "psalms", "essential"],
+      "vineRef": "p. 186"
+    }
+  ]
+}

@@ -1,0 +1,364 @@
+{
+  "groups": [
+    {
+      "id": "sin-chata-avon-pesha",
+      "category": "sin",
+      "title": "Words for Sin",
+      "englishWord": "sin",
+      "introduction": "Hebrew has three main words for sin, each emphasizing a different aspect of wrongdoing. Understanding these distinctions helps us grasp the biblical view of sin more fully.",
+      "words": [
+        {
+          "hebrew": "חָטָא",
+          "transliteration": "chata",
+          "root": "חטא",
+          "strongs": "H2398",
+          "shortDef": "to sin, miss the mark",
+          "nuance": "Missing the target - falling short of God's standard. The most common word for sin, emphasizing failure rather than intent.",
+          "otUsage": 595
+        },
+        {
+          "hebrew": "עָוֺן",
+          "transliteration": "avon",
+          "root": "עוה",
+          "strongs": "H5771",
+          "shortDef": "iniquity, guilt, punishment",
+          "nuance": "Twisted, bent, crooked - moral perversion. Emphasizes the distorted nature of sin and often includes the guilt/consequences that follow.",
+          "otUsage": 233
+        },
+        {
+          "hebrew": "פֶּשַׁע",
+          "transliteration": "pesha",
+          "root": "פשׁע",
+          "strongs": "H6588",
+          "shortDef": "transgression, rebellion",
+          "nuance": "Willful rebellion against authority - conscious violation of covenant. The most serious term, implying defiant rejection of God's rule.",
+          "otUsage": 136
+        }
+      ],
+      "scholarQuote": "These three terms are brought together in the great confession of faith in Exodus 34:7, where God is described as forgiving 'iniquity and transgression and sin.' The cumulative effect is to emphasize that God forgives every kind of sin.",
+      "exampleVerse": {
+        "reference": "Psalm 32:5",
+        "hebrew": "חַטָּאתִי אוֹדִיעֲךָ וַעֲוֹנִי לֹא־כִסִּיתִי אָמַרְתִּי אוֹדֶה עֲלֵי פְשָׁעַי לַיהוָה",
+        "english": "I acknowledged my sin to you, and I did not cover my iniquity; I said, 'I will confess my transgressions to the LORD.'",
+        "wordHighlighted": "All three sin words appear together in David's confession."
+      },
+      "practicalTip": "Remember the progression: chata (miss) → avon (twist) → pesha (rebel). From unintentional failure to deliberate defiance.",
+      "tags": ["sin", "confession", "essential"]
+    },
+    {
+      "id": "love-ahav-chesed-racham",
+      "category": "love",
+      "title": "Words for Love",
+      "englishWord": "love",
+      "introduction": "Hebrew distinguishes different aspects of love. English 'love' flattens these nuances, but the Hebrew words reveal the richness of divine and human affection.",
+      "words": [
+        {
+          "hebrew": "אָהַב",
+          "transliteration": "ahav",
+          "root": "אהב",
+          "strongs": "H157",
+          "shortDef": "to love",
+          "nuance": "General love including emotional affection - used for romantic love, family love, and love for God. Emphasizes the feeling of love.",
+          "otUsage": 247
+        },
+        {
+          "hebrew": "חֶסֶד",
+          "transliteration": "chesed",
+          "root": "חסד",
+          "strongs": "H2617",
+          "shortDef": "steadfast love, covenant loyalty",
+          "nuance": "Faithful covenant love - combines love with obligation and loyalty. Emphasizes commitment that persists regardless of feeling.",
+          "otUsage": 248
+        },
+        {
+          "hebrew": "רָחַם",
+          "transliteration": "racham",
+          "root": "רחם",
+          "strongs": "H7355",
+          "shortDef": "to have compassion, show mercy",
+          "nuance": "Womb-love, tender compassion - the instinctive love of a mother for her child. Emphasizes deep emotional stirring.",
+          "otUsage": 47
+        }
+      ],
+      "scholarQuote": "Chesed is covenant love, ahavah is spontaneous love, and rachamim is compassionate love. God's love for Israel combines all three: He chose them (ahav), He is committed to them (chesed), and He has compassion on them (racham).",
+      "exampleVerse": {
+        "reference": "Hosea 2:19",
+        "hebrew": "וְאֵרַשְׂתִּיךְ לִי לְעוֹלָם וְאֵרַשְׂתִּיךְ לִי בְּצֶדֶק וּבְמִשְׁפָּט וּבְחֶסֶד וּבְרַחֲמִים",
+        "english": "I will betroth you to me forever. I will betroth you to me in righteousness and in justice, in steadfast love (chesed) and in mercy (rachamim).",
+        "wordHighlighted": "God's covenant love combines chesed and rachamim."
+      },
+      "practicalTip": "Ahav = feeling love | Chesed = faithful love | Racham = tender love. God's love includes all three!",
+      "tags": ["love", "covenant", "essential"]
+    },
+    {
+      "id": "save-yasha-gaal-padah",
+      "category": "save",
+      "title": "Words for Save/Redeem",
+      "englishWord": "save/redeem",
+      "introduction": "Hebrew uses different words to express salvation and redemption, each highlighting a different aspect of God's delivering work.",
+      "words": [
+        {
+          "hebrew": "יָשַׁע",
+          "transliteration": "yasha",
+          "root": "ישׁע",
+          "strongs": "H3467",
+          "shortDef": "to save, deliver",
+          "nuance": "Broad deliverance from any danger or distress - rescue, victory, salvation. The most general term; the name Jesus (Yeshua) comes from this root.",
+          "otUsage": 353
+        },
+        {
+          "hebrew": "גָּאַל",
+          "transliteration": "gaal",
+          "root": "גאל",
+          "strongs": "H1350",
+          "shortDef": "to redeem (kinsman)",
+          "nuance": "Family redemption - a close relative who rescues/purchases back what was lost. Emphasizes the relational basis of redemption.",
+          "otUsage": 118
+        },
+        {
+          "hebrew": "פָּדָה",
+          "transliteration": "padah",
+          "root": "פדה",
+          "strongs": "H6299",
+          "shortDef": "to ransom, redeem",
+          "nuance": "Payment-based redemption - paying a price to secure release. Emphasizes the cost of redemption.",
+          "otUsage": 60
+        }
+      ],
+      "scholarQuote": "Yasha emphasizes the act of rescue, gaal emphasizes the person who rescues (kinsman-redeemer), and padah emphasizes the price paid. All three point to Christ who saves, became our kinsman, and paid the ransom.",
+      "exampleVerse": {
+        "reference": "Isaiah 44:22-23",
+        "hebrew": "שׁוּבָה אֵלַי כִּי גְאַלְתִּיךָ... כִּי־גָאַל יְהוָה יַעֲקֹב וּבְיִשְׂרָאֵל יִתְפָּאָר",
+        "english": "Return to me, for I have redeemed (gaal) you... The LORD has redeemed (gaal) Jacob, and will be glorified in Israel.",
+        "wordHighlighted": "God acts as Israel's kinsman-redeemer (go'el)."
+      },
+      "practicalTip": "Yasha = rescue from danger | Gaal = family redemption | Padah = paid ransom. Christ fulfills all three!",
+      "tags": ["salvation", "redemption", "essential"]
+    },
+    {
+      "id": "see-raah-chazah-nabat",
+      "category": "see",
+      "title": "Words for See",
+      "englishWord": "see/look",
+      "introduction": "Hebrew distinguishes different types of seeing - from ordinary sight to prophetic vision. These distinctions reveal how we perceive God and His revelation.",
+      "words": [
+        {
+          "hebrew": "רָאָה",
+          "transliteration": "raah",
+          "root": "ראה",
+          "strongs": "H7200",
+          "shortDef": "to see, look, perceive",
+          "nuance": "General seeing - ordinary sight, observation, perception. The most common word for seeing (1,300+ uses).",
+          "otUsage": 1313
+        },
+        {
+          "hebrew": "חָזָה",
+          "transliteration": "chazah",
+          "root": "חזה",
+          "strongs": "H2372",
+          "shortDef": "to see, behold (vision)",
+          "nuance": "Visionary seeing - prophetic vision, revelation. Used for receiving divine communication. A 'seer' (חֹזֶה) is a prophet.",
+          "otUsage": 68
+        },
+        {
+          "hebrew": "נָבַט",
+          "transliteration": "nabat",
+          "root": "נבט",
+          "strongs": "H5027",
+          "shortDef": "to look, regard",
+          "nuance": "Attentive looking - gazing with consideration, paying attention to. Implies focused attention rather than casual glance.",
+          "otUsage": 70
+        }
+      ],
+      "scholarQuote": "Raah is the basic word for sight, chazah is visionary perception (prophetic), and nabat implies looking with attention or regard. When we pray for God to 'look upon' us, we ask Him to regard us with favor.",
+      "exampleVerse": {
+        "reference": "Isaiah 33:17",
+        "hebrew": "מֶלֶךְ בְּיָפְיוֹ תֶּחֱזֶינָה עֵינֶיךָ תִּרְאֶינָה אֶרֶץ מַרְחַקִּים",
+        "english": "Your eyes will behold (chazah) the king in his beauty; they will see (raah) a land that stretches afar.",
+        "wordHighlighted": "Both chazah and raah describe seeing the King - intimate vision and broad sight."
+      },
+      "practicalTip": "Raah = ordinary sight | Chazah = prophetic vision | Nabat = attentive gaze.",
+      "tags": ["perception", "prophecy"]
+    },
+    {
+      "id": "speak-amar-dabar-qara",
+      "category": "speak",
+      "title": "Words for Speak",
+      "englishWord": "speak/say",
+      "introduction": "Hebrew has several words for speaking, each with its own emphasis - from simple utterance to weighty pronouncement.",
+      "words": [
+        {
+          "hebrew": "אָמַר",
+          "transliteration": "amar",
+          "root": "אמר",
+          "strongs": "H559",
+          "shortDef": "to say, speak",
+          "nuance": "Simple speech - saying, declaring. The most basic word for speaking (5,300+ uses). Often introduces direct speech.",
+          "otUsage": 5316
+        },
+        {
+          "hebrew": "דָּבַר",
+          "transliteration": "dabar",
+          "root": "דבר",
+          "strongs": "H1696",
+          "shortDef": "to speak, talk",
+          "nuance": "Weighty speech - speaking with content and purpose. Implies significant communication. The 'Word of the LORD' uses this root.",
+          "otUsage": 1136
+        },
+        {
+          "hebrew": "קָרָא",
+          "transliteration": "qara",
+          "root": "קרא",
+          "strongs": "H7121",
+          "shortDef": "to call, proclaim",
+          "nuance": "Calling out - summoning, proclaiming, naming. Used for calling upon God's name and for prophetic proclamation.",
+          "otUsage": 739
+        }
+      ],
+      "scholarQuote": "Amar introduces what is said, dabar emphasizes the content and weight of speech, and qara involves calling out or summoning. God's 'Word' (davar) is not empty speech but powerful reality.",
+      "exampleVerse": {
+        "reference": "Genesis 1:3",
+        "hebrew": "וַיֹּאמֶר אֱלֹהִים יְהִי אוֹר וַיְהִי־אוֹר",
+        "english": "And God said (amar), 'Let there be light,' and there was light.",
+        "wordHighlighted": "God's speech (amar) is creative and effective."
+      },
+      "practicalTip": "Amar = simple speech | Dabar = weighty speech | Qara = calling out. 'The Word of the LORD came' uses dabar, emphasizing its weight.",
+      "tags": ["speech", "prophecy", "creation"]
+    },
+    {
+      "id": "praise-halal-yadah-zamar",
+      "category": "praise",
+      "title": "Words for Praise",
+      "englishWord": "praise",
+      "introduction": "The Psalms use multiple words for praise, each expressing different aspects of worship. These distinctions enrich our understanding of biblical worship.",
+      "words": [
+        {
+          "hebrew": "הָלַל",
+          "transliteration": "halal",
+          "root": "הלל",
+          "strongs": "H1984",
+          "shortDef": "to praise, boast",
+          "nuance": "Enthusiastic, exuberant praise - to boast in, to shine. Source of 'Hallelujah.' Emphasizes joyful, loud celebration.",
+          "otUsage": 165
+        },
+        {
+          "hebrew": "יָדָה",
+          "transliteration": "yadah",
+          "root": "ידה",
+          "strongs": "H3034",
+          "shortDef": "to give thanks, confess",
+          "nuance": "Thanksgiving praise - acknowledging, confessing. From 'hand' (יָד) - implies lifting hands in worship. Source of the name 'Judah.'",
+          "otUsage": 111
+        },
+        {
+          "hebrew": "זָמַר",
+          "transliteration": "zamar",
+          "root": "זמר",
+          "strongs": "H2167",
+          "shortDef": "to sing praise, make music",
+          "nuance": "Musical praise - singing with instruments. Used especially for accompanied worship. Source of 'psalm' (mizmor).",
+          "otUsage": 45
+        }
+      ],
+      "scholarQuote": "Halal is boasting praise, yadah is confessing/thanksgiving praise, and zamar is musical praise. Together they encompass the full range of praise - loud celebration, grateful acknowledgment, and skillful music-making.",
+      "exampleVerse": {
+        "reference": "Psalm 150:1-2",
+        "hebrew": "הַלְלוּ־יָהּ הַלְלוּ־אֵל בְּקָדְשׁוֹ... הַלְלוּהוּ בְּתֹף וּמָחוֹל הַלְלוּהוּ בְּמִנִּים וְעוּגָב",
+        "english": "Praise (halal) the LORD! Praise (halal) God in his sanctuary... Praise (halal) him with tambourine and dance; praise (halal) him with strings and pipe!",
+        "wordHighlighted": "Psalm 150 uses halal exclusively - exuberant, joyful praise!"
+      },
+      "practicalTip": "Halal = shout praise | Yadah = thanks praise | Zamar = sing praise. Hallelujah combines halal + Yah!",
+      "tags": ["worship", "psalms", "essential"]
+    },
+    {
+      "id": "know-yada-nakar-bin",
+      "category": "know",
+      "title": "Words for Know",
+      "englishWord": "know/understand",
+      "introduction": "Hebrew 'knowing' goes far beyond intellectual awareness. These words reveal different dimensions of knowledge - from intimate relationship to careful discernment.",
+      "words": [
+        {
+          "hebrew": "יָדַע",
+          "transliteration": "yada",
+          "root": "ידע",
+          "strongs": "H3045",
+          "shortDef": "to know",
+          "nuance": "Relational, experiential knowledge - includes intimate knowing (Gen 4:1). To know God means covenant relationship, not just information about Him.",
+          "otUsage": 947
+        },
+        {
+          "hebrew": "נָכַר",
+          "transliteration": "nakar",
+          "root": "נכר",
+          "strongs": "H5234",
+          "shortDef": "to recognize, acknowledge",
+          "nuance": "Recognition - identifying, acknowledging. Often used for recognizing someone's face or acknowledging someone's status.",
+          "otUsage": 50
+        },
+        {
+          "hebrew": "בִּין",
+          "transliteration": "bin",
+          "root": "בין",
+          "strongs": "H995",
+          "shortDef": "to understand, discern",
+          "nuance": "Discerning understanding - distinguishing between things, insight. Used for wisdom and understanding (binah).",
+          "otUsage": 171
+        }
+      ],
+      "scholarQuote": "Yada is knowing through experience and relationship, nakar is recognizing or acknowledging, and bin is understanding through discernment. To 'know the LORD' (yada) is far more than intellectual assent - it is covenant intimacy.",
+      "exampleVerse": {
+        "reference": "Jeremiah 9:24",
+        "hebrew": "כִּי אִם־בְּזֹאת יִתְהַלֵּל הַמִּתְהַלֵּל הַשְׂכֵּל וְיָדֹעַ אוֹתִי",
+        "english": "Let him who boasts boast in this, that he understands and knows (yada) me.",
+        "wordHighlighted": "True boasting is in relational knowledge (yada) of God."
+      },
+      "practicalTip": "Yada = relational knowing | Nakar = recognizing | Bin = discerning. 'Know the LORD' means intimate relationship!",
+      "tags": ["knowledge", "relationship", "wisdom", "essential"]
+    },
+    {
+      "id": "fear-yare-pachad-charad",
+      "category": "fear",
+      "title": "Words for Fear",
+      "englishWord": "fear",
+      "introduction": "Hebrew distinguishes between reverential fear (appropriate toward God) and terror/dread. Understanding this helps us grasp what 'fear of the LORD' really means.",
+      "words": [
+        {
+          "hebrew": "יָרֵא",
+          "transliteration": "yare",
+          "root": "ירא",
+          "strongs": "H3372",
+          "shortDef": "to fear, revere",
+          "nuance": "Reverential fear - awe, respect, reverence. Used for 'fear of the LORD' which is the beginning of wisdom. Can include terror but primarily means reverence.",
+          "otUsage": 435
+        },
+        {
+          "hebrew": "פָּחַד",
+          "transliteration": "pachad",
+          "root": "פחד",
+          "strongs": "H6342",
+          "shortDef": "to dread, be in terror",
+          "nuance": "Intense dread - trembling fear, terror. Emphasizes the physical/emotional response of being terrified.",
+          "otUsage": 25
+        },
+        {
+          "hebrew": "חָרַד",
+          "transliteration": "charad",
+          "root": "חרד",
+          "strongs": "H2729",
+          "shortDef": "to tremble, be terrified",
+          "nuance": "Trembling fear - to shake or tremble with fear. Used for trembling at God's word (Isa 66:2).",
+          "otUsage": 39
+        }
+      ],
+      "scholarQuote": "Yare covers the range from terror to reverence, but when used with 'the LORD' primarily means reverential awe. Pachad and charad emphasize the terror/trembling aspect. True fear of the LORD combines reverence with appropriate trembling before His holiness.",
+      "exampleVerse": {
+        "reference": "Proverbs 1:7",
+        "hebrew": "יִרְאַת יְהוָה רֵאשִׁית דָּעַת",
+        "english": "The fear (yirah) of the LORD is the beginning of knowledge.",
+        "wordHighlighted": "Fear of YHWH (yirah from yare) - reverence, not terror."
+      },
+      "practicalTip": "Yare = reverential fear | Pachad = dread | Charad = trembling. 'Fear the LORD' means awe and reverence!",
+      "tags": ["fear", "wisdom", "essential"]
+    }
+  ]
+}

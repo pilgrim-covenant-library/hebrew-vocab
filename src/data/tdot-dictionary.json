@@ -1,0 +1,428 @@
+{
+  "entries": [
+    {
+      "id": "chesed",
+      "category": "covenant",
+      "hebrew": "חֶסֶד",
+      "transliteration": "ḥesed",
+      "strongs": "H2617",
+      "root": "חסד",
+      "shortDef": "steadfast love, covenant loyalty, kindness",
+      "title": "Covenant Loyalty and Steadfast Love",
+      "summary": "One of the most theologically rich words in the Hebrew Bible, חֶסֶד denotes God's unwavering covenant faithfulness and loyal love toward His people. It combines the concepts of love, loyalty, and covenant obligation into a single powerful term.",
+      "ancientContext": "The concept of ḥesed has parallels in ancient Near Eastern treaty language, where it often referred to the loyal behavior expected between treaty partners. In Akkadian texts, similar concepts appear in descriptions of the faithful conduct of vassal kings toward their suzerains. However, the Hebrew usage uniquely emphasizes the gracious, unmerited nature of divine loyalty.",
+      "rootAnalysis": "The root חסד appears primarily as a noun (חֶסֶד) occurring 248 times in the OT. Related forms include the adjective חָסִיד (ḥasid, 'faithful one, saint') and the Hithpael verb form meaning 'to show oneself kind.' The plural חֲסָדִים often refers to 'acts of steadfast love.'",
+      "otUsage": "The term is predominantly used of God's relationship with Israel (172 times of divine ḥesed). It appears frequently in the Psalms (127 times), often paired with אֱמֶת (truth/faithfulness) to form the hendiadys 'steadfast love and faithfulness.' Key theological contexts include: (1) God's covenant relationship with David (2 Sam 7:15), (2) The divine self-revelation at Sinai (Exod 34:6-7), (3) The refrain of Psalm 136, and (4) Hosea's prophetic use to describe God's persistent love despite Israel's unfaithfulness.",
+      "keyPassages": [
+        {
+          "reference": "Exodus 34:6",
+          "hebrew": "וַיַּעֲבֹר יְהוָה עַל־פָּנָיו וַיִּקְרָא יְהוָה יְהוָה אֵל רַחוּם וְחַנּוּן אֶרֶךְ אַפַּיִם וְרַב־חֶסֶד וֶאֱמֶת",
+          "significance": "The foundational self-revelation of God's character, where ḥesed stands at the center of His attributes. This passage is quoted or alluded to more than any other in Scripture."
+        },
+        {
+          "reference": "Psalm 136:1",
+          "hebrew": "הוֹדוּ לַיהוָה כִּי־טוֹב כִּי לְעוֹלָם חַסְדּוֹ",
+          "significance": "The refrain 'His steadfast love endures forever' repeated 26 times emphasizes the eternal, unchanging nature of God's covenant loyalty."
+        },
+        {
+          "reference": "Hosea 6:6",
+          "hebrew": "כִּי חֶסֶד חָפַצְתִּי וְלֹא־זָבַח וְדַעַת אֱלֹהִים מֵעֹלוֹת",
+          "significance": "God desires covenant loyalty over ritual sacrifice, showing that ḥesed involves relational faithfulness, not mere external observance."
+        }
+      ],
+      "theologicalSignificance": "Ḥesed is the Hebrew Bible's primary term for describing God's faithful, covenant love. Unlike Greek ἀγάπη which emphasizes volitional love, ḥesed combines love with obligation and faithfulness. It is not merely emotional affection but loyal commitment that acts on behalf of the covenant partner. God's ḥesed is the basis of Israel's hope and the ground of their confidence in prayer.",
+      "ntConnection": "The LXX primarily translates ḥesed with ἔλεος (mercy) and sometimes χάρις (grace). Jesus quotes Hosea 6:6 in Matthew 9:13 and 12:7. The concept deeply informs NT understanding of God's faithfulness and mercy in Christ.",
+      "relatedWords": [
+        {
+          "hebrew": "חָסִיד",
+          "transliteration": "ḥasid",
+          "relationship": "Adjective meaning 'faithful one, godly, saint' - one who practices ḥesed"
+        },
+        {
+          "hebrew": "אֱמֶת",
+          "transliteration": "emet",
+          "relationship": "Often paired with ḥesed as 'steadfast love and faithfulness'"
+        },
+        {
+          "hebrew": "רַחֲמִים",
+          "transliteration": "raḥamim",
+          "relationship": "Compassion/mercy - emphasizes emotional aspect where ḥesed emphasizes loyalty"
+        }
+      ],
+      "tags": ["essential", "covenant", "divine-attribute", "psalms"],
+      "tdotVolume": 5,
+      "pages": "44-64"
+    },
+    {
+      "id": "berit",
+      "category": "covenant",
+      "hebrew": "בְּרִית",
+      "transliteration": "berît",
+      "strongs": "H1285",
+      "root": "ברת",
+      "shortDef": "covenant, treaty, agreement",
+      "title": "The Covenant Bond",
+      "summary": "The fundamental term for the binding relationship between God and His people, בְּרִית establishes the framework for understanding all of God's dealings with humanity in redemptive history.",
+      "ancientContext": "Covenant-making was central to ancient Near Eastern diplomacy. The Hebrew בְּרִית corresponds to similar institutions found in Hittite suzerainty treaties, Assyrian loyalty oaths, and Akkadian diplomatic texts. However, Israel's covenant with YHWH transformed this political concept into a unique religious institution, with God as the sovereign who binds Himself to His people.",
+      "rootAnalysis": "The etymology of בְּרִית is debated. Some connect it to the Akkadian birītu ('fetter, bond'), others to the Hebrew verb בָּרָה ('to eat'), suggesting a covenant meal, or to the preposition בֵּין ('between'). The phrase 'to cut a covenant' (כָּרַת בְּרִית) likely derives from the ritual of cutting animals in covenant ceremonies (Gen 15:10, 17-18).",
+      "otUsage": "The term occurs 287 times in the OT. Key covenants include: (1) Noahic covenant with all creation (Gen 9:8-17), (2) Abrahamic covenant of promise (Gen 15, 17), (3) Mosaic/Sinaitic covenant of law (Exod 19-24), (4) Davidic covenant of kingship (2 Sam 7), and (5) the New Covenant prophesied by Jeremiah (31:31-34). The covenant concept provides the organizing principle for understanding God's progressive revelation.",
+      "keyPassages": [
+        {
+          "reference": "Genesis 15:18",
+          "hebrew": "בַּיּוֹם הַהוּא כָּרַת יְהוָה אֶת־אַבְרָם בְּרִית",
+          "significance": "The first use of 'cutting a covenant' with Abraham, establishing the pattern of divine initiative and unconditional promise."
+        },
+        {
+          "reference": "Exodus 19:5",
+          "hebrew": "וְעַתָּה אִם־שָׁמוֹעַ תִּשְׁמְעוּ בְּקֹלִי וּשְׁמַרְתֶּם אֶת־בְּרִיתִי",
+          "significance": "The conditional nature of the Sinaitic covenant, requiring Israel's obedience to maintain covenant blessing."
+        },
+        {
+          "reference": "Jeremiah 31:31",
+          "hebrew": "הִנֵּה יָמִים בָּאִים נְאֻם־יְהוָה וְכָרַתִּי אֶת־בֵּית יִשְׂרָאֵל וְאֶת־בֵּית יְהוּדָה בְּרִית חֲדָשָׁה",
+          "significance": "The promise of a new covenant that will be written on hearts, fulfilled in Christ."
+        }
+      ],
+      "theologicalSignificance": "Covenant is the master concept of biblical theology. It establishes the framework for understanding God's relationship with humanity: His sovereignty, faithfulness, and gracious condescension; human obligation, failure, and need for redemption. The progression from old to new covenant reveals God's plan of salvation culminating in Christ, the mediator of a better covenant.",
+      "ntConnection": "The NT authors, especially the writer of Hebrews, present Jesus as the mediator of a new and better covenant (Heb 8:6, 9:15, 12:24). The Last Supper explicitly connects Jesus' blood with the new covenant (Luke 22:20, 1 Cor 11:25).",
+      "relatedWords": [
+        {
+          "hebrew": "חֶסֶד",
+          "transliteration": "ḥesed",
+          "relationship": "Covenant loyalty - the characteristic behavior expected within the covenant"
+        },
+        {
+          "hebrew": "אָלָה",
+          "transliteration": "alah",
+          "relationship": "Oath/curse - the self-maledictory oath that ratifies covenant"
+        },
+        {
+          "hebrew": "עֵדוּת",
+          "transliteration": "edut",
+          "relationship": "Testimony/witness - covenant stipulations that testify to obligations"
+        }
+      ],
+      "tags": ["essential", "covenant", "theology-proper", "redemption-history"],
+      "tdotVolume": 2,
+      "pages": "253-279"
+    },
+    {
+      "id": "torah",
+      "category": "law",
+      "hebrew": "תּוֹרָה",
+      "transliteration": "tôrâ",
+      "strongs": "H8451",
+      "root": "ירה",
+      "shortDef": "instruction, teaching, law",
+      "title": "Divine Instruction and Law",
+      "summary": "Far more than mere legislation, תּוֹרָה encompasses God's comprehensive instruction for life, revealing His character and will for His covenant people.",
+      "ancientContext": "While ancient Near Eastern cultures had extensive law codes (Hammurabi, Eshnunna, Hittite laws), the Hebrew תּוֹרָה is distinctive in being presented as divine revelation rather than royal decree. The laws are embedded in narrative context and covenant relationship, making obedience a response of love rather than mere legal compliance.",
+      "rootAnalysis": "Derived from the root יָרָה (yarah, 'to throw, shoot, teach'), תּוֹרָה fundamentally means 'instruction' or 'direction.' The Hiphil form הוֹרָה means 'to teach.' This etymology reveals that law in Israel was primarily conceived as teaching rather than mere commandment.",
+      "otUsage": "The term appears 223 times, ranging from specific priestly instruction (Lev 6:9, 14, 25) to the entire Pentateuch (Josh 1:7-8, Neh 8:1). In the Psalms, תּוֹרָה is celebrated as the delight of the righteous (Ps 1:2, 119). The prophets emphasize both Israel's failure to keep Torah and the promise of Torah written on hearts (Jer 31:33, Isa 2:3).",
+      "keyPassages": [
+        {
+          "reference": "Deuteronomy 6:6-7",
+          "hebrew": "וְהָיוּ הַדְּבָרִים הָאֵלֶּה אֲשֶׁר אָנֹכִי מְצַוְּךָ הַיּוֹם עַל־לְבָבֶךָ וְשִׁנַּנְתָּם לְבָנֶיךָ",
+          "significance": "Torah is to be internalized ('on your heart') and transmitted through teaching, showing its instructional character."
+        },
+        {
+          "reference": "Psalm 119:97",
+          "hebrew": "מָה־אָהַבְתִּי תוֹרָתֶךָ כָּל־הַיּוֹם הִיא שִׂיחָתִי",
+          "significance": "The psalmist's love for Torah reflects the proper response to divine instruction - delightful meditation."
+        },
+        {
+          "reference": "Isaiah 2:3",
+          "hebrew": "כִּי מִצִּיּוֹן תֵּצֵא תוֹרָה וּדְבַר־יְהוָה מִירוּשָׁלִָם",
+          "significance": "The eschatological vision of Torah going forth to all nations, fulfilled in the gospel."
+        }
+      ],
+      "theologicalSignificance": "Torah reveals God's holy character and righteous requirements. It serves multiple purposes: (1) revealing sin (Rom 3:20), (2) providing a rule of life for the redeemed, (3) displaying God's wisdom to the nations (Deut 4:6-8), and (4) pointing to Christ who fulfills its demands (Matt 5:17, Gal 3:24). The Reformed tradition distinguishes moral, ceremonial, and civil aspects of the law.",
+      "ntConnection": "Jesus declares He came not to abolish but to fulfill the Law (Matt 5:17). Paul extensively discusses the law's role in salvation history (Romans, Galatians). The law is fulfilled in love (Rom 13:10) and written on hearts by the Spirit (2 Cor 3:3).",
+      "relatedWords": [
+        {
+          "hebrew": "מִצְוָה",
+          "transliteration": "mitsvah",
+          "relationship": "Commandment - specific directive within Torah"
+        },
+        {
+          "hebrew": "מִשְׁפָּט",
+          "transliteration": "mishpat",
+          "relationship": "Judgment/ordinance - legal decisions and case law"
+        },
+        {
+          "hebrew": "חֹק",
+          "transliteration": "ḥoq",
+          "relationship": "Statute - permanent, binding decree"
+        }
+      ],
+      "tags": ["essential", "law", "covenant", "ethics"],
+      "tdotVolume": 15,
+      "pages": "609-646"
+    },
+    {
+      "id": "qadosh",
+      "category": "worship",
+      "hebrew": "קָדוֹשׁ",
+      "transliteration": "qādôš",
+      "strongs": "H6918",
+      "root": "קדשׁ",
+      "shortDef": "holy, sacred, set apart",
+      "title": "The Holy One of Israel",
+      "summary": "קָדוֹשׁ expresses the fundamental attribute of God's transcendent otherness and moral purity, setting Him apart from all creation and requiring corresponding holiness in His people.",
+      "ancientContext": "While concepts of the sacred existed throughout the ancient Near East, the Hebrew understanding of holiness is distinctive in its ethical dimension. Unlike pagan concepts where holiness was primarily ritual or numinous, Israel's קָדוֹשׁ combines transcendence with moral purity, demanding ethical holiness in God's people.",
+      "rootAnalysis": "The root קדשׁ appears in verbal, nominal, and adjectival forms over 850 times. The basic meaning is 'to be set apart' or 'separated.' Related terms include קֹדֶשׁ (qodesh, 'holiness, sanctuary'), מִקְדָּשׁ (miqdash, 'sanctuary'), and the Piel/Hiphil forms meaning 'to sanctify, consecrate.'",
+      "otUsage": "God is called 'the Holy One of Israel' (קְדוֹשׁ יִשְׂרָאֵל) 31 times, predominantly in Isaiah. The seraphim's threefold declaration 'Holy, holy, holy' (Isa 6:3) emphasizes divine holiness. Israel is called to be holy because YHWH is holy (Lev 19:2). The tabernacle/temple system with its gradations of holiness (court, holy place, most holy place) spatially represents this theology.",
+      "keyPassages": [
+        {
+          "reference": "Isaiah 6:3",
+          "hebrew": "וְקָרָא זֶה אֶל־זֶה וְאָמַר קָדוֹשׁ קָדוֹשׁ קָדוֹשׁ יְהוָה צְבָאוֹת",
+          "significance": "The trisagion - the threefold declaration of God's holiness by the seraphim, expressing supreme transcendence."
+        },
+        {
+          "reference": "Leviticus 19:2",
+          "hebrew": "קְדֹשִׁים תִּהְיוּ כִּי קָדוֹשׁ אֲנִי יְהוָה אֱלֹהֵיכֶם",
+          "significance": "The call to Israel to reflect God's holiness in their lives - derivative holiness grounded in divine holiness."
+        },
+        {
+          "reference": "Exodus 3:5",
+          "hebrew": "אַל־תִּקְרַב הֲלֹם שַׁל־נְעָלֶיךָ מֵעַל רַגְלֶיךָ כִּי הַמָּקוֹם אֲשֶׁר אַתָּה עוֹמֵד עָלָיו אַדְמַת־קֹדֶשׁ הוּא",
+          "significance": "God's presence makes space holy, demonstrating that holiness derives from God's presence."
+        }
+      ],
+      "theologicalSignificance": "Holiness is God's most distinctive attribute, encompassing His transcendence (wholly other than creation) and His moral perfection (wholly opposed to sin). It creates the fundamental problem of how sinful humans can approach a holy God - answered ultimately in Christ's sacrifice. The Reformed emphasis on God's holiness balances His love and shapes understanding of sin, redemption, and sanctification.",
+      "ntConnection": "The NT presents Jesus as 'the Holy One of God' (Mark 1:24, John 6:69). Believers are called 'saints' (ἅγιοι, the Greek equivalent). The Spirit is 'the Holy Spirit' who sanctifies believers (Rom 15:16, 1 Pet 1:2).",
+      "relatedWords": [
+        {
+          "hebrew": "קֹדֶשׁ",
+          "transliteration": "qodesh",
+          "relationship": "Noun form - holiness, or a holy thing/place"
+        },
+        {
+          "hebrew": "חֵרֶם",
+          "transliteration": "ḥerem",
+          "relationship": "Devoted to destruction - holy to God in judgment"
+        },
+        {
+          "hebrew": "טָהוֹר",
+          "transliteration": "tahor",
+          "relationship": "Clean/pure - ritual cleanness that enables approach to the holy"
+        }
+      ],
+      "tags": ["essential", "divine-attribute", "worship", "isaiah"],
+      "tdotVolume": 12,
+      "pages": "521-545"
+    },
+    {
+      "id": "yasha",
+      "category": "salvation",
+      "hebrew": "יָשַׁע",
+      "transliteration": "yāšaʿ",
+      "strongs": "H3467",
+      "root": "ישׁע",
+      "shortDef": "to save, deliver, rescue",
+      "title": "Salvation and Deliverance",
+      "summary": "The primary Hebrew root for salvation, יָשַׁע and its derivatives express God's powerful intervention to rescue His people from danger, oppression, and ultimately from sin.",
+      "ancientContext": "The concept of divine deliverance appears throughout ancient Near Eastern literature, where gods were invoked as saviors from enemies and distress. However, Israel's understanding uniquely emphasizes YHWH as the exclusive source of true salvation, rejecting all other would-be saviors (Isa 43:11).",
+      "rootAnalysis": "The root ישׁע appears 353 times in various forms. Key derivatives include: יְשׁוּעָה (yešuʿah, 'salvation'), יֵשַׁע (yešaʿ, 'salvation'), תְּשׁוּעָה (tešuʿah, 'deliverance'), and the Hiphil participle מוֹשִׁיעַ (môšîaʿ, 'savior'). The name יְהוֹשֻׁעַ (Joshua/Jesus) means 'YHWH saves.'",
+      "otUsage": "The term spans three main contexts: (1) Military/political deliverance from enemies (Judges, Samuel), (2) Personal deliverance from distress (Psalms), (3) Eschatological salvation from sin and its consequences (Isaiah). God is repeatedly called Israel's Savior (מוֹשִׁיעַ), and salvation is His exclusive prerogative (Isa 43:11, 45:21-22).",
+      "keyPassages": [
+        {
+          "reference": "Exodus 14:13",
+          "hebrew": "אַל־תִּירָאוּ הִתְיַצְבוּ וּרְאוּ אֶת־יְשׁוּעַת יְהוָה",
+          "significance": "At the Red Sea, Israel witnesses YHWH's paradigmatic act of salvation, establishing the exodus as the model for all subsequent deliverance."
+        },
+        {
+          "reference": "Isaiah 43:11",
+          "hebrew": "אָנֹכִי אָנֹכִי יְהוָה וְאֵין מִבַּלְעָדַי מוֹשִׁיעַ",
+          "significance": "YHWH's exclusive claim as Savior - fundamental to Isaiah's theology and christological implications."
+        },
+        {
+          "reference": "Psalm 3:8",
+          "hebrew": "לַיהוָה הַיְשׁוּעָה",
+          "significance": "The confession that salvation belongs to YHWH alone - a theme throughout the Psalter."
+        }
+      ],
+      "theologicalSignificance": "Salvation in the OT encompasses deliverance from all forms of distress but increasingly focuses on spiritual deliverance from sin and its consequences. The development from physical to spiritual salvation anticipates the NT understanding. God alone saves; human effort cannot secure salvation. This establishes the ground for sola gratia.",
+      "ntConnection": "The name Jesus (Ἰησοῦς) is the Greek form of Joshua (יְהוֹשֻׁעַ), meaning 'YHWH saves.' Matthew 1:21 explicitly connects Jesus' name to His mission: 'He will save His people from their sins.' The NT σῴζω/σωτηρία vocabulary directly inherits the OT ישׁע theology.",
+      "relatedWords": [
+        {
+          "hebrew": "גָּאַל",
+          "transliteration": "ga'al",
+          "relationship": "To redeem (kinsman-redeemer) - emphasizes familial obligation in salvation"
+        },
+        {
+          "hebrew": "פָּדָה",
+          "transliteration": "padah",
+          "relationship": "To ransom - emphasizes the payment/price aspect of redemption"
+        },
+        {
+          "hebrew": "נָצַל",
+          "transliteration": "natsal",
+          "relationship": "To snatch away, deliver - often military deliverance"
+        }
+      ],
+      "tags": ["essential", "salvation", "christology", "divine-attribute"],
+      "tdotVolume": 6,
+      "pages": "441-463"
+    },
+    {
+      "id": "gaal",
+      "category": "salvation",
+      "hebrew": "גָּאַל",
+      "transliteration": "gāʾal",
+      "strongs": "H1350",
+      "root": "גאל",
+      "shortDef": "to redeem, act as kinsman-redeemer",
+      "title": "The Kinsman-Redeemer",
+      "summary": "גָּאַל expresses redemption within the context of family obligation, where a near relative acts to restore what was lost. God assumes this role as Israel's גֹּאֵל, redeeming them from bondage and ultimately from sin.",
+      "ancientContext": "The institution of the גֹּאֵל (kinsman-redeemer) was rooted in ancient Israelite family law. The go'el had specific duties: redeem a relative from slavery (Lev 25:48-49), buy back family land (Lev 25:25), marry a relative's widow (Ruth), and avenge a relative's blood (Num 35:19). This institution preserved family integrity and inheritance.",
+      "rootAnalysis": "The root גאל occurs 118 times. The participle גֹּאֵל (go'el) functions as a title: 'redeemer, kinsman-redeemer.' The noun גְּאֻלָּה (ge'ullah) means 'redemption' or 'right of redemption.' Unlike פָּדָה (ransom), גָּאַל emphasizes the relational basis of redemption.",
+      "otUsage": "The term has two primary spheres: (1) Legal/family context - the kinsman-redeemer's duties (Leviticus 25, Ruth), and (2) Divine redemption - God as Israel's גֹּאֵל, especially in Isaiah 40-66 (used 22 times). The exodus is described as God 'redeeming' Israel from Egypt, with God acting as their nearest relative.",
+      "keyPassages": [
+        {
+          "reference": "Isaiah 41:14",
+          "hebrew": "אַל־תִּירְאִי תּוֹלַעַת יַעֲקֹב מְתֵי יִשְׂרָאֵל אֲנִי עֲזַרְתִּיךְ נְאֻם־יְהוָה וְגֹאֲלֵךְ קְדוֹשׁ יִשְׂרָאֵל",
+          "significance": "God identifies Himself as Israel's Go'el, combining the roles of kinsman-redeemer and Holy One."
+        },
+        {
+          "reference": "Ruth 4:14",
+          "hebrew": "בָּרוּךְ יְהוָה אֲשֶׁר לֹא הִשְׁבִּית לָךְ גֹּאֵל הַיּוֹם",
+          "significance": "Boaz as kinsman-redeemer foreshadows Christ, who becomes our near relative through incarnation to redeem us."
+        },
+        {
+          "reference": "Job 19:25",
+          "hebrew": "וַאֲנִי יָדַעְתִּי גֹּאֲלִי חָי וְאַחֲרוֹן עַל־עָפָר יָקוּם",
+          "significance": "Job's confidence in a living Redeemer who will vindicate him - a profound messianic anticipation."
+        }
+      ],
+      "theologicalSignificance": "The go'el concept profoundly shapes biblical soteriology. God becomes humanity's kinsman through covenant and ultimately through incarnation. Christ is our Go'el who: (1) became our relative (incarnation), (2) paid the redemption price (atonement), (3) restores our inheritance (new creation), and (4) avenges our blood (final judgment). The familial dimension of redemption emphasizes God's covenant commitment.",
+      "ntConnection": "The NT λυτρόω/ἀπολύτρωσις vocabulary carries forward the go'el concept. Christ became our kinsman (Heb 2:14-17) to redeem us (Gal 4:5, Titus 2:14, 1 Pet 1:18-19). The book of Ruth is understood as typologically pointing to Christ.",
+      "relatedWords": [
+        {
+          "hebrew": "פָּדָה",
+          "transliteration": "padah",
+          "relationship": "To ransom - emphasizes payment without necessarily implying family relationship"
+        },
+        {
+          "hebrew": "יָשַׁע",
+          "transliteration": "yasha",
+          "relationship": "To save/deliver - broader term for divine rescue"
+        },
+        {
+          "hebrew": "כָּפַר",
+          "transliteration": "kaphar",
+          "relationship": "To atone/cover - the means by which redemption is accomplished"
+        }
+      ],
+      "tags": ["essential", "salvation", "christology", "ruth"],
+      "tdotVolume": 2,
+      "pages": "350-355"
+    },
+    {
+      "id": "kavod",
+      "category": "temple",
+      "hebrew": "כָּבוֹד",
+      "transliteration": "kābôd",
+      "strongs": "H3519",
+      "root": "כבד",
+      "shortDef": "glory, honor, weight",
+      "title": "The Weight of Divine Glory",
+      "summary": "כָּבוֹד denotes the weighty, manifest presence of God - His visible splendor and honor that demands recognition and worship.",
+      "ancientContext": "Concepts of divine glory and splendor appear throughout ancient Near Eastern religion, often associated with brilliant light or radiance emanating from deities or kings. The Hebrew כָּבוֹד is distinctive in its connection to YHWH's covenant presence and its ethical dimension - glory that reveals character, not merely power.",
+      "rootAnalysis": "From the root כבד meaning 'to be heavy, weighty.' The semantic development runs from physical weight → wealth/abundance → importance/honor → divine glory. This etymology suggests that God's glory has 'weight' - substantive reality that makes a palpable impact.",
+      "otUsage": "The term appears 200 times. Key contexts include: (1) The glory cloud (כְּבוֹד יְהוָה) at Sinai and the tabernacle/temple, (2) Theophanic appearances (Ezekiel 1, 10), (3) The universal declaration of God's glory (Ps 19:1, Isa 6:3), (4) Human glory as derived from and reflecting God (Ps 8:5). The departure of glory from the temple (Ezek 10-11) signifies divine judgment.",
+      "keyPassages": [
+        {
+          "reference": "Exodus 33:18-19",
+          "hebrew": "וַיֹּאמַר הַרְאֵנִי נָא אֶת־כְּבֹדֶךָ וַיֹּאמֶר אֲנִי אַעֲבִיר כָּל־טוּבִי עַל־פָּנֶיךָ",
+          "significance": "Moses' request to see God's glory is answered with revelation of His goodness and character."
+        },
+        {
+          "reference": "Ezekiel 1:28",
+          "hebrew": "הוּא מַרְאֵה דְּמוּת כְּבוֹד־יְהוָה",
+          "significance": "Ezekiel's vision of the glory describes the awesome, overwhelming nature of God's presence."
+        },
+        {
+          "reference": "Isaiah 6:3",
+          "hebrew": "מְלֹא כָל־הָאָרֶץ כְּבוֹדוֹ",
+          "significance": "The whole earth is full of God's glory - His presence pervades all creation."
+        }
+      ],
+      "theologicalSignificance": "The כָּבוֹד theology traces God's presence with His people: Eden → Sinai → Tabernacle → Temple → Exile (glory departs) → Return (limited) → Christ (glory incarnate) → Church (Spirit's glory) → New Creation (unmediated glory). The glory of God is the ultimate purpose of all things (soli Deo gloria).",
+      "ntConnection": "John declares that in Christ 'we have seen his glory' (John 1:14). The transfiguration reveals Christ's glory (Matt 17:2). Paul speaks of the 'glory of God in the face of Jesus Christ' (2 Cor 4:6) and believers being transformed 'from glory to glory' (2 Cor 3:18).",
+      "relatedWords": [
+        {
+          "hebrew": "הוֹד",
+          "transliteration": "hod",
+          "relationship": "Majesty, splendor - often paired with כָּבוֹד"
+        },
+        {
+          "hebrew": "תִּפְאֶרֶת",
+          "transliteration": "tiph'eret",
+          "relationship": "Beauty, glory - aesthetic aspect of divine glory"
+        },
+        {
+          "hebrew": "שְׁכִינָה",
+          "transliteration": "shekhinah",
+          "relationship": "Later rabbinic term for God's dwelling presence"
+        }
+      ],
+      "tags": ["essential", "divine-attribute", "temple", "presence"],
+      "tdotVolume": 7,
+      "pages": "22-38"
+    },
+    {
+      "id": "nephesh",
+      "category": "anthropology",
+      "hebrew": "נֶפֶשׁ",
+      "transliteration": "nepeš",
+      "strongs": "H5315",
+      "root": "נפשׁ",
+      "shortDef": "soul, life, self, person",
+      "title": "The Living Soul",
+      "summary": "נֶפֶשׁ is the most common Hebrew term for the vital, animated self - not an immortal soul separate from the body, but the whole person as a living being.",
+      "ancientContext": "Unlike Greek dualism (σῶμα/ψυχή), Hebrew anthropology is holistic. The נֶפֶשׁ is not a disembodied soul but the whole person as a living, breathing creature. This affects how we understand human nature, death, and resurrection - which is bodily, not escape from the body.",
+      "rootAnalysis": "The root נפשׁ may relate to 'throat' or 'breathing.' The semantic range includes: (1) throat/neck (Jonah 2:5), (2) breath/life (Gen 35:18), (3) desire/appetite (Deut 12:20), (4) soul/self (Ps 42:1), (5) person (Gen 12:5). Context determines which aspect is emphasized.",
+      "otUsage": "Occurring 757 times, נֶפֶשׁ is used of both humans and animals (Gen 1:20-21, 24). Key theological uses include: (1) God breathing life into Adam (Gen 2:7), (2) The great commandment - loving God with all one's נֶפֶשׁ (Deut 6:5), (3) The נֶפֶשׁ that sins will die (Ezek 18:4), (4) Soul-thirst for God (Ps 42:1-2, 63:1).",
+      "keyPassages": [
+        {
+          "reference": "Genesis 2:7",
+          "hebrew": "וַיִּיצֶר יְהוָה אֱלֹהִים אֶת־הָאָדָם עָפָר מִן־הָאֲדָמָה וַיִּפַּח בְּאַפָּיו נִשְׁמַת חַיִּים וַיְהִי הָאָדָם לְנֶפֶשׁ חַיָּה",
+          "significance": "Adam became a living נֶפֶשׁ - not that he received a soul, but that he became a living being."
+        },
+        {
+          "reference": "Deuteronomy 6:5",
+          "hebrew": "וְאָהַבְתָּ אֵת יְהוָה אֱלֹהֶיךָ בְּכָל־לְבָבְךָ וּבְכָל־נַפְשְׁךָ וּבְכָל־מְאֹדֶךָ",
+          "significance": "Total devotion with all one's נֶפֶשׁ - the entirety of one's life and being."
+        },
+        {
+          "reference": "Psalm 42:1",
+          "hebrew": "כְּאַיָּל תַּעֲרֹג עַל־אֲפִיקֵי־מָיִם כֵּן נַפְשִׁי תַעֲרֹג אֵלֶיךָ אֱלֹהִים",
+          "significance": "The נֶפֶשׁ's deepest longing is for God - expressing the spiritual capacity of human beings."
+        }
+      ],
+      "theologicalSignificance": "The נֶפֶשׁ concept affirms: (1) Human unity - we are embodied souls, not souls imprisoned in bodies, (2) The goodness of creation - bodily existence is not inferior, (3) The nature of death - affecting the whole person, not just the body, (4) The hope of resurrection - restoration of the whole person, not merely spiritual survival.",
+      "ntConnection": "The NT ψυχή carries both Hebrew נֶפֶשׁ meanings and Greek philosophical overtones. Jesus speaks of gaining/losing one's ψυχή (Matt 16:26). The NT hope is resurrection of the body, not immortality of the soul alone.",
+      "relatedWords": [
+        {
+          "hebrew": "רוּחַ",
+          "transliteration": "ruaḥ",
+          "relationship": "Spirit/breath - the animating principle, often interchangeable with נֶפֶשׁ"
+        },
+        {
+          "hebrew": "לֵב",
+          "transliteration": "lev",
+          "relationship": "Heart - the center of will, thought, and emotion"
+        },
+        {
+          "hebrew": "בָּשָׂר",
+          "transliteration": "basar",
+          "relationship": "Flesh - the physical, creaturely aspect of human existence"
+        }
+      ],
+      "tags": ["essential", "anthropology", "creation", "psalms"],
+      "tdotVolume": 9,
+      "pages": "497-519"
+    }
+  ]
+}

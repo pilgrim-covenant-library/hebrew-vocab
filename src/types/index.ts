@@ -260,3 +260,204 @@ export const BINYAN_INFO: Record<Binyan, { label: string; meaning: string; color
   hophal: { label: 'Hophal', meaning: 'Causative passive', color: 'orange' },
   hithpael: { label: 'Hithpael', meaning: 'Reflexive/reciprocal', color: 'rose' },
 } as const;
+
+// ============================================
+// TDOT Dictionary Types (Hebrew Kittel)
+// ============================================
+
+export type TDOTCategory =
+  | 'creation'      // בָּרָא, עָשָׂה, יָצַר (creation verbs)
+  | 'covenant'      // בְּרִית, חֶסֶד, אֱמוּנָה
+  | 'salvation'     // יָשַׁע, גָּאַל, פָּדָה (redemption words)
+  | 'sin'           // חָטָא, עָוֺן, פֶּשַׁע
+  | 'worship'       // עָבַד, שָׁחָה, קָדוֹשׁ
+  | 'wisdom'        // חָכְמָה, בִּינָה, דַּעַת
+  | 'law'           // תּוֹרָה, מִשְׁפָּט, חֹק
+  | 'prophecy'      // נָבִיא, דָּבָר, חָזָה
+  | 'kingship'      // מֶלֶךְ, מָשִׁיחַ, כִּסֵּא
+  | 'temple'        // בַּיִת, מִקְדָּשׁ, כָּבוֹד
+  | 'anthropology'  // נֶפֶשׁ, רוּחַ, לֵב, בָּשָׂר
+  | 'ethics'        // צֶדֶק, מִשְׁפָּט, טוֹב
+  | 'eschatology'   // יוֹם, אַחֲרִית, עוֹלָם
+  ;
+
+export interface TDOTKeyPassage {
+  reference: string;
+  hebrew: string;
+  significance: string;
+}
+
+export interface TDOTRelatedWord {
+  hebrew: string;
+  transliteration: string;
+  relationship: string;
+}
+
+export interface TDOTEntry {
+  id: string;
+  category: TDOTCategory;
+  hebrew: string;
+  transliteration: string;
+  strongs: string;
+  root: string;
+  shortDef: string;
+  title: string;
+  summary: string;
+  ancientContext: string;
+  rootAnalysis: string;
+  otUsage: string;
+  keyPassages: TDOTKeyPassage[];
+  theologicalSignificance: string;
+  ntConnection?: string;
+  relatedWords?: TDOTRelatedWord[];
+  tags: string[];
+  tdotVolume?: number;
+  pages?: string;
+}
+
+export const TDOT_CATEGORIES: Record<TDOTCategory, { label: string; description: string; color: string; bgColor: string; icon: string }> = {
+  creation: { label: 'Creation', description: 'Words related to God\'s creative work', color: 'text-emerald-600', bgColor: 'bg-emerald-500', icon: 'Sparkles' },
+  covenant: { label: 'Covenant', description: 'Covenant terminology and faithfulness', color: 'text-amber-600', bgColor: 'bg-amber-500', icon: 'Handshake' },
+  salvation: { label: 'Salvation', description: 'Redemption and deliverance words', color: 'text-blue-600', bgColor: 'bg-blue-500', icon: 'Shield' },
+  sin: { label: 'Sin', description: 'Sin, transgression, and iniquity', color: 'text-red-600', bgColor: 'bg-red-500', icon: 'AlertTriangle' },
+  worship: { label: 'Worship', description: 'Worship and holiness terms', color: 'text-violet-600', bgColor: 'bg-violet-500', icon: 'Church' },
+  wisdom: { label: 'Wisdom', description: 'Wisdom and understanding', color: 'text-sky-600', bgColor: 'bg-sky-500', icon: 'Lightbulb' },
+  law: { label: 'Law', description: 'Torah, commandments, and judgments', color: 'text-indigo-600', bgColor: 'bg-indigo-500', icon: 'Scale' },
+  prophecy: { label: 'Prophecy', description: 'Prophetic and revelation terms', color: 'text-purple-600', bgColor: 'bg-purple-500', icon: 'Eye' },
+  kingship: { label: 'Kingship', description: 'Royal and messianic terminology', color: 'text-amber-600', bgColor: 'bg-amber-600', icon: 'Crown' },
+  temple: { label: 'Temple', description: 'Sanctuary and glory terms', color: 'text-orange-600', bgColor: 'bg-orange-500', icon: 'Building' },
+  anthropology: { label: 'Anthropology', description: 'Human nature and soul', color: 'text-rose-600', bgColor: 'bg-rose-500', icon: 'Heart' },
+  ethics: { label: 'Ethics', description: 'Righteousness and justice', color: 'text-teal-600', bgColor: 'bg-teal-500', icon: 'Scale' },
+  eschatology: { label: 'Eschatology', description: 'Time, eternity, and end times', color: 'text-cyan-600', bgColor: 'bg-cyan-500', icon: 'Clock' },
+} as const;
+
+// ============================================
+// Vine's OT Dictionary Types
+// ============================================
+
+export type VineCategory =
+  | 'god'           // Names and attributes of God
+  | 'worship'       // Worship and sacrifice
+  | 'covenant'      // Covenant terminology
+  | 'law'           // Law and commandments
+  | 'sin'           // Sin and judgment
+  | 'salvation'     // Redemption and deliverance
+  | 'wisdom'        // Wisdom and understanding
+  | 'people'        // People and nations
+  | 'creation'      // Creation and nature
+  | 'time'          // Time and seasons
+  | 'emotion'       // Heart, soul, feelings
+  | 'other'
+  ;
+
+export interface VineKeyPassage {
+  reference: string;
+  hebrew: string;
+  significance: string;
+}
+
+export interface VineRelatedWord {
+  hebrew: string;
+  transliteration: string;
+  relationship: string;
+}
+
+export interface VineOTEntry {
+  id: string;
+  category: VineCategory;
+  englishWord: string;
+  hebrew: string;
+  transliteration: string;
+  strongs: string;
+  shortDef: string;
+  etymology: string;
+  otUsage: string;
+  keyPassages: VineKeyPassage[];
+  theologicalNote: string;
+  relatedWords?: VineRelatedWord[];
+  tags: string[];
+  vineRef?: string;
+}
+
+export const VINE_CATEGORIES: Record<VineCategory, { label: string; description: string; color: string; bgColor: string; icon: string }> = {
+  god: { label: 'God', description: 'Names and attributes of God', color: 'text-amber-600', bgColor: 'bg-amber-500', icon: 'Crown' },
+  worship: { label: 'Worship', description: 'Worship and sacrifice', color: 'text-violet-600', bgColor: 'bg-violet-500', icon: 'Church' },
+  covenant: { label: 'Covenant', description: 'Covenant terminology', color: 'text-emerald-600', bgColor: 'bg-emerald-500', icon: 'Handshake' },
+  law: { label: 'Law', description: 'Law and commandments', color: 'text-indigo-600', bgColor: 'bg-indigo-500', icon: 'Scale' },
+  sin: { label: 'Sin', description: 'Sin and judgment', color: 'text-red-600', bgColor: 'bg-red-500', icon: 'AlertTriangle' },
+  salvation: { label: 'Salvation', description: 'Redemption and deliverance', color: 'text-blue-600', bgColor: 'bg-blue-500', icon: 'Shield' },
+  wisdom: { label: 'Wisdom', description: 'Wisdom and understanding', color: 'text-sky-600', bgColor: 'bg-sky-500', icon: 'Lightbulb' },
+  people: { label: 'People', description: 'People and nations', color: 'text-orange-600', bgColor: 'bg-orange-500', icon: 'Users' },
+  creation: { label: 'Creation', description: 'Creation and nature', color: 'text-green-600', bgColor: 'bg-green-500', icon: 'Leaf' },
+  time: { label: 'Time', description: 'Time and seasons', color: 'text-cyan-600', bgColor: 'bg-cyan-500', icon: 'Clock' },
+  emotion: { label: 'Emotion', description: 'Heart, soul, feelings', color: 'text-rose-600', bgColor: 'bg-rose-500', icon: 'Heart' },
+  other: { label: 'Other', description: 'Other Hebrew words', color: 'text-gray-600', bgColor: 'bg-gray-500', icon: 'Circle' },
+} as const;
+
+// ============================================
+// Hebrew Synonyms Types
+// ============================================
+
+export type HebrewSynonymCategory =
+  | 'love'      // אהב, חסד, רחם
+  | 'know'      // ידע, נכר, בין
+  | 'see'       // ראה, חזה, שׁקף, נבט
+  | 'fear'      // ירא, פחד, חרד
+  | 'speak'     // אמר, דבר, קרא
+  | 'judge'     // שׁפט, דין, ריב
+  | 'sin'       // חטא, עון, פשׁע
+  | 'save'      // ישׁע, גאל, פדה, נצל
+  | 'praise'    // הלל, ידה, שׁבח, זמר
+  | 'holy'      // קדשׁ, טהר, חלל
+  | 'servant'   // עבד, שׁרת, נער
+  | 'word'      // דבר, אמר, מלה
+  | 'life'      // חיה, נפשׁ, רוח
+  | 'other'
+  ;
+
+export interface SynonymWord {
+  hebrew: string;
+  transliteration: string;
+  root: string;
+  strongs: string;
+  shortDef: string;
+  nuance: string;
+  otUsage: number;
+}
+
+export interface SynonymExampleVerse {
+  reference: string;
+  hebrew: string;
+  english: string;
+  wordHighlighted: string;
+}
+
+export interface HebrewSynonymGroup {
+  id: string;
+  category: HebrewSynonymCategory;
+  title: string;
+  englishWord: string;
+  introduction: string;
+  words: SynonymWord[];
+  scholarQuote: string;
+  exampleVerse: SynonymExampleVerse;
+  practicalTip: string;
+  tags: string[];
+}
+
+export const HEBREW_SYNONYM_CATEGORIES: Record<HebrewSynonymCategory, { label: string; description: string; color: string; bgColor: string; icon: string }> = {
+  love: { label: 'Love', description: 'Words for love and affection', color: 'text-rose-600', bgColor: 'bg-rose-500', icon: 'Heart' },
+  know: { label: 'Know', description: 'Words for knowledge and understanding', color: 'text-blue-600', bgColor: 'bg-blue-500', icon: 'Brain' },
+  see: { label: 'See', description: 'Words for seeing and perceiving', color: 'text-cyan-600', bgColor: 'bg-cyan-500', icon: 'Eye' },
+  fear: { label: 'Fear', description: 'Words for fear and awe', color: 'text-amber-600', bgColor: 'bg-amber-500', icon: 'AlertTriangle' },
+  speak: { label: 'Speak', description: 'Words for speaking and communication', color: 'text-indigo-600', bgColor: 'bg-indigo-500', icon: 'MessageCircle' },
+  judge: { label: 'Judge', description: 'Words for judging and ruling', color: 'text-purple-600', bgColor: 'bg-purple-500', icon: 'Scale' },
+  sin: { label: 'Sin', description: 'Words for sin and transgression', color: 'text-red-600', bgColor: 'bg-red-500', icon: 'XCircle' },
+  save: { label: 'Save', description: 'Words for salvation and redemption', color: 'text-emerald-600', bgColor: 'bg-emerald-500', icon: 'Shield' },
+  praise: { label: 'Praise', description: 'Words for praise and worship', color: 'text-violet-600', bgColor: 'bg-violet-500', icon: 'Music' },
+  holy: { label: 'Holy', description: 'Words for holiness and purity', color: 'text-sky-600', bgColor: 'bg-sky-500', icon: 'Sparkles' },
+  servant: { label: 'Servant', description: 'Words for service and ministry', color: 'text-orange-600', bgColor: 'bg-orange-500', icon: 'User' },
+  word: { label: 'Word', description: 'Words for speech and expression', color: 'text-teal-600', bgColor: 'bg-teal-500', icon: 'BookOpen' },
+  life: { label: 'Life', description: 'Words for life and soul', color: 'text-green-600', bgColor: 'bg-green-500', icon: 'Heart' },
+  other: { label: 'Other', description: 'Other synonym groups', color: 'text-gray-600', bgColor: 'bg-gray-500', icon: 'Circle' },
+} as const;
