@@ -1,0 +1,10 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.pilgrimcovenant.hebrewvocab",
+    "sha256_cert_fingerprints": [
+      "32:25:1C:F2:8C:A6:E8:02:38:96:2E:7F:2D:3B:D4:24:19:16:75:E6:78:31:F9:07:88:8C:76:93:ED:52:93:7A"
+    ]
+  }
+}]

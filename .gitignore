@@ -46,3 +46,6 @@ next-env.d.ts
 /public/sw.js.map
 /public/workbox-*.js.map
 /public/swe-worker-*.js
+
+# Android TWA build (contains keystore - keep separate and secure)
+/android-twa/
