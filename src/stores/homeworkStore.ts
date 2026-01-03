@@ -383,6 +383,49 @@ export const useHomeworkStore = create<HomeworkState>()(
         lastSyncedAt: state.lastSyncedAt,
         // Exclude isSyncing - always starts as false
       }),
+      // Validate rehydrated state to prevent corruption issues
+      onRehydrateStorage: () => (state) => {
+        if (state && state.homework1) {
+          const hw = state.homework1;
+          // Ensure sections is a valid object
+          if (typeof hw.sections !== 'object' || hw.sections === null) {
+            // Reset to initial state if sections are corrupted
+            state.homework1 = createInitialHomework1Progress();
+            return;
+          }
+          // Validate each section
+          const validSectionIds = [1, 2, 3, 4, 5] as const;
+          for (const sectionId of validSectionIds) {
+            const section = hw.sections[sectionId];
+            if (!section) {
+              // Missing section - reinitialize it
+              hw.sections[sectionId] = createInitialSectionProgress(sectionId, 10);
+              continue;
+            }
+            // Ensure answers is a valid array
+            if (!Array.isArray(section.answers)) {
+              section.answers = [];
+            }
+            // Ensure numeric values are valid
+            if (typeof section.currentIndex !== 'number' || isNaN(section.currentIndex) || section.currentIndex < 0) {
+              section.currentIndex = 0;
+            }
+            if (typeof section.score !== 'number' || isNaN(section.score)) {
+              section.score = section.answers.filter((a) => a?.isCorrect).length;
+            }
+            // Ensure currentIndex is within bounds
+            if (section.currentIndex >= section.totalQuestions) {
+              section.currentIndex = Math.max(0, section.totalQuestions - 1);
+            }
+          }
+          // Recalculate total score from sections to ensure consistency
+          let calculatedTotal = 0;
+          for (const sectionId of validSectionIds) {
+            calculatedTotal += hw.sections[sectionId]?.score || 0;
+          }
+          hw.totalScore = calculatedTotal;
+        }
+      },
     }
   )
 );

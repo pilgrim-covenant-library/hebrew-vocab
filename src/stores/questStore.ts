@@ -219,6 +219,36 @@ export const useQuestStore = create<QuestState>()(
     }),
     {
       name: 'koine-quest-store',
+      version: 1,
+      // Validate rehydrated state to prevent corruption issues
+      onRehydrateStorage: () => (state) => {
+        if (state) {
+          // Ensure questProgress is a valid object
+          if (typeof state.questProgress !== 'object' || state.questProgress === null) {
+            state.questProgress = {};
+          }
+          // Validate each quest progress entry
+          Object.keys(state.questProgress).forEach((questId) => {
+            const progress = state.questProgress[questId];
+            if (!progress || typeof progress.current !== 'number') {
+              delete state.questProgress[questId];
+              return;
+            }
+            // Ensure numeric values are valid
+            if (isNaN(progress.current) || progress.current < 0) {
+              progress.current = 0;
+            }
+            // Ensure boolean is valid
+            if (typeof progress.completed !== 'boolean') {
+              progress.completed = false;
+            }
+          });
+          // Validate questDate format (YYYY-MM-DD)
+          if (state.questDate && !/^\d{4}-\d{2}-\d{2}$/.test(state.questDate)) {
+            state.questDate = null;
+          }
+        }
+      },
     }
   )
 );
