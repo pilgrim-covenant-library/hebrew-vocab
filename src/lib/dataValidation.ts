@@ -132,7 +132,12 @@ export function migrateLastReviewDate(date: string | null): string | null {
   try {
     const parsed = new Date(date);
     if (!isNaN(parsed.getTime())) {
-      return parsed.toISOString().split('T')[0];
+      // Format from local date parts. toISOString() converts to UTC, which
+      // shifts the calendar day for timezones ahead of UTC.
+      const year = parsed.getFullYear();
+      const month = String(parsed.getMonth() + 1).padStart(2, '0');
+      const day = String(parsed.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
     }
   } catch {
     // Fall through

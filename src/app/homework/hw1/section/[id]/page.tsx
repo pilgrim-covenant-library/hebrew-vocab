@@ -8,64 +8,205 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { useHomeworkStore } from '@/stores/homeworkStore';
 import { useAuthStore } from '@/stores/authStore';
+import { useShallow } from 'zustand/react/shallow';
 import { FloatingHelpButton } from '@/components/homework/HelpButton';
 import { HomeworkProgressCompact } from '@/components/homework/HomeworkProgress';
 import { SectionNavigation, QuestionProgressBar } from '@/components/homework/SectionNavigation';
 import { getQuestionsForSection } from '@/data/homework/hw1-questions';
-import { SECTION_META, type SectionId, type TransliterationQuestion, type MCQQuestion } from '@/types/homework';
+import {
+  HOMEWORK1_SECTION_IDS,
+  SECTION_META,
+  type HomeworkQuestion,
+  type MCQQuestion,
+  type QuestionAnswer,
+  type SectionId,
+  type TransliterationQuestion,
+} from '@/types/homework';
 import { cn } from '@/lib/utils';
+
+type VocabularyStage = 'transliteration' | 'meaning';
+
+interface QuestionResponseState {
+  userInput: string;
+  selectedOption: number | null;
+  showFeedback: boolean;
+  isCorrect: boolean;
+  vocabularyStage: VocabularyStage;
+  transliterationCorrect: boolean | null;
+  selectedTransliterationOption: number | null;
+  showStageFeedback: boolean;
+}
+
+const EMPTY_RESPONSE: QuestionResponseState = {
+  userInput: '',
+  selectedOption: null,
+  showFeedback: false,
+  isCorrect: false,
+  vocabularyStage: 'transliteration',
+  transliterationCorrect: null,
+  selectedTransliterationOption: null,
+  showStageFeedback: false,
+};
+
+function getInitialResponse(
+  question: HomeworkQuestion,
+  existingAnswer?: QuestionAnswer,
+): QuestionResponseState {
+  if (!existingAnswer) return EMPTY_RESPONSE;
+
+  if (question.type === 'mcq') {
+    return {
+      ...EMPTY_RESPONSE,
+      selectedOption:
+        typeof existingAnswer.userAnswer === 'number' ? existingAnswer.userAnswer : null,
+      showFeedback: true,
+      isCorrect: existingAnswer.isCorrect,
+    };
+  }
+
+  if (question.transliterationOptions) {
+    if (question.meaningOptions) {
+      const [transliterationValue, meaningValue] = String(existingAnswer.userAnswer)
+        .split('|')
+        .map((value) => Number.parseInt(value.trim(), 10));
+      const transliterationIndex = Number.isFinite(transliterationValue)
+        ? transliterationValue
+        : null;
+      const meaningIndex = Number.isFinite(meaningValue) ? meaningValue : null;
+      return {
+        ...EMPTY_RESPONSE,
+        selectedOption: meaningIndex,
+        showFeedback: true,
+        isCorrect: existingAnswer.isCorrect,
+        vocabularyStage: 'meaning',
+        transliterationCorrect:
+          transliterationIndex === question.transliterationCorrectIndex,
+        selectedTransliterationOption: transliterationIndex,
+      };
+    }
+
+    return {
+      ...EMPTY_RESPONSE,
+      selectedOption:
+        typeof existingAnswer.userAnswer === 'number' ? existingAnswer.userAnswer : null,
+      showFeedback: true,
+      isCorrect: existingAnswer.isCorrect,
+    };
+  }
+
+  return {
+    ...EMPTY_RESPONSE,
+    userInput: String(existingAnswer.userAnswer),
+    showFeedback: true,
+    isCorrect: existingAnswer.isCorrect,
+  };
+}
+
+function normalizeTransliteration(text: string): string {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/ē/g, 'e')
+    .replace(/ō/g, 'o')
+    .replace(/ā/g, 'a')
+    .replace(/ī/g, 'i')
+    .replace(/ū/g, 'u')
+    .replace(/[''ʼ]/g, '')
+    .replace(/\s+/g, ' ');
+}
+
+function isTransliterationCorrect(
+  question: TransliterationQuestion,
+  input: string,
+): boolean {
+  const normalized = normalizeTransliteration(input);
+  if (normalized === normalizeTransliteration(question.answer)) return true;
+  return question.variants.some(
+    (variant) => normalized === normalizeTransliteration(variant),
+  );
+}
 
 export default function SectionPage() {
   const router = useRouter();
   const params = useParams();
   const parsedId = parseInt(params.id as string, 10);
 
-  // Validate section ID is 1-5
-  const isValidSectionId = !isNaN(parsedId) && parsedId >= 1 && parsedId <= 5;
+  // Homework 1 is one unified assignment.
+  const isValidSectionId = parsedId === 1;
   const sectionId = (isValidSectionId ? parsedId : 1) as SectionId;
 
-  const { user } = useAuthStore();
+  const user = useAuthStore((state) => state.user);
   const {
-    homework1,
     startSection,
     submitAnswer,
     nextQuestion,
     previousQuestion,
     completeSection,
     completeHomework,
-    getSectionProgress,
-    getAnswer,
-    canAccessSection,
     syncToCloud,
-  } = useHomeworkStore();
+  } = useHomeworkStore(
+    useShallow((state) => ({
+      startSection: state.startSection,
+      submitAnswer: state.submitAnswer,
+      nextQuestion: state.nextQuestion,
+      previousQuestion: state.previousQuestion,
+      completeSection: state.completeSection,
+      completeHomework: state.completeHomework,
+      syncToCloud: state.syncToCloud,
+    })),
+  );
 
-  const syncTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const syncTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Immediate sync to cloud (no debounce) - more reliable for homework data
-  const syncImmediately = useCallback(async () => {
+  // Local persistence remains immediate; cloud writes are deferred so feedback
+  // and question navigation get the next paint first.
+  const scheduleCloudSync = useCallback(() => {
     if (!user) return;
 
-    try {
-      await syncToCloud(user.uid);
-    } catch (error) {
-      console.error('Failed to sync homework to cloud:', error);
-      // Note: Store still persists to localStorage even if cloud sync fails
-    }
+    if (syncTimeoutRef.current) clearTimeout(syncTimeoutRef.current);
+    syncTimeoutRef.current = setTimeout(() => {
+      syncTimeoutRef.current = null;
+      void syncToCloud(user.uid);
+    }, 900);
   }, [user, syncToCloud]);
 
-  const [userInput, setUserInput] = useState('');
-  const [selectedOption, setSelectedOption] = useState<number | null>(null);
-  const [showFeedback, setShowFeedback] = useState(false);
-  const [isCorrect, setIsCorrect] = useState(false);
+  const [questionResponses, setQuestionResponses] = useState<
+    Record<string, QuestionResponseState>
+  >({});
 
-  const section = getSectionProgress(sectionId);
+  const section = useHomeworkStore((state) => state.homework1.sections[sectionId]);
   const questions = getQuestionsForSection(sectionId);
   const currentQuestion = questions[section.currentIndex];
   const meta = SECTION_META[sectionId];
 
   const existingAnswer = currentQuestion
-    ? getAnswer(sectionId, currentQuestion.id)
+    ? section.answers.find((answer) => answer.questionId === currentQuestion.id)
     : undefined;
+
+  const response = currentQuestion
+    ? questionResponses[currentQuestion.id] ?? getInitialResponse(currentQuestion, existingAnswer)
+    : EMPTY_RESPONSE;
+  const {
+    userInput,
+    selectedOption,
+    showFeedback,
+    isCorrect,
+    vocabularyStage,
+    transliterationCorrect,
+    selectedTransliterationOption,
+    showStageFeedback,
+  } = response;
+
+  const updateResponse = useCallback((updates: Partial<QuestionResponseState>) => {
+    if (!currentQuestion) return;
+    setQuestionResponses((current) => ({
+      ...current,
+      [currentQuestion.id]: {
+        ...(current[currentQuestion.id] ?? getInitialResponse(currentQuestion, existingAnswer)),
+        ...updates,
+      },
+    }));
+  }, [currentQuestion, existingAnswer]);
 
   // Check access and validate section ID
   useEffect(() => {
@@ -74,12 +215,8 @@ export default function SectionPage() {
       router.replace('/homework/hw1');
       return;
     }
-    if (!canAccessSection(sectionId)) {
-      router.replace('/homework/hw1');
-    } else {
-      startSection(sectionId);
-    }
-  }, [sectionId, isValidSectionId, params.id, canAccessSection, startSection, router]);
+    startSection(sectionId);
+  }, [sectionId, isValidSectionId, params.id, startSection, router]);
 
   // Sync immediately on tab close/navigation to prevent data loss
   useEffect(() => {
@@ -90,62 +227,13 @@ export default function SectionPage() {
           clearTimeout(syncTimeoutRef.current);
         }
         // Attempt immediate sync (best effort - may not complete)
-        syncToCloud(user.uid);
+        void syncToCloud(user.uid);
       }
     };
 
     window.addEventListener('beforeunload', handleBeforeUnload);
     return () => window.removeEventListener('beforeunload', handleBeforeUnload);
   }, [user, syncToCloud]);
-
-  // Reset input when question changes
-  useEffect(() => {
-    if (existingAnswer) {
-      setShowFeedback(true);
-      setIsCorrect(existingAnswer.isCorrect);
-      if (currentQuestion?.type === 'mcq') {
-        setSelectedOption(existingAnswer.userAnswer as number);
-        setUserInput('');
-      } else {
-        setUserInput(existingAnswer.userAnswer as string);
-        setSelectedOption(null);
-      }
-    } else {
-      setShowFeedback(false);
-      setIsCorrect(false);
-      setUserInput('');
-      setSelectedOption(null);
-    }
-  }, [section.currentIndex, existingAnswer, currentQuestion?.type]);
-
-  // Normalize transliteration for comparison
-  const normalizeTransliteration = (text: string): string => {
-    return text
-      .toLowerCase()
-      .trim()
-      .replace(/ē/g, 'e')
-      .replace(/ō/g, 'o')
-      .replace(/ā/g, 'a')
-      .replace(/ī/g, 'i')
-      .replace(/ū/g, 'u')
-      .replace(/[''ʼ]/g, '') // Remove apostrophes
-      .replace(/\s+/g, ' '); // Normalize whitespace
-  };
-
-  // Check transliteration answer
-  const checkTransliterationAnswer = (question: TransliterationQuestion): boolean => {
-    const normalized = normalizeTransliteration(userInput);
-    const expectedNormalized = normalizeTransliteration(question.answer);
-
-    if (normalized === expectedNormalized) return true;
-
-    // Check variants
-    for (const variant of question.variants) {
-      if (normalized === normalizeTransliteration(variant)) return true;
-    }
-
-    return false;
-  };
 
   // Handle answer submission
   const handleSubmit = useCallback(() => {
@@ -158,17 +246,54 @@ export default function SectionPage() {
       correct = selectedOption === (currentQuestion as MCQQuestion).correctIndex;
       submitAnswer(sectionId, currentQuestion.id, selectedOption, correct);
     } else {
-      if (!userInput.trim()) return;
-      correct = checkTransliterationAnswer(currentQuestion as TransliterationQuestion);
-      submitAnswer(sectionId, currentQuestion.id, userInput, correct);
+      const question = currentQuestion as TransliterationQuestion;
+
+      if (question.transliterationOptions) {
+        if (selectedOption === null) return;
+
+        if (question.meaningOptions && vocabularyStage === 'transliteration') {
+          const transliterationIsCorrect = selectedOption === question.transliterationCorrectIndex;
+          updateResponse({
+            selectedTransliterationOption: selectedOption,
+            transliterationCorrect: transliterationIsCorrect,
+            showStageFeedback: true,
+          });
+          return;
+        }
+
+        if (question.meaningOptions) {
+          const meaningIsCorrect = selectedOption === question.meaningCorrectIndex;
+          correct = transliterationCorrect === true && meaningIsCorrect;
+          submitAnswer(
+            sectionId,
+            currentQuestion.id,
+            `${selectedTransliterationOption ?? ''} | ${selectedOption}`,
+            correct
+          );
+        } else {
+          correct = selectedOption === question.transliterationCorrectIndex;
+          submitAnswer(sectionId, currentQuestion.id, selectedOption, correct);
+        }
+      } else {
+        if (!userInput.trim()) return;
+        correct = isTransliterationCorrect(question, userInput);
+        submitAnswer(sectionId, currentQuestion.id, userInput, correct);
+      }
     }
 
-    setIsCorrect(correct);
-    setShowFeedback(true);
+    updateResponse({ isCorrect: correct, showFeedback: true });
 
-    // Sync to cloud immediately after answer (no debounce for homework data)
-    syncImmediately();
-  }, [currentQuestion, selectedOption, userInput, sectionId, submitAnswer, syncImmediately]);
+    scheduleCloudSync();
+  }, [currentQuestion, selectedOption, userInput, sectionId, submitAnswer, scheduleCloudSync, vocabularyStage, transliterationCorrect, selectedTransliterationOption, updateResponse]);
+
+  const continueToMeaning = () => {
+    updateResponse({
+      vocabularyStage: 'meaning',
+      userInput: '',
+      selectedOption: null,
+      showStageFeedback: false,
+    });
+  };
 
   // Handle next question
   const handleNext = () => {
@@ -183,20 +308,17 @@ export default function SectionPage() {
   };
 
   // Handle section completion
-  const handleComplete = async () => {
+  const handleComplete = () => {
+    if (syncTimeoutRef.current) {
+      clearTimeout(syncTimeoutRef.current);
+      syncTimeoutRef.current = null;
+    }
     completeSection(sectionId);
+    completeHomework();
+    router.push('/homework/hw1/complete');
 
-    // Immediate sync on section complete
-    if (user) {
-      await syncToCloud(user.uid);
-    }
-
-    if (sectionId === 5) {
-      completeHomework();
-      router.push('/homework/hw1/complete');
-    } else {
-      router.push(`/homework/hw1/section/${sectionId + 1}`);
-    }
+    // Do not hold the results screen behind a network round trip.
+    if (user) setTimeout(() => void syncToCloud(user.uid), 0);
   };
 
   // Keyboard shortcuts for MCQ
@@ -206,7 +328,7 @@ export default function SectionPage() {
     const handleKeyDown = (e: KeyboardEvent) => {
       const key = e.key;
       if (['1', '2', '3', '4'].includes(key)) {
-        setSelectedOption(parseInt(key, 10) - 1);
+        updateResponse({ selectedOption: parseInt(key, 10) - 1 });
       } else if (key === 'Enter' && selectedOption !== null) {
         handleSubmit();
       }
@@ -214,20 +336,20 @@ export default function SectionPage() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentQuestion?.type, showFeedback, selectedOption, handleSubmit]);
+  }, [currentQuestion?.type, showFeedback, selectedOption, handleSubmit, updateResponse]);
 
   if (!currentQuestion) {
     return null;
   }
 
   const isLastQuestion = section.currentIndex === questions.length - 1;
-  const isLastSection = sectionId === 5;
+  const isLastSection = true;
   const hasAnswered = showFeedback || existingAnswer !== undefined;
 
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="sticky top-0 z-10 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
+      <header className="sticky top-0 z-10 bg-background border-b">
         <div className="container mx-auto px-4 h-14 flex items-center justify-between">
           <Link
             href="/homework/hw1"
@@ -240,9 +362,9 @@ export default function SectionPage() {
             <HomeworkProgressCompact
               currentSection={sectionId}
               sectionStatuses={Object.fromEntries(
-                ([1, 2, 3, 4, 5] as SectionId[]).map((id) => [
+                HOMEWORK1_SECTION_IDS.map((id) => [
                   id,
-                  homework1.sections[id].status,
+                  id === sectionId ? section.status : 'not_started',
                 ])
               ) as Record<SectionId, 'not_started' | 'in_progress' | 'completed'>}
             />
@@ -255,7 +377,7 @@ export default function SectionPage() {
         <div className="space-y-6">
           {/* Section title */}
           <div>
-            <p className="text-sm text-muted-foreground">Section {sectionId}</p>
+            <p className="text-sm text-muted-foreground">Unified Homework 1</p>
             <h1 className="text-2xl font-bold">{meta.title}</h1>
           </div>
 
@@ -274,86 +396,96 @@ export default function SectionPage() {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
-              {/* Transliteration questions (Sections 1 & 2) */}
-              {currentQuestion.type === 'transliteration' && (
-                <>
-                  <div className="text-center space-y-2">
-                    <p className="text-4xl hebrew-text font-serif tracking-wide" dir="rtl">
-                      {(currentQuestion as TransliterationQuestion).hebrew}
-                    </p>
-                    <p className="text-sm text-muted-foreground">
-                      Type the transliteration in English letters
-                    </p>
-                  </div>
+              {/* Alphabet typing and two-stage vocabulary questions */}
+              {currentQuestion.type === 'transliteration' && (() => {
+                const question = currentQuestion as TransliterationQuestion;
 
-                  <div className="space-y-2">
-                    <input
-                      type="text"
-                      value={userInput}
-                      onChange={(e) => setUserInput(e.target.value)}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' && !showFeedback && userInput.trim()) {
-                          handleSubmit();
-                        }
-                      }}
-                      disabled={showFeedback}
-                      placeholder="Type your answer..."
-                      className={cn(
-                        'w-full px-4 py-3 rounded-lg border bg-background text-lg text-center',
-                        'focus:outline-none focus:ring-2 focus:ring-primary',
-                        'disabled:opacity-50 disabled:cursor-not-allowed',
-                        showFeedback && isCorrect && 'border-green-500 bg-green-50 dark:bg-green-900/20',
-                        showFeedback && !isCorrect && 'border-red-500 bg-red-50 dark:bg-red-900/20'
-                      )}
-                      autoFocus
-                    />
-                  </div>
+                if (question.transliterationOptions) {
+                  const isTwoStage = Boolean(question.meaningOptions);
+                  const options = isTwoStage && vocabularyStage === 'meaning'
+                    ? question.meaningOptions ?? []
+                    : question.transliterationOptions;
 
-                  {/* Feedback */}
-                  {showFeedback && (
-                    <div
-                      className={cn(
-                        'flex items-start gap-3 p-4 rounded-lg',
-                        isCorrect
-                          ? 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-200'
-                          : 'bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-200'
-                      )}
-                    >
-                      {isCorrect ? (
-                        <Check className="w-5 h-5 shrink-0 mt-0.5" />
-                      ) : (
-                        <X className="w-5 h-5 shrink-0 mt-0.5" />
-                      )}
-                      <div>
-                        <p className="font-medium">
-                          {isCorrect ? 'Correct!' : 'Not quite right'}
+                  return (
+                    <>
+                      <div className="text-center space-y-2">
+                        <p className="text-4xl hebrew-text font-serif tracking-wide" dir="rtl">{question.hebrew}</p>
+                        <p className="text-lg font-medium">
+                          {!isTwoStage
+                            ? 'Which English transliteration matches this Hebrew letter?'
+                            : vocabularyStage === 'transliteration'
+                            ? 'Which English transliteration matches this Hebrew word?'
+                            : `What does ${question.answer} mean in English?`}
                         </p>
-                        {!isCorrect && (
-                          <p className="text-sm mt-1">
-                            The correct answer is: <strong>{currentQuestion.answer || '(silent letter)'}</strong>
-                          </p>
-                        )}
-                        {(currentQuestion as TransliterationQuestion).gloss && (
-                          <p className="text-sm mt-1 opacity-80">
-                            {(currentQuestion as TransliterationQuestion).gloss}
-                          </p>
-                        )}
                       </div>
-                    </div>
-                  )}
 
-                  {/* Submit button (only show if not yet answered) */}
-                  {!showFeedback && (
-                    <Button
-                      onClick={handleSubmit}
-                      disabled={!userInput.trim()}
-                      className="w-full"
-                    >
-                      Check Answer
-                    </Button>
-                  )}
-                </>
-              )}
+                      <div className="space-y-3">
+                        {options.map((option, index) => {
+                          const selected = selectedOption === index;
+                          return (
+                            <button
+                              key={option}
+                              onClick={() => !showFeedback && !showStageFeedback && updateResponse({ selectedOption: index })}
+                              disabled={showFeedback || showStageFeedback}
+                              className={cn(
+                                'w-full touch-manipulation flex items-center gap-3 p-4 rounded-lg border text-left transition-colors duration-100 motion-reduce:transition-none',
+                                'hover:border-primary hover:bg-primary/5 disabled:hover:border-border disabled:hover:bg-transparent',
+                                selected && !showFeedback && !showStageFeedback && 'border-primary bg-primary/10'
+                              )}
+                            >
+                              <span className="w-8 h-8 rounded-full border-2 border-muted-foreground/30 flex items-center justify-center shrink-0 text-sm font-medium">{index + 1}</span>
+                              <span>{option}</span>
+                            </button>
+                          );
+                        })}
+                      </div>
+
+                      {isTwoStage && showStageFeedback && (
+                        <div className={cn('flex items-start gap-3 p-4 rounded-lg', transliterationCorrect ? 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-200' : 'bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-200')}>
+                          {transliterationCorrect ? <Check className="w-5 h-5 shrink-0 mt-0.5" /> : <X className="w-5 h-5 shrink-0 mt-0.5" />}
+                          <div>
+                            <p className="font-medium">{transliterationCorrect ? 'Correct transliteration!' : 'Not quite right'}</p>
+                            {!transliterationCorrect && <p className="text-sm mt-1">The correct transliteration is <strong>{question.answer}</strong>.</p>}
+                          </div>
+                        </div>
+                      )}
+
+                      {showFeedback && (
+                        <div className={cn('flex items-start gap-3 p-4 rounded-lg', isCorrect ? 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-200' : 'bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-200')}>
+                          {isCorrect ? <Check className="w-5 h-5 shrink-0 mt-0.5" /> : <X className="w-5 h-5 shrink-0 mt-0.5" />}
+                          <div>
+                            <p className="font-medium">{isCorrect ? 'Correct!' : 'Not quite right'}</p>
+                            {!isCorrect && (
+                              <p className="text-sm mt-1">
+                                The correct answer is <strong>
+                                  {isTwoStage
+                                    ? question.meaning
+                                    : question.transliterationOptions[question.transliterationCorrectIndex ?? 0]}
+                                </strong>.
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                      )}
+
+                      {!showFeedback && !showStageFeedback && <Button onClick={handleSubmit} disabled={selectedOption === null} className="w-full">Check Answer</Button>}
+                      {isTwoStage && showStageFeedback && !showFeedback && <Button onClick={continueToMeaning} className="w-full">Continue to Meaning</Button>}
+                    </>
+                  );
+                }
+
+                return (
+                  <>
+                    <div className="text-center space-y-2">
+                      <p className="text-4xl hebrew-text font-serif tracking-wide" dir="rtl">{question.hebrew}</p>
+                      <p className="text-sm text-muted-foreground">Type the transliteration in English letters</p>
+                    </div>
+                    <input type="text" value={userInput} onChange={(e) => updateResponse({ userInput: e.target.value })} onKeyDown={(e) => e.key === 'Enter' && !showFeedback && userInput.trim() && handleSubmit()} disabled={showFeedback} placeholder="Type your answer..." className={cn('w-full px-4 py-3 rounded-lg border bg-background text-lg text-center', 'focus:outline-none focus:ring-2 focus:ring-primary', showFeedback && isCorrect && 'border-green-500', showFeedback && !isCorrect && 'border-red-500')} autoFocus />
+                    {showFeedback && <p className={cn('p-4 rounded-lg', isCorrect ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800')}>{isCorrect ? 'Correct!' : `The correct answer is: ${question.answer || '(silent letter)'}`}</p>}
+                    {!showFeedback && <Button onClick={handleSubmit} disabled={!userInput.trim()} className="w-full">Check Answer</Button>}
+                  </>
+                );
+              })()}
 
               {/* MCQ questions (Sections 3, 4, 5) */}
               {currentQuestion.type === 'mcq' && (
@@ -379,12 +511,12 @@ export default function SectionPage() {
                           key={index}
                           onClick={() => {
                             if (!showFeedback) {
-                              setSelectedOption(index);
+                              updateResponse({ selectedOption: index });
                             }
                           }}
                           disabled={showFeedback}
                           className={cn(
-                            'w-full flex items-center gap-3 p-4 rounded-lg border text-left transition-all',
+                            'w-full touch-manipulation flex items-center gap-3 p-4 rounded-lg border text-left transition-colors duration-100 motion-reduce:transition-none',
                             'hover:border-primary hover:bg-primary/5',
                             'disabled:hover:border-border disabled:hover:bg-transparent',
                             isSelected && !showFeedback && 'border-primary bg-primary/10',

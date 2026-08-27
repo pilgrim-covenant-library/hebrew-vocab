@@ -348,7 +348,7 @@ describe('Data Validation', () => {
     it('should handle undefined values', () => {
       const history = {
         '2024-01-15': { reviews: undefined, wordsLearned: undefined },
-      } as Record<string, { reviews: number; wordsLearned: number }>;
+      } as unknown as Record<string, { reviews: number; wordsLearned: number }>;
 
       const result = sanitizeStudyHistory(history);
 

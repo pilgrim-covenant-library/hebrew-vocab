@@ -36,7 +36,7 @@ export function SectionNavigation({
         variant="outline"
         onClick={onPrevious}
         disabled={!canGoPrevious}
-        className="gap-2"
+        className="gap-2 touch-manipulation"
       >
         <ChevronLeft className="w-4 h-4" />
         Previous
@@ -48,7 +48,7 @@ export function SectionNavigation({
           Question {currentIndex + 1} of {totalQuestions}
         </span>
         {/* Progress dots */}
-        <div className="hidden sm:flex items-center gap-1">
+        {totalQuestions <= 20 && <div className="hidden sm:flex items-center gap-1">
           {Array.from({ length: totalQuestions }).map((_, i) => (
             <div
               key={i}
@@ -62,7 +62,7 @@ export function SectionNavigation({
               )}
             />
           ))}
-        </div>
+        </div>}
       </div>
 
       {/* Next/Complete button */}
@@ -70,7 +70,7 @@ export function SectionNavigation({
         <Button
           onClick={onComplete}
           disabled={!hasAnswered}
-          className="gap-2"
+          className="gap-2 touch-manipulation"
         >
           {isLastSection ? (
             <>
@@ -88,7 +88,7 @@ export function SectionNavigation({
         <Button
           onClick={onNext}
           disabled={!hasAnswered}
-          className="gap-2"
+          className="gap-2 touch-manipulation"
         >
           Next
           <ChevronRight className="w-4 h-4" />
@@ -107,7 +107,6 @@ interface QuestionProgressBarProps {
 }
 
 export function QuestionProgressBar({
-  current,
   total,
   answered,
   className,
@@ -122,7 +121,7 @@ export function QuestionProgressBar({
       </div>
       <div className="h-2 bg-muted rounded-full overflow-hidden">
         <div
-          className="h-full bg-primary transition-all duration-300"
+          className="h-full bg-primary transition-[width] duration-150 motion-reduce:transition-none"
           style={{ width: `${percentage}%` }}
         />
       </div>

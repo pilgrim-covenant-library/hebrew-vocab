@@ -1,39 +1,26 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useSyncExternalStore } from 'react';
 import Link from 'next/link';
-import { BookOpen, Brain, Keyboard, Trophy, Settings, ChevronRight, Languages, TrendingUp, BookType, Sparkles, Library } from 'lucide-react';
+import { BookOpen, Brain, Keyboard, Trophy, Settings, ChevronRight, Languages, TrendingUp, BookType, Sparkles, Library, ClipboardList } from 'lucide-react';
 import { useUserStore } from '@/stores/userStore';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { XPBar } from '@/components/XPBar';
 import { StreakFire } from '@/components/StreakFire';
-import { ProgressRing } from '@/components/ProgressRing';
-import { Onboarding } from '@/components/Onboarding';
-import { DailyQuests } from '@/components/DailyQuests';
 import { Button } from '@/components/ui/Button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { cn } from '@/lib/utils';
 import vocabularyData from '@/data/vocabulary.json';
 
+const subscribeNoop = () => () => {};
+const getClientSnapshot = () => true;
+const getServerSnapshot = () => false;
+
 export default function Dashboard() {
-  const { stats, getDueWords, getLearnedWordsCount, dailyGoal, todayReviews, progress } = useUserStore();
-  const [mounted, setMounted] = useState(false);
-  const [showOnboarding, setShowOnboarding] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    // Check if user is new and hasn't seen onboarding
-    const hasSeenOnboarding = localStorage.getItem('hebrew-onboarding-complete');
-    const isNewUser = Object.keys(progress).length === 0 && stats.totalReviews === 0;
-    if (isNewUser && !hasSeenOnboarding) {
-      setShowOnboarding(true);
-    }
-  }, [progress, stats.totalReviews]);
-
-  const handleOnboardingComplete = () => {
-    localStorage.setItem('hebrew-onboarding-complete', 'true');
-    setShowOnboarding(false);
-  };
+  const { stats, getDueWords, getLearnedWordsCount, progress } = useUserStore();
+  // Persisted store values differ from the server-rendered defaults, so wait
+  // for client hydration before reading them.
+  const mounted = useSyncExternalStore(subscribeNoop, getClientSnapshot, getServerSnapshot);
 
   if (!mounted) {
     return <DashboardSkeleton />;
@@ -42,7 +29,6 @@ export default function Dashboard() {
   const dueCount = getDueWords().length;
   const learnedCount = getLearnedWordsCount();
   const totalWords = vocabularyData.words.length;
-  const dailyProgress = Math.min(100, Math.round((todayReviews / dailyGoal) * 100));
 
   // Calculate per-tier progress (words with 5+ max repetitions are "learned")
   const getTierProgress = (tier: number) => {
@@ -56,14 +42,6 @@ export default function Dashboard() {
 
   return (
     <>
-      {/* Onboarding for new users */}
-      {showOnboarding && (
-        <Onboarding
-          onComplete={handleOnboardingComplete}
-          onSkip={handleOnboardingComplete}
-        />
-      )}
-
       <div className="min-h-screen">
         {/* Header */}
         <header className="sticky top-0 z-40 bg-background/80 backdrop-blur-lg border-b">
@@ -112,35 +90,6 @@ export default function Dashboard() {
           </Card>
         </section>
 
-        {/* Daily Goal Progress */}
-        <section className="mb-8">
-          <Card>
-            <CardContent className="py-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="font-semibold">Daily Goal</h3>
-                  <p className="text-sm text-muted-foreground">
-                    {todayReviews} / {dailyGoal} reviews
-                  </p>
-                </div>
-                <ProgressRing
-                  progress={dailyProgress}
-                  size={60}
-                  strokeWidth={5}
-                  color={dailyProgress >= 100 ? 'stroke-emerald-500' : 'stroke-primary'}
-                >
-                  <span className="text-sm font-bold">{dailyProgress}%</span>
-                </ProgressRing>
-              </div>
-            </CardContent>
-          </Card>
-        </section>
-
-        {/* Daily Quests */}
-        <section className="mb-8">
-          <DailyQuests />
-        </section>
-
         {/* Start Review CTA */}
         {dueCount > 0 && (
           <section className="mb-8">
@@ -170,6 +119,13 @@ export default function Dashboard() {
           <h2 className="text-lg font-semibold mb-4">Learning Modes</h2>
           <div className="grid grid-cols-1 gap-3">
             <LearningModeCard
+              href="/class-practice"
+              icon={<ClipboardList className="w-6 h-6" />}
+              title="Class Practice and Homework"
+              description="Class 1–7 practice and matching homework"
+              color="bg-cyan-600"
+            />
+            <LearningModeCard
               href="/learn/flashcards"
               icon={<BookOpen className="w-6 h-6" />}
               title="Flashcards"
@@ -198,11 +154,25 @@ export default function Dashboard() {
               color="bg-amber-500"
             />
             <LearningModeCard
+              href="/learn/common-vocab"
+              icon={<BookOpen className="w-6 h-6" />}
+              title="Top 200 Words"
+              description="The most-frequent OT vocabulary in 8 sections"
+              color="bg-teal-500"
+            />
+            <LearningModeCard
               href="/grammar"
               icon={<BookType className="w-6 h-6" />}
               title="Grammar"
               description="Binyanim, verb forms, noun patterns"
               color="bg-rose-500"
+            />
+            <LearningModeCard
+              href="/gems"
+              icon={<Sparkles className="w-6 h-6" />}
+              title="Hebrew Gems"
+              description="Insights lost in English translation"
+              color="bg-amber-500"
             />
             <LearningModeCard
               href="/inspiration"

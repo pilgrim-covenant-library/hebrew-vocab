@@ -4,7 +4,7 @@ import type { UserStats, WordProgress, Achievement, SemanticCategory, PartOfSpee
 import { createInitialStats, updateStreak, awardXP, calculateLevel } from '@/lib/xp';
 import { createInitialProgress, updateWordProgress, isDue } from '@/lib/srs';
 import { checkAchievements, ACHIEVEMENTS } from '@/lib/achievements';
-import { sanitizeProgress, sanitizeUserStats, sanitizeStudyHistory, migrateLastReviewDate } from '@/lib/dataValidation';
+import { sanitizeProgress, sanitizeUserStats, sanitizeStudyHistory } from '@/lib/dataValidation';
 import vocabularyData from '@/data/vocabulary.json';
 import { syncWithFallback } from '@/lib/syncQueue';
 import { syncProgressToCloud, getProgressFromCloud, type SyncedProgress } from '@/lib/firebase';
@@ -64,16 +64,8 @@ interface UserState {
   stats: UserStats;
   // Word progress keyed by word ID
   progress: Record<string, WordProgress>;
-  // Daily goal (number of reviews)
-  dailyGoal: number;
   // Session length (cards per session)
   sessionLength: number;
-  // Today's review count
-  todayReviews: number;
-  // Last review date (for resetting daily count)
-  lastReviewDate: string | null;
-  // Whether daily goal XP has been awarded today (prevents race condition double-awards)
-  dailyGoalAwardedToday: boolean;
   // Selected vocabulary tiers for learning sessions
   selectedTiers: number[];
   // Selected parts of speech for filtering
@@ -100,12 +92,10 @@ interface UserState {
   getDueWords: () => WordProgress[];
   getLearnedWordsCount: () => number;
   getInProgressWordsCount: () => number;
-  setDailyGoal: (goal: number) => void;
   setSessionLength: (length: number) => void;
   setSelectedTiers: (tiers: number[]) => void;
   setSelectedPOS: (pos: PartOfSpeech[]) => void;
   setSelectedCategories: (categories: SemanticCategory[]) => void;
-  resetDailyCount: () => void;
   unlockAchievement: (achievementId: string) => void;
   addXP: (amount: number) => { leveledUp: boolean };
   checkAndUnlockAchievements: (sessionStats?: { reviews: number; duration: number; isPerfect: boolean }) => Achievement[];
@@ -130,11 +120,7 @@ export const useUserStore = create<UserState>()(
     (set, get) => ({
       stats: createInitialStats(),
       progress: {},
-      dailyGoal: 20,
       sessionLength: 20,
-      todayReviews: 0,
-      lastReviewDate: null,
-      dailyGoalAwardedToday: false,
       selectedTiers: [1, 2, 3, 4, 5], // All tiers selected by default
       selectedPOS: [], // Empty means "all" - no filtering
       selectedCategories: [], // Empty means "all" - no filtering
@@ -159,26 +145,16 @@ export const useUserStore = create<UserState>()(
 
       reviewWord: (wordId: string, quality: number) => {
         const state = get();
-        let { stats, progress, todayReviews, lastReviewDate } = state;
+        let { stats, progress } = state;
 
         // Save snapshot for undo (deep copy stats and word progress)
         const snapshot: ReviewSnapshot = {
           wordId,
           stats: { ...stats, achievements: [...stats.achievements] },
           wordProgress: progress[wordId] ? { ...progress[wordId] } : null,
-          todayReviews,
+          todayReviews: 0, // Kept for backwards compat with snapshot interface
           timestamp: Date.now(),
         };
-
-        // Check if we need to reset daily count and daily goal award flag
-        // Use ISO date format for consistent timezone handling (YYYY-MM-DD)
-        const today = new Date().toISOString().split('T')[0];
-        let dailyGoalAwardedToday = state.dailyGoalAwardedToday;
-        if (lastReviewDate !== today) {
-          todayReviews = 0;
-          lastReviewDate = today;
-          dailyGoalAwardedToday = false; // Reset daily goal award flag for new day
-        }
 
         // Get or create word progress
         let wordProgress = progress[wordId];
@@ -205,15 +181,6 @@ export const useUserStore = create<UserState>()(
           } else {
             xpResult = awardXP(stats, 'correctFlashcard');
           }
-        }
-
-        // Update review counts
-        const newTodayReviews = todayReviews + 1;
-
-        // Check if daily goal met (use flag to prevent race condition double-awards)
-        if (newTodayReviews >= state.dailyGoal && !dailyGoalAwardedToday) {
-          xpResult = awardXP(xpResult.newStats, 'dailyGoalMet');
-          dailyGoalAwardedToday = true;
         }
 
         // Update stats
@@ -247,9 +214,6 @@ export const useUserStore = create<UserState>()(
             ...progress,
             [wordId]: updatedProgress,
           },
-          todayReviews: newTodayReviews,
-          lastReviewDate,
-          dailyGoalAwardedToday,
           lastReviewSnapshot: snapshot,
           studyHistory: newStudyHistory,
         });
@@ -268,7 +232,7 @@ export const useUserStore = create<UserState>()(
           return false;
         }
 
-        const { wordId, stats, wordProgress, todayReviews } = lastReviewSnapshot;
+        const { wordId, stats, wordProgress } = lastReviewSnapshot;
 
         // Restore the previous state
         const newProgress = { ...progress };
@@ -283,7 +247,6 @@ export const useUserStore = create<UserState>()(
         set({
           stats,
           progress: newProgress,
-          todayReviews,
           lastReviewSnapshot: null, // Clear snapshot after undo
         });
 
@@ -318,10 +281,6 @@ export const useUserStore = create<UserState>()(
         ).length;
       },
 
-      setDailyGoal: (goal: number) => {
-        set({ dailyGoal: Math.max(5, Math.min(100, goal)) });
-      },
-
       setSessionLength: (length: number) => {
         set({ sessionLength: Math.max(5, Math.min(50, length)) });
       },
@@ -343,10 +302,6 @@ export const useUserStore = create<UserState>()(
       setSelectedCategories: (categories: SemanticCategory[]) => {
         // Empty array means "all" - no filtering
         set({ selectedCategories: categories });
-      },
-
-      resetDailyCount: () => {
-        set({ todayReviews: 0 });
       },
 
       unlockAchievement: (achievementId: string) => {
@@ -636,11 +591,6 @@ export const useUserStore = create<UserState>()(
             }
             // Sanitize stats to fix any corrupted values
             data.state.stats = sanitizeUserStats(data.state.stats);
-          }
-
-          // Migrate old date format for lastReviewDate
-          if (data.state?.lastReviewDate) {
-            data.state.lastReviewDate = migrateLastReviewDate(data.state.lastReviewDate);
           }
 
           // Sanitize study history

@@ -2,7 +2,10 @@
 
 export type SectionId = 1 | 2 | 3 | 4 | 5;
 
-export type QuestionType = 'transliteration' | 'mcq';
+// Homework 1 is a single unified alphabet-and-vocabulary assignment.
+export const HOMEWORK1_SECTION_IDS: readonly SectionId[] = [1];
+
+export type QuestionType = 'transliteration' | 'mcq' | 'paired_mcq';
 
 // Base question interface
 export interface BaseQuestion {
@@ -17,6 +20,11 @@ export interface TransliterationQuestion extends BaseQuestion {
   answer: string;
   variants: string[];  // Acceptable alternative spellings
   gloss?: string;      // English meaning for feedback
+  meaning?: string;    // English meaning for vocabulary items
+  transliterationOptions?: string[];
+  transliterationCorrectIndex?: number;
+  meaningOptions?: string[];
+  meaningCorrectIndex?: number;
 }
 
 // For Sections 3-5: Multiple choice
@@ -30,13 +38,33 @@ export interface MCQQuestion extends BaseQuestion {
   category?: string;   // e.g., "binyan", "construct", "grammar"
 }
 
+// A two-stage MCQ used whenever a Hebrew word is tested for both reading and
+// meaning. The transliteration stage must be completed before meaning appears.
+export interface PairedMCQQuestion extends BaseQuestion {
+  type: 'paired_mcq';
+  question: string;
+  hebrew: string;
+  transliterationOptions: string[];
+  transliterationCorrectIndex: number;
+  transliterationExplanation: string;
+  meaningOptions: string[];
+  meaningCorrectIndex: number;
+  meaningExplanation: string;
+  category?: string;
+}
+
 // Union type for all questions
-export type HomeworkQuestion = TransliterationQuestion | MCQQuestion;
+export type HomeworkQuestion = TransliterationQuestion | MCQQuestion | PairedMCQQuestion;
+
+export interface PairedMCQAnswer {
+  transliterationIndex: number;
+  meaningIndex: number;
+}
 
 // Answer tracking
 export interface QuestionAnswer {
   questionId: string;
-  userAnswer: string | number;
+  userAnswer: string | number | PairedMCQAnswer;
   isCorrect: boolean;
   timestamp: number;
 }
@@ -123,30 +151,30 @@ export const createInitialHomework1Progress = (): Homework1Progress => ({
   id: 'hw1',
   status: 'not_started',
   sections: {
-    1: createInitialSectionProgress(1, 31),  // 26 Hebrew letter forms + 5 final forms
-    2: createInitialSectionProgress(2, 16),  // 16 Hebrew words
-    3: createInitialSectionProgress(3, 10),  // 10 grammar term MCQs
-    4: createInitialSectionProgress(4, 5),   // 5 construct state MCQs
-    5: createInitialSectionProgress(5, 24),  // 24 binyan identification MCQs
+    1: createInitialSectionProgress(1, 47),  // 31 alphabet + 16 two-stage word MCQs
+    2: createInitialSectionProgress(2, 0),
+    3: createInitialSectionProgress(3, 0),
+    4: createInitialSectionProgress(4, 0),
+    5: createInitialSectionProgress(5, 0),
   },
   currentSection: 1,
   totalScore: 0,
-  totalPossible: 86,  // 31 + 16 + 10 + 5 + 24
+  totalPossible: 47,
 });
 
 // Section metadata - Hebrew specific
 export const SECTION_META: Record<SectionId, SectionMeta> = {
   1: {
     id: 1,
-    title: 'Hebrew Alphabet',
-    description: 'Transliterate each letter of the Hebrew alphabet including final forms',
-    questionCount: 31,
+    title: 'Hebrew Alphabet & Word Transliteration',
+    description: 'Identify every letter and final form, then each word’s transliteration and English meaning',
+    questionCount: 47,
     helpPage: '/homework/help/transliteration',
   },
   2: {
     id: 2,
     title: 'Word Transliteration',
-    description: 'Transliterate common Hebrew vocabulary words',
+    description: 'Identify each word’s transliteration, then its English meaning',
     questionCount: 16,
     helpPage: '/homework/help/transliteration',
   },

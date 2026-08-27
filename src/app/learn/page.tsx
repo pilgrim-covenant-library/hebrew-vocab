@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, BookOpen, Brain, Keyboard, ChevronRight, Check, Zap } from 'lucide-react';
+import { ArrowLeft, BookOpen, Brain, Keyboard, ChevronRight, Check, Zap, Languages } from 'lucide-react';
 import { useUserStore } from '@/stores/userStore';
 import { Button } from '@/components/ui/Button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
@@ -143,6 +143,13 @@ export default function LearnPage() {
               title="Cram Mode"
               description="Quick review without SRS. Perfect for cramming before a test!"
               color="bg-amber-500"
+            />
+            <LearningModeCard
+              href="/learn/translation"
+              icon={<Languages className="w-6 h-6" />}
+              title="Passage Translation"
+              description="Translate curated Hebrew passages from the OT with scoring, key-term feedback, and book-by-book practice."
+              color="bg-teal-500"
             />
           </div>
         </section>

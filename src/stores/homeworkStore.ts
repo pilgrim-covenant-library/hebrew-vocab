@@ -6,7 +6,7 @@ import type {
   SectionProgress,
   QuestionAnswer,
 } from '@/types/homework';
-import { createInitialHomework1Progress, createInitialSectionProgress } from '@/types/homework';
+import { HOMEWORK1_SECTION_IDS, createInitialHomework1Progress, createInitialSectionProgress } from '@/types/homework';
 import {
   syncHomeworkToCloud,
   getHomeworkFromCloud,
@@ -203,13 +203,10 @@ export const useHomeworkStore = create<HomeworkState>()(
         const { homework1 } = get();
         const section = homework1.sections[sectionId];
 
-        // Calculate next section
-        const nextSectionId = sectionId < 5 ? (sectionId + 1) as SectionId : null;
-
         set({
           homework1: {
             ...homework1,
-            currentSection: nextSectionId ?? sectionId,
+            currentSection: sectionId,
             sections: {
               ...homework1.sections,
               [sectionId]: {
@@ -279,7 +276,11 @@ export const useHomeworkStore = create<HomeworkState>()(
 
         try {
           const cloudData = await getHomeworkFromCloud(uid, 'hw1');
-          if (cloudData) {
+          if (
+            cloudData &&
+            cloudData.totalPossible === 47 &&
+            cloudData.sections?.[1]?.totalQuestions === 47
+          ) {
             const { homework1 } = get();
 
             // Cloud data takes priority for completed sections
@@ -314,8 +315,9 @@ export const useHomeworkStore = create<HomeworkState>()(
         try {
           // Build sections summary for teacher view
           const sections: Record<string, { score: number; totalQuestions: number; status: string }> = {};
-          for (const [key, section] of Object.entries(homework1.sections)) {
-            sections[key] = {
+          for (const sectionId of HOMEWORK1_SECTION_IDS) {
+            const section = homework1.sections[sectionId];
+            sections[String(sectionId)] = {
               score: section.score,
               totalQuestions: section.totalQuestions,
               status: section.status,
@@ -347,22 +349,18 @@ export const useHomeworkStore = create<HomeworkState>()(
 
       getOverallProgress: () => {
         const { homework1 } = get();
-        const sections = Object.values(homework1.sections);
+        const sections = HOMEWORK1_SECTION_IDS.map((sectionId) => homework1.sections[sectionId]);
         const completed = sections.filter(s => s.status === 'completed').length;
         return {
           completed,
-          total: 5,
-          percentage: Math.round((completed / 5) * 100),
+          total: HOMEWORK1_SECTION_IDS.length,
+          percentage: Math.round((completed / HOMEWORK1_SECTION_IDS.length) * 100),
         };
       },
 
       canAccessSection: (sectionId: SectionId) => {
         const { homework1 } = get();
-        // Section 1 is always accessible
-        if (sectionId === 1) return true;
-        // Other sections require previous section to be completed
-        const prevSection = homework1.sections[(sectionId - 1) as SectionId];
-        return prevSection.status === 'completed';
+        return sectionId === 1;
       },
 
       isHomeworkComplete: () => {
@@ -377,7 +375,7 @@ export const useHomeworkStore = create<HomeworkState>()(
     }),
     {
       name: 'hebrew-homework-store',
-      version: 1,
+      version: 2,
       partialize: (state) => ({
         homework1: state.homework1,
         lastSyncedAt: state.lastSyncedAt,
@@ -387,14 +385,19 @@ export const useHomeworkStore = create<HomeworkState>()(
       onRehydrateStorage: () => (state) => {
         if (state && state.homework1) {
           const hw = state.homework1;
-          // Ensure sections is a valid object
-          if (typeof hw.sections !== 'object' || hw.sections === null) {
+          // Reset legacy five-section Homework 1 data to the unified assignment.
+          if (
+            typeof hw.sections !== 'object' ||
+            hw.sections === null ||
+            hw.totalPossible !== 47 ||
+            hw.sections[1]?.totalQuestions !== 47
+          ) {
             // Reset to initial state if sections are corrupted
             state.homework1 = createInitialHomework1Progress();
             return;
           }
           // Validate each section
-          const validSectionIds = [1, 2, 3, 4, 5] as const;
+          const validSectionIds = HOMEWORK1_SECTION_IDS;
           for (const sectionId of validSectionIds) {
             const section = hw.sections[sectionId];
             if (!section) {

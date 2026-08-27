@@ -8,7 +8,7 @@ import type {
 // Test each letter of the Hebrew alphabet including final forms
 // =============================================================================
 
-export const section1Questions: TransliterationQuestion[] = [
+const section1BaseQuestions: TransliterationQuestion[] = [
   // Regular letters (22)
   {
     id: 's1-q1',
@@ -62,9 +62,9 @@ export const section1Questions: TransliterationQuestion[] = [
     id: 's1-q7',
     type: 'transliteration',
     hebrew: 'ו',
-    answer: 'v',
-    variants: ['w', 'u', 'o'],
-    gloss: 'Vav (consonant or vowel letter)',
+    answer: 'w',
+    variants: ['v', 'u', 'o'],
+    gloss: 'Waw (consonant or vowel letter)',
   },
   {
     id: 's1-q8',
@@ -261,9 +261,53 @@ export const section1Questions: TransliterationQuestion[] = [
   },
 ];
 
+const alphabetTransliterationChoices = [
+  'ʾ (aleph / silent)', 'ʿ (ayin)', 'b', 'v', 'g', 'd', 'h', 'w', 'z', 'ch',
+  't', 'y', 'k', 'kh', 'l', 'm', 'n', 's', 'p', 'f', 'ts', 'q', 'r', 'sh',
+];
+
+const section1QuestionsWithOptions: TransliterationQuestion[] = section1BaseQuestions.map((question, index) => {
+  const correct = question.gloss?.startsWith('Aleph')
+    ? 'ʾ (aleph / silent)'
+    : question.gloss?.startsWith('Ayin')
+      ? 'ʿ (ayin)'
+      : question.answer;
+  const excluded = new Set([correct, question.answer, ...question.variants]);
+  const availableDistractors = alphabetTransliterationChoices.filter((choice) => !excluded.has(choice));
+  const distractors = [0, 1, 2].map(
+    (offset) => availableDistractors[(index * 3 + offset) % availableDistractors.length]
+  );
+  const correctIndex = index % 4;
+  const options = [...distractors];
+  options.splice(correctIndex, 0, correct);
+
+  return {
+    ...question,
+    transliterationOptions: options,
+    transliterationCorrectIndex: correctIndex,
+  };
+});
+
+function seededShuffle<T>(items: T[], seed: number): T[] {
+  const shuffled = [...items];
+  let state = seed >>> 0;
+
+  for (let index = shuffled.length - 1; index > 0; index -= 1) {
+    state = (state * 1664525 + 1013904223) >>> 0;
+    const swapIndex = state % (index + 1);
+    [shuffled[index], shuffled[swapIndex]] = [shuffled[swapIndex], shuffled[index]];
+  }
+
+  return shuffled;
+}
+
+// Keep a stable shuffled order so students cannot rely on Aleph-to-Tav sequence,
+// while the current question never jumps around during an active attempt.
+export const section1Questions = seededShuffle(section1QuestionsWithOptions, 0x484231);
+
 // =============================================================================
-// SECTION 2: Hebrew Words - Full Alphabet Coverage (16 questions)
-// Words selected to reinforce letters in context
+// SECTION 2: Hebrew Words - Full Alphabet Coverage (16 two-stage questions)
+// Each item tests transliteration recognition before its English meaning.
 // =============================================================================
 
 export const section2Questions: TransliterationQuestion[] = [
@@ -274,6 +318,9 @@ export const section2Questions: TransliterationQuestion[] = [
     answer: 'elohim',
     variants: ['elohiym'],
     gloss: 'God, gods (covers: א, ל, ה, י, ם)',
+    meaning: 'God, gods',
+    transliterationOptions: ['shalom', 'elohim', 'melek', 'torah'], transliterationCorrectIndex: 1,
+    meaningOptions: ['God, gods', 'peace', 'king', 'law, instruction'], meaningCorrectIndex: 0,
   },
   {
     id: 's2-q2',
@@ -282,6 +329,9 @@ export const section2Questions: TransliterationQuestion[] = [
     answer: 'yhwh',
     variants: ['yahweh', 'yehovah', 'adonai'],
     gloss: 'LORD (Tetragrammaton)',
+    meaning: 'LORD',
+    transliterationOptions: ['ruach', 'yhwh', 'qodesh', 'dabar'], transliterationCorrectIndex: 1,
+    meaningOptions: ['prophet', 'LORD', 'spirit, wind', 'holiness'], meaningCorrectIndex: 1,
   },
   {
     id: 's2-q3',
@@ -290,22 +340,31 @@ export const section2Questions: TransliterationQuestion[] = [
     answer: 'shalom',
     variants: ['shalowm'],
     gloss: 'peace (covers: שׁ, ל, ו, ם)',
+    meaning: 'peace',
+    transliterationOptions: ['shalom', 'chesed', 'nefesh', 'kohen'], transliterationCorrectIndex: 0,
+    meaningOptions: ['priest', 'peace', 'soul, life', 'steadfast love'], meaningCorrectIndex: 1,
   },
   {
     id: 's2-q4',
     type: 'transliteration',
     hebrew: 'דָּבָר',
-    answer: 'davar',
-    variants: ['dabar'],
+    answer: 'dabar',
+    variants: ['davar'],
     gloss: 'word, thing (covers: ד, ב, ר)',
+    meaning: 'word, thing',
+    transliterationOptions: ['meshiach', 'dabar', 'bayit', 'dagesh'], transliterationCorrectIndex: 1,
+    meaningOptions: ['king', 'word, thing', 'daughter', 'righteousness'], meaningCorrectIndex: 1,
   },
   {
     id: 's2-q5',
     type: 'transliteration',
     hebrew: 'מֶלֶךְ',
-    answer: 'melekh',
-    variants: ['melek'],
+    answer: 'melek',
+    variants: ['melekh'],
     gloss: 'king (covers: מ, ל, ך)',
+    meaning: 'king',
+    transliterationOptions: ['melek', 'navi', 'ben', 'am'], transliterationCorrectIndex: 0,
+    meaningOptions: ['people', 'king', 'son', 'prophet'], meaningCorrectIndex: 1,
   },
   {
     id: 's2-q6',
@@ -314,6 +373,9 @@ export const section2Questions: TransliterationQuestion[] = [
     answer: 'am',
     variants: [],
     gloss: 'people (covers: ע, ם)',
+    meaning: 'people',
+    transliterationOptions: ['bat', 'am', 'ruach', 'qodesh'], transliterationCorrectIndex: 1,
+    meaningOptions: ['daughter', 'people', 'spirit, wind', 'holiness'], meaningCorrectIndex: 1,
   },
   {
     id: 's2-q7',
@@ -322,6 +384,9 @@ export const section2Questions: TransliterationQuestion[] = [
     answer: 'qodesh',
     variants: ['kodesh'],
     gloss: 'holiness (covers: ק, ד, שׁ)',
+    meaning: 'holiness',
+    transliterationOptions: ['qodesh', 'tsedeq', 'chesed', 'torah'], transliterationCorrectIndex: 0,
+    meaningOptions: ['righteousness', 'steadfast love', 'holiness', 'law, instruction'], meaningCorrectIndex: 2,
   },
   {
     id: 's2-q8',
@@ -330,6 +395,9 @@ export const section2Questions: TransliterationQuestion[] = [
     answer: 'tsedeq',
     variants: ['tsedek', 'zedek'],
     gloss: 'righteousness (covers: צ, ד, ק)',
+    meaning: 'righteousness',
+    transliterationOptions: ['kohen', 'tsedeq', 'nefesh', 'elohim'], transliterationCorrectIndex: 1,
+    meaningOptions: ['priest', 'soul, life', 'righteousness', 'God, gods'], meaningCorrectIndex: 2,
   },
   {
     id: 's2-q9',
@@ -338,6 +406,9 @@ export const section2Questions: TransliterationQuestion[] = [
     answer: 'chesed',
     variants: ['hesed', 'khesed'],
     gloss: 'steadfast love (covers: ח, ס, ד)',
+    meaning: 'steadfast love',
+    transliterationOptions: ['chesed', 'shalom', 'dabar', 'navi'], transliterationCorrectIndex: 0,
+    meaningOptions: ['peace', 'steadfast love', 'word, thing', 'prophet'], meaningCorrectIndex: 1,
   },
   {
     id: 's2-q10',
@@ -346,6 +417,9 @@ export const section2Questions: TransliterationQuestion[] = [
     answer: 'torah',
     variants: ['towrah'],
     gloss: 'law, instruction (covers: תּ, ו, ר, ה)',
+    meaning: 'law, instruction',
+    transliterationOptions: ['torah', 'ruach', 'bat', 'am'], transliterationCorrectIndex: 0,
+    meaningOptions: ['law, instruction', 'spirit, wind', 'daughter', 'people'], meaningCorrectIndex: 0,
   },
   {
     id: 's2-q11',
@@ -354,6 +428,9 @@ export const section2Questions: TransliterationQuestion[] = [
     answer: 'nefesh',
     variants: ['nephesh'],
     gloss: 'soul, life (covers: נ, פ, שׁ)',
+    meaning: 'soul, life',
+    transliterationOptions: ['nefesh', 'melek', 'qodesh', 'ben'], transliterationCorrectIndex: 0,
+    meaningOptions: ['king', 'holiness', 'soul, life', 'son'], meaningCorrectIndex: 2,
   },
   {
     id: 's2-q12',
@@ -362,6 +439,9 @@ export const section2Questions: TransliterationQuestion[] = [
     answer: 'ruach',
     variants: ['ruakh'],
     gloss: 'spirit, wind (covers: ר, ו, ח)',
+    meaning: 'spirit, wind',
+    transliterationOptions: ['ruach', 'chesed', 'kohen', 'tsedeq'], transliterationCorrectIndex: 0,
+    meaningOptions: ['steadfast love', 'priest', 'righteousness', 'spirit, wind'], meaningCorrectIndex: 3,
   },
   {
     id: 's2-q13',
@@ -370,6 +450,9 @@ export const section2Questions: TransliterationQuestion[] = [
     answer: 'ben',
     variants: [],
     gloss: 'son (covers: בּ, ן)',
+    meaning: 'son',
+    transliterationOptions: ['ben', 'bat', 'navi', 'dabar'], transliterationCorrectIndex: 0,
+    meaningOptions: ['daughter', 'prophet', 'word, thing', 'son'], meaningCorrectIndex: 3,
   },
   {
     id: 's2-q14',
@@ -378,6 +461,9 @@ export const section2Questions: TransliterationQuestion[] = [
     answer: 'bat',
     variants: [],
     gloss: 'daughter (covers: בּ, ת)',
+    meaning: 'daughter',
+    transliterationOptions: ['am', 'bat', 'torah', 'qodesh'], transliterationCorrectIndex: 1,
+    meaningOptions: ['law, instruction', 'daughter', 'people', 'holiness'], meaningCorrectIndex: 1,
   },
   {
     id: 's2-q15',
@@ -386,6 +472,9 @@ export const section2Questions: TransliterationQuestion[] = [
     answer: 'kohen',
     variants: ['cohen'],
     gloss: 'priest (covers: כּ, ה, ן)',
+    meaning: 'priest',
+    transliterationOptions: ['kohen', 'navi', 'elohim', 'shalom'], transliterationCorrectIndex: 0,
+    meaningOptions: ['God, gods', 'priest', 'peace', 'prophet'], meaningCorrectIndex: 1,
   },
   {
     id: 's2-q16',
@@ -394,6 +483,9 @@ export const section2Questions: TransliterationQuestion[] = [
     answer: 'navi',
     variants: ['nabiy'],
     gloss: 'prophet (covers: נ, ב, י, א)',
+    meaning: 'prophet',
+    transliterationOptions: ['navi', 'nefesh', 'melek', 'ruach'], transliterationCorrectIndex: 0,
+    meaningOptions: ['soul, life', 'king', 'spirit, wind', 'prophet'], meaningCorrectIndex: 3,
   },
 ];
 
@@ -888,15 +980,7 @@ import type { SectionId, HomeworkQuestion } from '@/types/homework';
 export function getQuestionsForSection(sectionId: SectionId): HomeworkQuestion[] {
   switch (sectionId) {
     case 1:
-      return section1Questions;
-    case 2:
-      return section2Questions;
-    case 3:
-      return section3Questions;
-    case 4:
-      return section4Questions;
-    case 5:
-      return section5Questions;
+      return [...section1Questions, ...section2Questions];
     default:
       return [];
   }
@@ -908,11 +992,5 @@ export function getQuestionById(sectionId: SectionId, questionId: string): Homew
 }
 
 export function getTotalQuestions(): number {
-  return (
-    section1Questions.length +
-    section2Questions.length +
-    section3Questions.length +
-    section4Questions.length +
-    section5Questions.length
-  );
+  return section1Questions.length + section2Questions.length;
 }

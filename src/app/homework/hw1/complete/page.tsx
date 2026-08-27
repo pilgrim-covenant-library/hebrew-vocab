@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { useHomeworkStore } from '@/stores/homeworkStore';
 import { useAuthStore } from '@/stores/authStore';
-import { SECTION_META, type SectionId } from '@/types/homework';
+import { HOMEWORK1_SECTION_IDS, SECTION_META } from '@/types/homework';
 import { cn } from '@/lib/utils';
 
 export default function CompletePage() {
@@ -26,12 +26,12 @@ export default function CompletePage() {
 
   const [hasSynced, setHasSynced] = useState(false);
   const progress = getOverallProgress();
-  const sections: SectionId[] = [1, 2, 3, 4, 5];
+  const sections = HOMEWORK1_SECTION_IDS;
 
   // Complete homework and sync to cloud
   useEffect(() => {
     const finalize = async () => {
-      if (homework1.status !== 'completed' && progress.completed === 5) {
+      if (homework1.status !== 'completed' && progress.completed === progress.total) {
         completeHomework();
       }
 
@@ -84,7 +84,7 @@ export default function CompletePage() {
             </div>
             <h1 className="text-3xl font-bold">Homework Complete!</h1>
             <p className="text-muted-foreground">
-              Great job completing Homework 1: Hebrew Alphabet Foundations
+              Great job completing Homework 1: Hebrew Alphabet &amp; Word Reading
             </p>
             {/* Sync indicator */}
             {user && (
@@ -143,7 +143,7 @@ export default function CompletePage() {
           {/* Section breakdown */}
           <Card>
             <CardHeader>
-              <CardTitle>Section Breakdown</CardTitle>
+              <CardTitle>Assignment Summary</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">

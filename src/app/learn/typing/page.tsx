@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { X, RotateCcw, ChevronRight, Eye, Trophy, ThumbsUp, Zap, Keyboard } from 'lucide-react';
 import { useUserStore } from '@/stores/userStore';
 import { useSessionStore } from '@/stores/sessionStore';
-import { useQuestStore } from '@/stores/questStore';
 import { HebrewWord } from '@/components/HebrewWord';
 import { TypingInput, TypingFeedback } from '@/components/TypingInput';
 import { XPBar, XPGain } from '@/components/XPBar';
@@ -155,10 +154,12 @@ export default function TypingPage() {
       nextWord();
     } else {
       // Session complete - check for achievements
+      // Capture startTime BEFORE any state changes (race condition fix)
+      const sessionStartTime = useSessionStore.getState().startTime;
       const stats = getSessionStats();
       const sessionData = {
         reviews: stats.total,
-        duration: Date.now() - (useSessionStore.getState().startTime || Date.now()),
+        duration: sessionStartTime ? Date.now() - sessionStartTime : 0,
         isPerfect: stats.accuracy === 100,
       };
       const newAchievements = checkAndUnlockAchievements(sessionData);
@@ -168,8 +169,6 @@ export default function TypingPage() {
       setSessionComplete(true);
     }
   }, [currentIndex, words.length, nextWord, getSessionStats, checkAndUnlockAchievements]);
-
-  const { recordReviewCount, recordSessionAccuracy, recordPerfectSession } = useQuestStore();
 
   const handleEndSession = () => {
     const summary = endSession();
@@ -184,13 +183,6 @@ export default function TypingPage() {
         xpEarned: summary.xpEarned,
         isPerfect: summary.isPerfect,
       });
-
-      // Update quest progress
-      recordReviewCount(summary.wordsReviewed);
-      recordSessionAccuracy(summary.accuracy);
-      if (summary.isPerfect) {
-        recordPerfectSession();
-      }
     }
     router.push('/');
   };

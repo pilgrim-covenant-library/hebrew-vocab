@@ -8,9 +8,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/Button';
 import { useHomeworkStore } from '@/stores/homeworkStore';
 import { useAuthStore } from '@/stores/authStore';
-import { AuthGate } from '@/components/AuthGate';
 import { HomeworkProgress } from '@/components/homework/HomeworkProgress';
-import { SECTION_META, type SectionId } from '@/types/homework';
+import { HOMEWORK1_SECTION_IDS, SECTION_META, type SectionId } from '@/types/homework';
 import { cn } from '@/lib/utils';
 
 function Homework1Content() {
@@ -27,7 +26,7 @@ function Homework1Content() {
 
   const [isLoading, setIsLoading] = useState(true);
   const progress = getOverallProgress();
-  const sections: SectionId[] = [1, 2, 3, 4, 5];
+  const sections = HOMEWORK1_SECTION_IDS;
 
   // Load from cloud and start homework on mount
   useEffect(() => {
@@ -112,11 +111,14 @@ function Homework1Content() {
           <div className="text-center space-y-2">
             <h1 className="text-3xl font-bold">Homework 1</h1>
             <p className="text-lg text-muted-foreground">
-              Hebrew Alphabet Foundations
+              Hebrew Alphabet &amp; Word Reading
+            </p>
+            <p className="text-xs font-medium text-primary">
+              Week 1 foundation assignment
             </p>
             <p className="text-sm text-muted-foreground max-w-xl mx-auto">
-              This homework is designed for students who have just learned the Hebrew
-              alphabet. Complete all 5 sections to finish.
+              One complete MCQ assignment covering the Hebrew alphabet, final forms,
+              word transliteration, and word meanings.
             </p>
           </div>
 
@@ -125,9 +127,9 @@ function Homework1Content() {
             <CardHeader className="pb-4">
               <CardTitle className="text-lg">Your Progress</CardTitle>
               <CardDescription>
-                {progress.completed === 5
-                  ? 'All sections completed!'
-                  : `${progress.completed} of 5 sections completed`}
+                {progress.completed === progress.total
+                  ? 'Homework completed!'
+                  : '47 questions in one unified assignment'}
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -144,7 +146,7 @@ function Homework1Content() {
 
           {/* Section cards */}
           <div className="space-y-4">
-            <h2 className="text-xl font-semibold">Sections</h2>
+            <h2 className="text-xl font-semibold">Assignment</h2>
             <div className="grid gap-4">
               {sections.map((sectionId) => {
                 const meta = SECTION_META[sectionId];
@@ -228,7 +230,7 @@ function Homework1Content() {
 
           {/* Action buttons */}
           <div className="flex justify-center gap-4">
-            {progress.completed === 5 ? (
+            {progress.completed === progress.total ? (
               <Link href="/homework/hw1/complete">
                 <Button size="lg" className="gap-2">
                   <CheckCircle className="w-5 h-5" />
@@ -248,14 +250,6 @@ function Homework1Content() {
   );
 }
 
-// Wrap with AuthGate to require login
 export default function Homework1Page() {
-  return (
-    <AuthGate
-      title="Login Required"
-      message="Please log in to start the homework. Your progress will be saved and shared with your teacher."
-    >
-      <Homework1Content />
-    </AuthGate>
-  );
+  return <Homework1Content />;
 }

@@ -1,9 +1,9 @@
 'use client';
 
-import { Check, Circle, Lock } from 'lucide-react';
+import { Check, Lock } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { SectionId } from '@/types/homework';
-import { SECTION_META } from '@/types/homework';
+import { HOMEWORK1_SECTION_IDS, SECTION_META } from '@/types/homework';
 
 interface HomeworkProgressProps {
   currentSection: SectionId;
@@ -18,7 +18,7 @@ export function HomeworkProgress({
   onSectionClick,
   canAccess,
 }: HomeworkProgressProps) {
-  const sections: SectionId[] = [1, 2, 3, 4, 5];
+  const sections = HOMEWORK1_SECTION_IDS;
 
   return (
     <div className="w-full">
@@ -37,7 +37,7 @@ export function HomeworkProgress({
                 onClick={() => isAccessible && onSectionClick?.(sectionId)}
                 disabled={!isAccessible}
                 className={cn(
-                  'relative flex items-center justify-center w-10 h-10 rounded-full border-2 transition-all',
+                  'relative touch-manipulation flex items-center justify-center w-10 h-10 rounded-full border-2 transition-colors duration-100 motion-reduce:transition-none',
                   status === 'completed' && 'bg-green-500 border-green-500 text-white',
                   status === 'in_progress' && 'bg-primary border-primary text-primary-foreground',
                   status === 'not_started' && isAccessible && 'bg-background border-muted-foreground/30 text-muted-foreground hover:border-primary',
@@ -99,7 +99,7 @@ export function HomeworkProgressCompact({
   currentSection,
   sectionStatuses,
 }: Pick<HomeworkProgressProps, 'currentSection' | 'sectionStatuses'>) {
-  const sections: SectionId[] = [1, 2, 3, 4, 5];
+  const sections = HOMEWORK1_SECTION_IDS;
 
   return (
     <div className="flex items-center gap-1.5">
@@ -111,7 +111,7 @@ export function HomeworkProgressCompact({
           <div
             key={sectionId}
             className={cn(
-              'w-2 h-2 rounded-full transition-all',
+              'w-2 h-2 rounded-full transition-colors duration-100 motion-reduce:transition-none',
               status === 'completed' && 'bg-green-500',
               status === 'in_progress' && 'bg-primary',
               status === 'not_started' && 'bg-muted-foreground/30',

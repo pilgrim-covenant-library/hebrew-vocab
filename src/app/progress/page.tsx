@@ -23,7 +23,7 @@ import type { VocabularyWord } from '@/types';
 
 export default function ProgressPage() {
   const router = useRouter();
-  const { stats, progress, dailyGoal, getStudyHistory } = useUserStore();
+  const { stats, progress, getStudyHistory } = useUserStore();
   const studyHistory = getStudyHistory();
   const [activeTab, setActiveTab] = useState<'overview' | 'weak' | 'mastered'>('overview');
   const [mounted, setMounted] = useState(false);

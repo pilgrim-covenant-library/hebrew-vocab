@@ -119,7 +119,11 @@ export function updateWordProgress(
 export function isDue(progress: WordProgress): boolean {
   const now = new Date();
   now.setHours(0, 0, 0, 0);
-  return progress.nextReview <= now;
+  // Compare calendar days, not timestamps: a word scheduled for any time
+  // today (e.g. a brand-new word stamped "now") is due today.
+  const due = new Date(progress.nextReview);
+  due.setHours(0, 0, 0, 0);
+  return due <= now;
 }
 
 /**

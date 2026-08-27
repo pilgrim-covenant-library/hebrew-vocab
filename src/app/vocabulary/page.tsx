@@ -28,6 +28,11 @@ export default function VocabularyPage() {
     setMounted(true);
   }, []);
 
+  // Clear expanded word when filters change to prevent showing wrong word expanded
+  useEffect(() => {
+    setExpandedWord(null);
+  }, [search, statusFilter, tierFilter]);
+
   const words = vocabularyData.words as VocabularyWord[];
 
   const getWordStatus = (wordId: string): 'learned' | 'learning' | 'new' => {

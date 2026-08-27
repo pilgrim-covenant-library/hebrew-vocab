@@ -137,6 +137,8 @@ const NOUN_PATTERNS = [
   },
 ];
 
+const VALID_TABS: TabType[] = ['binyanim', 'comparison', 'pronouns', 'nouns', 'suffixes'];
+
 export default function TablesPage() {
   const [activeTab, setActiveTab] = useState<TabType>('binyanim');
   const [selectedBinyan, setSelectedBinyan] = useState<Binyan>('qal');
@@ -147,6 +149,14 @@ export default function TablesPage() {
 
   useEffect(() => {
     setMounted(true);
+    // Read ?tab= from URL on client-side mount (avoids prerender Suspense issue)
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const tabParam = params.get('tab') as TabType | null;
+      if (tabParam && VALID_TABS.includes(tabParam)) {
+        setActiveTab(tabParam);
+      }
+    }
   }, []);
 
   const currentParadigm = binyanimByName[selectedBinyan];
