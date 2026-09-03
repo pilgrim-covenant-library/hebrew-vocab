@@ -9,6 +9,7 @@ import { hw4Meta } from './hw4-questions';
 import { hw5Meta } from './hw5-questions';
 import { hw6Meta } from './hw6-questions';
 import { hw7Meta } from './hw7-questions';
+import { hw8Meta } from './hw8-questions';
 
 export const EXTENDED_HOMEWORKS = {
   hw2: hw2Meta,
@@ -17,9 +18,10 @@ export const EXTENDED_HOMEWORKS = {
   hw5: hw5Meta,
   hw6: hw6Meta,
   hw7: hw7Meta,
+  hw8: hw8Meta,
 } satisfies Partial<Record<ExtendedHomeworkId, ExtendedHomeworkMeta>>;
 
-export const EXTENDED_HOMEWORK_ORDER = ['hw2', 'hw3', 'hw4', 'hw5', 'hw6', 'hw7'] as const satisfies readonly ExtendedHomeworkId[];
+export const EXTENDED_HOMEWORK_ORDER = ['hw2', 'hw3', 'hw4', 'hw5', 'hw6', 'hw7', 'hw8'] as const satisfies readonly ExtendedHomeworkId[];
 
 export const getHomework = (id: string): ExtendedHomeworkMeta | undefined =>
   (EXTENDED_HOMEWORKS as Partial<Record<string, ExtendedHomeworkMeta>>)[id];

@@ -2,10 +2,7 @@
 // Construct, the Qal Infinitive Absolute, and the Qal Participle, plus the
 // Chapter 20-22 "You Should Know" vocabulary and verse translation whose
 // grammar stays within Chapters 1-22.
-//
-// NOT YET RELEASED. Nothing imports this bank into a route, so it is not
-// reachable from the app. Release = add a Class8MCQPractice route page and a
-// hub card (see class-6-mcq for the pattern).
+// Released: routes to /class-practice/class-8-mcq with hub card on /class-practice.
 
 import type { PracticeQuestion, PracticeQuestionGroup } from '@/types/class-practice';
 

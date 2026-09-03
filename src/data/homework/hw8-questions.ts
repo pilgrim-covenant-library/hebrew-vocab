@@ -1,10 +1,7 @@
 // HW8 — The Qal Infinitive Construct, Infinitive Absolute, and Participle.
 // CourseGuide for BBH (Pratico/Van Pelt) Chapters 20-22 (Sessions 20-22),
 // plus the new Chapter 20-22 vocabulary and verse-translation practice.
-//
-// NOT YET RELEASED: this bank is intentionally absent from the active
-// extended-registry, so it is not reachable from the app. Wire it in when
-// the class is ready.
+// Released: wired into extended-registry.ts and linked on /homework and /class-practice.
 
 import type { MCQQuestion, PairedMCQQuestion } from '@/types/homework';
 import type { ExtendedHomeworkMeta } from '@/types/homework-extended';

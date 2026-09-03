@@ -55,7 +55,7 @@ export default function ClassPracticePage() {
           </Link>
           <div>
             <h1 className="text-lg font-semibold">Class Practice and Homework</h1>
-            <p className="text-xs text-muted-foreground">MasterLectures Sessions 1–19</p>
+            <p className="text-xs text-muted-foreground">MasterLectures Sessions 1–22</p>
           </div>
         </div>
       </header>
@@ -181,6 +181,22 @@ export default function ClassPracticePage() {
             description="MCQ assignment on the Waw Consecutive, the Qal Imperative, pronominal suffixes on verbs, new vocabulary, and verse translation"
             icon={ClipboardList}
             href="/homework/hw7"
+            color="amber"
+          />
+
+          <ClassPracticeCard
+            title="Class 8 MCQ"
+            description="Read the Infinitive Construct, Infinitive Absolute, and Qal Participle from Chapters 20–22 inside words, clauses, and passages"
+            icon={ListChecks}
+            href="/class-practice/class-8-mcq"
+            color="cyan"
+          />
+
+          <ClassPracticeCard
+            title="Homework 8"
+            description="MCQ assignment on the Infinitive Construct, Infinitive Absolute, Qal Participle, new vocabulary, and verse translation"
+            icon={ClipboardList}
+            href="/homework/hw8"
             color="amber"
           />
         </div>

@@ -67,8 +67,8 @@ const homeworkCases: HomeworkCase[] = [
   { name: 'HW12 (ch 34-35)', id: 'hw12', meta: hw12Meta, sections: hw12Sections },
 ];
 
-const DARK_HOMEWORK_IDS = ['hw8', 'hw9', 'hw10', 'hw11', 'hw12'];
-const DARK_CLASS_SLUGS = ['class-8-mcq', 'class-9-mcq', 'class-10-mcq', 'class-11-mcq', 'class-12-mcq'];
+const DARK_HOMEWORK_IDS = ['hw9', 'hw10', 'hw11', 'hw12'];
+const DARK_CLASS_SLUGS = ['class-9-mcq', 'class-10-mcq', 'class-11-mcq', 'class-12-mcq'];
 
 describe.each(classCases)('$name practice data', ({ config, modes, build }) => {
   const allGroups: PracticeQuestionGroup[] = [
@@ -213,7 +213,7 @@ describe.each(homeworkCases)('$name data', ({ meta, sections }) => {
   });
 });
 
-describe('HW8-HW12 and Class 8-12 are built but still DARK', () => {
+describe('HW9-HW12 and Class 9-12 are built but still DARK', () => {
   it('keeps every new homework out of the active registry', () => {
     for (const id of DARK_HOMEWORK_IDS) {
       expect(getHomework(id)).toBeUndefined();
@@ -230,15 +230,22 @@ describe('HW8-HW12 and Class 8-12 are built but still DARK', () => {
   });
 });
 
-describe('HW7 and Class 7 are released', () => {
-  it('wires HW7 into the active homework registry', () => {
+describe('HW7, HW8 and Class 7, Class 8 are released', () => {
+  it('wires HW7 and HW8 into the active homework registry', () => {
     expect(getHomework('hw7')).toBe(hw7Meta);
     expect(EXTENDED_HOMEWORK_ORDER).toContain('hw7');
     expect(Object.keys(EXTENDED_HOMEWORKS)).toContain('hw7');
+
+    expect(getHomework('hw8')).toBe(hw8Meta);
+    expect(EXTENDED_HOMEWORK_ORDER).toContain('hw8');
+    expect(Object.keys(EXTENDED_HOMEWORKS)).toContain('hw8');
   });
 
-  it('provides a valid route for Class 7 practice', () => {
-    const route = join(process.cwd(), 'src/app/class-practice', 'class-7-mcq', 'page.tsx');
-    expect(existsSync(route)).toBe(true);
+  it('provides valid routes for Class 7 and Class 8 practice', () => {
+    const route7 = join(process.cwd(), 'src/app/class-practice', 'class-7-mcq', 'page.tsx');
+    expect(existsSync(route7)).toBe(true);
+
+    const route8 = join(process.cwd(), 'src/app/class-practice', 'class-8-mcq', 'page.tsx');
+    expect(existsSync(route8)).toBe(true);
   });
 });
