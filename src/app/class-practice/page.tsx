@@ -55,7 +55,7 @@ export default function ClassPracticePage() {
           </Link>
           <div>
             <h1 className="text-lg font-semibold">Class Practice and Homework</h1>
-            <p className="text-xs text-muted-foreground">MasterLectures Sessions 1–22</p>
+            <p className="text-xs text-muted-foreground">MasterLectures Sessions 1–25</p>
           </div>
         </div>
       </header>
@@ -197,6 +197,22 @@ export default function ClassPracticePage() {
             description="MCQ assignment on the Infinitive Construct, Infinitive Absolute, Qal Participle, new vocabulary, and verse translation"
             icon={ClipboardList}
             href="/homework/hw8"
+            color="amber"
+          />
+
+          <ClassPracticeCard
+            title="Class 9 MCQ"
+            description="Read Hebrew sentence syntax and the Niphal stem in strong and weak verbs from Chapters 23–25 inside words, clauses, and passages"
+            icon={ListChecks}
+            href="/class-practice/class-9-mcq"
+            color="cyan"
+          />
+
+          <ClassPracticeCard
+            title="Homework 9"
+            description="MCQ assignment on sentence syntax, Niphal strong and weak verbs, new vocabulary, and verse translation"
+            icon={ClipboardList}
+            href="/homework/hw9"
             color="amber"
           />
         </div>

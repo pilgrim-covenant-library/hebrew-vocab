@@ -67,8 +67,8 @@ const homeworkCases: HomeworkCase[] = [
   { name: 'HW12 (ch 34-35)', id: 'hw12', meta: hw12Meta, sections: hw12Sections },
 ];
 
-const DARK_HOMEWORK_IDS = ['hw9', 'hw10', 'hw11', 'hw12'];
-const DARK_CLASS_SLUGS = ['class-9-mcq', 'class-10-mcq', 'class-11-mcq', 'class-12-mcq'];
+const DARK_HOMEWORK_IDS = ['hw10', 'hw11', 'hw12'];
+const DARK_CLASS_SLUGS = ['class-10-mcq', 'class-11-mcq', 'class-12-mcq'];
 
 describe.each(classCases)('$name practice data', ({ config, modes, build }) => {
   const allGroups: PracticeQuestionGroup[] = [
@@ -213,7 +213,7 @@ describe.each(homeworkCases)('$name data', ({ meta, sections }) => {
   });
 });
 
-describe('HW9-HW12 and Class 9-12 are built but still DARK', () => {
+describe('HW10-HW12 and Class 10-12 are built but still DARK', () => {
   it('keeps every new homework out of the active registry', () => {
     for (const id of DARK_HOMEWORK_IDS) {
       expect(getHomework(id)).toBeUndefined();
@@ -230,8 +230,8 @@ describe('HW9-HW12 and Class 9-12 are built but still DARK', () => {
   });
 });
 
-describe('HW7, HW8 and Class 7, Class 8 are released', () => {
-  it('wires HW7 and HW8 into the active homework registry', () => {
+describe('HW7, HW8, HW9 and Class 7, Class 8, Class 9 are released', () => {
+  it('wires HW7, HW8, and HW9 into the active homework registry', () => {
     expect(getHomework('hw7')).toBe(hw7Meta);
     expect(EXTENDED_HOMEWORK_ORDER).toContain('hw7');
     expect(Object.keys(EXTENDED_HOMEWORKS)).toContain('hw7');
@@ -239,13 +239,20 @@ describe('HW7, HW8 and Class 7, Class 8 are released', () => {
     expect(getHomework('hw8')).toBe(hw8Meta);
     expect(EXTENDED_HOMEWORK_ORDER).toContain('hw8');
     expect(Object.keys(EXTENDED_HOMEWORKS)).toContain('hw8');
+
+    expect(getHomework('hw9')).toBe(hw9Meta);
+    expect(EXTENDED_HOMEWORK_ORDER).toContain('hw9');
+    expect(Object.keys(EXTENDED_HOMEWORKS)).toContain('hw9');
   });
 
-  it('provides valid routes for Class 7 and Class 8 practice', () => {
+  it('provides valid routes for Class 7, Class 8, and Class 9 practice', () => {
     const route7 = join(process.cwd(), 'src/app/class-practice', 'class-7-mcq', 'page.tsx');
     expect(existsSync(route7)).toBe(true);
 
     const route8 = join(process.cwd(), 'src/app/class-practice', 'class-8-mcq', 'page.tsx');
     expect(existsSync(route8)).toBe(true);
+
+    const route9 = join(process.cwd(), 'src/app/class-practice', 'class-9-mcq', 'page.tsx');
+    expect(existsSync(route9)).toBe(true);
   });
 });
