@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowLeft, ChevronRight, ClipboardList, GraduationCap, ListChecks } from 'lucide-react';
+import { ArrowLeft, ChevronRight, ClipboardList, GraduationCap, ListChecks, FileText } from 'lucide-react';
 import type { ElementType } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Card, CardContent } from '@/components/ui/Card';
@@ -19,6 +19,7 @@ function ClassPracticeCard({ title, description, icon: Icon, href, color }: Clas
   const colorClasses: Record<string, string> = {
     cyan: 'bg-cyan-500/10 text-cyan-700 dark:text-cyan-300',
     amber: 'bg-amber-500/10 text-amber-700 dark:text-amber-300',
+    purple: 'bg-purple-500/10 text-purple-700 dark:text-purple-300',
   };
 
   return (
@@ -214,6 +215,14 @@ export default function ClassPracticePage() {
             icon={ClipboardList}
             href="/homework/hw9"
             color="amber"
+          />
+
+          <ClassPracticeCard
+            title="Practice Paper"
+            description="Comprehensive guided review covering Chapters 1–35 with 50 grammar MCQ, 30 vocab MCQ, and 5 verse analyses"
+            icon={FileText}
+            href="/grammar/review/practice-paper"
+            color="purple"
           />
         </div>
       </main>

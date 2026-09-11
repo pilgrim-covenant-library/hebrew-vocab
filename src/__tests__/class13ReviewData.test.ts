@@ -161,16 +161,16 @@ describe('Class 13 exam composition', () => {
   });
 });
 
-describe('Class 13 review is built but still DARK', () => {
+describe('Practice Paper is released and live', () => {
   const routes = [
     'src/app/grammar/review/practice-paper/page.tsx',
     'src/app/grammar/review/final-exam/page.tsx',
   ];
 
-  it('is not imported by either live review route', () => {
+  it('is imported by both live review routes', () => {
     for (const route of routes) {
       const source = readFileSync(join(process.cwd(), route), 'utf8');
-      expect(source).not.toContain('class13');
+      expect(source).toContain('class13');
     }
   });
 });

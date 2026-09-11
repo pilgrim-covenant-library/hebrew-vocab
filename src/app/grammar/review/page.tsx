@@ -84,12 +84,12 @@ export default function ReviewHubPage() {
                     <div className="flex items-center justify-between">
                       <div>
                         <h3 className="font-semibold text-lg">Practice Paper</h3>
-                        <p className="text-xs font-medium text-violet-600 dark:text-violet-400">Genesis 1:1–5 — Guided Practice</p>
+                        <p className="text-xs font-medium text-violet-600 dark:text-violet-400">Chapters 1–35 — Guided Practice</p>
                       </div>
                       <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
                     </div>
                     <p className="text-sm text-muted-foreground mt-1">
-                      50 grammar MCQ + 30 vocab MCQ + 5 verse analysis with immediate feedback and explanations.
+                      50 grammar MCQ + 30 vocab MCQ + 5 verse analysis with immediate feedback and explanations across Chapters 1–35.
                     </p>
                   </div>
                 </div>
@@ -108,7 +108,7 @@ export default function ReviewHubPage() {
                     <div className="flex items-center justify-between">
                       <div>
                         <h3 className="font-semibold text-lg">Final Exam</h3>
-                        <p className="text-xs font-medium text-violet-600 dark:text-violet-400">Genesis 1 — Name &amp; Code Required</p>
+                        <p className="text-xs font-medium text-violet-600 dark:text-violet-400">Chapters 1–35 — Name &amp; Code Required</p>
                       </div>
                       <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
                     </div>
@@ -129,7 +129,7 @@ export default function ReviewHubPage() {
           </h3>
           <ul className="text-sm text-muted-foreground space-y-1.5">
             <li><strong>HW1–HW9</strong> — Independent drilling, one topic at a time. Mastery first.</li>
-            <li><strong>Practice Paper</strong> — Guided review with explanations. 85 questions in exam format.</li>
+            <li><strong>Practice Paper</strong> — Guided review with explanations. 85 questions across Chapters 1–35.</li>
             <li><strong>Final Exam</strong> — Same format with 17 final-exam-only items, 2-hour timer, no reveal until submission.</li>
             <li>Aim for 80%+ on the Practice Paper before attempting the Final Exam.</li>
           </ul>

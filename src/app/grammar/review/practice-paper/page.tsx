@@ -10,13 +10,13 @@ import { cn, shuffle } from '@/lib/utils';
 import { scoreTranslation } from '@/lib/translation';
 import type { NTVerse, TranslationResult } from '@/types';
 import {
-  grammarQuestions,
-  vocabQuestions,
-  verseAnalysisQuestions,
-  PRACTICE_PAPER_SECTIONS,
+  class13GrammarQuestions as grammarQuestions,
+  class13VocabQuestions as vocabQuestions,
+  class13VerseAnalysisQuestions as verseAnalysisQuestions,
+  CLASS13_PRACTICE_PAPER_SECTIONS as PRACTICE_PAPER_SECTIONS,
   type PracticeMCQ,
   type PracticeVerseAnalysis,
-} from '@/data/review/practicePaper';
+} from '@/data/review/class13PracticePaper';
 
 type SectionId = 1 | 2 | 3;
 type QuestionItem = { type: 'mcq'; data: PracticeMCQ; section: SectionId } | { type: 'va'; data: PracticeVerseAnalysis; section: SectionId };
@@ -146,11 +146,16 @@ export default function PracticePaperPage() {
     // Score translation
     const text = vaTranslations[q.id] || '';
     const verse: NTVerse = {
-      id: q.id, book: 'gen', chapter: 1, verse: 0,
-      reference: q.reference, hebrew: q.hebrew,
+      id: q.id,
+      book: q.reference.toLowerCase().split(' ')[0],
+      chapter: 1,
+      verse: 0,
+      reference: q.reference,
+      hebrew: q.hebrew,
       transliteration: q.transliteration,
       referenceTranslation: q.referenceTranslation,
-      keyTerms: q.keyTerms, difficulty: 1,
+      keyTerms: q.keyTerms,
+      difficulty: 1,
     };
     const result = scoreTranslation(verse, text);
     setTranslationResults(prev => ({ ...prev, [q.id]: result }));
@@ -218,7 +223,7 @@ export default function PracticePaperPage() {
             </Link>
             <div>
               <h1 className="text-lg font-semibold">Practice Paper</h1>
-              <p className="text-xs text-muted-foreground">Genesis 1:1–5 — Guided Practice</p>
+              <p className="text-xs text-muted-foreground">Chapters 1–35 — Guided Practice</p>
             </div>
           </div>
         </header>
@@ -227,10 +232,10 @@ export default function PracticePaperPage() {
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-violet-500/10 mb-4">
               <BookOpen className="w-8 h-8 text-violet-600 dark:text-violet-400" />
             </div>
-            <h2 className="text-xl font-bold mb-2">Genesis 1 Practice Paper</h2>
+            <h2 className="text-xl font-bold mb-2">Hebrew Practice Paper</h2>
             <p className="text-muted-foreground text-sm mb-4">
               Guided practice with instant feedback after each question.
-              All grounded in Genesis 1:1–5 — the foundation of biblical Hebrew.
+              Comprehensive review covering grammar, vocabulary, and anchor verses from Chapters 1–35.
             </p>
           </div>
           <Card className="mb-4">

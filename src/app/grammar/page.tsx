@@ -153,6 +153,8 @@ const CURRICULUM_WEEKS: CurriculumWeek[] = [
     sessions: 'Cumulative Review',
     title: 'Comprehensive Review and Final Assessment',
     topics: ['Cumulative vocabulary', 'Morphology review', 'Guided translation'],
+    practiceHref: '/grammar/review/practice-paper',
+    homeworkHref: '/grammar/review/final-exam',
   },
 ];
 
@@ -185,7 +187,7 @@ function WeekCard({ week }: { week: CurriculumWeek }) {
               <div className="flex items-center justify-between p-2.5 rounded-lg border hover:bg-muted/50 transition-colors group cursor-pointer">
                 <div className="flex items-center gap-2 min-w-0">
                   <ListChecks className="w-4 h-4 text-cyan-600 shrink-0" />
-                  <span className="text-sm font-medium truncate">Class Practice</span>
+                  <span className="text-sm font-medium truncate">{week.week === 16 ? 'Practice Paper' : 'Class Practice'}</span>
                 </div>
                 <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
               </div>
@@ -194,7 +196,7 @@ function WeekCard({ week }: { week: CurriculumWeek }) {
               <div className="flex items-center justify-between p-2.5 rounded-lg border hover:bg-muted/50 transition-colors group cursor-pointer">
                 <div className="flex items-center gap-2 min-w-0">
                   <ClipboardList className="w-4 h-4 text-amber-500 shrink-0" />
-                  <span className="text-sm font-medium truncate">Homework</span>
+                  <span className="text-sm font-medium truncate">{week.week === 16 ? 'Final Exam' : 'Homework'}</span>
                 </div>
                 <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
               </div>
@@ -282,6 +284,14 @@ export default function GrammarPage() {
               icon={Dumbbell}
               href="/grammar/practice"
               color="emerald"
+            />
+
+            <GrammarModeCard
+              title="Practice Paper"
+              description="Comprehensive guided capstone review covering Chapters 1–35 with 85 exam-style questions"
+              icon={GraduationCap}
+              href="/grammar/review/practice-paper"
+              color="amber"
             />
           </div>
         </section>

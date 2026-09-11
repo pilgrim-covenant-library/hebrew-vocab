@@ -27,12 +27,12 @@ import { cn, shuffle } from '@/lib/utils';
 import { scoreTranslation } from '@/lib/translation';
 import type { NTVerse, TranslationResult } from '@/types';
 import {
-  finalExamGrammarQuestions as grammarQuestions,
-  finalExamVocabQuestions as vocabQuestions,
-  finalExamVerseAnalysisQuestions as verseAnalysisQuestions,
+  class13ExamGrammarQuestions as grammarQuestions,
+  class13ExamVocabQuestions as vocabQuestions,
+  class13ExamVerseAnalysisQuestions as verseAnalysisQuestions,
   type PracticeMCQ,
   type PracticeVerseAnalysis,
-} from '@/data/review/finalExamPaper';
+} from '@/data/review/class13FinalExam';
 
 const EXAM_TITLE = 'Grammar Review Final Exam';
 const ACCESS_CODE = 'shalom';
@@ -114,7 +114,7 @@ interface ExamSummary {
 function buildVerse(verse: PracticeVerseAnalysis): NTVerse {
   return {
     id: verse.id,
-    book: 'gen',
+    book: verse.reference.toLowerCase().split(' ')[0],
     chapter: 1,
     verse: 0,
     reference: verse.reference,
@@ -426,8 +426,8 @@ function Intro({
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-violet-500/10 mb-2">
               <FileText className="w-8 h-8 text-violet-600 dark:text-violet-400" />
             </div>
-            <h1 className="text-3xl font-bold">{EXAM_TITLE}</h1>
-            <p className="text-muted-foreground">Genesis 1 practice paper in exam mode</p>
+            <h2 className="text-xl font-bold mb-2">{EXAM_TITLE}</h2>
+            <p className="text-muted-foreground">Comprehensive practice paper in exam mode (Chapters 1–35)</p>
           </div>
 
           <Card>
