@@ -42,6 +42,15 @@ export default function ReviewHubPage() {
           <Card>
             <CardContent className="p-5">
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                <Link href="/homework/hw1">
+                  <div className="flex items-center justify-between p-3 rounded-lg border hover:bg-muted/50 transition-colors group cursor-pointer">
+                    <div className="flex items-center gap-2 min-w-0">
+                      <ClipboardList className="w-4 h-4 text-amber-500 shrink-0" />
+                      <span className="text-sm font-medium truncate">HW1</span>
+                    </div>
+                    <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
+                  </div>
+                </Link>
                 {EXTENDED_HOMEWORK_ORDER.map((id) => {
                   const meta = EXTENDED_HOMEWORKS[id];
                   return (
@@ -56,15 +65,6 @@ export default function ReviewHubPage() {
                     </Link>
                   );
                 })}
-                <Link href="/homework/hw1">
-                  <div className="flex items-center justify-between p-3 rounded-lg border hover:bg-muted/50 transition-colors group cursor-pointer">
-                    <div className="flex items-center gap-2 min-w-0">
-                      <ClipboardList className="w-4 h-4 text-amber-500 shrink-0" />
-                      <span className="text-sm font-medium truncate">HW1</span>
-                    </div>
-                    <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
-                  </div>
-                </Link>
               </div>
             </CardContent>
           </Card>
@@ -128,7 +128,7 @@ export default function ReviewHubPage() {
             How to Use
           </h3>
           <ul className="text-sm text-muted-foreground space-y-1.5">
-            <li><strong>HW1–HW8</strong> — Independent drilling, one topic at a time. Mastery first.</li>
+            <li><strong>HW1–HW9</strong> — Independent drilling, one topic at a time. Mastery first.</li>
             <li><strong>Practice Paper</strong> — Guided review with explanations. 85 questions in exam format.</li>
             <li><strong>Final Exam</strong> — Same format with 17 final-exam-only items, 2-hour timer, no reveal until submission.</li>
             <li>Aim for 80%+ on the Practice Paper before attempting the Final Exam.</li>
