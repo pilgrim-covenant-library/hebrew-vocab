@@ -51,7 +51,7 @@ describe('HW10 Piel and Pual (strong only)', () => {
 
   it('keeps the new sections free of weak-verb material', () => {
     for (const qs of [hw10Sections[7], hw10Sections[8]]) {
-      expect(qs).toHaveLength(8);
+      expect(qs).toHaveLength(5);
       for (const q of qs) {
         expect(`${q.question} ${q.explanation}`).not.toMatch(WEAK_CLASS_TERMS);
       }

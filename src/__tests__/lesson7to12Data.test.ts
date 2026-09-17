@@ -57,7 +57,7 @@ const classCases: ClassCase[] = [
   { name: 'Class 7 (ch 17-19)', slug: 'class-7-mcq', config: CLASS7_CONFIG, modes: CLASS7_MODES, build: buildClass7Session },
   { name: 'Class 8 (ch 20-22)', slug: 'class-8-mcq', config: CLASS8_CONFIG, modes: CLASS8_MODES, build: buildClass8Session },
   { name: 'Class 9 (ch 23-25)', slug: 'class-9-mcq', config: CLASS9_CONFIG, modes: CLASS9_MODES, build: buildClass9Session },
-  { name: 'Class 10 (ch 26-29 + strong Piel/Pual)', slug: 'class-10-mcq', config: CLASS10_CONFIG, modes: CLASS10_MODES, build: buildClass10Session, allModeSize: 48 },
+  { name: 'Class 10 (ch 26-29 + strong Piel/Pual)', slug: 'class-10-mcq', config: CLASS10_CONFIG, modes: CLASS10_MODES, build: buildClass10Session, allModeSize: 40 },
   { name: 'Class 11 (ch 30-33)', slug: 'class-11-mcq', config: CLASS11_CONFIG, modes: CLASS11_MODES, build: buildClass11Session },
   { name: 'Class 12 (ch 34-35)', slug: 'class-12-mcq', config: CLASS12_CONFIG, modes: CLASS12_MODES, build: buildClass12Session },
 ];
@@ -66,7 +66,7 @@ const homeworkCases: HomeworkCase[] = [
   { name: 'HW7 (ch 17-19)', id: 'hw7', meta: hw7Meta, sections: hw7Sections },
   { name: 'HW8 (ch 20-22)', id: 'hw8', meta: hw8Meta, sections: hw8Sections },
   { name: 'HW9 (ch 23-25)', id: 'hw9', meta: hw9Meta, sections: hw9Sections },
-  { name: 'HW10 (ch 26-29 + strong Piel/Pual)', id: 'hw10', meta: hw10Meta, sections: hw10Sections, questionTotal: 66 },
+  { name: 'HW10 (ch 26-29 + strong Piel/Pual)', id: 'hw10', meta: hw10Meta, sections: hw10Sections, questionTotal: 46 },
   { name: 'HW11 (ch 30-33)', id: 'hw11', meta: hw11Meta, sections: hw11Sections },
   { name: 'HW12 (ch 34-35)', id: 'hw12', meta: hw12Meta, sections: hw12Sections },
 ];

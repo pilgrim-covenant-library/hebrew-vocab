@@ -43,14 +43,28 @@ function reconcileWithMeta(
       sections[section.id] = createInitialExtendedSectionProgress(section.id, section.questionCount);
       changed = true;
     } else if (existing.totalQuestions !== section.questionCount) {
-      sections[section.id] = { ...existing, totalQuestions: section.questionCount };
+      // Questions can also be REMOVED. Drop answers to questions that are gone,
+      // re-score from what survives, and pull a cursor left past the new end.
+      const live = new Set((meta.sectionQuestions[section.id] ?? []).map((q) => q.id));
+      const answers = existing.answers.filter((answer) => live.has(answer.questionId));
+      const pruned = answers.length !== existing.answers.length;
+      sections[section.id] = {
+        ...existing,
+        totalQuestions: section.questionCount,
+        answers,
+        // Only re-score when an answer actually went away; a recorded score with
+        // no stored answers must not be zeroed out.
+        score: pruned ? answers.filter((answer) => answer.isCorrect).length : existing.score,
+        currentIndex: Math.min(existing.currentIndex, Math.max(0, section.questionCount - 1)),
+      };
       changed = true;
     }
     totalPossible += section.questionCount;
   }
 
   if (!changed && progress.totalPossible === totalPossible) return progress;
-  return { ...progress, sections, totalPossible };
+  const totalScore = Object.values(sections).reduce((sum, section) => sum + section.score, 0);
+  return { ...progress, sections, totalPossible, totalScore };
 }
 
 interface ExtendedHomeworkState {

@@ -32,14 +32,14 @@ describe('extended homework reconciles stale progress against the live meta', ()
   it('backfills sections added after the student started', () => {
     const hw = useExtendedHomeworkStore.getState().ensureHomework('hw10');
     expect(Object.keys(hw.sections).map(Number).sort((a, b) => a - b)).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
-    expect(hw.sections[7].totalQuestions).toBe(8);
-    expect(hw.sections[8].totalQuestions).toBe(8);
+    expect(hw.sections[7].totalQuestions).toBe(5);
+    expect(hw.sections[8].totalQuestions).toBe(5);
   });
 
   it('re-totals the homework so the progress denominator is current', () => {
     const hw = useExtendedHomeworkStore.getState().ensureHomework('hw10');
     expect(hw.totalPossible).toBe(hw10Meta.totalQuestions);
-    expect(useExtendedHomeworkStore.getState().getOverallProgress('hw10').total).toBe(66);
+    expect(useExtendedHomeworkStore.getState().getOverallProgress('hw10').total).toBe(46);
   });
 
   it('preserves work already done', () => {
@@ -52,6 +52,46 @@ describe('extended homework reconciles stale progress against the live meta', ()
   it('does not call a homework complete while a new section is unfinished', () => {
     useExtendedHomeworkStore.getState().ensureHomework('hw10');
     expect(useExtendedHomeworkStore.getState().isHomeworkComplete('hw10')).toBe(false);
+  });
+
+  it('clamps a cursor left past the end when questions are cut', () => {
+    useExtendedHomeworkStore.setState({
+      homeworks: {
+        hw10: {
+          ...staleProgress(),
+          sections: {
+            ...staleProgress().sections,
+            // student was on question 8 of a section that now holds 5
+            1: { sectionId: 1, status: 'in_progress' as const, currentIndex: 7, answers: [], score: 3, totalQuestions: 8 },
+          },
+        },
+      },
+    });
+    const hw = useExtendedHomeworkStore.getState().ensureHomework('hw10');
+    expect(hw.sections[1].totalQuestions).toBe(5);
+    expect(hw.sections[1].currentIndex).toBeLessThan(5);
+  });
+
+  it('drops answers to questions that no longer exist, and re-scores', () => {
+    const answers = [
+      { questionId: 'hw10-s1-q1', userAnswer: 0, isCorrect: true, timestamp: 1 },
+      { questionId: 'hw10-s1-q2', userAnswer: 0, isCorrect: true, timestamp: 2 }, // cut
+      { questionId: 'hw10-s1-q7', userAnswer: 0, isCorrect: true, timestamp: 3 }, // cut
+    ];
+    useExtendedHomeworkStore.setState({
+      homeworks: {
+        hw10: {
+          ...staleProgress(),
+          sections: {
+            ...staleProgress().sections,
+            1: { sectionId: 1, status: 'in_progress' as const, currentIndex: 2, answers, score: 3, totalQuestions: 8 },
+          },
+        },
+      },
+    });
+    const hw = useExtendedHomeworkStore.getState().ensureHomework('hw10');
+    expect(hw.sections[1].answers.map((a) => a.questionId)).toEqual(['hw10-s1-q1']);
+    expect(hw.sections[1].score).toBe(1);
   });
 
   it('lets a backfilled section actually start', () => {

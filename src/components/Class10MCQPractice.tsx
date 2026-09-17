@@ -13,7 +13,7 @@ export function Class10MCQPractice() {
       completionTitle="Class 10 Complete"
       backHref="/class-practice"
       modes={CLASS10_MODES}
-      allModeNote="All mode gives exactly 48 questions: concepts, direct form recall, contextual passages, and paired vocabulary. Use Recall + Passages for the complete memory-and-translation drill across all six chapters."
+      allModeNote="All mode gives exactly 40 questions: concepts, direct form recall, contextual passages, and paired vocabulary. Use Recall + Passages for the complete memory-and-translation drill across all six chapters."
       buildSession={buildClass10Session}
     />
   );
