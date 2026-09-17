@@ -8,6 +8,7 @@ import { sanitizeProgress, sanitizeUserStats, sanitizeStudyHistory } from '@/lib
 import vocabularyData from '@/data/vocabulary.json';
 import { syncWithFallback } from '@/lib/syncQueue';
 import { syncProgressToCloud, getProgressFromCloud, type SyncedProgress } from '@/lib/firebase';
+import { COMMON_VOCAB_COUNT, getCommonOTVocabIds } from '@/lib/commonVocab';
 
 // Snapshot of state before a review (for undo functionality)
 interface ReviewSnapshot {
@@ -109,6 +110,10 @@ interface UserState {
   isLeech: (wordId: string) => boolean;
   // Blind mode toggle
   setBlindMode: (enabled: boolean) => void;
+  // Common Vocab Section Progress & Scores
+  commonVocabSectionScores: Record<number, { score: number; total: number; lastAttempt: string }>;
+  getCommonVocabProgress: () => { learned: number; total: number; percentage: number };
+  recordCommonVocabSectionScore: (sectionId: number, score: number, total: number) => void;
   // Cloud sync
   syncToCloud: (uid: string) => Promise<void>;
   loadFromCloud: (uid: string) => Promise<boolean>;
@@ -120,6 +125,7 @@ export const useUserStore = create<UserState>()(
     (set, get) => ({
       stats: createInitialStats(),
       progress: {},
+      commonVocabSectionScores: {},
       sessionLength: 20,
       selectedTiers: [1, 2, 3, 4, 5], // All tiers selected by default
       selectedPOS: [], // Empty means "all" - no filtering
@@ -565,6 +571,31 @@ export const useUserStore = create<UserState>()(
 
         console.log('[UserStore] Merged cloud data successfully');
       },
+
+      getCommonVocabProgress: () => {
+        const { progress } = get();
+        const commonIds = getCommonOTVocabIds();
+        // A word is considered learned if it has at least 1 repetition
+        const learned = Object.values(progress).filter(
+          (p) => commonIds.has(p.wordId) && ((p.repetitions ?? 0) >= 1 || (p.maxRepetitions ?? 0) >= 1)
+        ).length;
+        const percentage = Math.round((learned / COMMON_VOCAB_COUNT) * 100);
+        return { learned, total: COMMON_VOCAB_COUNT, percentage };
+      },
+
+      recordCommonVocabSectionScore: (sectionId: number, score: number, total: number) => {
+        const { commonVocabSectionScores } = get();
+        set({
+          commonVocabSectionScores: {
+            ...commonVocabSectionScores,
+            [sectionId]: {
+              score,
+              total,
+              lastAttempt: new Date().toISOString(),
+            },
+          },
+        });
+      },
     }),
     {
       name: 'hebrew-user-store',
@@ -596,6 +627,10 @@ export const useUserStore = create<UserState>()(
           // Sanitize study history
           if (data.state?.studyHistory) {
             data.state.studyHistory = sanitizeStudyHistory(data.state.studyHistory);
+          }
+
+          if (data.state && !data.state.commonVocabSectionScores) {
+            data.state.commonVocabSectionScores = {};
           }
 
           return data;

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, BookOpen, Brain, Keyboard, ChevronRight, Check, Zap, Languages } from 'lucide-react';
+import { ArrowLeft, BookOpen, Brain, Keyboard, ChevronRight, Check, Zap, Languages, Crown } from 'lucide-react';
 import { useUserStore } from '@/stores/userStore';
 import { Button } from '@/components/ui/Button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
@@ -116,12 +116,19 @@ export default function LearnPage() {
           </h2>
           <div className="grid grid-cols-1 gap-3">
             <LearningModeCard
+              href="/learn/common-vocab"
+              icon={<Crown className="w-6 h-6" />}
+              title="Common OT Vocab"
+              description="Master the 300 most frequently used words in the Old Testament."
+              color="bg-amber-500"
+              recommended
+            />
+            <LearningModeCard
               href="/learn/flashcards"
               icon={<BookOpen className="w-6 h-6" />}
               title="Flashcards"
               description="Classic spaced repetition with flip cards. Rate how well you knew each word."
               color="bg-emerald-500"
-              recommended
             />
             <LearningModeCard
               href="/learn/quiz"
