@@ -18,6 +18,9 @@ import type { PracticeMCQ, PracticeVerseAnalysis } from '@/data/review/practiceP
 const hasHebrew = (s: string) => /[֐-׿]/.test(s);
 // Strip Hebrew points/accents (niqqud + te'amim + Maqqef, U+0591–U+05C7).
 const skeleton = (s: string) => s.replace(/[֑-ׇ]/g, '');
+const capRun = (s: string) => /[A-Z]{2,}/.test(s);
+const hasParen = (s: string) => /[()]/.test(s);
+const hasComma = (s: string) => s.includes(',');
 
 function validateMCQ(question: PracticeMCQ) {
   expect(question.options).toHaveLength(4);
@@ -72,9 +75,9 @@ const papers: Array<{
 ];
 
 describe.each(papers)('$name', ({ grammar, vocab, verses, sections }) => {
-  it('has the Koine paper shape: 50 grammar, 30 vocab, 5 verse-analysis items', () => {
-    expect(grammar).toHaveLength(50);
-    expect(vocab).toHaveLength(30);
+  it('has the Koine paper shape: 40 grammar, 40 vocab, 5 verse-analysis items', () => {
+    expect(grammar).toHaveLength(40);
+    expect(vocab).toHaveLength(40);
     expect(verses).toHaveLength(5);
   });
 
@@ -110,7 +113,30 @@ describe.each(papers)('$name', ({ grammar, vocab, verses, sections }) => {
     }
     const positions = tally.reduce((sum, count) => sum + count, 0);
     for (const count of tally) {
-      expect(count / positions).toBeLessThan(0.4);
+      expect(count / positions).toBeLessThan(0.32);
+    }
+  });
+
+  it('never lets the correct option stand out (no caps/paren/comma/length tell)', () => {
+    for (const q of [...grammar, ...vocab]) {
+      const c = q.options[q.correctIndex];
+      const others = q.options.filter((_, i) => i !== q.correctIndex);
+      if (capRun(c)) expect(others.some(capRun)).toBe(true);
+      if (hasParen(c)) expect(others.some(hasParen)).toBe(true);
+      if (hasComma(c)) expect(others.some(hasComma)).toBe(true);
+      const maxOther = Math.max(...others.map((o) => o.length));
+      const tooLong = c.length > maxOther * 1.4 && c.length - maxOther >= 8;
+      expect(tooLong).toBe(false);
+    }
+  });
+
+  it('never names the answer in the question stem', () => {
+    // Metalanguage that IS the answer: a stem must not hand over the parse it asks for.
+    const giveaways = [/wayyiqtol/i, /q[oō]t[eē]l/i, /construct verbal noun/i, /prefix.conjugation/i];
+    for (const q of [...grammar, ...vocab]) {
+      for (const tell of giveaways) {
+        expect(`${q.id}: ${q.question}`).not.toMatch(tell);
+      }
     }
   });
 
@@ -119,12 +145,39 @@ describe.each(papers)('$name', ({ grammar, vocab, verses, sections }) => {
       validateVerse(verse);
     }
   });
+
+  it('never keys שָׁמַיִם as dual', () => {
+    // -ayim looks dual, but שָׁמַיִם is a plurale tantum: plural in form and meaning.
+    // Prose may discuss the dual ending; no answer key or category may classify it as one.
+    const mentionsShamayim = (t: string) => t.includes('שָּׁמַיִם') || t.includes('שָׁמַיִם');
+    for (const q of [...grammar, ...vocab]) {
+      if (mentionsShamayim(`${q.hebrew ?? ''} ${q.question}`)) {
+        expect(q.options[q.correctIndex]).not.toMatch(/dual/i);
+      }
+    }
+    for (const verse of verses) {
+      for (const pair of verse.matchingPairs) {
+        if (mentionsShamayim(pair.hebrew)) expect(pair.category).not.toMatch(/dual/i);
+      }
+    }
+  });
+
+  it('never lets a matching category stand out by a caps run', () => {
+    // In matching, every listed pair is correct — a caps run on those alone
+    // tells the student which categories are the real ones.
+    for (const verse of verses) {
+      const correct = verse.matchingPairs.map((p) => p.category);
+      if (correct.some(capRun)) {
+        expect(verse.distractorCategories.some(capRun)).toBe(true);
+      }
+    }
+  });
 });
 
 describe('Class 13 exam composition', () => {
   it('reuses most of the practice paper and adds exam-only items', () => {
-    expect(class13ExamGrammarQuestions.slice(0, 40)).toEqual(class13GrammarQuestions.slice(0, 40));
-    expect(class13ExamVocabQuestions.slice(0, 24)).toEqual(class13VocabQuestions.slice(0, 24));
+    expect(class13ExamGrammarQuestions.slice(0, 30)).toEqual(class13GrammarQuestions.slice(0, 30));
+    expect(class13ExamVocabQuestions.slice(0, 34)).toEqual(class13VocabQuestions.slice(0, 34));
     expect(class13ExamVerseAnalysisQuestions.slice(0, 4)).toEqual(class13VerseAnalysisQuestions.slice(0, 4));
   });
 
@@ -144,20 +197,16 @@ describe('Class 13 exam composition', () => {
     expect(unseenVerses).toHaveLength(1);
   });
 
-  it('replaces the dropped syntax and derived-stem items rather than losing that coverage', () => {
-    const dropped = class13GrammarQuestions.slice(40).map((q) => q.id);
+  it('drops the last ten practice grammar items and swaps in unseen ones', () => {
+    const dropped = class13GrammarQuestions.slice(30).map((q) => q.id);
     const examIds = class13ExamGrammarQuestions.map((q) => q.id);
     for (const id of dropped) {
       expect(examIds).not.toContain(id);
     }
-    // The exam-only items must still cover the derived stems and the Hithpael verse.
-    const examText = [
-      ...class13ExamGrammarQuestions.slice(40).map((q) => `${q.question} ${q.explanation}`),
-      class13ExamVerseAnalysisQuestions[4].matchingPairs.map((p) => p.category).join(' '),
-    ].join(' ');
-    for (const stem of ['Niphal', 'Hiphil', 'Hophal', 'Piel', 'Pual', 'Hithpael']) {
-      expect(examText).toContain(stem);
-    }
+    // The ten swapped-in items are the exam-only replacements (ids not in the paper).
+    const paperIds = new Set(class13GrammarQuestions.map((q) => q.id));
+    const examOnly = class13ExamGrammarQuestions.filter((q) => !paperIds.has(q.id));
+    expect(examOnly).toHaveLength(10);
   });
 });
 

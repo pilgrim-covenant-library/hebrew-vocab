@@ -30,10 +30,10 @@ export default function ReviewHubPage() {
           </div>
           <h2 className="text-2xl font-bold mb-2">Year-1 Hebrew Mastery</h2>
           <p className="text-xs font-medium text-primary mb-2">
-            Aligned with <em>Basics of Biblical Hebrew</em> (Pratico/Van Pelt), Chapters 1–36
+            Aligned with <em>Basics of Biblical Hebrew</em> (Pratico/Van Pelt), Chapters 1–35
           </p>
           <p className="text-muted-foreground max-w-md mx-auto">
-            Comprehensive review of all BBH chapters: alphabet (1–3), article &amp; prepositions (4–6), pronouns (7), nouns (8) &amp; adjectives (9), construct chain (10), pronominal suffixes (11, 19), Qal verb (12–17), imperative &amp; volitionals (18–19), infinitives &amp; participles (20–22), syntax (23), other binyanim (24–29), and weak verbs (30–36). Anchored in Genesis 1:1–5.
+            Comprehensive review of all BBH chapters: alphabet &amp; syllabification (1–3), nouns, article &amp; prepositions (4–6), adjectives (7), pronouns (8), pronominal suffixes (9, 19), construct chain (10), numbers (11), the Qal verb (12–18), infinitives &amp; participles (20–22), syntax (23), Niphal, Hiphil &amp; Hophal (24–29), and Piel, Pual &amp; Hithpael (30–35). Anchored in Genesis 1:1–5.
           </p>
         </div>
 
@@ -89,7 +89,7 @@ export default function ReviewHubPage() {
                       <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
                     </div>
                     <p className="text-sm text-muted-foreground mt-1">
-                      50 grammar MCQ + 30 vocab MCQ + 5 verse analysis with immediate feedback and explanations across Chapters 1–35.
+                      40 grammar MCQ + 40 vocab MCQ + 5 verse analysis with immediate feedback and explanations across Chapters 1–35.
                     </p>
                   </div>
                 </div>

@@ -219,7 +219,7 @@ export default function ClassPracticePage() {
 
           <ClassPracticeCard
             title="Practice Paper"
-            description="Comprehensive guided review covering Chapters 1–35 with 50 grammar MCQ, 30 vocab MCQ, and 5 verse analyses"
+            description="Comprehensive guided review covering Chapters 1–35 with 40 grammar MCQ, 40 vocab MCQ, and 5 verse analyses"
             icon={FileText}
             href="/grammar/review/practice-paper"
             color="purple"

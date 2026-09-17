@@ -2,16 +2,14 @@
  * Class 13 Practice Paper — the cumulative capstone (Guided Practice)
  * CourseGuide for BBH (Pratico/Van Pelt), Chapters 1-35 — the whole course.
  *
- * Section 1: Grammar MCQ (50 questions spanning Chapters 1-35)
- * Section 2: Vocabulary MCQ (30 questions from the "You Should Know" lists)
+ * Section 1: Grammar MCQ (40 questions spanning Chapters 1-35, including
+ *           Root & Binyan patterns, syntax & discourse, and reading)
+ * Section 2: Vocabulary MCQ (40 questions from BBH frequency lists + synonym pairs)
  * Section 3: Verse Analysis — matching + translation (5 anchor verses)
  *
  * Structure mirrors the Koine practice paper: guided mode shows the
  * explanation after each answer, and the Class 13 exam is composed from this
  * bank plus ~20% unseen items (see class13FinalExam.ts).
- *
- * NOT YET RELEASED. No route imports this bank, so it is not reachable from
- * the app. Release = point /grammar/review/practice-paper at these exports.
  */
 
 import type { PracticeMCQ, PracticeVerseAnalysis } from './practicePaper';
@@ -19,124 +17,792 @@ import type { PracticeMCQ, PracticeVerseAnalysis } from './practicePaper';
 export type { PracticeMCQ, MatchingPair, PracticeVerseAnalysis } from './practicePaper';
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// Section 1: Grammar MCQ — 50 questions across Chapters 1-35
+// Section 1: Grammar MCQ — 40 questions across Chapters 1-35
 // ═══════════════════════════════════════════════════════════════════════════════
 
 export const class13GrammarQuestions: PracticeMCQ[] = [
-  // --- Ch 1-3: alphabet, vowels, syllabification ---
-  { id: 'c13-g01', question: 'Which four consonants are the gutturals?', options: ['ב ג ד כ', 'ס צ שׁ שׂ', 'ט ז ד ת', 'א ה ח ע'], correctIndex: 3, explanation: 'Ch 1. א, ה, ח and ע are the gutturals, and ר often behaves like one. They reject the Daghesh Forte and prefer a-class vowels — the single most useful fact in the whole course.' },
-  { id: 'c13-g02', question: 'What does a Daghesh Forte do?', options: ['it silences the consonant', 'it marks the accented syllable', 'it doubles the consonant it sits in', 'it lengthens the preceding vowel'], correctIndex: 2, explanation: 'Ch 2. Distinguish it from the Daghesh Lene, which only hardens a begadkephat letter. A Daghesh Forte can never appear in a guttural or in ר.' },
-  { id: 'c13-g03', question: 'Which pair of vowel letters is called "unchangeable long"?', options: ['those written with ה', 'those written with ו and י', 'Pathach and Seghol', 'the Hateph vowels'], correctIndex: 1, explanation: 'Ch 2. Vowels written with ו and י do not reduce when the accent moves, which is why they survive intact through the verb paradigms.' },
+  // --- Group 1: Foundations & Morphology (3 items) ---
+  {
+    id: 'c13-g01',
+    question: 'Which way do you read Hebrew text?',
+    options: ['left to right across the page', 'top to bottom in columns', 'right to left across the page', 'direction does not matter'],
+    correctIndex: 2,
+    explanation: 'Hebrew reads from right to left. The "first" letter of a word is on the far right.',
+  },
+  {
+    id: 'c13-g02',
+    question: 'In a pointed biblical text, what do the small dots and dashes beneath and above consonants indicate?',
+    hebrew: 'בַּ',
+    options: ['poetic rhyming markers', 'the vowel sounds and points', 'sentence punctuation stops', 'ancient chapter divisions'],
+    correctIndex: 1,
+    explanation: 'The dots and dashes (the Tiberian pointing / niqqud) indicate the vowel sounds.',
+  },
+  {
+    id: 'c13-g03',
+    question: 'Most Hebrew words and verb systems are built upon a lexical root of how many consonants?',
+    options: ['one consonant', 'two consonants', 'five consonants', 'three consonants'],
+    correctIndex: 3,
+    explanation: 'Most Hebrew lexical items derive from a triconsonantal (3-letter) root that carries the semantic core.',
+  },
 
-  // --- Ch 4-7: nouns, article and waw, prepositions, adjectives ---
-  { id: 'c13-g04', question: 'Parse הַשָּׁמַיִם in Genesis 1:1:', hebrew: 'אֵת הַשָּׁמַיִם', options: ['article + masculine singular', 'article + masculine plural', 'article + DUAL', 'article + feminine plural'], correctIndex: 2, explanation: 'Ch 4-5. The ־ַיִם ending is the dual. The article הַ with a Daghesh Forte in the following consonant is the article\'s ordinary form.' },
-  { id: 'c13-g05', question: 'Why is it הָאָרֶץ and not הַאָרֶץ?', hebrew: 'הָאָרֶץ', options: ['because the noun is feminine', 'because the noun is plural', 'because the noun is in construct', 'because the guttural א cannot take a Daghesh Forte'], correctIndex: 3, explanation: 'Ch 5. Compensatory lengthening: Pathach becomes Qamets before א, ע and ר. Before ה and ח the article usually keeps Pathach with virtual doubling instead.' },
-  { id: 'c13-g06', question: 'Which are the three inseparable prepositions?', options: ['אֶל, עַל, עִם', 'מִן, אֵת, בֵּין', 'בְּ, כְּ, לְ', 'הַ, וְ, שֶׁ'], correctIndex: 2, explanation: 'Ch 6. "B-K-L." They are written as part of the following word, and when that word has the article, the ה elides and the article\'s vowel transfers: לְ + הָאוֹר becomes לָאוֹר.' },
-  { id: 'c13-g07', question: 'How does מִן normally attach to a following word?', options: ['it stays separate always', 'its נ assimilates, leaving a Daghesh Forte', 'it becomes מָה', 'it takes the article'], correctIndex: 1, explanation: 'Ch 6. Before a guttural, which cannot double, the vowel lengthens to Tsere instead: מֵאִישׁ.' },
-  { id: 'c13-g08', question: 'An ATTRIBUTIVE adjective:', options: ['follows its noun and agrees in gender, number, and definiteness', 'precedes its noun and never takes the article', 'agrees only in gender', 'must stand in construct'], correctIndex: 0, explanation: 'Ch 7. Contrast the predicative adjective, which does NOT take the article: הַמֶּלֶךְ טוֹב means "the king is good," while הַמֶּלֶךְ הַטּוֹב means "the good king."' },
-  { id: 'c13-g09', question: 'Parse the וְ in וְהָאָרֶץ (Genesis 1:2):', hebrew: 'וְהָאָרֶץ הָיְתָה תֹהוּ וָבֹהוּ', options: ['Waw Consecutive on an Imperfect', 'Waw Consecutive on a Perfect', 'a disjunctive waw', 'the definite article'], correctIndex: 2, explanation: 'Ch 5, 17, 23. A waw followed by a noun rather than a verb steps out of the narrative sequence. Verse 1 uses ordinary verb-first order; verse 2 pauses to describe a state.' },
+  // --- Group 2: Prefixes & Inseparable Particles (6 items) ---
+  {
+    id: 'c13-g04',
+    question: 'The prefix הַ followed by a dagesh forte in the following consonant functions as:',
+    hebrew: 'הַסּוּס',
+    options: ['the definite article ("the")', 'the conjunction ("and")', 'the preposition ("in")', 'the preposition ("from")'],
+    correctIndex: 0,
+    explanation: 'הַ + dagesh forte is the standard form of the definite article: הַסּוּס = "the horse".',
+  },
+  {
+    id: 'c13-g05',
+    question: 'The prefixed particle וְ attached to a word represents:',
+    hebrew: 'וְאִישׁ',
+    options: ['the article ("the")', 'the preposition ("to")', 'the conjunction ("and")', 'the preposition ("like")'],
+    correctIndex: 2,
+    explanation: 'וְ is the inseparable conjunction: וְאִישׁ = "and a man".',
+  },
+  {
+    id: 'c13-g06',
+    question: 'The inseparable preposition בְּ prefixed to a noun means:',
+    hebrew: 'בְּבַיִת',
+    options: ['"to / toward"', '"in / with / by"', '"from / out of"', '"and / but"'],
+    correctIndex: 1,
+    explanation: 'בְּ is the inseparable preposition signifying "in, with, at, by": בְּבַיִת = "in a house".',
+  },
+  {
+    id: 'c13-g07',
+    question: 'The inseparable preposition לְ prefixed to a noun means:',
+    hebrew: 'לְאִישׁ',
+    options: ['"from / out of"', '"with / together"', '"the / this"', '"to / for"'],
+    correctIndex: 3,
+    explanation: 'לְ is the inseparable preposition indicating direction, indirect object, or purpose: לְאִישׁ = "to / for a man".',
+  },
+  {
+    id: 'c13-g08',
+    question: 'The inseparable preposition כְּ prefixed to a noun means:',
+    hebrew: 'כְּאִישׁ',
+    options: ['"the / this"', '"and / but"', '"like / as"', '"to / for"'],
+    correctIndex: 2,
+    explanation: 'כְּ is the inseparable preposition denoting comparison: כְּאִישׁ = "like / as a man".',
+  },
+  {
+    id: 'c13-g09',
+    question: 'What is the function of the uninflected particle אֵת (or אֶת־) before a definite noun?',
+    hebrew: 'אֵת הַמֶּלֶךְ',
+    options: ['it marks the subject of the clause', 'it marks the definite direct object', 'it serves as a copular conjunction', 'it acts as a negative particle'],
+    correctIndex: 1,
+    explanation: 'אֵת marks the definite direct object of a transitive verb; it is normally untranslated in English.',
+  },
 
-  // --- Ch 8-10: pronouns, suffixes, construct chain ---
-  { id: 'c13-g10', question: 'Which word is the relative pronoun "who, which, that"?', options: ['זֶה', 'מִי', 'הוּא', 'אֲשֶׁר'], correctIndex: 3, explanation: 'Ch 8. אֲשֶׁר is indeclinable — one form for every gender, number, and case. מִי ("who?") and מָה ("what?") are the interrogatives.' },
-  { id: 'c13-g11', question: 'What does the suffix on דְּבָרוֹ mean?', hebrew: 'דְּבָרוֹ', options: ['"my word"', '"his word"', '"your word"', '"their word"'], correctIndex: 1, explanation: 'Ch 9. ־וֹ is the 3ms suffix. On a NOUN a Type 1 suffix is possessive; on a VERB the identical suffix is objective ("he kept him").' },
-  { id: 'c13-g12', question: 'In a construct chain, how is definiteness marked?', options: ['with the article on the construct (first) noun', 'with the article on both nouns', 'a construct chain can never be definite', 'with the article on the ABSOLUTE (last) noun, which makes the whole chain definite'], correctIndex: 3, explanation: 'Ch 10. דְּבַר הַמֶּלֶךְ = "the word of the king." Never put the article on the construct noun itself.' },
-  { id: 'c13-g13', question: 'Parse פְּנֵי in עַל־פְּנֵי תְהוֹם (Genesis 1:2):', hebrew: 'עַל־פְּנֵי תְהוֹם', options: ['masculine singular absolute', 'masculine plural absolute', 'masculine plural CONSTRUCT', 'a verb form'], correctIndex: 2, explanation: 'Ch 10. The masculine plural absolute ־ִים shortens to ־ֵי in construct, and the final Mem drops: "the face of the deep."' },
+  // --- Group 3: Noun Suffixes & Construct Chains (5 items) ---
+  {
+    id: 'c13-g10',
+    question: 'The noun ending ־ִים (as in סוּסִים) typically designates:',
+    hebrew: 'סוּסִים',
+    options: ['feminine singular', 'feminine plural', 'masculine plural', 'dual feminine'],
+    correctIndex: 2,
+    explanation: '־ִים is the masculine plural absolute ending: סוּס ("horse") → סוּסִים ("horses").',
+  },
+  {
+    id: 'c13-g11',
+    question: 'The noun ending ־וֹת (as in תּוֹרוֹת) typically designates:',
+    hebrew: 'תּוֹרוֹת',
+    options: ['masculine singular', 'feminine plural', 'masculine dual', 'feminine dual'],
+    correctIndex: 1,
+    explanation: '־וֹת is the standard feminine plural absolute ending: תּוֹרָה ("law") → תּוֹרוֹת ("laws").',
+  },
+  {
+    id: 'c13-g12',
+    question: 'The pronominal suffix ־וֹ attached to a singular noun (e.g. דְּבָרוֹ) means:',
+    hebrew: 'דְּבָרוֹ',
+    options: ['"my (1cs)"', '"your (2ms)"', '"their (3mp)"', '"his (3ms)"'],
+    correctIndex: 3,
+    explanation: 'The suffix ־וֹ represents the 3ms possessive pronoun: דְּבָרוֹ = "his word".',
+  },
+  {
+    id: 'c13-g13',
+    question: 'The pronominal suffix ־ִי attached to a singular noun (e.g. סוּסִי) means:',
+    hebrew: 'סוּסִי',
+    options: ['"my (1cs)"', '"his (3ms)"', '"our (1cp)"', '"her (3fs)"'],
+    correctIndex: 0,
+    explanation: 'The suffix ־ִי represents the 1cs possessive pronoun: סוּסִי = "my horse".',
+  },
+  {
+    id: 'c13-g14',
+    question: 'In the construct chain דְּבַר הַמֶּלֶךְ, how is definiteness determined?',
+    hebrew: 'דְּבַר הַמֶּלֶךְ',
+    options: [
+      'by prefixing the article to the first noun',
+      'from the final absolute noun of the chain',
+      'a construct chain is always indefinite',
+      'by adding the article to both nouns',
+    ],
+    correctIndex: 1,
+    explanation: 'In a Hebrew construct chain, definiteness propagates from the final absolute noun: דְּבַר הַמֶּלֶךְ = "the word of the king".',
+  },
 
-  // --- Ch 11: numbers ---
-  { id: 'c13-g14', question: 'The number אֶחָד ("one") behaves grammatically like:', hebrew: 'אֶחָד', options: ['an adjective', 'a verb', 'a preposition', 'a construct noun'], correctIndex: 0, explanation: 'Ch 11. Only "one" behaves this way. From "two" upward the numbers behave like NOUNS and can stand in construct.' },
-  { id: 'c13-g15', question: 'What is surprising about the agreement of the numbers three through ten?', options: ['they have no plural', 'the gender is reversed from the noun counted', 'they never take the article', 'they always precede the verb'], correctIndex: 1, explanation: 'Ch 11. The famous chiastic agreement. שְׁלֹשָׁה (masculine in form) counts feminine nouns, and שָׁלֹשׁ counts masculine ones.' },
+  // --- Group 4: Verb Conjugations & Forms (6 items) ---
+  {
+    id: 'c13-g15',
+    question: 'In the Qal Perfect conjugation, the suffix ־ְתִּי (as in שָׁמַרְתִּי) indicates which subject?',
+    hebrew: 'שָׁמַרְתִּי',
+    options: ['"you (2ms)"', '"he (3ms)"', '"they (3cp)"', '"I (1cs)"'],
+    correctIndex: 3,
+    explanation: '־ְתִּי is the 1cs suffix in the Perfect conjugation: שָׁמַרְתִּי = "I kept / guarded".',
+  },
+  {
+    id: 'c13-g16',
+    question: 'In the Qal Perfect conjugation, the suffix ־ְנוּ (as in שָׁמַרְנוּ) indicates which subject?',
+    hebrew: 'שָׁמַרְנוּ',
+    options: ['"I (1cs)"', '"she (3fs)"', '"we (1cp)"', '"you (2mp)"'],
+    correctIndex: 2,
+    explanation: '־ְנוּ is the 1cp suffix in the Perfect conjugation: שָׁמַרְנוּ = "we kept / guarded".',
+  },
+  {
+    id: 'c13-g17',
+    question: 'A verb beginning with the preformative יִ־ (such as יִשְׁמֹר) primarily expresses:',
+    hebrew: 'יִשְׁמֹר',
+    options: [
+      'completed past action (Perfect)',
+      'incomplete or future action (Imperfect)',
+      'direct volitional command (Imperative)',
+      'uninflected verbal noun (Infinitive)',
+    ],
+    correctIndex: 1,
+    explanation: 'The יִ־ preformative with stem vowel holem marks the Qal Imperfect 3ms ("he will keep / guard").',
+  },
+  {
+    id: 'c13-g18',
+    question: 'The narrative past form וַיִּשְׁמֹר consists of:',
+    hebrew: 'וַיִּשְׁמֹר',
+    options: [
+      'waw-consecutive + imperfect preformative',
+      'simple conjunction + perfect verb',
+      'inseparable preposition + participle',
+      'waw-copulative + imperative form',
+    ],
+    correctIndex: 0,
+    explanation: 'The Wayyiqtol (waw-consecutive imperfect: וַ + dagesh in prefix) is the backbone of OT narrative past reporting.',
+  },
+  {
+    id: 'c13-g19',
+    question: 'The form שֹׁמֵר is parsed as:',
+    hebrew: 'שֹׁמֵר',
+    options: ['Qal perfect 3ms', 'Qal active participle masculine singular', 'Qal imperative masculine singular', 'Niphal imperfect 3ms'],
+    correctIndex: 1,
+    explanation: 'The pattern with holem over the first radical (שֹׁמֵר) is the Qal Active Participle ms ("one guarding / keeper").',
+  },
+  {
+    id: 'c13-g20',
+    question: 'The form לִשְׁמֹר is parsed as:',
+    hebrew: 'לִשְׁמֹר',
+    options: [
+      'Qal infinitive construct with preposition',
+      'Qal infinitive absolute with conjunction',
+      'Qal imperative masculine singular',
+      'Hiphil perfect third person singular',
+    ],
+    correctIndex: 0,
+    explanation: 'לִשְׁמֹר is the Qal Infinitive Construct with preposition לְ ("to keep / in order to guard").',
+  },
 
-  // --- Ch 12-13: the verb system, Qal Perfect strong ---
-  { id: 'c13-g16', question: 'The Hebrew Perfect conjugation expresses:', options: ['incomplete action, present or future', 'a command', 'a wish', 'completed action'], correctIndex: 3, explanation: 'Ch 13. It is the "suffix conjugation": the subject is marked by endings added after the root, not by a prefix.' },
-  { id: 'c13-g17', question: 'Parse קְטַלְתֶּם:', hebrew: 'קְטַלְתֶּם', options: ['1cp — "we killed"', '2mp — "you (m. pl.) killed"', '3cp — "they killed"', '2fp — "you (f. pl.) killed"'], correctIndex: 1, explanation: 'Ch 13. The ־תֶּם ending marks 2mp. Because the accent shifts to the ending, the first stem vowel reduces to a Shewa.' },
-  { id: 'c13-g18', question: 'Which Perfect sufformative marks the first person singular?', options: ['־תָּ', '־נוּ', '־תִּי', '־וּ'], correctIndex: 2, explanation: 'Ch 13. ־תִּי is "I," ־נוּ is "we," ־תָּ is "you (m. sg.)." Confusing ־תִּי with ־נוּ is the most common beginner slip.' },
-  { id: 'c13-g19', question: 'A STATIVE verb such as כָּבֵד:', hebrew: 'כָּבֵד', options: ['describes a state or condition', 'is always causative', 'always takes a direct object', 'is always passive'], correctIndex: 0, explanation: 'Ch 13. "To be heavy, honoured." Note the Qamets-Tsere pattern that marks one class of statives.' },
+  // --- Group 5: Root & Verb Pattern Architecture (1 Question Per Root) (6 items) ---
+  {
+    id: 'c13-g21',
+    question: 'The root √k-t-b in Qal means כָּתַב ("he wrote"). What is the semantic function of the Niphal form נִכְתַּב?',
+    hebrew: 'נִכְתַּב',
+    options: [
+      'causative active ("he caused to write")',
+      'reflexive ("he wrote for himself")',
+      'intensive active ("he wrote diligently")',
+      'simple passive ("it was written")',
+    ],
+    correctIndex: 3,
+    explanation: 'The Niphal stem (נִ- prefix in the perfect) functions as the simple passive of the Qal: נִכְתַּב = "it was written".',
+  },
+  {
+    id: 'c13-g22',
+    question: 'The root √m-l-k in Qal means מָלַךְ ("he reigned"). What does the Hiphil form הִמְלִיךְ express?',
+    hebrew: 'הִמְלִיךְ',
+    options: [
+      'simple passive ("he was ruled")',
+      'reflexive ("he acted like a king")',
+      'causative active ("he made king")',
+      'factitive passive ("he was crowned")',
+    ],
+    correctIndex: 2,
+    explanation: 'The Hiphil stem (הִ- prefix + -î- vowel) conveys causative action: הִמְלִיךְ = "he caused to reign / made [someone] king".',
+  },
+  {
+    id: 'c13-g23',
+    question: 'The stative root √q-d-sh in Qal means קָדַשׁ ("to be holy"). How does the Piel form קִדֵּשׁ modify this meaning?',
+    hebrew: 'קִדֵּשׁ',
+    options: [
+      'factitive active ("he made holy")',
+      'simple passive ("he was made holy")',
+      'causative passive ("he was sanctified")',
+      'reflexive ("he showed himself holy")',
+    ],
+    correctIndex: 0,
+    explanation: 'The Piel stem (dagesh forte in middle radical) acts factitively on stative roots: קִדֵּשׁ = "he made holy / consecrated".',
+  },
+  {
+    id: 'c13-g24',
+    question: 'The root √sh-m-r in Qal means שָׁמַר ("he guarded/kept"). What does the Niphal form נִשְׁמַר express?',
+    hebrew: 'נִשְׁמַר',
+    options: [
+      'causative ("he caused to guard")',
+      'passive / reflexive ("he was kept")',
+      'intensive ("he guarded diligently")',
+      'iterative ("he guarded repeatedly")',
+    ],
+    correctIndex: 1,
+    explanation: 'The Niphal of שָׁמַר carries passive or reflexive nuance: נִשְׁמַר = "he was kept / he took heed to himself".',
+  },
+  {
+    id: 'c13-g25',
+    question: 'The root √h-l-k in Qal means הָלַךְ ("he walked"). What does the Hithpael form הִתְהַלֵּךְ express?',
+    hebrew: 'וַיִּתְהַלֵּךְ חֲנוֹךְ אֶת־הָאֱלֹהִים',
+    options: [
+      'causative ("he caused to walk")',
+      'factitive ("he prepared a path")',
+      'simple passive ("he was led away")',
+      'iterative / habitual ("he walked with")',
+    ],
+    correctIndex: 3,
+    explanation: 'The Hithpael stem (הִתְ- prefix + middle doubling) conveys iterative, customary, or reciprocal action: הִתְהַלֵּךְ = "he walked about / walked in communion with".',
+  },
+  {
+    id: 'c13-g26',
+    question: 'The root √g-n-b in Qal means גָּנַב ("he stole"). What does the Pual form גֻּנַּב express?',
+    hebrew: 'גֻּנַּב',
+    options: [
+      'reciprocal ("they stole mutually")',
+      'causative active ("he caused to steal")',
+      'reflexive ("he concealed himself")',
+      'intensive passive ("he was stolen")',
+    ],
+    correctIndex: 3,
+    explanation: 'The Pual stem (u-a vowel pattern with doubled middle consonant) is the passive counterpart to Piel: גֻּנַּב = "he was stolen away".',
+  },
 
-  // --- Ch 14: Qal Perfect weak ---
-  { id: 'c13-g20', question: 'What is the diagnostic stem vowel in the 1st and 2nd person forms of a III-ה Perfect?', hebrew: 'בָּנִיתָ', options: ['Holem Waw', 'Qamets', 'Hireq Yod', 'Shureq'], correctIndex: 2, explanation: 'Ch 14. בָּנִיתָ, רָאִיתִי. The Yod resurfaces because III-ה verbs were originally III-י.' },
-  { id: 'c13-g21', question: 'Biconsonantal (hollow) verbs take which vowel in the THIRD person Perfect?', hebrew: 'קָם', options: ['Qamets (קָם)', 'Pathach (קַם)', 'Hireq', 'Shureq'], correctIndex: 0, explanation: 'Ch 14. Third person takes Qamets (קָם, "he arose"); first and second person switch to Pathach (קַמְתָּ, "you arose").' },
-  { id: 'c13-g22', question: 'In a III-א verb such as מָצָא, why does the ת of the ending lose its Daghesh Lene?', hebrew: 'מָצָאתָ', options: ['because א is a guttural that doubles', 'because the verb is plural', 'because the accent shifts', 'because the א quiesces, so the ת follows a vowel sound'], correctIndex: 3, explanation: 'Ch 14. A quiescent א leaves the preceding vowel open, and a begadkephat letter after a vowel takes no Daghesh Lene.' },
+  // --- Group 6: Syntax, Clause Types & Discourse Structure (4 items) ---
+  {
+    id: 'c13-g27',
+    question: 'In narrative Hebrew prose, a clause opening with וְ + NON-VERB (e.g. וְהָאָרֶץ הָיְתָה) signals:',
+    hebrew: 'וְהָאָרֶץ הָיְתָה תֹהוּ וָבֹהוּ',
+    options: [
+      'direct narrative sequential progression',
+      'immediate cohortative / volitional command',
+      'disjunctive clause for background and setting',
+      'subordinate purpose clause of action',
+    ],
+    correctIndex: 2,
+    explanation: 'Clause-initial וְ + Subject/Noun creates a disjunctive clause, pausing sequential narrative flow to describe state or setting.',
+  },
+  {
+    id: 'c13-g28',
+    question: 'Which negative particle is specifically used with jussives and imperfects for immediate volitional prohibitions ("Do not!")?',
+    hebrew: 'אַל־תִּירָא',
+    options: ['לֹא', 'בִּלְתִּי', 'אֵין', 'אַל'],
+    correctIndex: 3,
+    explanation: 'אַל negates volitional moods (jussive/cohortative) for specific prohibitions ("Do not fear!"), whereas לֹא negates permanent indicative statements.',
+  },
+  {
+    id: 'c13-g29',
+    question: 'How does Biblical Hebrew express possession ("I have a house") without a dedicated verb "to have"?',
+    options: [
+      'using a possessive verbal suffix',
+      'using existential יֵשׁ + לְ + possessor',
+      'prefixing the article הַ to both nouns',
+      'placing both nouns in the construct state',
+    ],
+    correctIndex: 1,
+    explanation: 'Hebrew uses the existential particle יֵשׁ ("there is") + preposition לְ + possessor: יֵשׁ לִי בַּיִת = "there is to me a house" ("I have a house").',
+  },
+  {
+    id: 'c13-g30',
+    question: 'In the phrase טוֹב הָאִישׁ, what is the syntactic relationship between the adjective and noun?',
+    hebrew: 'טוֹב הָאִישׁ',
+    options: [
+      'attributive adjective ("the good man")',
+      'predicative adjective ("the man is good")',
+      'construct chain ("goodness of the man")',
+      'appositional noun phrase ("a good man")',
+    ],
+    correctIndex: 1,
+    explanation: 'In predicative use, the adjective lacks the article while the noun is definite: טוֹב הָאִישׁ = "the man is good". Attributive would be הָאִישׁ הַטּוֹב.',
+  },
 
-  // --- Ch 15-16: Qal Imperfect strong and weak ---
-  { id: 'c13-g23', question: 'The Imperfect is called the ___ conjugation.', options: ['suffix', 'prefix', 'stative', 'construct'], correctIndex: 1, explanation: 'Ch 15. Every form begins with a preformative — י ("he"), ת ("she/you"), א ("I"), נ ("we") — that carries the subject.' },
-  { id: 'c13-g24', question: 'What is the diagnostic vowel pattern of the strong Qal Imperfect?', hebrew: 'יִקְטֹל', options: ['Qamets under the prefix, Pathach in the stem', 'Tsere throughout', 'Shureq in the stem', 'Hireq under the prefix, Holem in the stem'], correctIndex: 3, explanation: 'Ch 15. יִקְטֹל, יִשְׁמֹר, יִכְתֹּב. Any departure from that pattern is a signal that the root is weak.' },
-  { id: 'c13-g25', question: 'The form תִּקְטֹל is ambiguous. Between which two parsings?', hebrew: 'תִּקְטֹל', options: ['3ms and 1cs', '3fs and 2ms', '2fs and 2mp', '1cp and 3mp'], correctIndex: 1, explanation: 'Ch 15. The ת preformative serves both. The plural תִּקְטֹלְנָה is ambiguous in exactly the same way, between 3fp and 2fp.' },
-  { id: 'c13-g26', question: 'A Daghesh Forte in the second root consonant of יִפֹּל recovers which missing letter?', hebrew: 'יִפֹּל', options: ['נ', 'י', 'ה', 'א'], correctIndex: 0, explanation: 'Ch 16. A I-נ verb assimilates its נ into the following consonant. Restore it and you get נָפַל, "to fall." לָקַח behaves the same way.' },
-  { id: 'c13-g27', question: 'What does a Seghol-He ending on an Imperfect indicate?', hebrew: 'יִבְנֶה', options: ['a I-נ verb', 'a Biconsonantal verb', 'a geminate verb', 'a III-ה verb'], correctIndex: 3, explanation: 'Ch 16. יִבְנֶה, יַעֲשֶׂה, יִרְאֶה. Compare the III-ה IMPERATIVE, which ends in Tsere-He instead.' },
-  { id: 'c13-g28', question: 'Why does the stem vowel become Pathach in יִשְׁמַע?', hebrew: 'יִשְׁמַע', options: ['because the guttural third root letter prefers Pathach', 'because a נ has assimilated', 'because the verb is plural', 'because the syllable is open'], correctIndex: 0, explanation: 'Ch 16. The same guttural preference explains יִשְׁלַח and dozens of other forms — one rule, many payoffs.' },
-
-  // --- Ch 17: Waw Consecutive ---
-  { id: 'c13-g29', question: 'An IMPERFECT with the Waw Consecutive is translated with the values of:', hebrew: 'וַיִּקְטֹל', options: ['a Perfect', 'an unchanged Imperfect', 'an Imperative', 'a participle'], correctIndex: 0, explanation: 'Ch 17. The consecutive Imperfect is the backbone of Hebrew past narrative: וַיֹּאמֶר, "and he said."' },
-  { id: 'c13-g30', question: 'A PERFECT with the Waw Consecutive is translated with the values of:', hebrew: 'וְקָטַל', options: ['an unchanged Perfect', 'an Imperfect', 'an Imperative', 'an infinitive'], correctIndex: 1, explanation: 'Ch 17. The two consecutive forms swap time frames in opposite directions. וְשָׁמַרְתָּ = "and you shall keep."' },
-  { id: 'c13-g31', question: 'What is the spelling diagnostic of the Waw Consecutive on an Imperfect?', options: ['waw with Shewa, no doubling', 'waw with Qamets', 'waw with Pathach plus a Daghesh Forte in the preformative', 'waw with Holem'], correctIndex: 2, explanation: 'Ch 17. וַיִּקְטֹל. The plain conjunction is וְ, so the pointing alone tells you which one you are reading.' },
-
-  // --- Ch 18-19: Imperative, pronominal suffixes on verbs ---
-  { id: 'c13-g32', question: 'The Hebrew Imperative occurs in which person?', options: ['the first and second person', 'all three persons', 'the second person only', 'the third person only'], correctIndex: 2, explanation: 'Ch 18. Four forms only. First-person volition uses the Cohortative and third-person volition the Jussive.' },
-  { id: 'c13-g33', question: 'How does Hebrew form a negative command?', options: ['by negating the Imperative with לֹא', 'with אֵין plus the Imperative', 'with בִּלְתִּי', 'with לֹא or אַל plus a second-person Imperfect'], correctIndex: 3, explanation: 'Ch 18. לֹא + Imperfect is the permanent prohibition of the Ten Commandments; אַל + Imperfect is the immediate "do not!"' },
-  { id: 'c13-g34', question: 'Translate שְׁלָחֵנִי (Isaiah 6:8):', hebrew: 'שְׁלָחֵנִי', options: ['he sent me', 'Send me!', 'I will send', 'my messenger'], correctIndex: 1, explanation: 'Ch 18-19. An Imperative carrying the 1cs object suffix ־נִי, with the Tsere connecting vowel that Imperatives and Imperfects prefer.' },
-  { id: 'c13-g35', question: 'The Nun-suffixes (־ֶנּוּ, ־ֶנָּה, ־ֶךָּ) attach mainly to which conjugation?', options: ['the Perfect', 'the participle', 'the infinitive absolute', 'the Imperfect'], correctIndex: 3, explanation: 'Ch 19. They carry a Daghesh Forte in the Nun and are common in poetry: יִשְׁמְרֶנּוּ, "he will keep him."' },
-
-  // --- Ch 20-22: infinitives and participle ---
-  { id: 'c13-g36', question: 'Translate לִשְׁמֹר:', hebrew: 'לִשְׁמֹר', options: ['he kept', 'keep!', 'to keep / in order to keep', 'the keeper'], correctIndex: 2, explanation: 'Ch 20. לְ plus the Infinitive Construct is the standard purpose construction. The Infinitive Construct is negated with בִּלְתִּי, never with לֹא.' },
-  { id: 'c13-g37', question: 'What does the Infinitive Absolute do in מוֹת תָּמוּת?', hebrew: 'מוֹת תָּמוּת', options: ['it negates the verb', 'it intensifies the finite verb', 'it makes the verb plural', 'it turns the clause into a question'], correctIndex: 1, explanation: 'Ch 21. The emphatic use: the Infinitive Absolute stands in front of a finite verb of the same root.' },
-  { id: 'c13-g38', question: 'Which vowel is diagnostic of the Qal ACTIVE participle?', hebrew: 'שֹׁמֵר', options: ['a Holem after the first root letter', 'a Shureq after the second root letter', 'a Hireq under the first root letter', 'a Qamets throughout'], correctIndex: 0, explanation: 'Ch 22. קֹטֵל, שֹׁמֵר, כֹּתֵב. The passive participle instead takes a Shureq: קָטוּל, בָּרוּךְ.' },
-  { id: 'c13-g39', question: 'Parse בָּרוּךְ:', hebrew: 'בָּרוּךְ', options: ['Qal Perfect 3ms', 'Qal Imperative 2ms', 'Qal passive participle', 'Qal Infinitive Construct'], correctIndex: 2, explanation: 'Ch 22. The Shureq gives it away. בָּרוּךְ הַבָּא: a passive participle followed by an active one with the article.' },
-  { id: 'c13-g40', question: 'Which category does a participle NOT have?', options: ['stem', 'voice', 'person', 'gender'], correctIndex: 2, explanation: 'Ch 22. It is a verbal adjective: verbal in stem and voice, adjectival in gender and number, and without person entirely.' },
-
-  // --- Ch 23: sentence syntax ---
-  { id: 'c13-g41', question: 'What is the normal word order of a Hebrew verbal clause?', options: ['verb – subject – object', 'subject – verb – object', 'object – verb – subject', 'subject – object – verb'], correctIndex: 0, explanation: 'Ch 23. בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם. When something is fronted before the verb, ask what is being emphasized.' },
-  { id: 'c13-g42', question: 'What is a verbless clause?', hebrew: 'יְהוָה מֶלֶךְ', options: ['a clause whose verb has dropped out by scribal error', 'a clause with only a participle', 'a clause with two subjects', 'a subject and a predicate placed side by side, with no verb at all'], correctIndex: 3, explanation: 'Ch 23. יְהוָה מֶלֶךְ = "the LORD is king." English must supply the copula Hebrew leaves out.' },
-
-  // --- Ch 24-25: Niphal ---
-  { id: 'c13-g43', question: 'Parse יִקָּטֵל:', hebrew: 'יִקָּטֵל', options: ['Qal Imperfect 3ms', 'Niphal Imperfect 3ms', 'Piel Imperfect 3ms', 'Hiphil Imperfect 3ms'], correctIndex: 1, explanation: 'Ch 24. The Daghesh Forte in the first root consonant IS the assimilated stem נ. Compare the Perfect נִקְטַל, where the נ is written out.' },
-  { id: 'c13-g44', question: 'Translate נִבְנָה:', hebrew: 'נִבְנָה', options: ['he built', 'he will build', 'build!', 'it was built'], correctIndex: 3, explanation: 'Ch 25. A III-ה Niphal of בָּנָה. The Niphal is the passive or reflexive counterpart of the Qal — and occasionally simply active, when the root is rare in the Qal.' },
-  { id: 'c13-g45', question: 'How do you tell the Niphal Perfect נִקְטַל from the Niphal Participle נִקְטָל?', hebrew: 'נִקְטַל / נִקְטָל', options: ['by the stem vowel', 'by the prefix vowel', 'by the root consonants', 'they cannot be distinguished'], correctIndex: 0, explanation: 'Ch 24. One vowel is the whole difference, which is why Niphal participles are so often misparsed as Perfects.' },
-
-  // --- Ch 26-29: Hiphil and Hophal ---
-  { id: 'c13-g46', question: 'Parse יַקְטִיל:', hebrew: 'יַקְטִיל', options: ['Qal Imperfect 3ms', 'Niphal Imperfect 3ms', 'Hiphil Imperfect 3ms', 'Hophal Imperfect 3ms'], correctIndex: 2, explanation: 'Ch 26. Pathach preformative plus a Hireq Yod stem vowel. The Hireq Yod is the Hiphil\'s own signature.' },
-  { id: 'c13-g47', question: 'Which stem does a u-class or o-class PREFIX vowel identify?', hebrew: 'הָקְטַל / הֻקְטַל', options: ['the Niphal', 'the Piel', 'the Hophal', 'the Hithpael'], correctIndex: 2, explanation: 'Ch 28. Think in vowel classes rather than particular vowels — Qibbuts, Shureq, Qamets Hatuf and Holem all occur, especially in weak verbs.' },
-  { id: 'c13-g48', question: 'Which root would you look up for הִגִּיד?', hebrew: 'הִגִּיד', options: ['נָגַד ("to tell")', 'גָּדַל ("to be great")', 'גּוּר ("to sojourn")', 'נָגַשׁ ("to draw near")'], correctIndex: 0, explanation: 'Ch 27. The Daghesh Forte recovers the assimilated נ. Its Hophal passive is הֻגַּד, "it was told."' },
-
-  // --- Ch 30-33: Piel and Pual ---
-  { id: 'c13-g49', question: 'A Daghesh Forte in the second root consonant WITH a Qibbuts under the first identifies which stem?', hebrew: 'קֻטַּל', options: ['the Piel', 'the Pual', 'the Hophal', 'the Niphal'], correctIndex: 1, explanation: 'Ch 32. The Piel קִטֵּל has a Hireq there instead. That one vowel separates "he smashed" from "it was smashed."' },
-  { id: 'c13-g50', question: 'Translate דִּבֶּר:', hebrew: 'דִּבֶּר', options: ['it was spoken', 'speak!', 'he will speak', 'he spoke'], correctIndex: 3, explanation: 'Ch 30. דָּבַר is rare in the Qal, so the Piel simply means "he spoke." The Daghesh Forte in the ב is the Piel fingerprint.' },
+  // --- Group 7: Real Text Reading & Parsing (10 items) ---
+  {
+    id: 'c13-g31',
+    question: 'Read and identify the grammatical form of בְּרֵאשִׁית (Genesis 1:1):',
+    hebrew: 'בְּרֵאשִׁית',
+    options: ['preposition בְּ + feminine noun', 'definite article + masculine noun', 'conjunction + perfect verb', 'construct plural masculine noun'],
+    correctIndex: 0,
+    explanation: 'בְּרֵאשִׁית = inseparable preposition בְּ + רֵאשִׁית ("beginning", feminine noun).',
+  },
+  {
+    id: 'c13-g32',
+    question: 'Parse the subject-verb phrase בָּרָא אֱלֹהִים (Genesis 1:1):',
+    hebrew: 'בָּרָא אֱלֹהִים',
+    options: [
+      'Qal imperfect 3ms + singular subject',
+      'Piel perfect 3ms + plural noun',
+      'Qal perfect 3ms + divine plural subject',
+      'Niphal perfect 3ms + dual noun',
+    ],
+    correctIndex: 2,
+    explanation: 'בָּרָא is a Qal Perfect 3ms verb agreeing with אֱלֹהִים (plural form with singular meaning).',
+  },
+  {
+    id: 'c13-g33',
+    question: 'Read and translate the definite phrase הַשָּׁמַיִם וְאֵת הָאָרֶץ (Genesis 1:1):',
+    hebrew: 'הַשָּׁמַיִם וְאֵת הָאָרֶץ',
+    options: ['the mountains and the seas', 'the sun and the moon', 'the light and the darkness', 'the heavens and the earth'],
+    correctIndex: 3,
+    explanation: 'הַשָּׁמַיִם = "the heavens" (masculine plural; the -ayim ending looks dual, but שָׁמַיִם is plural in form and meaning) and וְאֵת הָאָרֶץ = "and the earth" (definite direct object).',
+  },
+  {
+    id: 'c13-g34',
+    question: 'Parse the narrative clause וַיֹּאמֶר אֱלֹהִים (Genesis 1:3):',
+    hebrew: 'וַיֹּאמֶר אֱלֹהִים',
+    options: [
+      'Qal perfect 3ms ("God said")',
+      'Qal wayyiqtol 3ms ("and God said")',
+      'Qal imperfect 3ms ("God will say")',
+      'Piel wayyiqtol 3ms ("and God spoke")',
+    ],
+    correctIndex: 1,
+    explanation: 'וַיֹּאמֶר is the Qal Wayyiqtol 3ms of אָמַר: "and God said".',
+  },
+  {
+    id: 'c13-g35',
+    question: 'Parse the divine fiat יְהִי אוֹר (Genesis 1:3):',
+    hebrew: 'יְהִי אוֹר',
+    options: [
+      'Qal perfect 3ms ("there was light")',
+      'Hiphil imperfect 3ms ("he made light")',
+      'Qal participle ms ("light is being")',
+      'Qal jussive 3ms ("let there be light")',
+    ],
+    correctIndex: 3,
+    explanation: 'יְהִי is the apocopated Qal Jussive 3ms of הָיָה expressing divine command: "Let there be light".',
+  },
+  {
+    id: 'c13-g36',
+    question: 'Read and translate the fulfillment clause וַיְהִי־אוֹר (Genesis 1:3):',
+    hebrew: 'וַיְהִי־אוֹר',
+    options: ['"and there was light"', '"and light was good"', '"and darkness fled"', '"let there be light"'],
+    correctIndex: 0,
+    explanation: 'וַיְהִי is the Qal Wayyiqtol 3ms of הָיָה recording the immediate result: "and there was light".',
+  },
+  {
+    id: 'c13-g37',
+    question: 'Read and analyze the evaluative phrase כִּי־טוֹב (Genesis 1:4):',
+    hebrew: 'כִּי־טוֹב',
+    options: [
+      'conjunction כִּי + adjective ("that it was good")',
+      'preposition כְּ + noun ("like goodness")',
+      'negative particle + noun ("not good")',
+      'relative particle + verb ("which was good")',
+    ],
+    correctIndex: 0,
+    explanation: 'כִּי introduces the content of divine perception with predicate adjective טוֹב: "that it was good".',
+  },
+  {
+    id: 'c13-g38',
+    question: 'Parse the opening command of the Shema שְׁמַע יִשְׂרָאֵל (Deuteronomy 6:4):',
+    hebrew: 'שְׁמַע יִשְׂרָאֵל',
+    options: [
+      'Qal perfect 3ms + subject noun',
+      'Qal imperative 2ms + vocative noun',
+      'Qal imperfect 1cs + direct object',
+      'Piel imperative 2ms + subject noun',
+    ],
+    correctIndex: 1,
+    explanation: 'שְׁמַע is the Qal Imperative 2ms of שָׁמַע: "Hear, O Israel!"',
+  },
+  {
+    id: 'c13-g39',
+    question: 'In the declaration יְהוָה אֱלֹהֵינוּ יְהוָה אֶחָד (Deut 6:4), how is אֶחָד parsed?',
+    hebrew: 'יְהוָה אֶחָד',
+    options: [
+      'ordinal number ("first")',
+      'proper noun title ("LORD")',
+      'attributive adjective ("holy")',
+      'cardinal numeral ("one")',
+    ],
+    correctIndex: 3,
+    explanation: 'אֶחָד is the masculine cardinal numeral "one": "the LORD is one".',
+  },
+  {
+    id: 'c13-g40',
+    question: 'Analyze the verbless clause יְהוָה רֹעִי (Psalm 23:1):',
+    hebrew: 'יְהוָה רֹעִי',
+    options: [
+      'proper name + Qal active participle with suffix ("the LORD is my shepherd")',
+      'proper name + Qal perfect verb ("the LORD shepherded")',
+      'proper name + construct noun ("the shepherd of the LORD")',
+      'imperative verb + direct object ("shepherd the LORD")',
+    ],
+    correctIndex: 0,
+    explanation: 'יְהוָה רֹעִי is a nominal clause: Subject (יְהוָה) + Predicate (רֹעֶה participle + ־ִי suffix = "my shepherd").',
+  },
 ];
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// Section 2: Vocabulary MCQ — 30 questions across the "You Should Know" lists
+// Section 2: Vocabulary MCQ — 40 questions across BBH Lists & Synonym Pairs
 // ═══════════════════════════════════════════════════════════════════════════════
 
 export const class13VocabQuestions: PracticeMCQ[] = [
-  { id: 'c13-v01', question: 'What does בָּרָא mean?', hebrew: 'בְּרֵאשִׁית בָּרָא אֱלֹהִים', options: ['to speak', 'to create', 'to see', 'to rule'], correctIndex: 1, explanation: 'In the Qal, בָּרָא always has GOD as its subject — it names a uniquely divine act, unlike the broader עָשָׂה ("to make").' },
-  { id: 'c13-v02', question: 'What does חֶסֶד mean?', hebrew: 'חֶסֶד', options: ['steadfast love, covenant loyalty', 'anger', 'wisdom', 'strength'], correctIndex: 0, explanation: 'One of the great theological words of the Hebrew Bible — loyal love within a covenant relationship.' },
-  { id: 'c13-v03', question: 'What does בְּרִית mean?', hebrew: 'בְּרִית', options: ['blessing', 'sacrifice', 'commandment', 'covenant'], correctIndex: 3, explanation: 'The idiom is כָּרַת בְּרִית, literally "to cut a covenant" (Ch 15 vocabulary).' },
-  { id: 'c13-v04', question: 'What does מִשְׁפָּט mean?', hebrew: 'מִשְׁפָּט', options: ['peace', 'judgment, justice, ordinance', 'truth', 'glory'], correctIndex: 1, explanation: 'From שָׁפַט ("to judge," Ch 17 vocabulary). Often paired with צְדָקָה ("righteousness").' },
-  { id: 'c13-v05', question: 'What does אֱמֶת mean?', hebrew: 'אֱמֶת', options: ['tent', 'stone', 'ground', 'truth, faithfulness'], correctIndex: 3, explanation: 'Ch 17 vocabulary. Built on the root אָמַן, which gives the Niphal נֶאֱמָן ("faithful") and the Hiphil הֶאֱמִין ("he believed").' },
-  { id: 'c13-v06', question: 'What does אֹהֶל mean?', hebrew: 'אֹהֶל', options: ['tent', 'truth', 'lamp', 'gate'], correctIndex: 0, explanation: 'Ch 17 vocabulary. אֹהֶל מוֹעֵד is "the tent of meeting."' },
-  { id: 'c13-v07', question: 'What does גָּלָה mean?', hebrew: 'גָּלָה', options: ['to be great', 'to sojourn', 'to uncover, reveal; to go into exile', 'to redeem'], correctIndex: 2, explanation: 'Ch 17 vocabulary. Its Niphal gives Isaiah 40:5, "and the glory of the LORD shall be revealed"; its Hiphil means "to carry into exile."' },
-  { id: 'c13-v08', question: 'What does שָׁפַט mean?', hebrew: 'שָׁפַט', options: ['to judge, decide, settle a dispute', 'to send', 'to keep', 'to hear'], correctIndex: 0, explanation: 'Ch 17 vocabulary. Its participle שֹׁפֵט gives the title of the book of Judges.' },
-  { id: 'c13-v09', question: 'What does בָּחַר mean?', hebrew: 'בָּחַר', options: ['to trust', 'to weep', 'to choose, test, examine', 'to build'], correctIndex: 2, explanation: 'Ch 18 vocabulary. "Choose this day whom you will serve" (Josh 24:15) uses its Imperative בַּחֲרוּ.' },
-  { id: 'c13-v10', question: 'What does דָּרַשׁ mean?', hebrew: 'דָּרַשׁ', options: ['to speak', 'to seek, inquire of, require', 'to tread', 'to know'], correctIndex: 1, explanation: 'Ch 18 vocabulary. "Seek good, and not evil" (Amos 5:14) uses its Imperative דִּרְשׁוּ.' },
-  { id: 'c13-v11', question: 'What does שֵׁבֶט mean?', hebrew: 'שֵׁבֶט', options: ['peace', 'sun', 'rod, staff, scepter, tribe', 'year'], correctIndex: 2, explanation: 'Ch 18 vocabulary. One word covers both the shepherd\'s rod and the tribe it came to symbolize.' },
-  { id: 'c13-v12', question: 'What does בָּטַח mean?', hebrew: 'בָּטַח', options: ['to choose', 'to weep', 'to trust, rely upon', 'to slaughter'], correctIndex: 2, explanation: 'Ch 19 vocabulary. "Blessed is the man who trusts (יִבְטַח) in the LORD" (Jer 17:7).' },
-  { id: 'c13-v13', question: 'What does זֶרַע mean?', hebrew: 'זֶרַע', options: ['to remember', 'sacrifice', 'outcry', 'seed, offspring, descendants'], correctIndex: 3, explanation: 'Ch 19 vocabulary. "Through Isaac shall your offspring be named" (Gen 21:12).' },
-  { id: 'c13-v14', question: 'What does עָוֹן mean?', hebrew: 'עָוֹן', options: ['eye', 'iniquity, guilt, punishment for sin', 'forever', 'people'], correctIndex: 1, explanation: 'Ch 19 vocabulary. "The LORD has laid on him the iniquity of us all" (Isa 53:6).' },
-  { id: 'c13-v15', question: 'What does שָׁבַר mean?', hebrew: 'שָׁבַר', options: ['to dwell', 'to break in pieces, smash, shatter', 'to judge', 'to ask'], correctIndex: 1, explanation: 'Ch 20 vocabulary. Its Piel intensifies it further, and its Niphal participle gives "the brokenhearted" (Ps 34:18).' },
-  { id: 'c13-v16', question: 'What does שָׂנֵא mean?', hebrew: 'שָׂנֵא', options: ['to rejoice', 'to hate', 'to break', 'to remain'], correctIndex: 1, explanation: 'Ch 21 vocabulary. Its participle serves as the ordinary word for "enemy."' },
-  { id: 'c13-v17', question: 'What does מוֹעֵד mean?', hebrew: 'מוֹעֵד', options: ['appointed time, meeting place, assembly', 'deed', 'messenger', 'judgment'], correctIndex: 0, explanation: 'Ch 21 vocabulary. It names both the festival calendar and the tent where God met his people.' },
-  { id: 'c13-v18', question: 'What does קָבַר mean?', hebrew: 'קָבַר', options: ['to bury', 'to gather', 'to be holy', 'to call'], correctIndex: 0, explanation: 'Ch 22 vocabulary. The noun קֶבֶר ("grave") comes from the same root.' },
-  { id: 'c13-v19', question: 'What does חָכְמָה mean?', hebrew: 'חָכְמָה', options: ['wrath', 'courtyard', 'darkness', 'wisdom, skill'], correctIndex: 3, explanation: 'Ch 23 vocabulary. "The fear of the LORD is instruction in wisdom" (Prov 15:33).' },
-  { id: 'c13-v20', question: 'What does כֹּחַ mean?', hebrew: 'כֹּחַ', options: ['strength, power', 'fool', 'vineyard', 'lamb'], correctIndex: 0, explanation: 'Ch 23 vocabulary. Note the Furtive Pathach under the final guttural ח.' },
-  { id: 'c13-v21', question: 'What does אָמַן mean?', hebrew: 'אָמַן', options: ['to say', 'to gather', 'to be faithful, reliable; to believe, trust', 'to bind'], correctIndex: 2, explanation: 'Ch 24 vocabulary. Genesis 15:6 uses its Hiphil: "and he believed the LORD."' },
-  { id: 'c13-v22', question: 'What does יָשַׁע mean?', hebrew: 'יָשַׁע', options: ['to sit', 'to be left over', 'to be delivered; to save, deliver', 'to give birth'], correctIndex: 2, explanation: 'Ch 24 vocabulary. The nouns יְשׁוּעָה ("salvation") and the name יְהוֹשֻׁעַ come from this root.' },
-  { id: 'c13-v23', question: 'What does חֹשֶׁךְ mean?', hebrew: 'חֹשֶׁךְ', options: ['wisdom', 'wrath', 'courtyard', 'darkness'], correctIndex: 3, explanation: 'Ch 25 vocabulary. "And God separated the light from the darkness" (Gen 1:4).' },
-  { id: 'c13-v24', question: 'What does בָּקַשׁ mean?', hebrew: 'בָּקַשׁ', options: ['to seek, search for, require', 'to choose', 'to trust', 'to understand'], correctIndex: 0, explanation: 'Ch 26 vocabulary. It occurs almost entirely in the Piel: בַּקְּשׁוּ פָנָי, "seek my face" (Ps 27:8).' },
-  { id: 'c13-v25', question: 'What does עָזַר mean?', hebrew: 'עָזַר', options: ['to help, assist, come to the aid of', 'to forsake', 'to pass over', 'to arrange'], correctIndex: 0, explanation: 'Ch 27 vocabulary. Do not confuse it with עָזַב ("to forsake") — one letter apart, opposite in sense.' },
-  { id: 'c13-v26', question: 'What does פֶּשַׁע mean?', hebrew: 'פֶּשַׁע', options: ['fruit', 'transgression, rebellion', 'corner, edge', 'face'], correctIndex: 1, explanation: 'Ch 29 vocabulary. "He was pierced for our transgressions" (Isa 53:5).' },
-  { id: 'c13-v27', question: 'What does יְשׁוּעָה mean?', hebrew: 'יְשׁוּעָה', options: ['right hand', 'remainder', 'day', 'salvation, help, deliverance'], correctIndex: 3, explanation: 'Ch 31 vocabulary. Built on יָשַׁע (Ch 24 vocabulary).' },
-  { id: 'c13-v28', question: 'What does שָׁבַת mean?', hebrew: 'שָׁבַת', options: ['to break', 'to swear', 'to dwell', 'to stop, cease, rest'], correctIndex: 3, explanation: 'Ch 33 vocabulary. The root behind שַׁבָּת ("sabbath").' },
-  { id: 'c13-v29', question: 'What does פָּלַל mean?', hebrew: 'פָּלַל', options: ['to pray, make intercession', 'to be wonderful', 'to turn', 'to open'], correctIndex: 0, explanation: 'Ch 34 vocabulary. It lives almost entirely in the Hithpael, and gives the noun תְּפִלָּה ("prayer").' },
-  { id: 'c13-v30', question: 'What does חָוָה mean?', hebrew: 'חָוָה', options: ['to live', 'to bow down, worship', 'to camp', 'to burn with anger'], correctIndex: 1, explanation: 'Ch 35 vocabulary. Its form הִשְׁתַּחֲוָה is the standard biblical word for worship — and one of the hardest in the Bible to look up.' },
+  // --- Standard BBH High-Frequency Vocabulary (Items 1-28) ---
+  {
+    id: 'c13-v01',
+    question: 'What is the primary lexical meaning of the verb בָּרָא?',
+    hebrew: 'בָּרָא',
+    options: ['to speak / declare', 'to create / form', 'to see / observe', 'to rule / reign'],
+    correctIndex: 1,
+    explanation: 'In the Qal, בָּרָא exclusively has God as subject — denoting divine creation.',
+  },
+  {
+    id: 'c13-v02',
+    question: 'What is the primary lexical meaning of the noun חֶסֶד?',
+    hebrew: 'חֶסֶד',
+    options: ['loyal love / steadfast grace', 'fiery wrath / blazing anger', 'godly wisdom / craftsman skill', 'sovereign strength / mighty power'],
+    correctIndex: 0,
+    explanation: 'חֶסֶד denotes steadfast, covenant-keeping loyal love.',
+  },
+  {
+    id: 'c13-v03',
+    question: 'What does the noun בְּרִית mean in biblical theological contexts?',
+    hebrew: 'בְּרִית',
+    options: ['sacrificial offering', 'divine commandment', 'priestly blessing', 'covenant / solemn treaty'],
+    correctIndex: 3,
+    explanation: 'בְּרִית means covenant; the standard idiom is כָּרַת בְּרִית ("to cut a covenant").',
+  },
+  {
+    id: 'c13-v04',
+    question: 'What does the noun מִשְׁפָּט mean?',
+    hebrew: 'מִשְׁפָּט',
+    options: ['peace / wholeness', 'justice / legal judgment', 'truth / faithfulness', 'glory / honor'],
+    correctIndex: 1,
+    explanation: 'מִשְׁפָּט (from שָׁפַט) denotes justice, legal judgment, or divine ordinance.',
+  },
+  {
+    id: 'c13-v05',
+    question: 'What does the noun אֱמֶת mean?',
+    hebrew: 'אֱמֶת',
+    options: ['dwelling tent', 'memorial stone', 'cultic altar', 'truth / faithfulness'],
+    correctIndex: 3,
+    explanation: 'אֱמֶת (from root אָמַן) signifies truth, firmness, and faithfulness.',
+  },
+  {
+    id: 'c13-v06',
+    question: 'What does the noun אֹהֶל mean?',
+    hebrew: 'אֹהֶל',
+    options: ['tent / dwelling place', 'city gate / entrance', 'golden lampstand', 'royal palace'],
+    correctIndex: 0,
+    explanation: 'אֹהֶל means tent; אֹהֶל מוֹעֵד is "the tent of meeting".',
+  },
+  {
+    id: 'c13-v07',
+    question: 'What is the meaning of the verb גָּלָה in Qal and Hiphil?',
+    hebrew: 'גָּלָה',
+    options: ['to be mighty', 'to dwell as stranger', 'to uncover / reveal / exile', 'to redeem / buy back'],
+    correctIndex: 2,
+    explanation: 'גָּלָה in Qal means to uncover/reveal; in Hiphil, to carry away into exile.',
+  },
+  {
+    id: 'c13-v08',
+    question: 'What does the verb שָׁפַט mean?',
+    hebrew: 'שָׁפַט',
+    options: ['to judge / govern', 'to send forth', 'to guard / keep', 'to hear / obey'],
+    correctIndex: 0,
+    explanation: 'שָׁפַט means to judge or govern; its participle gives the title שֹׁפֵט ("judge").',
+  },
+  {
+    id: 'c13-v09',
+    question: 'What is the meaning of the verb בָּחַר?',
+    hebrew: 'בָּחַר',
+    options: ['to trust / rely', 'to weep / mourn', 'to choose / elect', 'to build / erect'],
+    correctIndex: 2,
+    explanation: 'בָּחַר means to choose, select, or elect ("choose this day whom you will serve").',
+  },
+  {
+    id: 'c13-v10',
+    question: 'What is the meaning of the verb דָּרַשׁ?',
+    hebrew: 'דָּרַשׁ',
+    options: ['to proclaim / utter', 'to seek / inquire of', 'to walk upon / tread', 'to know / perceive'],
+    correctIndex: 1,
+    explanation: 'דָּרַשׁ means to seek or inquire of God (cf. Ezra 7:10).',
+  },
+  {
+    id: 'c13-v11',
+    question: 'What does the noun שֵׁבֶט mean?',
+    hebrew: 'שֵׁבֶט',
+    options: ['peace / greeting', 'sun / daylight', 'rod / staff / tribe', 'year / cycle'],
+    correctIndex: 2,
+    explanation: 'שֵׁבֶט refers both to a shepherd\'s rod/staff and to an Israelite tribe.',
+  },
+  {
+    id: 'c13-v12',
+    question: 'What does the verb בָּטַח mean?',
+    hebrew: 'בָּטַח',
+    options: ['to elect / choose', 'to mourn / lament', 'to trust / feel secure', 'to sacrifice / slay'],
+    correctIndex: 2,
+    explanation: 'בָּטַח means to trust or rely upon God with confidence.',
+  },
+  {
+    id: 'c13-v13',
+    question: 'What does the noun זֶרַע mean?',
+    hebrew: 'זֶרַע',
+    options: ['burnt offering', 'loud outcry', 'prophetic remnant', 'seed / offspring'],
+    correctIndex: 3,
+    explanation: 'זֶרַע denotes agricultural seed as well as genealogical offspring.',
+  },
+  {
+    id: 'c13-v14',
+    question: 'What does the noun עָוֹן mean?',
+    hebrew: 'עָוֹן',
+    options: ['human eye', 'iniquity / guilt', 'eternity / forever', 'congregation'],
+    correctIndex: 1,
+    explanation: 'עָוֹן refers to crooked iniquity, moral guilt, or the penalty incurred.',
+  },
+  {
+    id: 'c13-v15',
+    question: 'What is the meaning of the verb שָׁבַר?',
+    hebrew: 'שָׁבַר',
+    options: ['to inhabit / dwell', 'to petition / ask', 'to judge / decide', 'to break / smash'],
+    correctIndex: 3,
+    explanation: 'שָׁבַר in Qal means to break; in Piel, to smash to pieces.',
+  },
+  {
+    id: 'c13-v16',
+    question: 'What does the verb שָׂנֵא mean?',
+    hebrew: 'שָׂנֵא',
+    options: ['to rejoice / be glad', 'to hate / be an enemy', 'to break / shatter', 'to remain / stay'],
+    correctIndex: 1,
+    explanation: 'שָׂנֵא means to hate; its active participle שֹׂנֵא functions as "enemy / foe".',
+  },
+  {
+    id: 'c13-v17',
+    question: 'What does the noun מוֹעֵד mean?',
+    hebrew: 'מוֹעֵד',
+    options: ['appointed time / festival', 'mighty deed / wonder', 'angelic messenger', 'righteous judgment'],
+    correctIndex: 0,
+    explanation: 'מוֹעֵד refers to an appointed time, fixed festival season, or meeting place.',
+  },
+  {
+    id: 'c13-v18',
+    question: 'What does the verb קָבַר mean?',
+    hebrew: 'קָבַר',
+    options: ['to bury / inter', 'to assemble / gather', 'to consecrate / sanctify', 'to proclaim / call'],
+    correctIndex: 0,
+    explanation: 'קָבַר means to bury; the noun קֶבֶר means grave/tomb.',
+  },
+  {
+    id: 'c13-v19',
+    question: 'What does the noun חָכְמָה mean?',
+    hebrew: 'חָכְמָה',
+    options: ['fiery wrath', 'temple court', 'deep darkness', 'wisdom / skill'],
+    correctIndex: 3,
+    explanation: 'חָכְמָה encompasses moral wisdom, godly prudence, and craftsman skill.',
+  },
+  {
+    id: 'c13-v20',
+    question: 'What does the noun כֹּחַ mean?',
+    hebrew: 'כֹּחַ',
+    options: ['strength / power', 'foolish person', 'fertile vineyard', 'sacrificial lamb'],
+    correctIndex: 0,
+    explanation: 'כֹּחַ means physical or sovereign power and strength.',
+  },
+  {
+    id: 'c13-v21',
+    question: 'What is the meaning of the verb אָמַן in Niphal and Hiphil?',
+    hebrew: 'אָמַן',
+    options: ['to speak', 'to assemble', 'to believe / trust', 'to bind'],
+    correctIndex: 2,
+    explanation: 'אָמַן in Niphal means to be established/firm; in Hiphil, to believe / have faith.',
+  },
+  {
+    id: 'c13-v22',
+    question: 'What is the meaning of the root יָשַׁע (Niphal / Hiphil)?',
+    hebrew: 'יָשַׁע',
+    options: ['to sit / dwell', 'to remain / stay', 'to deliver / save', 'to give birth'],
+    correctIndex: 2,
+    explanation: 'יָשַׁע (Hiphil הוֹשִׁיעַ) means to save or liberate; gives the noun יְשׁוּעָה.',
+  },
+  {
+    id: 'c13-v23',
+    question: 'What does the noun חֹשֶׁךְ mean?',
+    hebrew: 'חֹשֶׁךְ',
+    options: ['wisdom / skill', 'wrath / anger', 'assembly / meeting', 'darkness / night'],
+    correctIndex: 3,
+    explanation: 'חֹשֶׁךְ means darkness (Genesis 1:2: "darkness was over the face of the deep").',
+  },
+  {
+    id: 'c13-v24',
+    question: 'What does the Piel verb בִּקֵּשׁ mean?',
+    hebrew: 'בִּקֵּשׁ',
+    options: ['to trust / rely upon', 'to choose / elect', 'to seek / search for', 'to understand / discern'],
+    correctIndex: 2,
+    explanation: 'The root בקשׁ occurs only in Piel and Pual; the Piel בִּקֵּשׁ means to seek earnestly: בַּקְּשׁוּ פָנָי ("seek my face").',
+  },
+  {
+    id: 'c13-v25',
+    question: 'What is the meaning of the verb עָזַר?',
+    hebrew: 'עָזַר',
+    options: ['to help / assist', 'to forsake / leave', 'to pass through', 'to arrange / set'],
+    correctIndex: 0,
+    explanation: 'עָזַר means to help/assist; distinct from עָזַב ("to forsake").',
+  },
+  {
+    id: 'c13-v26',
+    question: 'What does the noun פֶּשַׁע mean?',
+    hebrew: 'פֶּשַׁע',
+    options: ['grain offering', 'boundary line', 'rebellion / sin', 'legal witness'],
+    correctIndex: 2,
+    explanation: 'פֶּשַׁע denotes willful rebellion against divine authority or transgression.',
+  },
+  {
+    id: 'c13-v27',
+    question: 'What does the noun יְשׁוּעָה mean?',
+    hebrew: 'יְשׁוּעָה',
+    options: ['right hand', 'holy remnant', 'morning light', 'salvation / victory'],
+    correctIndex: 3,
+    explanation: 'יְשׁוּעָה means salvation, help, or deliverance (from root יָשַׁע).',
+  },
+  {
+    id: 'c13-v28',
+    question: 'What does the verb שָׁבַת mean?',
+    hebrew: 'שָׁבַת',
+    options: ['to break in pieces', 'to swear an oath', 'to dwell in tents', 'to cease / rest'],
+    correctIndex: 3,
+    explanation: 'שָׁבַת means to cease work, rest, or desist (the root of שַׁבָּת).',
+  },
+
+  // --- Vocabulary Synonym & Semantic Discrimination Items (Items 29-34) ---
+  {
+    id: 'c13-v29',
+    question: 'How do the Hebrew synonyms אֶרֶץ and אֲדָמָה differ in precise nuance?',
+    hebrew: 'אֶרֶץ vs. אֲדָמָה',
+    options: [
+      'אֶרֶץ is general land/earth; אֲדָמָה is arable soil',
+      'אֲדָמָה is the ocean; אֶרֶץ is the celestial sky',
+      'אֶרֶץ is foreign nations; אֲדָמָה is holy Israel',
+      'there is no distinction between these two terms',
+    ],
+    correctIndex: 0,
+    explanation: 'אֶרֶץ denotes earth, territory, or cosmic land; אֲדָמָה refers specifically to arable soil/red earth from which humanity (אָדָם) was formed.',
+  },
+  {
+    id: 'c13-v30',
+    question: 'Which word serves as the standard poetic parallel synonym for דֶּרֶךְ ("way, road") in biblical poetry?',
+    hebrew: 'דֶּרֶךְ',
+    options: ['שֶׁמֶשׁ ("sun")', 'מַיִם ("water")', 'אֹרַח ("path / way")', 'מִזְבֵּחַ ("altar")'],
+    correctIndex: 2,
+    explanation: 'אֹרַח ("path, way") is the classic poetic word-pair partner for דֶּרֶךְ in biblical parallelism (e.g. Proverbs 4:18-19, Psalm 27:11).',
+  },
+  {
+    id: 'c13-v31',
+    question: 'How do the two speech verbs אָמַר and דִּבֶּר typically differ in biblical usage?',
+    hebrew: 'אָמַר vs. דִּבֶּר',
+    options: [
+      'דִּבֶּר introduces direct quotes; אָמַר is to sing',
+      'אָמַר frames direct quotes; דִּבֶּר is discourse',
+      'אָמַר is divine speech; דִּבֶּר is human speech',
+      'both are completely interchangeable in syntax',
+    ],
+    correctIndex: 1,
+    explanation: 'אָמַר (Qal) is the standard introductory frame for direct quotations (וַיֹּאמֶר ...), whereas דִּבֶּר (Piel) denotes the act of speaking or discourse.',
+  },
+  {
+    id: 'c13-v32',
+    question: 'Which word shares the closest semantic field with חָכְמָה as analytical understanding / discernment?',
+    hebrew: 'חָכְמָה',
+    options: [
+      'תְּבוּנָה / בִּינָה ("understanding")',
+      'מִלְחָמָה ("battle / warfare")',
+      'עָוֹן ("iniquity / guilt")',
+      'חֹשֶׁךְ ("darkness / obscurity")',
+    ],
+    correctIndex: 0,
+    explanation: 'חָכְמָה ("wisdom/skill") and תְּבוּנָה / בִּינָה ("understanding/discernment") form the core semantic pair across Wisdom Literature.',
+  },
+  {
+    id: 'c13-v33',
+    question: 'How do the creation verbs בָּרָא and עָשָׂה differ in biblical nuance?',
+    hebrew: 'בָּרָא vs. עָשָׂה',
+    options: [
+      'עָשָׂה is divine creation ex nihilo; בָּרָא is human crafting',
+      'בָּרָא denotes divine creation; עָשָׂה is general making',
+      'both verbs strictly describe human craftsmanship only',
+      'בָּרָא means to destroy; עָשָׂה means to restore',
+    ],
+    correctIndex: 1,
+    explanation: 'In the Qal, בָּרָא always has God as its subject (uniquely divine creation), whereas עָשָׂה is the general verb for making or fashioning by God or humans.',
+  },
+  {
+    id: 'c13-v34',
+    question: 'Which verb is the poetic parallel synonym for שָׁמַע ("to hear") meaning "to give ear / listen attentively"?',
+    hebrew: 'שָׁמַע',
+    options: ['שָׁמַר ("to guard")', 'קָרָא ("to call")', 'הֶאֱזִין ("to give ear")', 'יָדַע ("to know")'],
+    correctIndex: 2,
+    explanation: 'הֶאֱזִין (Hiphil from אֹזֶן "ear") is the classic poetic synonym paired with שָׁמַע (e.g. Isaiah 1:2: "Hear, O heavens, and give ear, O earth").',
+  },
+
+  // --- High-Frequency Theological Words (Items 35-40) ---
+  {
+    id: 'c13-v35',
+    question: 'What is the meaning of the core relational verb אָהַב?',
+    hebrew: 'אָהַב',
+    options: ['to love / care for', 'to fear / revere', 'to hate / despise', 'to serve / minister'],
+    correctIndex: 0,
+    explanation: 'אָהַב means to love (Deut 6:5: וְאָהַבְתָּ אֵת יְהוָה אֱלֹהֶיךָ).',
+  },
+  {
+    id: 'c13-v36',
+    question: 'What does the common verb of motion הָלַךְ mean?',
+    hebrew: 'הָלַךְ',
+    options: ['to sit / remain', 'to stand / endure', 'to walk / go', 'to flee / run away'],
+    correctIndex: 2,
+    explanation: 'הָלַךְ means to walk or go; frequently used metaphorically for one\'s conduct.',
+  },
+  {
+    id: 'c13-v37',
+    question: 'What does the verb יָדַע mean in biblical Hebrew epistemology?',
+    hebrew: 'יָדַע',
+    options: ['to hear / obey', 'to see / look upon', 'to forget / forsake', 'to know / experience'],
+    correctIndex: 3,
+    explanation: 'יָדַע expresses intimate, covenantal, and experiential knowing.',
+  },
+  {
+    id: 'c13-v38',
+    question: 'What does the verb נָתַן mean?',
+    hebrew: 'נָתַן',
+    options: ['to take / receive', 'to give / place', 'to send / dispatch', 'to guard / keep'],
+    correctIndex: 1,
+    explanation: 'נָתַן means to give, grant, or place; its initial נ often assimilates in prefix conjugations.',
+  },
+  {
+    id: 'c13-v39',
+    question: 'What does the verb רָאָה mean?',
+    hebrew: 'רָאָה',
+    options: ['to see / perceive', 'to speak / utter', 'to know / discern', 'to fear / revere'],
+    correctIndex: 0,
+    explanation: 'רָאָה (a III-ה verb) means to see, look upon, or perceive.',
+  },
+  {
+    id: 'c13-v40',
+    question: 'What does the noun מֶלֶךְ mean?',
+    hebrew: 'מֶלֶךְ',
+    options: ['servant / slave', 'prophet / seer', 'king / sovereign', 'priest / minister'],
+    correctIndex: 2,
+    explanation: 'מֶלֶךְ means king or sovereign; from the same root as מָלַךְ ("to reign").',
+  },
 ];
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -155,12 +821,12 @@ export const class13VerseAnalysisQuestions: PracticeVerseAnalysis[] = [
       { hebrew: 'בְּרֵאשִׁית', category: 'Inseparable preposition + feminine noun (Ch 6)' },
       { hebrew: 'בָּרָא', category: 'Qal Perfect 3ms (Ch 13)' },
       { hebrew: 'אֵת', category: 'Definite direct object marker (Ch 6)' },
-      { hebrew: 'הַשָּׁמַיִם', category: 'Article + dual noun (Ch 4-5)' },
+      { hebrew: 'הַשָּׁמַיִם', category: 'Article + masculine plural noun (Ch 4-5)' },
       { hebrew: 'הָאָרֶץ', category: 'Article with compensatory lengthening + feminine noun (Ch 5)' },
     ],
     distractorCategories: [
       'Qal Imperfect 3ms (Ch 15)',
-      'Niphal Participle ms (Ch 24)',
+      'Article + dual noun (Ch 4)',
       'Construct chain, masculine plural (Ch 10)',
       'Piel Perfect 3ms (Ch 30)',
     ],
@@ -176,13 +842,13 @@ export const class13VerseAnalysisQuestions: PracticeVerseAnalysis[] = [
       { hebrew: 'וַיַּרְא', category: 'Waw Consecutive + Qal Imperfect 3ms, III-ה (Ch 17)' },
       { hebrew: 'אֶת־הָאוֹר', category: 'Object marker + article + masculine noun (Ch 5-6)' },
       { hebrew: 'כִּי', category: 'Conjunction introducing the content of perception (Ch 23)' },
-      { hebrew: 'וַיַּבְדֵּל', category: 'Waw Consecutive + HIPHIL Imperfect 3ms (Ch 17, 26)' },
+      { hebrew: 'וַיַּבְדֵּל', category: 'Waw Consecutive + Hiphil Imperfect 3ms (Ch 17, 26)' },
       { hebrew: 'בֵּין', category: 'Independent preposition, "between" (Ch 6)' },
     ],
     distractorCategories: [
       'Hophal Perfect 3ms (Ch 28)',
       'Qal Infinitive Construct (Ch 20)',
-      'Niphal Imperfect 3ms (Ch 24)',
+      'Niphal Imperfect 3ms, III-ה (Ch 25)',
       'Pual Participle ms (Ch 32)',
     ],
   },
@@ -214,14 +880,14 @@ export const class13VerseAnalysisQuestions: PracticeVerseAnalysis[] = [
     referenceTranslation: 'And the glory of the LORD shall be revealed, and all flesh shall see it together.',
     keyTerms: ['revealed', 'glory', 'LORD', 'see', 'all', 'flesh'],
     matchingPairs: [
-      { hebrew: 'וְנִגְלָה', category: 'Waw Consecutive + NIPHAL Perfect 3ms, III-ה (Ch 17, 25)' },
+      { hebrew: 'וְנִגְלָה', category: 'Waw Consecutive + Niphal Perfect 3ms, III-ה (Ch 17, 25)' },
       { hebrew: 'כְּבוֹד יְהוָה', category: 'Construct chain — "the glory of the LORD" (Ch 10)' },
       { hebrew: 'וְרָאוּ', category: 'Waw Consecutive + Qal Perfect 3cp (Ch 13, 17)' },
       { hebrew: 'כָל־בָּשָׂר', category: 'Construct of "all" + masculine noun (Ch 10)' },
       { hebrew: 'יַחְדָּו', category: 'Adverb, "together"' },
     ],
     distractorCategories: [
-      'Piel Perfect 3ms (Ch 30)',
+      'Piel Perfect 3ms, III-ה (Ch 31)',
       'Qal passive participle ms (Ch 22)',
       'Hiphil Imperfect 3mp (Ch 26)',
       'Definite direct object marker (Ch 6)',
@@ -242,7 +908,7 @@ export const class13VerseAnalysisQuestions: PracticeVerseAnalysis[] = [
       { hebrew: 'יְהוָה אֶחָד', category: 'Verbless clause — "the LORD is one" (Ch 23)' },
     ],
     distractorCategories: [
-      'Qal Perfect 3ms (Ch 13)',
+      'Construct chain — "the name of the LORD" (Ch 10)',
       'Qal Infinitive Absolute (Ch 21)',
       'Niphal Participle ms (Ch 24)',
       'Ordinal number (Ch 11)',
@@ -251,7 +917,7 @@ export const class13VerseAnalysisQuestions: PracticeVerseAnalysis[] = [
 ];
 
 export const CLASS13_PRACTICE_PAPER_SECTIONS = [
-  { id: 1, title: 'Grammar', questionCount: class13GrammarQuestions.length, description: 'Parse forms and identify structures from Chapters 1-35' },
-  { id: 2, title: 'Vocabulary', questionCount: class13VocabQuestions.length, description: 'Identify the meaning of words from the "You Should Know" lists' },
-  { id: 3, title: 'Verse Analysis', questionCount: class13VerseAnalysisQuestions.length, description: 'Match Hebrew words to grammatical categories and translate' },
+  { id: 1, title: 'Grammar', questionCount: class13GrammarQuestions.length, description: 'Morphology, noun suffixes, binyan root patterns, syntax & reading from Chapters 1-35' },
+  { id: 2, title: 'Vocabulary', questionCount: class13VocabQuestions.length, description: 'Frequency vocabulary and synonym discriminations from the "You Should Know" lists' },
+  { id: 3, title: 'Verse Analysis', questionCount: class13VerseAnalysisQuestions.length, description: 'Match Hebrew words to grammatical categories and translate anchor verses' },
 ] as const;

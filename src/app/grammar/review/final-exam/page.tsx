@@ -443,7 +443,7 @@ function Intro({
                   <Clock3 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                   <div>
                     <p className="font-medium">85 questions, 2-hour limit</p>
-                    <p className="text-sm text-muted-foreground">50 grammar MCQ + 30 vocabulary MCQ + 5 verse analysis items. The exam auto-submits when time expires.</p>
+                    <p className="text-sm text-muted-foreground">40 grammar MCQ + 40 vocabulary MCQ + 5 verse analysis items. The exam auto-submits when time expires.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
