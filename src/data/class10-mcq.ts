@@ -4,6 +4,8 @@
 // within Chapters 1-29.
 //
 // RELEASED: reachable at /class-practice/class-10-mcq via Class10MCQPractice.
+// The Ch 30 Piel and Ch 32 Pual modes are served from class11-mcq.ts (strong
+// verbs only); see class10Practice.ts.
 
 import type { PracticeQuestion, PracticeQuestionGroup } from '@/types/class-practice';
 

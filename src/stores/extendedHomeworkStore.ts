@@ -10,13 +10,47 @@ import type {
   ExtendedSectionId,
   ExtendedSectionProgress,
 } from '@/types/homework-extended';
-import { createInitialExtendedHomeworkProgress } from '@/types/homework-extended';
+import {
+  createInitialExtendedHomeworkProgress,
+  createInitialExtendedSectionProgress,
+} from '@/types/homework-extended';
 import { getHomework } from '@/data/homework/extended-registry';
 
 function createHomeworkProgress(id: ExtendedHomeworkId): ExtendedHomeworkProgress {
   const meta = getHomework(id);
   if (!meta) throw new Error(`Homework ${id} is not active.`);
   return createInitialExtendedHomeworkProgress(meta);
+}
+
+// A homework can gain sections after a student has already started it. Persisted
+// progress snapshots the section list and the total at creation time, so bring a
+// stored record back in line with the live meta: add the sections it is missing
+// and re-total. Work already recorded is never touched.
+function reconcileWithMeta(
+  progress: ExtendedHomeworkProgress,
+  id: ExtendedHomeworkId,
+): ExtendedHomeworkProgress {
+  const meta = getHomework(id);
+  if (!meta) return progress;
+
+  const sections: Record<ExtendedSectionId, ExtendedSectionProgress> = { ...progress.sections };
+  let changed = false;
+  let totalPossible = 0;
+
+  for (const section of meta.sections) {
+    const existing = sections[section.id];
+    if (!existing) {
+      sections[section.id] = createInitialExtendedSectionProgress(section.id, section.questionCount);
+      changed = true;
+    } else if (existing.totalQuestions !== section.questionCount) {
+      sections[section.id] = { ...existing, totalQuestions: section.questionCount };
+      changed = true;
+    }
+    totalPossible += section.questionCount;
+  }
+
+  if (!changed && progress.totalPossible === totalPossible) return progress;
+  return { ...progress, sections, totalPossible };
 }
 
 interface ExtendedHomeworkState {
@@ -75,7 +109,13 @@ export const useExtendedHomeworkStore = create<ExtendedHomeworkState>()(
 
       ensureHomework: (id) => {
         const existing = get().homeworks[id];
-        if (existing) return existing;
+        if (existing) {
+          const reconciled = reconcileWithMeta(existing, id);
+          if (reconciled !== existing) {
+            set((state) => ({ homeworks: { ...state.homeworks, [id]: reconciled } }));
+          }
+          return reconciled;
+        }
         const fresh = createHomeworkProgress(id);
         set((state) => ({ homeworks: { ...state.homeworks, [id]: fresh } }));
         return fresh;

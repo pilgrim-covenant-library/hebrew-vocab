@@ -219,7 +219,7 @@ export default function ClassPracticePage() {
 
           <ClassPracticeCard
             title="Class 10 MCQ"
-            description="Read the causative Hiphil and its passive counterpart the Hophal in strong and weak verbs from Chapters 26–29 inside words, clauses, and passages"
+            description="Read the causative Hiphil and its passive the Hophal from Chapters 26–29, plus the strong Piel (Ch 30) and strong Pual (Ch 32), inside words, clauses, and passages"
             icon={ListChecks}
             href="/class-practice/class-10-mcq"
             color="cyan"
@@ -227,7 +227,7 @@ export default function ClassPracticePage() {
 
           <ClassPracticeCard
             title="Homework 10"
-            description="MCQ assignment on the Hiphil and Hophal stems in strong and weak verbs, new vocabulary, and verse translation"
+            description="MCQ assignment on the Hiphil and Hophal stems, the strong Piel and Pual, new vocabulary, and verse translation"
             icon={ClipboardList}
             href="/homework/hw10"
             color="amber"

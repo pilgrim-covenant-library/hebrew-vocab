@@ -40,6 +40,8 @@ interface ClassCase {
   config: ClassSessionConfig;
   modes: PracticeSessionMode[];
   build: (mode: string) => PracticeQuestion[];
+  /** All-mode screen count; defaults to 40 where a class carries only its own chapters. */
+  allModeSize?: number;
 }
 
 interface HomeworkCase {
@@ -47,13 +49,15 @@ interface HomeworkCase {
   id: string;
   meta: ExtendedHomeworkMeta;
   sections: Record<number, HomeworkQuestion[]>;
+  /** Total questions; defaults to 50 where a homework carries only its own chapters. */
+  questionTotal?: number;
 }
 
 const classCases: ClassCase[] = [
   { name: 'Class 7 (ch 17-19)', slug: 'class-7-mcq', config: CLASS7_CONFIG, modes: CLASS7_MODES, build: buildClass7Session },
   { name: 'Class 8 (ch 20-22)', slug: 'class-8-mcq', config: CLASS8_CONFIG, modes: CLASS8_MODES, build: buildClass8Session },
   { name: 'Class 9 (ch 23-25)', slug: 'class-9-mcq', config: CLASS9_CONFIG, modes: CLASS9_MODES, build: buildClass9Session },
-  { name: 'Class 10 (ch 26-29)', slug: 'class-10-mcq', config: CLASS10_CONFIG, modes: CLASS10_MODES, build: buildClass10Session },
+  { name: 'Class 10 (ch 26-29 + strong Piel/Pual)', slug: 'class-10-mcq', config: CLASS10_CONFIG, modes: CLASS10_MODES, build: buildClass10Session, allModeSize: 48 },
   { name: 'Class 11 (ch 30-33)', slug: 'class-11-mcq', config: CLASS11_CONFIG, modes: CLASS11_MODES, build: buildClass11Session },
   { name: 'Class 12 (ch 34-35)', slug: 'class-12-mcq', config: CLASS12_CONFIG, modes: CLASS12_MODES, build: buildClass12Session },
 ];
@@ -62,7 +66,7 @@ const homeworkCases: HomeworkCase[] = [
   { name: 'HW7 (ch 17-19)', id: 'hw7', meta: hw7Meta, sections: hw7Sections },
   { name: 'HW8 (ch 20-22)', id: 'hw8', meta: hw8Meta, sections: hw8Sections },
   { name: 'HW9 (ch 23-25)', id: 'hw9', meta: hw9Meta, sections: hw9Sections },
-  { name: 'HW10 (ch 26-29)', id: 'hw10', meta: hw10Meta, sections: hw10Sections },
+  { name: 'HW10 (ch 26-29 + strong Piel/Pual)', id: 'hw10', meta: hw10Meta, sections: hw10Sections, questionTotal: 66 },
   { name: 'HW11 (ch 30-33)', id: 'hw11', meta: hw11Meta, sections: hw11Sections },
   { name: 'HW12 (ch 34-35)', id: 'hw12', meta: hw12Meta, sections: hw12Sections },
 ];
@@ -70,7 +74,8 @@ const homeworkCases: HomeworkCase[] = [
 const DARK_HOMEWORK_IDS = ['hw11', 'hw12'];
 const DARK_CLASS_SLUGS = ['class-11-mcq', 'class-12-mcq'];
 
-describe.each(classCases)('$name practice data', ({ config, modes, build }) => {
+describe.each(classCases)('$name practice data', ({ config, modes, build, allModeSize }) => {
+  const expectedAllMode = allModeSize ?? 40;
   const allGroups: PracticeQuestionGroup[] = [
     ...config.chapters.flatMap((chapter) => chapter.groups),
     ...config.verseGroups,
@@ -78,12 +83,12 @@ describe.each(classCases)('$name practice data', ({ config, modes, build }) => {
   ];
   const allPractice: PracticeQuestion[] = allGroups.flatMap((group) => group.questions);
 
-  it('advertises 40 screens in All mode and builds exactly that many', () => {
-    expect(allModeCount(config)).toBe(40);
+  it('advertises its All-mode size and builds exactly that many screens', () => {
+    expect(allModeCount(config)).toBe(expectedAllMode);
     for (let run = 0; run < 10; run += 1) {
       const session = build('all');
-      expect(session).toHaveLength(40);
-      expect(new Set(session.map((question) => question.id)).size).toBe(40);
+      expect(session).toHaveLength(expectedAllMode);
+      expect(new Set(session.map((question) => question.id)).size).toBe(expectedAllMode);
     }
   });
 
@@ -95,16 +100,21 @@ describe.each(classCases)('$name practice data', ({ config, modes, build }) => {
     }
   });
 
-  it('gives every chapter a bank, a recall subset, and four passages', () => {
+  it('gives every chapter a bank, a recall subset, and passages', () => {
     for (const chapter of config.chapters) {
       expect(chapter.memoryGroups.length).toBeGreaterThanOrEqual(config.chapterSample);
       expect(chapter.groups.length).toBeGreaterThan(chapter.memoryGroups.length);
-      expect(chapter.contextGroups).toHaveLength(4);
+      // Four, except where passages on weak roots were deliberately filtered out.
+      expect(chapter.contextGroups.length).toBeGreaterThanOrEqual(config.contextSample / 4);
+      expect(chapter.contextGroups.length).toBeLessThanOrEqual(4);
       for (const group of chapter.memoryGroups) {
         expect(chapter.groups).toContain(group);
       }
     }
-    expect(config.contextGroups).toHaveLength(config.chapters.length * 4);
+    // The hub's passage pool is exactly the chapters' passages, however many
+    // survived filtering — not a fixed four per chapter.
+    const perChapter = config.chapters.reduce((n, c) => n + c.contextGroups.length, 0);
+    expect(config.contextGroups).toHaveLength(perChapter);
   });
 
   it('shows Hebrew and offers English-only options in every passage', () => {
@@ -158,16 +168,17 @@ describe.each(classCases)('$name practice data', ({ config, modes, build }) => {
   });
 });
 
-describe.each(homeworkCases)('$name data', ({ meta, sections }) => {
+describe.each(homeworkCases)('$name data', ({ meta, sections, questionTotal }) => {
   const allQuestions: HomeworkQuestion[] = Object.values(sections).flat();
+  const expectedTotal = questionTotal ?? 50;
 
-  it('has 50 questions in sections whose counts match the meta', () => {
+  it('has the advertised number of questions in sections whose counts match the meta', () => {
     expect(meta.sections.length).toBeGreaterThanOrEqual(4);
     for (const section of meta.sections) {
       expect(meta.sectionQuestions[section.id]).toHaveLength(section.questionCount);
     }
     expect(meta.totalQuestions).toBe(allQuestions.length);
-    expect(allQuestions).toHaveLength(50);
+    expect(allQuestions).toHaveLength(expectedTotal);
   });
 
   it('ends with a verse-translation section showing Hebrew and English-only options', () => {
