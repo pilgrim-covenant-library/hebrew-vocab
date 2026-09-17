@@ -146,6 +146,18 @@ describe.each(papers)('$name', ({ grammar, vocab, verses, sections }) => {
     }
   });
 
+  it('tests every derived stem, not just Niphal', () => {
+    // BBH spends two chapters on each derived stem; a paper that drops one
+    // (Hophal was absent, Niphal doubled) leaves that chapter unpractised.
+    const text = [
+      ...[...grammar, ...vocab].map((q) => `${q.question} ${q.options[q.correctIndex]} ${q.explanation}`),
+      ...verses.flatMap((v) => v.matchingPairs.map((p) => p.category)),
+    ].join(' ');
+    for (const stem of ['Niphal', 'Piel', 'Pual', 'Hiphil', 'Hophal', 'Hithpael']) {
+      expect(text).toContain(stem);
+    }
+  });
+
   it('never keys שָׁמַיִם as dual', () => {
     // -ayim looks dual, but שָׁמַיִם is a plurale tantum: plural in form and meaning.
     // Prose may discuss the dual ending; no answer key or category may classify it as one.

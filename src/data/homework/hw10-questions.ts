@@ -2,9 +2,7 @@
 // CourseGuide for BBH (Pratico/Van Pelt) Chapters 26-29 (Sessions 26-29),
 // plus the new Chapter 26-29 vocabulary and verse-translation practice.
 //
-// NOT YET RELEASED: this bank is intentionally absent from the active
-// extended-registry, so it is not reachable from the app. Wire it in when
-// the class is ready.
+// RELEASED: wired into the active extended-registry and reachable at /homework/hw10.
 
 import type { MCQQuestion, PairedMCQQuestion } from '@/types/homework';
 import type { ExtendedHomeworkMeta } from '@/types/homework-extended';

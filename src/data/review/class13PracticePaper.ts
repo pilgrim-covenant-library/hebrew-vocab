@@ -207,7 +207,7 @@ export const class13GrammarQuestions: PracticeMCQ[] = [
     explanation: 'לִשְׁמֹר is the Qal Infinitive Construct with preposition לְ ("to keep / in order to guard").',
   },
 
-  // --- Group 5: Root & Verb Pattern Architecture (1 Question Per Root) (6 items) ---
+  // --- Group 5: Root & Verb Pattern Architecture (one item per binyan) (6 items) ---
   {
     id: 'c13-g21',
     question: 'The root √k-t-b in Qal means כָּתַב ("he wrote"). What is the semantic function of the Niphal form נִכְתַּב?',
@@ -249,16 +249,16 @@ export const class13GrammarQuestions: PracticeMCQ[] = [
   },
   {
     id: 'c13-g24',
-    question: 'The root √sh-m-r in Qal means שָׁמַר ("he guarded/kept"). What does the Niphal form נִשְׁמַר express?',
-    hebrew: 'נִשְׁמַר',
+    question: 'The Hiphil of √n-g-d is הִגִּיד ("he told, declared"). What does the Hophal form הֻגַּד express?',
+    hebrew: 'הֻגַּד',
     options: [
-      'causative ("he caused to guard")',
-      'passive / reflexive ("he was kept")',
-      'intensive ("he guarded diligently")',
-      'iterative ("he guarded repeatedly")',
+      'the causative active, like the Hiphil ("he told")',
+      'the passive of the Hiphil ("it was told")',
+      'the reflexive of the Hiphil ("he told himself")',
+      'the intensive of the Hiphil ("he told fully")',
     ],
     correctIndex: 1,
-    explanation: 'The Niphal of שָׁמַר carries passive or reflexive nuance: נִשְׁמַר = "he was kept / he took heed to himself".',
+    explanation: 'The Hophal (u/o prefix vowel) is the passive counterpart of the Hiphil, not of the Qal: הֻגַּד = "it was told" (Joshua 9:24, הֻגֵּד הֻגַּד).',
   },
   {
     id: 'c13-g25',

@@ -3,9 +3,7 @@
 // 26-29 "You Should Know" vocabulary and verse translation whose grammar stays
 // within Chapters 1-29.
 //
-// NOT YET RELEASED. Nothing imports this bank into a route, so it is not
-// reachable from the app. Release = add a Class10MCQPractice route page and a
-// hub card (see class-6-mcq for the pattern).
+// RELEASED: reachable at /class-practice/class-10-mcq via Class10MCQPractice.
 
 import type { PracticeQuestion, PracticeQuestionGroup } from '@/types/class-practice';
 

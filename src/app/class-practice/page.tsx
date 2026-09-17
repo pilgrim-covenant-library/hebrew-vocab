@@ -56,7 +56,7 @@ export default function ClassPracticePage() {
           </Link>
           <div>
             <h1 className="text-lg font-semibold">Class Practice and Homework</h1>
-            <p className="text-xs text-muted-foreground">MasterLectures Sessions 1–25</p>
+            <p className="text-xs text-muted-foreground">MasterLectures Sessions 1–29</p>
           </div>
         </div>
       </header>
@@ -214,6 +214,22 @@ export default function ClassPracticePage() {
             description="MCQ assignment on sentence syntax, Niphal strong and weak verbs, new vocabulary, and verse translation"
             icon={ClipboardList}
             href="/homework/hw9"
+            color="amber"
+          />
+
+          <ClassPracticeCard
+            title="Class 10 MCQ"
+            description="Read the causative Hiphil and its passive counterpart the Hophal in strong and weak verbs from Chapters 26–29 inside words, clauses, and passages"
+            icon={ListChecks}
+            href="/class-practice/class-10-mcq"
+            color="cyan"
+          />
+
+          <ClassPracticeCard
+            title="Homework 10"
+            description="MCQ assignment on the Hiphil and Hophal stems in strong and weak verbs, new vocabulary, and verse translation"
+            icon={ClipboardList}
+            href="/homework/hw10"
             color="amber"
           />
 
