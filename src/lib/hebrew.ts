@@ -110,12 +110,12 @@ export function normalizeHebrew(text: string): string {
  */
 export function extractRoot(hebrew: string): string {
   const consonants = normalizeHebrew(hebrew);
-  // Remove common prefixes and suffixes
-  let root = consonants
+  // Remove common prefixes and suffixes. For grouping cognates, prefer
+  // stemKey/familyKey in hebrewStem.ts — this one letter of stripping is a rough
+  // guess that gives לך for מֶלֶךְ.
+  return consonants
     .replace(/^[והכלמשב]/, '') // Common prefixes
-    .replace(/[הותים]$/, '');   // Common suffixes
-
-  return root;
+    .replace(/[הותים]$/, '');  // Common suffixes
 }
 
 /**
