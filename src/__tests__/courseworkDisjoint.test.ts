@@ -1,7 +1,8 @@
 // The three vocabulary banks must not overlap: homework is the baseline, the
 // practice-paper vocabulary section may not reuse a homework word, and the
-// top-300 drill may not reuse a word from either. Overlap used to be invisible —
-// 30% of the practice paper's vocabulary words were already in a homework.
+// top-300 drill may not reuse a word from either. Overlap is measured on the root
+// family, not the spelling — שָׁמַר in a homework rules out נִשְׁמַר and מִשְׁמֶרֶת
+// elsewhere — and no two words in one drill section may share a family either.
 
 import * as fs from 'fs';
 import * as path from 'path';
@@ -27,7 +28,9 @@ import {
   class13ExamVerseAnalysisQuestions,
 } from '@/data/review/class13FinalExam';
 import type { PracticeMCQ } from '@/data/review/practicePaper';
-import { collectCourseworkWords, courseworkWordKey } from '@/lib/coursework';
+import { collectCourseworkWords } from '@/lib/coursework';
+import { familyKey } from '@/lib/hebrewStem';
+import { getCommonVocabSection, SECTION_COUNT, type CommonVocabSectionId } from '@/lib/commonVocab';
 import { COURSEWORK_WORDS } from '@/data/courseworkWords';
 import { getCommonOTVocab } from '@/lib/commonVocab';
 
@@ -46,6 +49,9 @@ for (const mod of homeworkModules) collectCourseworkWords(mod, homeworkWords);
 
 const paperWords = new Set<string>();
 for (const bank of paperBanks) collectCourseworkWords(bank, paperWords);
+
+const homeworkFamilies = new Set([...homeworkWords].map(familyKey));
+const paperFamilies = new Set([...paperWords].map(familyKey));
 
 const expectedCoursework = [...new Set([...homeworkWords, ...paperWords])].sort();
 
@@ -82,7 +88,7 @@ function homeworkRepeats(questions: readonly PracticeMCQ[]): string[] {
     const words = new Set<string>();
     collectCourseworkWords([{ hebrew: question.hebrew, options: question.options }], words);
     for (const word of words) {
-      if (homeworkWords.has(word)) repeats.push(`${question.id}: ${word}`);
+      if (homeworkFamilies.has(familyKey(word))) repeats.push(`${question.id}: ${word}`);
     }
   }
   return repeats;
@@ -93,8 +99,8 @@ describe('practice-paper vocabulary section', () => {
     expect(homeworkRepeats(class13VocabQuestions)).toEqual([]);
   });
 
-  it('asks each word only once', () => {
-    const asked = class13VocabQuestions.map((q) => courseworkWordKey(q.hebrew ?? ''));
+  it('asks each root family only once', () => {
+    const asked = class13VocabQuestions.map((q) => (q.hebrew ? familyKey(q.hebrew) : ''));
     const duplicated = asked.filter((w, i) => w && asked.indexOf(w) !== i);
     expect(duplicated).toEqual([]);
   });
@@ -107,8 +113,8 @@ describe('final-exam vocabulary section', () => {
     expect(homeworkRepeats(class13ExamVocabQuestions)).toEqual([]);
   });
 
-  it('asks each word only once', () => {
-    const asked = class13ExamVocabQuestions.map((q) => courseworkWordKey(q.hebrew ?? ''));
+  it('asks each root family only once', () => {
+    const asked = class13ExamVocabQuestions.map((q) => (q.hebrew ? familyKey(q.hebrew) : ''));
     const duplicated = asked.filter((w, i) => w && asked.indexOf(w) !== i);
     expect(duplicated).toEqual([]);
   });
@@ -117,18 +123,32 @@ describe('final-exam vocabulary section', () => {
 describe('top-300 common vocabulary drill', () => {
   const drill = getCommonOTVocab();
 
-  it('reuses no homework word', () => {
+  it('shares no root family with a homework word', () => {
     const repeats = drill
-      .filter((w) => homeworkWords.has(courseworkWordKey(w.hebrew)))
+      .filter((w) => homeworkFamilies.has(familyKey(w.hebrew)))
       .map((w) => `${w.id} ${w.hebrew}`);
     expect(repeats).toEqual([]);
   });
 
-  it('reuses no practice-paper or final-exam word', () => {
+  it('shares no root family with a practice-paper or final-exam word', () => {
     const repeats = drill
-      .filter((w) => paperWords.has(courseworkWordKey(w.hebrew)))
+      .filter((w) => paperFamilies.has(familyKey(w.hebrew)))
       .map((w) => `${w.id} ${w.hebrew}`);
     expect(repeats).toEqual([]);
+  });
+
+  it('never repeats a root family, in a section or across the list', () => {
+    const families = drill.map((w) => familyKey(w.hebrew));
+    const duplicated = drill
+      .filter((w, i) => families.indexOf(families[i]) !== i)
+      .map((w) => `${w.id} ${w.hebrew} (${familyKey(w.hebrew)})`);
+    expect(duplicated).toEqual([]);
+
+    for (let id = 1; id <= SECTION_COUNT; id++) {
+      const section = getCommonVocabSection(id as CommonVocabSectionId);
+      const inSection = section.map((w) => familyKey(w.hebrew));
+      expect(new Set(inSection).size).toBe(section.length);
+    }
   });
 
   it('still holds 300 words, most frequent first', () => {

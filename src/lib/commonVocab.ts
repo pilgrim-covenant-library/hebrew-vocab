@@ -1,14 +1,15 @@
 import vocabularyData from '@/data/vocabulary.json';
 import { isCourseworkWord } from '@/lib/coursework';
+import { familyKey } from '@/lib/hebrewStem';
 import type { VocabularyWord } from '@/types';
 
 /**
  * Number of words to include in the "Common OT Vocab" challenge.
  *
  * These are the 300 most frequently occurring words in the Hebrew Old Testament
- * that the coursework does not already drill. Homework is the baseline and the
- * practice paper comes next, so this list starts below both: every word here is
- * new to a student who has worked through them.
+ * whose root family the coursework does not already drill. Homework is the
+ * baseline and the practice paper comes next, so this list starts below both: no
+ * word here, and no cognate of one, appears anywhere a student has already been.
  */
 export const COMMON_VOCAB_COUNT = 300;
 
@@ -32,16 +33,16 @@ export interface CommonVocabSection {
 
 /** Section metadata for the overview page */
 export const COMMON_VOCAB_SECTION_META: Record<CommonVocabSectionId, { title: string; description: string }> = {
-  1:  { title: 'Most Common (1–30)',          description: 'Year, name and water; the adverbs of place and time; the first numbers; Moses, Aaron and Jerusalem' },
-  2:  { title: 'Very Common (31–60)',         description: 'Peoples and their kings — Philistine, Levite, Pharaoh, Babylon — with measures, boundaries and inheritance' },
-  3:  { title: 'Very Common (61–90)',         description: 'Offering, ark and oil; the body in ear, lip and palm; gathering, asking and bowing down; Joseph and Benjamin' },
-  4:  { title: 'Common (91–120)',             description: 'Righteousness and sacrifice, and the vocabulary of marching — flee, encamp, set out, pursue; Zion and Assyria' },
-  5:  { title: 'Common (121–150)',            description: 'Tabernacle, throne and statute; sun, river and wadi; the siege words wall, chariot and capture; Samuel and Hezekiah' },
-  6:  { title: 'Frequent (151–180)',          description: 'Worship and its abuse — incense, high place, abomination, falsehood — with prophesying, weeping and thanksgiving' },
-  7:  { title: 'Frequent (181–210)',          description: 'Atonement, cleanness and unfaithfulness; length, width and quantity; the sojourner, the cherub and the vineyard' },
-  8:  { title: 'Moderately Common (211–240)', description: 'Song, counsel and offering; door, cloud and shekel; Amorite, Chaldean and Jew; ruling, hiding and selling' },
-  9:  { title: 'Moderately Common (241–270)', description: 'Sign, lot and guard duty; livestock, horn and bow; iron, cedar and spoil; reproach, sickness and withering' },
-  10: { title: 'Building Breadth (271–300)',  description: 'Healing, favour and folly; hill, valley and cistern; Eleazar and Elijah, and the tribes of Gad, Reuben and Dan' },
+  1:  { title: 'Most Common (1–30)',          description: 'Moses, Joshua and Joseph; Jerusalem, Babylon and the Jordan; inheritance, camp and border' },
+  2:  { title: 'Very Common (31–60)',         description: 'The vocabulary of marching — set out, encamp, pursue — with throne, statute and bull; Zion, Gilead and Aram' },
+  3:  { title: 'Very Common (61–90)',         description: 'Atonement and its abuse: incense, high place and abomination, with weeping, comfort and forgetting' },
+  4:  { title: 'Common (91–120)',             description: 'Size, length and distance; door, vineyard and cherub; prayer, offering and slaughter; Canaan and Ahab' },
+  5:  { title: 'Common (121–150)',            description: 'Treasury, lot and livestock; iron, cedar and trumpet; hill, valley and Hebron; Gad and Reuben' },
+  6:  { title: 'Frequent (151–180)',          description: 'Healing, fleeing and stumbling; shield, rope and burden; dream, feast and libation; Abner and Balaam' },
+  7:  { title: 'Frequent (181–210)',          description: 'Vow, ransom and praise; vine, honey and harvest; the widow, the camel and the psalm; Elisha and Mordecai' },
+  8:  { title: 'Moderately Common (211–240)', description: 'Vision, dread and dismay; ephod, signet ring and plank; discipline and pride; Daniel and Rehoboam' },
+  9:  { title: 'Moderately Common (241–270)', description: 'Passover, guilt offering and forgiveness; compassion and hope; blue yarn, chamber and banquet; Rachel and Damascus' },
+  10: { title: 'Building Breadth (271–300)',  description: 'Garden, lyre and lampstand; jealousy, insight and beauty; ambush, refusal and trembling; Gilgal and Issachar' },
 };
 // Module-level cache to avoid re-sorting on every call
 let cachedCommonVocab: VocabularyWord[] | null = null;
@@ -64,19 +65,20 @@ const EXCLUDED_IDS = new Set(['H4430', 'H1768', 'H3212']);
 export function getCommonOTVocab(): VocabularyWord[] {
   if (!cachedCommonVocab) {
     const words = vocabularyData.words as VocabularyWord[];
-    const spellings = new Set<string>();
+    const seenFamilies = new Set<string>();
     cachedCommonVocab = [...words]
       .filter((w) => !EXCLUDED_IDS.has(w.id))
       .filter((w) => typeof w.frequency === 'number' && w.frequency > 0)
       .filter((w) => !isCourseworkWord(w.hebrew))
       .sort((a, b) => b.frequency - a.frequency)
-      // One entry per pointed spelling: the drill shows a spelling and asks for
-      // its meaning, so two entries spelled alike — שִׁיר the noun "song" and
-      // שִׁיר the verb "to sing" — would be two questions a student cannot tell
-      // apart. The more frequent sense wins.
+      // One entry per root family, which also means one per spelling: the drill
+      // shows a word and asks for its meaning, so neither two entries spelled
+      // alike (שִׁיר the noun and שִׁיר the verb) nor two cognates (חֹק and חֻקָּה)
+      // may both appear — in a section or across the list. Most frequent wins.
       .filter((w) => {
-        if (spellings.has(w.hebrew)) return false;
-        spellings.add(w.hebrew);
+        const family = familyKey(w.hebrew);
+        if (seenFamilies.has(family)) return false;
+        seenFamilies.add(family);
         return true;
       })
       .slice(0, COMMON_VOCAB_COUNT);

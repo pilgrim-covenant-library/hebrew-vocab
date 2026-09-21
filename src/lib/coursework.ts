@@ -1,4 +1,5 @@
 import { normalizeHebrew } from './hebrew';
+import { familyKey } from './hebrewStem';
 import { COURSEWORK_WORDS } from '@/data/courseworkWords';
 
 /**
@@ -7,9 +8,8 @@ import { COURSEWORK_WORDS } from '@/data/courseworkWords';
  * The three banks are meant to be disjoint: homework is the baseline, the
  * practice-paper vocabulary section may not reuse a homework word, and the
  * top-300 drill may not reuse a word from either. Membership is compared on the
- * consonantal skeleton, so pointing and maqqef do not hide a repeat — but an
- * inflected form (יִשְׁמֹר) does not match its lemma (שָׁמַר), because resolving one
- * to the other needs morphology this file deliberately does not do.
+ * root family (see hebrewStem), so neither pointing nor inflection nor derivation
+ * hides a repeat: שָׁמַר in a homework also rules out נִשְׁמַר and מִשְׁמֶרֶת elsewhere.
  */
 
 /** A word's comparison key: consonants only, no pointing, no maqqef. */
@@ -76,7 +76,17 @@ export function collectCourseworkWords(root: unknown, into = new Set<string>()):
 /** Lookup set for the generated list. */
 export const COURSEWORK_WORD_KEYS: ReadonlySet<string> = new Set(COURSEWORK_WORDS);
 
-/** True when this Hebrew word is already drilled somewhere in the course. */
+let courseworkFamilies: Set<string> | null = null;
+
+/** The root families the coursework already covers. */
+export function courseworkFamilyKeys(): ReadonlySet<string> {
+  if (!courseworkFamilies) {
+    courseworkFamilies = new Set(COURSEWORK_WORDS.map((word) => familyKey(word)));
+  }
+  return courseworkFamilies;
+}
+
+/** True when this word, or any cognate of it, is already drilled in the course. */
 export function isCourseworkWord(hebrew: string): boolean {
-  return COURSEWORK_WORD_KEYS.has(courseworkWordKey(hebrew));
+  return courseworkFamilyKeys().has(familyKey(hebrew));
 }
