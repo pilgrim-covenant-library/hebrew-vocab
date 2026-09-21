@@ -4,10 +4,16 @@
 // lemmas, Aramaic entries in a Hebrew list, and one verb split across two
 // Strong's numbers so it was drilled twice.
 
+import vocabularyData from '@/data/vocabulary.json';
 import { getCommonOTVocab, COMMON_VOCAB_SECTIONS } from '@/lib/commonVocab';
+import type { VocabularyWord } from '@/types';
 
+// The drill list is the words it currently serves; byId is every entry in the
+// vocabulary data. The audited defects below were defects in the DATA, and the
+// flashcard and quiz modes still serve those words, so they are asserted
+// against the data rather than against whichever words the drill holds today.
 const top = getCommonOTVocab();
-const byId = new Map(top.map((w) => [w.id, w]));
+const byId = new Map((vocabularyData.words as VocabularyWord[]).map((w) => [w.id, w]));
 
 describe('top-300 list composition', () => {
   it('holds exactly 300 words with no duplicate ids', () => {
@@ -22,8 +28,8 @@ describe('top-300 list composition', () => {
     expect(aramaic.map((w) => w.id)).toEqual([]);
   });
 
-  it('drills הלך once, under the lemma students learn', () => {
-    expect(byId.has('H3212')).toBe(false); // ילך — the same verb, split by Strong's
+  it('never drills ילך, the Strong\'s split of הלך', () => {
+    expect(top.some((w) => w.id === 'H3212')).toBe(false);
     expect(byId.get('H1980')?.hebrew).toBe('הָלַךְ');
   });
 
@@ -35,8 +41,9 @@ describe('top-300 list composition', () => {
       if (prior) clashes.push(`${w.hebrew} (${prior} / ${w.id})`);
       else seen.set(w.hebrew, w.id);
     }
-    // אֵת is the one true homograph: object marker vs. the preposition "with".
-    expect(clashes).toEqual(['אֵת (H853 / H854)']);
+    // Both אֵת entries — object marker and the preposition "with" — are homework
+    // words now, so the drill no longer has a homograph pair at all.
+    expect(clashes).toEqual([]);
   });
 });
 
@@ -71,7 +78,11 @@ describe('glosses are written for a learner', () => {
   it('carries no archaic pronouns, hedges, or truncated text', () => {
     const bad = top.filter((w) =>
       /\b(thou|thee|thy|ye)\b/i.test(w.gloss) ||
-      /^(Used|Properly|Probably|Perhaps|Hence|The same as)\b/i.test(w.gloss) ||
+      /^(Used|Properly|Probably|Perhaps|Hence|The same as|A form of|Strictly|Something)\b/i.test(w.gloss) ||
+      // A bare title-cased Strong's headword, with no sense a learner can use:
+      // "Contumely" for חֶרְפָּה, "Physically" for יָדָה. Anchored, so the same word
+      // inside a real gloss ("Width, breadth") is fine.
+      /^(Contumely|Blithesomeness|Booty|Suspension|Abbreviated|Physically|Assemblage|Dominion|Graciousness|Entire|Advice|Watch|Width|Hunger|Dusk|Pierced|Familiar|Lave)$/i.test(w.gloss) ||
       /\s{2,}/.test(w.gloss) ||
       /\s\bor\s*$/i.test(w.gloss),
     );
@@ -118,5 +129,48 @@ describe('section descriptions match their words', () => {
       expect(section.description.length).toBeGreaterThan(0);
       expect(section.description).not.toMatch(/cultic|warfare/i);
     }
+  });
+});
+
+describe('glosses of the words the coursework-free list pulled in', () => {
+  // Below the old top-300 nothing had been audited: these are the defects that
+  // surfaced when skipping the coursework words pushed the list further down the
+  // frequency table. Two were not merely archaic but wrong.
+  it.each([
+    ['H3034', /praise|thank/i],        // יָדָה was "Physically"
+    ['H3001', /dry|wither/i],          // יָבֵשׁ was "To be ashamed" — that is בּוֹשׁ
+    ['H2181', /prostitute|unfaithful/i], // זָנָה was "To commit adultery"
+    ['H6327', /scatter|disperse/i],    // פּוּץ was "To dash in pieces"
+    ['H3722', /atone/i],               // כָּפַר was "To cover"
+    ['H1350', /redeem/i],              // גָּאַל was "To be the next of kin"
+    ['H6999', /incense/i],             // קָטַר was "To smoke"
+    ['H7911', /forget/i],              // שָׁכַח was "To mislay"
+    ['H8057', /joy|glad/i],            // שִׂמְחָה was "Blithesomeness or glee"
+    ['H2781', /reproach|disgrace/i],   // חֶרְפָּה was "Contumely"
+    ['H5542', /selah/i],               // סֶלָה was "Suspension"
+    ['H441', /chief|leader/i],         // אַלּוּף was "Familiar", and tagged a verb
+    ['H5265', /set out|journey/i],     // נָסַע was "Properly"
+    ['H2583', /encamp/i],              // חָנָה was "Properly"
+    ['H2490', /profane/i],             // חָלַל was "Properly"
+  ])('%s reads naturally', (id, pattern) => {
+    expect(byId.get(id)?.gloss).toMatch(pattern);
+  });
+
+  it.each([
+    ['H3414', 'Jeremiah'], ['H8111', 'Samaria'], ['H3379', 'Jeroboam'],
+    ['H6215', 'Esau'], ['H1035', 'Bethlehem'], ['H884', 'Beersheba'],
+    ['H4519', 'Manasseh'], ['H3667', 'Canaan'], ['H2396', 'Hezekiah'],
+    ['H53', 'Absalom'], ['H1008', 'Bethel'], ['H2275', 'Hebron'],
+  ])('%s is named %s, not transliterated', (id, name) => {
+    expect(byId.get(id)?.gloss).toContain(name);
+  });
+
+  it('files no noun or adjective under a closed word class', () => {
+    const closed = ['preposition', 'conjunction', 'particle', 'pronoun'];
+    const suspect = top.filter(
+      (w) => closed.includes(w.partOfSpeech) && /^[A-Z][a-z]+(,| |$)/.test(w.gloss) &&
+        /^(Wine|Skin|Cedar|Wall|Vineyard|Cherub|Song|Door|Kingdom|Treasury|Work|Wise|Lebanon|Egyptian|Amorite)\b/.test(w.gloss),
+    );
+    expect(suspect.map((w) => `${w.id} ${w.gloss} = ${w.partOfSpeech}`)).toEqual([]);
   });
 });
