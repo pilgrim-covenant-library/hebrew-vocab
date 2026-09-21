@@ -459,8 +459,9 @@ export const class13GrammarQuestions: PracticeMCQ[] = [
 
 export const class13VocabQuestions: PracticeMCQ[] = [
   // Vocabulary here must not repeat a word the homeworks drill: homework is the
-  // baseline, and courseworkDisjoint.test.ts enforces it on the word each item
-  // asks about. Distractors may quote familiar words — a distractor the student
+  // baseline, and courseworkDisjoint.test.ts enforces that on the word each item
+  // asks about AND on the Hebrew quoted in its options. English glosses of
+  // familiar words are still fair game as distractors — a distractor the student
   // has never met is one they can eliminate without knowing the answer.
 
   // --- Standard BBH High-Frequency Vocabulary (Items 1-28) ---

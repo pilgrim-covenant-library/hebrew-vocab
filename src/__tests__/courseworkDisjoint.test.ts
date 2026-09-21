@@ -26,6 +26,7 @@ import {
   class13ExamVocabQuestions,
   class13ExamVerseAnalysisQuestions,
 } from '@/data/review/class13FinalExam';
+import type { PracticeMCQ } from '@/data/review/practicePaper';
 import { collectCourseworkWords, courseworkWordKey } from '@/lib/coursework';
 import { COURSEWORK_WORDS } from '@/data/courseworkWords';
 import { getCommonOTVocab } from '@/lib/commonVocab';
@@ -73,21 +74,41 @@ describe('the generated coursework word list', () => {
   });
 });
 
+// Both the word an item asks about and any Hebrew quoted in its options: a
+// familiar word offered as a distractor is still a word out of the homeworks.
+function homeworkRepeats(questions: readonly PracticeMCQ[]): string[] {
+  const repeats: string[] = [];
+  for (const question of questions) {
+    const words = new Set<string>();
+    collectCourseworkWords([{ hebrew: question.hebrew, options: question.options }], words);
+    for (const word of words) {
+      if (homeworkWords.has(word)) repeats.push(`${question.id}: ${word}`);
+    }
+  }
+  return repeats;
+}
+
 describe('practice-paper vocabulary section', () => {
   it('reuses no homework word', () => {
-    const repeats: string[] = [];
-    for (const question of class13VocabQuestions) {
-      const words = new Set<string>();
-      collectCourseworkWords([{ hebrew: question.hebrew, options: question.options }], words);
-      for (const word of words) {
-        if (homeworkWords.has(word)) repeats.push(`${question.id}: ${word}`);
-      }
-    }
-    expect(repeats).toEqual([]);
+    expect(homeworkRepeats(class13VocabQuestions)).toEqual([]);
   });
 
   it('asks each word only once', () => {
     const asked = class13VocabQuestions.map((q) => courseworkWordKey(q.hebrew ?? ''));
+    const duplicated = asked.filter((w, i) => w && asked.indexOf(w) !== i);
+    expect(duplicated).toEqual([]);
+  });
+});
+
+describe('final-exam vocabulary section', () => {
+  // Thirty-four of its forty items come from the practice paper, but the six
+  // exam-only replacements are authored here and were not covered before.
+  it('reuses no homework word', () => {
+    expect(homeworkRepeats(class13ExamVocabQuestions)).toEqual([]);
+  });
+
+  it('asks each word only once', () => {
+    const asked = class13ExamVocabQuestions.map((q) => courseworkWordKey(q.hebrew ?? ''));
     const duplicated = asked.filter((w, i) => w && asked.indexOf(w) !== i);
     expect(duplicated).toEqual([]);
   });
