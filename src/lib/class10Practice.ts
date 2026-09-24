@@ -22,6 +22,7 @@ import {
   CLASS11_CH32_CONTEXT_GROUPS,
   CLASS11_CH32_GROUPS,
   CLASS11_CH32_MEMORY_GROUPS,
+  CLASS11_CH32_WEAK_ROOT_CONTEXT_IDS,
 } from '@/data/class11-mcq';
 import type { PracticeQuestionGroup } from '@/types/class-practice';
 import {
@@ -32,14 +33,9 @@ import {
 
 // Class 10 also drills the STRONG Piel (Ch 30) and STRONG Pual (Ch 32). The
 // weak chapters (31, 33) stay out, and so do the two Pual passages that turn on
-// a weak root: כָּלָה is III-ה and זָרָה is hollow, both Ch 33 material.
-const WEAK_ROOT_PASSAGE_IDS = new Set([
-  'class11-context-ch32-gen2-1',
-  'class11-context-ch32-isa1-6',
-]);
-
+// a weak root — those belong to week 11.
 const CH32_STRONG_CONTEXT_GROUPS = CLASS11_CH32_CONTEXT_GROUPS.filter(
-  (group) => !WEAK_ROOT_PASSAGE_IDS.has(group.id),
+  (group) => !CLASS11_CH32_WEAK_ROOT_CONTEXT_IDS.has(group.id),
 );
 
 // Trimmed for length: each chapter keeps five core questions. The dropped ones

@@ -515,11 +515,11 @@ export const class13VocabQuestions: PracticeMCQ[] = [
   },
   {
     id: 'c13-v07',
-    question: 'What does the noun חַיִל mean?',
-    hebrew: 'חַיִל',
-    options: ['fear, dread', 'wisdom, skill', 'beauty, splendour', 'strength, army, wealth'],
-    correctIndex: 3,
-    explanation: 'חַיִל is force in any sense: bodily strength, an army in the field, or wealth. אֵשֶׁת חַיִל is a woman of worth (Proverbs 31:10).',
+    question: 'What does the adjective רָשָׁע mean?',
+    hebrew: 'רָשָׁע',
+    options: ['righteous, just', 'wicked, guilty', 'foolish, simple', 'humble, lowly'],
+    correctIndex: 1,
+    explanation: 'רָשָׁע is the guilty party in a lawsuit and the wicked in Wisdom literature — the standing opposite of צַדִּיק (Psalm 1:6).',
   },
   {
     id: 'c13-v08',
@@ -563,11 +563,11 @@ export const class13VocabQuestions: PracticeMCQ[] = [
   },
   {
     id: 'c13-v13',
-    question: 'What does the noun זֶרַע mean?',
-    hebrew: 'זֶרַע',
-    options: ['burnt offering', 'loud outcry', 'prophetic remnant', 'seed / offspring'],
-    correctIndex: 3,
-    explanation: 'זֶרַע denotes agricultural seed as well as genealogical offspring.',
+    question: 'What does the verb שָׂמַח mean?',
+    hebrew: 'שָׂמַח',
+    options: ['to mourn, grieve', 'to fear, tremble', 'to rejoice, be glad', 'to rest, be still'],
+    correctIndex: 2,
+    explanation: 'שָׂמַח is to be glad, and the noun שִׂמְחָה (joy) comes from it. The feasts are to be kept with rejoicing (Deuteronomy 16:14).',
   },
   {
     id: 'c13-v14',
@@ -695,11 +695,11 @@ export const class13VocabQuestions: PracticeMCQ[] = [
   // --- Vocabulary Synonym & Semantic Discrimination Items (Items 29-34) ---
   {
     id: 'c13-v29',
-    question: 'How do שָׂפָה and לָשׁוֹן differ where both mean "language"?',
-    hebrew: 'שָׂפָה vs. לָשׁוֹן',
-    options: ['שָׂפָה is the lip; לָשׁוֹן is the tongue', 'לָשׁוֹן is the lip; שָׂפָה is the throat', 'both refer only to the edge of a garment', 'neither is ever used of human speech'],
-    correctIndex: 0,
-    explanation: 'Both extend from a body part to speech: שְׂפַת כְּנַעַן is "the language of Canaan", לְשׁוֹן הַקֹּדֶשׁ "the holy tongue". שָׂפָה also means an edge or shore.',
+    question: 'Which directions do צָפוֹן and נֶגֶב name?',
+    hebrew: 'צָפוֹן vs. נֶגֶב',
+    options: ['נֶגֶב is north; צָפוֹן is the south', 'both name the eastern desert', 'צָפוֹן is east; נֶגֶב is west', 'צָפוֹן is north; נֶגֶב is the south'],
+    correctIndex: 3,
+    explanation: 'צָפוֹן is the north. נֶגֶב is the dry country south of Judah, and so "south" in general — to go נֶגְבָּה is to head south.',
   },
   {
     id: 'c13-v30',
@@ -769,11 +769,11 @@ export const class13VocabQuestions: PracticeMCQ[] = [
   },
   {
     id: 'c13-v38',
-    question: 'What does the verb הָלַל mean in the Piel?',
-    hebrew: 'הָלַל',
-    options: ['to mourn, lament', 'to praise, extol', 'to whisper, murmur', 'to mock, deride'],
+    question: 'What does the verb הָרַג mean?',
+    hebrew: 'הָרַג',
+    options: ['to bind, capture', 'to kill, slay', 'to wound, strike', 'to chase, pursue'],
     correctIndex: 1,
-    explanation: 'Piel הִלֵּל is to praise, as in הַלְלוּ יָה. The Hithpael turns it reflexive: to boast, or to glory in something.',
+    explanation: 'הָרַג is to kill — Cain killed Abel (Genesis 4:8). Unlike רָצַח it is used of killing in war and of execution as well as of murder.',
   },
   {
     id: 'c13-v39',

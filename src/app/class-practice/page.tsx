@@ -234,6 +234,22 @@ export default function ClassPracticePage() {
           />
 
           <ClassPracticeCard
+            title="Class 11 MCQ"
+            description="The rest of the course after Class 10: the weak Piel and Pual (Chapters 31 and 33) and the reflexive Hithpael (Chapters 34–35), inside words, clauses, and passages"
+            icon={ListChecks}
+            href="/class-practice/class-11-mcq"
+            color="cyan"
+          />
+
+          <ClassPracticeCard
+            title="Homework 11"
+            description="MCQ assignment on the weak Piel and Pual, the Hithpael strong and weak, new Chapter 30–35 vocabulary, and verse translation"
+            icon={ClipboardList}
+            href="/homework/hw11"
+            color="amber"
+          />
+
+          <ClassPracticeCard
             title="Practice Paper"
             description="Comprehensive guided review covering Chapters 1–35 with 40 grammar MCQ, 40 vocab MCQ, and 5 verse analyses"
             icon={FileText}

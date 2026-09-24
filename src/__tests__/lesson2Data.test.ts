@@ -104,8 +104,8 @@ describe('Homework 2 data', () => {
       .map((question) => 'question' in question ? question.question : '')
       .join(' ');
     expect(prompts).not.toMatch(/qamets|patach|tsere|segol|hireq|holem|qibbuts|shureq|vowel class|vowel name/i);
-    expect(EXTENDED_HOMEWORK_ORDER).toEqual(['hw2', 'hw3', 'hw4', 'hw5', 'hw6', 'hw7', 'hw8', 'hw9', 'hw10']);
-    expect(Object.keys(EXTENDED_HOMEWORKS)).toEqual(['hw2', 'hw3', 'hw4', 'hw5', 'hw6', 'hw7', 'hw8', 'hw9', 'hw10']);
+    expect(EXTENDED_HOMEWORK_ORDER).toEqual(['hw2', 'hw3', 'hw4', 'hw5', 'hw6', 'hw7', 'hw8', 'hw9', 'hw10', 'hw11']);
+    expect(Object.keys(EXTENDED_HOMEWORKS)).toEqual(['hw2', 'hw3', 'hw4', 'hw5', 'hw6', 'hw7', 'hw8', 'hw9', 'hw10', 'hw11']);
     expect(LEGACY_EXTENDED_HOMEWORKS.hw3).toBeDefined();
   });
 

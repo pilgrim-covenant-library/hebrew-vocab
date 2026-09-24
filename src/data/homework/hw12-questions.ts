@@ -6,9 +6,9 @@
 // There is no Chapter 36, so this assignment covers Chapters 34-35 and
 // completes the course.
 //
-// NOT YET RELEASED: this bank is intentionally absent from the active
-// extended-registry, so it is not reachable from the app. Wire it in when
-// the class is ready.
+// Served inside HW11, the last homework: hw11-questions.ts picks its Chapter
+// 34-35 items from these sections. HW12 itself stays out of the active
+// registry — releasing it as well would set these questions twice.
 
 import type { MCQQuestion, PairedMCQQuestion } from '@/types/homework';
 import type { ExtendedHomeworkMeta } from '@/types/homework-extended';

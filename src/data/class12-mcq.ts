@@ -6,9 +6,9 @@
 // 35 (Hithpael weak verbs). There is no Chapter 36, so this class covers
 // Chapters 34-35 and completes the course.
 //
-// NOT YET RELEASED. Nothing imports this bank into a route, so it is not
-// reachable from the app. Release = add a Class12MCQPractice route page and a
-// hub card (see class-6-mcq for the pattern).
+// Served inside week 11, the last lesson week: class11Practice.ts takes the
+// Hithpael chapters from here. There is no separate Class 12 route, and none is
+// needed — adding one would teach these chapters twice.
 
 import type { PracticeQuestion, PracticeQuestionGroup } from '@/types/class-practice';
 

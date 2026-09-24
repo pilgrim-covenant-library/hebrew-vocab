@@ -58,7 +58,7 @@ const classCases: ClassCase[] = [
   { name: 'Class 8 (ch 20-22)', slug: 'class-8-mcq', config: CLASS8_CONFIG, modes: CLASS8_MODES, build: buildClass8Session },
   { name: 'Class 9 (ch 23-25)', slug: 'class-9-mcq', config: CLASS9_CONFIG, modes: CLASS9_MODES, build: buildClass9Session },
   { name: 'Class 10 (ch 26-29 + strong Piel/Pual)', slug: 'class-10-mcq', config: CLASS10_CONFIG, modes: CLASS10_MODES, build: buildClass10Session, allModeSize: 40 },
-  { name: 'Class 11 (ch 30-33)', slug: 'class-11-mcq', config: CLASS11_CONFIG, modes: CLASS11_MODES, build: buildClass11Session },
+  { name: 'Class 11 (ch 31, 33-35: the rest after Class 10)', slug: 'class-11-mcq', config: CLASS11_CONFIG, modes: CLASS11_MODES, build: buildClass11Session },
   { name: 'Class 12 (ch 34-35)', slug: 'class-12-mcq', config: CLASS12_CONFIG, modes: CLASS12_MODES, build: buildClass12Session },
 ];
 
@@ -67,12 +67,15 @@ const homeworkCases: HomeworkCase[] = [
   { name: 'HW8 (ch 20-22)', id: 'hw8', meta: hw8Meta, sections: hw8Sections },
   { name: 'HW9 (ch 23-25)', id: 'hw9', meta: hw9Meta, sections: hw9Sections },
   { name: 'HW10 (ch 26-29 + strong Piel/Pual)', id: 'hw10', meta: hw10Meta, sections: hw10Sections, questionTotal: 46 },
-  { name: 'HW11 (ch 30-33)', id: 'hw11', meta: hw11Meta, sections: hw11Sections },
+  { name: 'HW11 (ch 31, 33-35: the rest after HW10)', id: 'hw11', meta: hw11Meta, sections: hw11Sections, questionTotal: 48 },
   { name: 'HW12 (ch 34-35)', id: 'hw12', meta: hw12Meta, sections: hw12Sections },
 ];
 
-const DARK_HOMEWORK_IDS = ['hw11', 'hw12'];
-const DARK_CLASS_SLUGS = ['class-11-mcq', 'class-12-mcq'];
+// Week 12 stays dark: its Hithpael chapters are served inside week 11, which is
+// the last lesson week. The HW12 and Class 12 banks remain the source of those
+// questions, not a separate assignment.
+const DARK_HOMEWORK_IDS = ['hw12'];
+const DARK_CLASS_SLUGS = ['class-12-mcq'];
 
 describe.each(classCases)('$name practice data', ({ config, modes, build, allModeSize }) => {
   const expectedAllMode = allModeSize ?? 40;
@@ -104,9 +107,12 @@ describe.each(classCases)('$name practice data', ({ config, modes, build, allMod
     for (const chapter of config.chapters) {
       expect(chapter.memoryGroups.length).toBeGreaterThanOrEqual(config.chapterSample);
       expect(chapter.groups.length).toBeGreaterThan(chapter.memoryGroups.length);
-      // Four, except where passages on weak roots were deliberately filtered out.
+      // Four, except where passages on weak roots were deliberately filtered out
+      // — and Class 11's Ch 33, which also carries the two weak-root Pual
+      // passages Class 10 left for it (Gen 2:1 כָּלָה, Isa 1:6 זָרָה).
+      const handedOn = config === CLASS11_CONFIG && chapter.id === 'ch33' ? 2 : 0;
       expect(chapter.contextGroups.length).toBeGreaterThanOrEqual(config.contextSample / 4);
-      expect(chapter.contextGroups.length).toBeLessThanOrEqual(4);
+      expect(chapter.contextGroups.length).toBeLessThanOrEqual(4 + handedOn);
       for (const group of chapter.memoryGroups) {
         expect(chapter.groups).toContain(group);
       }
@@ -224,7 +230,7 @@ describe.each(homeworkCases)('$name data', ({ meta, sections, questionTotal }) =
   });
 });
 
-describe('HW11-HW12 and Class 11-12 are built but still DARK', () => {
+describe('HW12 and Class 12 are built but still DARK', () => {
   it('keeps every new homework out of the active registry', () => {
     for (const id of DARK_HOMEWORK_IDS) {
       expect(getHomework(id)).toBeUndefined();
@@ -241,8 +247,8 @@ describe('HW11-HW12 and Class 11-12 are built but still DARK', () => {
   });
 });
 
-describe('HW7-HW10 and Class 7-10 are released', () => {
-  it('wires HW7, HW8, HW9, and HW10 into the active homework registry', () => {
+describe('HW7-HW11 and Class 7-11 are released', () => {
+  it('wires HW7 through HW11 into the active homework registry', () => {
     expect(getHomework('hw7')).toBe(hw7Meta);
     expect(EXTENDED_HOMEWORK_ORDER).toContain('hw7');
     expect(Object.keys(EXTENDED_HOMEWORKS)).toContain('hw7');
@@ -258,6 +264,10 @@ describe('HW7-HW10 and Class 7-10 are released', () => {
     expect(getHomework('hw10')).toBe(hw10Meta);
     expect(EXTENDED_HOMEWORK_ORDER).toContain('hw10');
     expect(Object.keys(EXTENDED_HOMEWORKS)).toContain('hw10');
+
+    expect(getHomework('hw11')).toBe(hw11Meta);
+    expect(EXTENDED_HOMEWORK_ORDER).toContain('hw11');
+    expect(Object.keys(EXTENDED_HOMEWORKS)).toContain('hw11');
   });
 
   it('provides valid routes for Class 7, Class 8, Class 9, and Class 10 practice', () => {
@@ -272,5 +282,52 @@ describe('HW7-HW10 and Class 7-10 are released', () => {
 
     const route10 = join(process.cwd(), 'src/app/class-practice', 'class-10-mcq', 'page.tsx');
     expect(existsSync(route10)).toBe(true);
+
+    const route11 = join(process.cwd(), 'src/app/class-practice', 'class-11-mcq', 'page.tsx');
+    expect(existsSync(route11)).toBe(true);
+  });
+});
+
+// Week 10 already taught the STRONG Piel (Ch 30) and STRONG Pual (Ch 32), so
+// week 11 is everything after that: the weak Piel and Pual (Ch 31, 33) and the
+// Hithpael (Ch 34-35), with nothing a week-10 student has already answered.
+describe('Week 11 is the rest of the course after week 10', () => {
+  // Cantillation off, vowels kept: עֵז "goat" and עֹז "strength" are different
+  // words, so comparing bare consonants would call them a repeat.
+  const CANTILLATION = /[\u0591-\u05AF\u05BD\u05C0\u05C3]/g;
+  const norm = (text: unknown) =>
+    typeof text === 'string'
+      ? text.replace(CANTILLATION, '').toLowerCase().replace(/[^a-z0-9\u05b0-\u05ea]+/g, ' ').trim()
+      : '';
+  const key = (q: { question?: string; prompt?: string; hebrew?: string }) =>
+    `${norm(q.question ?? q.prompt)}|${norm(q.hebrew)}`;
+
+  const class10Questions = [
+    ...CLASS10_CONFIG.chapters.flatMap((c) => [...c.groups, ...c.memoryGroups, ...c.contextGroups]),
+    ...CLASS10_CONFIG.contextGroups, ...CLASS10_CONFIG.verseGroups, ...CLASS10_CONFIG.wordGroups,
+  ].flatMap((g) => g.questions);
+  const class11Questions = [
+    ...CLASS11_CONFIG.chapters.flatMap((c) => [...c.groups, ...c.memoryGroups, ...c.contextGroups]),
+    ...CLASS11_CONFIG.contextGroups, ...CLASS11_CONFIG.verseGroups, ...CLASS11_CONFIG.wordGroups,
+  ].flatMap((g) => g.questions);
+  const hw10Questions = Object.values(hw10Sections).flat() as HomeworkQuestion[];
+  const hw11Questions = Object.values(hw11Sections).flat() as HomeworkQuestion[];
+  const week10 = new Set([...class10Questions, ...hw10Questions].map((q) => key(q as never)));
+
+  it('practises exactly the chapters week 10 left: 31, 33, 34 and 35', () => {
+    expect(CLASS11_CONFIG.chapters.map((c) => c.id)).toEqual(['ch31', 'ch33', 'ch34', 'ch35']);
+    const titles = hw11Meta.sections.map((s) => s.title).join(' | ');
+    for (const chapter of ['Ch 31', 'Ch 33', 'Ch 34', 'Ch 35']) expect(titles).toContain(chapter);
+    expect(titles).not.toMatch(/Ch 30 —|Ch 32 —/);
+  });
+
+  it('repeats no Class 10 or HW10 question in Class 11', () => {
+    const repeats = class11Questions.filter((q) => week10.has(key(q))).map((q) => q.id);
+    expect(repeats).toEqual([]);
+  });
+
+  it('repeats no Class 10 or HW10 question in HW11', () => {
+    const repeats = hw11Questions.filter((q) => week10.has(key(q as never))).map((q) => q.id);
+    expect(repeats).toEqual([]);
   });
 });

@@ -5,7 +5,7 @@
 // Strong's numbers so it was drilled twice.
 
 import vocabularyData from '@/data/vocabulary.json';
-import { getCommonOTVocab, COMMON_VOCAB_SECTIONS } from '@/lib/commonVocab';
+import { getCommonOTVocab, getCommonVocabSection, COMMON_VOCAB_SECTIONS } from '@/lib/commonVocab';
 import type { VocabularyWord } from '@/types';
 
 // The drill list is the words it currently serves; byId is every entry in the
@@ -122,6 +122,20 @@ describe('part of speech', () => {
 });
 
 describe('section descriptions match their words', () => {
+  it('names only words the section actually holds', () => {
+    // Captions went stale four times as the coursework moved words in and out of
+    // the list; every term a caption names must be a gloss in its own section.
+    for (const section of COMMON_VOCAB_SECTIONS) {
+      const glosses = getCommonVocabSection(section.id).map((w) => w.gloss.toLowerCase());
+      const terms = section.description
+        .split(/;|,| and /)
+        .map((t) => t.trim().toLowerCase().replace(/^the /, ''))
+        .filter(Boolean);
+      const missing = terms.filter((term) => !glosses.some((g) => g.includes(term)));
+      expect(`section ${section.id}: ${missing.join(', ')}`).toBe(`section ${section.id}: `);
+    }
+  });
+
   it('claims no category the section does not contain', () => {
     // Section 7 was captioned "cultic terminology and warfare terms" while
     // holding stone, flesh, heart, foot and cubit.

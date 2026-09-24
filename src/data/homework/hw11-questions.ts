@@ -1,13 +1,15 @@
-// HW11 — The Piel and Pual Stems (Strong and Weak).
-// CourseGuide for BBH (Pratico/Van Pelt) Chapters 30-33 (Sessions 30-33),
-// plus the new Chapter 30-33 vocabulary and verse-translation practice.
+// HW11 — the last homework: everything after HW10.
+// The question banks below cover CourseGuide Chapters 30-33; the assignment at
+// the bottom of the file is composed from them and from HW12's Chapter 34-35
+// banks.
 //
-// NOT YET RELEASED: this bank is intentionally absent from the active
-// extended-registry, so it is not reachable from the app. Wire it in when
-// the class is ready.
+// RELEASED: wired into the active extended-registry and reachable at /homework/hw11.
+// HW10 already teaches the STRONG Piel (Ch 30) and STRONG Pual (Ch 32) in its
+// sections 7 and 8, so this file keeps no banks for them.
 
-import type { MCQQuestion, PairedMCQQuestion } from '@/types/homework';
+import type { HomeworkQuestion, MCQQuestion, PairedMCQQuestion } from '@/types/homework';
 import type { ExtendedHomeworkMeta } from '@/types/homework-extended';
+import { hw12Sections } from './hw12-questions';
 
 function vocab(
   id: string,
@@ -39,17 +41,6 @@ function vocab(
   };
 }
 
-// Section 1 — Chapter 30: the Piel stem, strong verbs.
-const sec1: MCQQuestion[] = [
-  { id: 'hw11-s1-q1', type: 'mcq', question: 'Which feature appears in EVERY form of every Piel conjugation?', options: ['a Daghesh Forte in the second root consonant', 'a נ prefix', 'a Qibbuts under the first root consonant', 'a Hireq Yod stem vowel'], correctIndex: 0, explanation: 'CourseGuide Ch 30. The doubled middle root consonant is the heart of the Piel — and of the Pual and Hithpael as well.', category: 'piel-strong' },
-  { id: 'hw11-s1-q2', type: 'mcq', question: 'What vowel stands under Piel Imperfect preformatives and Participle prefixes?', options: ['Pathach', 'a vocal Shewa', 'Qamets', 'Hireq'], correctIndex: 1, explanation: 'CourseGuide Ch 30. יְקַטֵּל and מְקַטֵּל both begin with a vocal Shewa; the Hiphil takes Pathach in exactly those places.', category: 'piel-strong' },
-  { id: 'hw11-s1-q3', type: 'mcq', question: 'What vowel stands under the FIRST root consonant of a Piel?', options: ['Qibbuts everywhere', 'Qamets everywhere', 'Pathach in every conjugation except the Perfect', 'Shewa everywhere'], correctIndex: 2, explanation: 'CourseGuide Ch 30. The Perfect קִטֵּל takes Hireq; every other conjugation takes Pathach.', category: 'piel-strong' },
-  { id: 'hw11-s1-q4', type: 'mcq', question: 'Which form is the Piel Perfect 3ms of √q-t-l?', options: ['הִקְטִיל', 'נִקְטַל', 'קֻטַּל', 'קִטֵּל'], correctIndex: 3, explanation: 'CourseGuide Ch 30. Hireq under the first root consonant, Daghesh Forte in the second, Tsere as the stem vowel.', category: 'piel-strong' },
-  { id: 'hw11-s1-q5', type: 'mcq', question: 'What is the FACTITIVE use of the Piel?', options: ['it makes an intransitive Qal verb transitive', 'it makes an active verb passive', 'it makes a verb plural', 'it turns a verb into a noun'], correctIndex: 0, explanation: 'CourseGuide Ch 30. "To be holy" becomes "to make holy"; a Qal that cannot take an object can do so in the Piel.', category: 'piel-strong' },
-  { id: 'hw11-s1-q6', type: 'mcq', question: 'What does the ITERATIVE use of the Piel express?', options: ['a completed action', 'repeated action', 'a passive action', 'a reflexive action'], correctIndex: 1, explanation: 'CourseGuide Ch 30. It can be hard to render in English, but recognizing it explains many Piel forms that are not obviously intensive.', category: 'piel-strong' },
-  { id: 'hw11-s1-q7', type: 'mcq', question: 'Parse: מְקַטֵּל', hebrew: 'מְקַטֵּל', options: ['Hophal Participle', 'Hiphil Participle', 'Piel Participle ms', 'Niphal Participle'], correctIndex: 2, explanation: 'CourseGuide Ch 30. The מ prefix marks the participle of every derived stem; the Shewa, Pathach, and Daghesh Forte make it Piel.', category: 'piel-strong' },
-  { id: 'hw11-s1-q8', type: 'mcq', question: 'Translate: שִׁבֵּר', hebrew: 'שִׁבֵּר', options: ['it was smashed', 'smash!', 'he will smash', 'he shattered, smashed to pieces'], correctIndex: 3, explanation: 'CourseGuide Ch 30. The Qal שָׁבַר means "he broke"; the intensive Piel means "he smashed to pieces." Its passive is the Pual שֻׁבַּר.', category: 'piel-strong' },
-];
 
 // Section 2 — Chapter 31: the Piel stem, weak verbs.
 const sec2: MCQQuestion[] = [
@@ -63,17 +54,6 @@ const sec2: MCQQuestion[] = [
   { id: 'hw11-s2-q8', type: 'mcq', question: 'Parse: הִלֵּל', hebrew: 'הִלֵּל', options: ['Hiphil Perfect 3ms', 'Qal Perfect 3ms', 'Hophal Perfect 3ms', 'Piel Perfect 3ms'], correctIndex: 3, explanation: 'CourseGuide Ch 31. A geminate root keeping every Piel diagnostic. Do not read the initial ה as a Hiphil prefix — here it is the first ROOT consonant.', category: 'piel-weak' },
 ];
 
-// Section 3 — Chapter 32: the Pual stem, strong verbs.
-const sec3: MCQQuestion[] = [
-  { id: 'hw11-s3-q1', type: 'mcq', question: 'What is the Pual?', options: ['the passive of the Piel', 'the causative of the Qal', 'the reflexive of the Piel', 'the passive of the Hiphil'], correctIndex: 0, explanation: 'CourseGuide Ch 32. שִׁבֵּר ("he smashed") gives שֻׁבַּר ("it was smashed"). Like the Piel it can also be factitive, denominative, or iterative.', category: 'pual-strong' },
-  { id: 'hw11-s3-q2', type: 'mcq', question: 'Which single feature distinguishes a Pual from a Piel?', options: ['the Daghesh Forte in the second root consonant', 'a Qibbuts under the first root consonant', 'the Shewa under Imperfect preformatives', 'a נ prefix'], correctIndex: 1, explanation: 'CourseGuide Ch 32. The other two Pual diagnostics are shared with the Piel; only the Qibbuts tells them apart.', category: 'pual-strong' },
-  { id: 'hw11-s3-q3', type: 'mcq', question: 'Which form is the Pual Perfect 3ms of √q-t-l?', options: ['קִטֵּל', 'נִקְטַל', 'קֻטַּל', 'הָקְטַל'], correctIndex: 2, explanation: 'CourseGuide Ch 32. Qibbuts under the first root consonant, Daghesh Forte in the second.', category: 'pual-strong' },
-  { id: 'hw11-s3-q4', type: 'mcq', question: 'Which Pual conjugations does the CourseGuide have you study?', options: ['all seven', 'only the Participle', 'only the two infinitives', 'the Perfect, Imperfect, and Participle'], correctIndex: 3, explanation: 'CourseGuide Ch 32. The remaining Pual conjugations are rare enough not to be worth memorizing.', category: 'pual-strong' },
-  { id: 'hw11-s3-q5', type: 'mcq', question: 'How do you tell the Pual יְקֻטַּל from the Hophal יֻקְטַל?', hebrew: 'יְקֻטַּל / יֻקְטַל', options: ['by the position of the u-class vowel', 'by the root consonants', 'by the person and gender', 'they cannot be distinguished'], correctIndex: 0, explanation: 'CourseGuide Ch 32. The Pual also doubles the second root consonant, which the Hophal never does — two quick checks.', category: 'pual-strong' },
-  { id: 'hw11-s3-q6', type: 'mcq', question: 'Translate: שֻׁבַּר', hebrew: 'שֻׁבַּר', options: ['he smashed', 'it was smashed', 'smash!', 'he will smash'], correctIndex: 1, explanation: 'CourseGuide Ch 32. The Qibbuts turns the Piel שִׁבֵּר into a passive; English needs a form of "to be" to render it.', category: 'pual-strong' },
-  { id: 'hw11-s3-q7', type: 'mcq', question: 'Parse: מְקֻטָּל', hebrew: 'מְקֻטָּל', options: ['Piel Participle', 'Hophal Participle', 'Pual Participle ms', 'Hiphil Participle'], correctIndex: 2, explanation: 'CourseGuide Ch 32. All three Pual diagnostics are present: Shewa under the מ prefix, Qibbuts under the first root consonant, Daghesh Forte in the second.', category: 'pual-strong' },
-  { id: 'hw11-s3-q8', type: 'mcq', question: 'קִטֵּל and קֻטַּל share their consonants. What differs?', hebrew: 'קִטֵּל / קֻטַּל', options: ['the root consonants', 'the person and number', 'the gender of the subject', 'the first vowel and voice'], correctIndex: 3, explanation: 'CourseGuide Ch 32. One vowel carries the whole difference between "he smashed" and "it was smashed."', category: 'pual-strong' },
-];
 
 // Section 4 — Chapter 33: the Pual stem, weak verbs.
 const sec4: MCQQuestion[] = [
@@ -113,22 +93,55 @@ const sec6: MCQQuestion[] = [
   { id: 'hw11-s6-q8', type: 'mcq', question: 'Translate this clause (Isaiah 9:6).', hebrew: 'כִּי־יֶלֶד יֻלַּד־לָנוּ', options: ['For to us a child is born.', 'For a child will bear us a son.', 'For we have borne a child.', 'For the child was given a name.'], correctIndex: 0, explanation: 'יֻלַּד is a Pual of יָלַד (Ch 33) — the Qibbuts under the י and the Daghesh Forte in the ל mark the passive: "was born."', category: 'verse' },
 ];
 
-export const hw11Sections = { 1: sec1, 2: sec2, 3: sec3, 4: sec4, 5: sec5, 6: sec6 };
+/** Questions from a bank, in the order given; a missing id fails at import. */
+function pick<T extends HomeworkQuestion>(bank: readonly T[], ids: readonly string[]): T[] {
+  return ids.map((id) => {
+    const question = bank.find((q) => q.id === id);
+    if (!question) throw new Error(`HW11: no question ${id} in its source bank`);
+    return question;
+  });
+}
+
+// Trimmed to HW10's density: five to eight items a chapter, a dozen words, eight
+// verses. The items left out restate a point a kept item makes — a second plain
+// "translate" of the same stem, a parse of the form another item names, or
+// hw12-s2-q14, which Class 10 already asks word for word.
+const ch31 = pick(sec2, ['hw11-s2-q2', 'hw11-s2-q3', 'hw11-s2-q4', 'hw11-s2-q5', 'hw11-s2-q7', 'hw11-s2-q8']);
+const ch33 = pick(sec4, ['hw11-s4-q1', 'hw11-s4-q2', 'hw11-s4-q3', 'hw11-s4-q4', 'hw11-s4-q5', 'hw11-s4-q8']);
+const ch34 = pick(hw12Sections[1], [
+  'hw12-s1-q1', 'hw12-s1-q2', 'hw12-s1-q3', 'hw12-s1-q5',
+  'hw12-s1-q6', 'hw12-s1-q7', 'hw12-s1-q8', 'hw12-s1-q14',
+]);
+const ch35 = pick(hw12Sections[2], [
+  'hw12-s2-q1', 'hw12-s2-q2', 'hw12-s2-q3', 'hw12-s2-q4',
+  'hw12-s2-q5', 'hw12-s2-q10', 'hw12-s2-q11', 'hw12-s2-q15',
+]);
+// The six most frequent new words of each chapter group.
+const vocabulary: PairedMCQQuestion[] = [
+  ...pick(sec5, ['hw11-s5-q2', 'hw11-s5-q9', 'hw11-s5-q1', 'hw11-s5-q3', 'hw11-s5-q4', 'hw11-s5-q5']),
+  ...pick(hw12Sections[3] as PairedMCQQuestion[], ['hw12-s3-q3', 'hw12-s3-q5', 'hw12-s3-q12', 'hw12-s3-q8', 'hw12-s3-q11', 'hw12-s3-q1']),
+];
+const verses = [
+  ...pick(sec6, ['hw11-s6-q2', 'hw11-s6-q3', 'hw11-s6-q5', 'hw11-s6-q8']),
+  ...pick(hw12Sections[4], ['hw12-s4-q1', 'hw12-s4-q3', 'hw12-s4-q6', 'hw12-s4-q7']),
+];
+
+export const hw11Sections = { 1: ch31, 2: ch33, 3: ch34, 4: ch35, 5: vocabulary, 6: verses };
 
 export const hw11Meta: ExtendedHomeworkMeta = {
   id: 'hw11',
-  title: 'HW11: The Piel and Pual Stems',
+  title: 'HW11: The Weak Piel and Pual, and the Hithpael',
   shortTitle: 'HW11',
-  description: 'CourseGuide for BBH (Pratico/Van Pelt) Chapters 30-33 (Sessions 30-33): the intensive Piel stem in strong and weak verbs, and its passive counterpart the Pual — plus new Chapter 30-33 vocabulary and verse-translation practice.',
-  topics: ['Ch 30: Piel strong verbs', 'Ch 31: Piel weak verbs', 'Ch 32: Pual strong verbs', 'Ch 33: Pual weak verbs', 'Ch 30-33 vocabulary', 'Verse translation'],
-  totalQuestions: sec1.length + sec2.length + sec3.length + sec4.length + sec5.length + sec6.length,
+  description: 'CourseGuide for BBH (Pratico/Van Pelt) Chapters 31 and 33-35, the rest of the course after HW10: the Piel and Pual in weak verbs, and the reflexive Hithpael in strong and weak verbs — plus the new Chapter 30-35 vocabulary and verse-translation practice. HW10 already covered the strong Piel and Pual.',
+  topics: ['Ch 31: Piel weak verbs', 'Ch 33: Pual weak verbs', 'Ch 34: Hithpael strong verbs', 'Ch 35: Hithpael weak verbs', 'Ch 30-35 vocabulary', 'Verse translation'],
+  totalQuestions: ch31.length + ch33.length + ch34.length + ch35.length + vocabulary.length + verses.length,
   sections: [
-    { id: 1, title: 'Ch 30 — The Piel Stem (Strong)', description: 'The doubled middle consonant, and the intensive and factitive uses', questionCount: sec1.length },
-    { id: 2, title: 'Ch 31 — The Piel Stem (Weak)', description: 'Why only a guttural in second position disturbs the Piel', questionCount: sec2.length },
-    { id: 3, title: 'Ch 32 — The Pual Stem (Strong)', description: 'The passive of the Piel, marked by a Qibbuts under the first root consonant', questionCount: sec3.length },
-    { id: 4, title: 'Ch 33 — The Pual Stem (Weak)', description: 'The same weak-class behaviour as the Piel, one vowel class over', questionCount: sec4.length },
-    { id: 5, title: 'Ch 30-33 Vocabulary', description: 'Read and translate the new "You Should Know" words', questionCount: sec5.length },
-    { id: 6, title: 'Verse Translation', description: 'Translate familiar clauses built on Piel and Pual verbs', questionCount: sec6.length },
+    { id: 1, title: 'Ch 31 — The Piel Stem (Weak)', description: 'Why only a guttural in second position disturbs the Piel', questionCount: ch31.length },
+    { id: 2, title: 'Ch 33 — The Pual Stem (Weak)', description: 'The same weak-class behaviour as the Piel, one vowel class over', questionCount: ch33.length },
+    { id: 3, title: 'Ch 34 — The Hithpael Stem (Strong)', description: 'Reflexive action, the הִתְ and מִתְ prefixes, metathesis, and assimilation', questionCount: ch34.length },
+    { id: 4, title: 'Ch 35 — The Hithpael Stem (Weak)', description: 'Gutturals, geminates, III-ה roots, and הִשְׁתַּחֲוָה', questionCount: ch35.length },
+    { id: 5, title: 'Ch 30-35 Vocabulary', description: 'Read and translate the new "You Should Know" words', questionCount: vocabulary.length },
+    { id: 6, title: 'Verse Translation', description: 'Translate familiar clauses built on Piel, Pual and Hithpael verbs', questionCount: verses.length },
   ],
   sectionQuestions: hw11Sections,
 };

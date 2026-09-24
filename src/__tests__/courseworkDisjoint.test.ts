@@ -17,6 +17,7 @@ import * as hw7 from '@/data/homework/hw7-questions';
 import * as hw8 from '@/data/homework/hw8-questions';
 import * as hw9 from '@/data/homework/hw9-questions';
 import * as hw10 from '@/data/homework/hw10-questions';
+import * as hw11 from '@/data/homework/hw11-questions';
 import {
   class13GrammarQuestions,
   class13VocabQuestions,
@@ -34,7 +35,7 @@ import { getCommonVocabSection, SECTION_COUNT, type CommonVocabSectionId } from 
 import { COURSEWORK_WORDS } from '@/data/courseworkWords';
 import { getCommonOTVocab } from '@/lib/commonVocab';
 
-const homeworkModules = [hw1, hw2, hw3, hw4, hw5, hw6, hw7, hw8, hw9, hw10];
+const homeworkModules = [hw1, hw2, hw3, hw4, hw5, hw6, hw7, hw8, hw9, hw10, hw11];
 const paperBanks = [
   class13GrammarQuestions,
   class13VocabQuestions,

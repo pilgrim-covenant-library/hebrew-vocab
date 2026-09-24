@@ -161,8 +161,8 @@ describe('Homework 3 data', () => {
 
 describe('Registry wiring', () => {
   it('exposes HW2 and HW3 in the active registry and keeps legacy banks reachable', () => {
-    expect(EXTENDED_HOMEWORK_ORDER).toEqual(['hw2', 'hw3', 'hw4', 'hw5', 'hw6', 'hw7', 'hw8', 'hw9', 'hw10']);
-    expect(Object.keys(EXTENDED_HOMEWORKS)).toEqual(['hw2', 'hw3', 'hw4', 'hw5', 'hw6', 'hw7', 'hw8', 'hw9', 'hw10']);
+    expect(EXTENDED_HOMEWORK_ORDER).toEqual(['hw2', 'hw3', 'hw4', 'hw5', 'hw6', 'hw7', 'hw8', 'hw9', 'hw10', 'hw11']);
+    expect(Object.keys(EXTENDED_HOMEWORKS)).toEqual(['hw2', 'hw3', 'hw4', 'hw5', 'hw6', 'hw7', 'hw8', 'hw9', 'hw10', 'hw11']);
     expect(getHomework('hw3')).toBe(hw3Meta);
     expect(getHomework('nope')).toBeUndefined();
     expect(LEGACY_EXTENDED_HOMEWORKS.hw3).toBeDefined();

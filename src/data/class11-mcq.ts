@@ -1,11 +1,12 @@
-// Class 11 practice — CourseGuide for BBH Chapters 30-33: the Piel stem
+// Class 11 practice bank — CourseGuide for BBH Chapters 30-33: the Piel stem
 // (strong and weak) and the Pual stem (strong and weak), plus the Chapter
 // 30-33 "You Should Know" vocabulary and verse translation whose grammar stays
 // within Chapters 1-33.
 //
-// NOT YET RELEASED. Nothing imports this bank into a route, so it is not
-// reachable from the app. Release = add a Class11MCQPractice route page and a
-// hub card (see class-6-mcq for the pattern).
+// RELEASED as part of week 11 at /class-practice/class-11-mcq. Class 10 draws
+// its strong Piel (Ch 30) and strong Pual (Ch 32) from this bank, so week 11
+// uses only the weak chapters here and adds the Hithpael from class12-mcq —
+// see class11Practice.ts.
 
 import type { PracticeQuestion, PracticeQuestionGroup } from '@/types/class-practice';
 
@@ -201,6 +202,16 @@ export const CLASS11_CH30_MEMORY_GROUPS = asGroups(ch30MemoryQuestions);
 export const CLASS11_CH31_MEMORY_GROUPS = asGroups(ch31MemoryQuestions);
 export const CLASS11_CH32_MEMORY_GROUPS = asGroups(ch32MemoryQuestions);
 export const CLASS11_CH33_MEMORY_GROUPS = asGroups(ch33MemoryQuestions);
+
+/**
+ * The two Chapter 32 passages whose Pual turns on a weak root — כָּלָה is III-ה
+ * and זָרָה is hollow — so they are Chapter 33 material. Class 10 leaves them out
+ * of its strong Pual; week 11 teaches them with the weak Pual.
+ */
+export const CLASS11_CH32_WEAK_ROOT_CONTEXT_IDS: ReadonlySet<string> = new Set([
+  'class11-context-ch32-gen2-1',
+  'class11-context-ch32-isa1-6',
+]);
 
 export const CLASS11_CH30_CONTEXT_GROUPS = asGroups(chapter30ContextQuestions);
 export const CLASS11_CH31_CONTEXT_GROUPS = asGroups(chapter31ContextQuestions);

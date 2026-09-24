@@ -7,9 +7,9 @@ export function Class11MCQPractice() {
   return (
     <MCQPractice
       title="Class 11 MCQ"
-      subtitle="Sessions 30–33: the Piel and Pual stems"
+      subtitle="Sessions 31 and 33–35: the weak Piel and Pual, and the Hithpael"
       reviewTitle="Class 11 Practice"
-      description="Read the intensive Piel in strong and weak verbs (Chapters 30–31) and its passive counterpart the Pual (Chapters 32–33), then recognize them inside real clauses. Each chapter mode also includes four contextual translations."
+      description="The rest of the course after Class 10: the Piel and Pual in weak verbs (Chapters 31 and 33), then the reflexive Hithpael in strong and weak verbs (Chapters 34–35), recognized inside real clauses. Each chapter mode also includes contextual translations."
       completionTitle="Class 11 Complete"
       backHref="/class-practice"
       modes={CLASS11_MODES}

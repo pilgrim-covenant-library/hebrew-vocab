@@ -32,17 +32,20 @@ export interface CommonVocabSection {
 }
 
 /** Section metadata for the overview page */
+// Each description names only words its section holds — commonVocabQuality.test
+// checks every term against the section's glosses, because the membership moves
+// whenever the coursework does and hand-written captions silently went stale.
 export const COMMON_VOCAB_SECTION_META: Record<CommonVocabSectionId, { title: string; description: string }> = {
-  1:  { title: 'Most Common (1–30)',          description: 'Moses, Joshua and Joseph; Jerusalem, Babylon and the Jordan; inheritance, camp and border' },
-  2:  { title: 'Very Common (31–60)',         description: 'The vocabulary of marching — set out, encamp, pursue — with throne, statute and bull; Zion, Gilead and Aram' },
-  3:  { title: 'Very Common (61–90)',         description: 'Atonement and its abuse: incense, high place and abomination, with weeping, comfort and forgetting' },
-  4:  { title: 'Common (91–120)',             description: 'Size, length and distance; door, vineyard and cherub; prayer, offering and slaughter; Canaan and Ahab' },
-  5:  { title: 'Common (121–150)',            description: 'Treasury, lot and livestock; iron, cedar and trumpet; hill, valley and Hebron; Gad and Reuben' },
-  6:  { title: 'Frequent (151–180)',          description: 'Healing, fleeing and stumbling; shield, rope and burden; dream, feast and libation; Abner and Balaam' },
-  7:  { title: 'Frequent (181–210)',          description: 'Vow, ransom and praise; vine, honey and harvest; the widow, the camel and the psalm; Elisha and Mordecai' },
-  8:  { title: 'Moderately Common (211–240)', description: 'Vision, dread and dismay; ephod, signet ring and plank; discipline and pride; Daniel and Rehoboam' },
-  9:  { title: 'Moderately Common (241–270)', description: 'Passover, guilt offering and forgiveness; compassion and hope; blue yarn, chamber and banquet; Rachel and Damascus' },
-  10: { title: 'Building Breadth (271–300)',  description: 'Garden, lyre and lampstand; jealousy, insight and beauty; ambush, refusal and trembling; Gilgal and Issachar' },
+  1:  { title: 'Most Common (1–30)',          description: 'City, water and blood; heart and mouth; Moses, Joshua and Joseph; Jerusalem, Babylon and the Jordan' },
+  2:  { title: 'Very Common (31–60)',         description: 'Throne, statute and assembly; chariot, river and bull; set out, pursue and capture; Samuel, Zion and Gilead' },
+  3:  { title: 'Very Common (61–90)',         description: 'Atonement, redeem and comfort; weep, forget and falsehood; small, width and length; Absalom, Jeroboam and Ahab' },
+  4:  { title: 'Common (91–120)',             description: 'Door, wall and vineyard; cherub, offering and slaughter; iron, horn and bow; rule, sell and reject' },
+  5:  { title: 'Common (121–150)',            description: 'Heal, flee and stumble; hill, valley and bird; burden, portion and fool; Hebron, Beersheba, Gad and Reuben' },
+  6:  { title: 'Frequent (151–180)',          description: 'Dream, feast and drink offering; shield, rope and rock; vow, ransom and praise; Balaam, Elisha and Nebuchadnezzar' },
+  7:  { title: 'Frequent (181–210)',          description: 'Vine, honey and harvest; camel and measure; toil, anger and emptiness; Laban, Daniel and Naphtali' },
+  8:  { title: 'Moderately Common (211–240)', description: 'Passover, guilt and the ephod; signet ring, chamber and shadow; sheep, dread and pride; Rachel, Ishmael and Rehoboam' },
+  9:  { title: 'Moderately Common (241–270)', description: 'Garden, lyre and tablet; jealousy, understanding and scarlet; bind, gird and despise; Jonathan, Damascus and Issachar' },
+  10: { title: 'Building Breadth (271–300)',  description: 'Lampstand, fig and purple; cave, grain and flock; mourn, tremble and refuse; Gideon, Sodom and Amalek' },
 };
 // Module-level cache to avoid re-sorting on every call
 let cachedCommonVocab: VocabularyWord[] | null = null;

@@ -158,11 +158,11 @@ const class13ExamVocabReplacements: PracticeMCQ[] = [
   },
   {
     id: 'c13-fe-v02',
-    question: 'What is the meaning of the noun צָרָה in biblical laments and narratives?',
-    hebrew: 'צָרָה',
-    options: ['adversary / enemy', 'distress / anguish', 'righteousness / purity', 'refuge / stronghold'],
+    question: 'What does the verb כָּסָה mean?',
+    hebrew: 'כָּסָה',
+    options: ['to reveal, uncover', 'to cover, conceal', 'to lift, raise up', 'to break, crush'],
     correctIndex: 1,
-    explanation: 'צָרָה denotes distress, dire straits, or tribulation; related to the root צָרַר ("to be in tight straits").',
+    explanation: 'כָּסָה is to cover, mostly in the Piel: the waters covered the mountains (Genesis 7:19), and love covers every offence (Proverbs 10:12).',
   },
   {
     id: 'c13-fe-v03',
@@ -187,16 +187,11 @@ const class13ExamVocabReplacements: PracticeMCQ[] = [
   },
   {
     id: 'c13-fe-v05',
-    question: 'How do דָּם and בָּשָׂר differ in what they denote?',
-    hebrew: 'דָּם vs. בָּשָׂר',
-    options: [
-      'בָּשָׂר is blood; דָּם is bone and sinew',
-      'דָּם is blood and life; בָּשָׂר is flesh and body',
-      'both denote only the portions burnt on the altar',
-      'דָּם is used of people; בָּשָׂר only of animals',
-    ],
-    correctIndex: 1,
-    explanation: 'דָּם is blood, identified with life itself — "the life of the flesh is in the blood" (Leviticus 17:11). בָּשָׂר is flesh, and so body, kinship (בְּשָׂרִי, "my own flesh"), and humanity in its frailty (כָּל־בָּשָׂר, "all flesh").',
+    question: 'What does the verb נָגַע mean?',
+    hebrew: 'נָגַע',
+    options: ['to hear, listen, obey', 'to taste, eat, consume', 'to touch, reach, strike', 'to smell, sense, perceive'],
+    correctIndex: 2,
+    explanation: 'נָגַע is to touch — and so to reach a place, or to strike, as a plague strikes. Its noun נֶגַע is a plague or a mark of disease.',
   },
   {
     id: 'c13-fe-v06',
