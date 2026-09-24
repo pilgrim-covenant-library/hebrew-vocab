@@ -89,7 +89,7 @@ export default function ReviewHubPage() {
                       <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
                     </div>
                     <p className="text-sm text-muted-foreground mt-1">
-                      40 grammar MCQ + 40 vocab MCQ + 5 verse analysis with immediate feedback and explanations across Chapters 1–35.
+                      60 grammar MCQ + 40 vocab MCQ + 5 verse analysis with immediate feedback and explanations across Chapters 1–35.
                     </p>
                   </div>
                 </div>

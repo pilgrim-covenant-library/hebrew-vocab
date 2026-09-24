@@ -14,6 +14,16 @@ import {
   class13ExamVocabQuestions,
 } from '@/data/review/class13FinalExam';
 import type { PracticeMCQ, PracticeVerseAnalysis } from '@/data/review/practicePaper';
+import { hw2Meta as hw2 } from '@/data/homework/hw2-questions';
+import { hw3Meta as hw3 } from '@/data/homework/hw3-questions';
+import { hw4Meta as hw4 } from '@/data/homework/hw4-questions';
+import { hw5Meta as hw5 } from '@/data/homework/hw5-questions';
+import { hw6Meta as hw6 } from '@/data/homework/hw6-questions';
+import { hw7Meta as hw7 } from '@/data/homework/hw7-questions';
+import { hw8Meta as hw8 } from '@/data/homework/hw8-questions';
+import { hw9Meta as hw9 } from '@/data/homework/hw9-questions';
+import { hw10Meta as hw10 } from '@/data/homework/hw10-questions';
+import { hw11Meta as hw11 } from '@/data/homework/hw11-questions';
 
 const hasHebrew = (s: string) => /[֐-׿]/.test(s);
 // Strip Hebrew points/accents (niqqud + te'amim + Maqqef, U+0591–U+05C7).
@@ -74,9 +84,11 @@ const papers: Array<{
   },
 ];
 
-describe.each(papers)('$name', ({ grammar, vocab, verses, sections }) => {
-  it('has the Koine paper shape: 40 grammar, 40 vocab, 5 verse-analysis items', () => {
-    expect(grammar).toHaveLength(40);
+describe.each(papers)('$name', ({ name, grammar, vocab, verses, sections }) => {
+  // The practice paper grew 20 grammar items so it tests the derived-stem chart;
+  // the exam keeps the Koine shape, drawing its first 30 from the paper.
+  it('has its shape: 60 (paper) or 40 (exam) grammar, 40 vocab, 5 verse-analysis items', () => {
+    expect(grammar).toHaveLength(name === 'Class 13 practice paper' ? 60 : 40);
     expect(vocab).toHaveLength(40);
     expect(verses).toHaveLength(5);
   });
@@ -233,5 +245,51 @@ describe('Practice Paper is released and live', () => {
       const source = readFileSync(join(process.cwd(), route), 'utf8');
       expect(source).toContain('class13');
     }
+  });
+});
+
+// The derived-stem chart: what each stem and conjugation MEANS, and how each stem
+// CONJUGATES. Before this block the paper asked one meaning question per stem
+// and nothing at all about the forms in the chart.
+describe('Class 13 practice paper — derived-stem chart', () => {
+  const text = (q: PracticeMCQ) => `${q.question} ${q.hebrew ?? ''} ${q.options[q.correctIndex]} ${q.explanation}`;
+  const asked = (pattern: RegExp) => class13GrammarQuestions.filter((q) => pattern.test(text(q)));
+
+  it.each([
+    ['Perfect', /kind of action does the Perfect/],
+    ['Imperfect', /incomplete or future action/],
+    ['Imperative', /Imperative is used for/],
+    ['Infinitive Construct', /What is an Infinitive Construct/],
+    ['Infinitive Absolute', /What is an Infinitive Absolute/],
+    ['Participle', /What is a Participle/],
+  ])('asks what the %s is', (_, pattern) => {
+    expect(asked(pattern).length).toBeGreaterThanOrEqual(1);
+  });
+
+  it.each(['Niphal', 'Hiphil', 'Hophal', 'Piel', 'Pual', 'Hithpael'])(
+    'asks both what the %s means and how it is formed',
+    (stem) => {
+      const meaning = class13GrammarQuestions.filter((q) => q.options[q.correctIndex].includes(stem) || new RegExp(`${stem} form`).test(q.question) || new RegExp(`The ${stem} is`).test(q.question));
+      const forms = class13GrammarQuestions.filter((q) => q.id >= 'c13-g41' && new RegExp(`\\b${stem}\\b`).test(`${q.options[q.correctIndex]} ${q.explanation}`) && /קָטַל|קְטִיל|קַטֵּל|קֻטַּל|קָטֵל|קְטוֹל|קְטָל|קְטַל/.test(text(q)));
+      expect(meaning.length).toBeGreaterThanOrEqual(1);
+      expect(forms.length).toBeGreaterThanOrEqual(1);
+    },
+  );
+
+  it('covers every column of the chart with a paradigm form', () => {
+    const block = class13GrammarQuestions.filter((q) => q.id >= 'c13-g41').map(text).join(' ');
+    for (const column of ['Perfect', 'Imperfect', 'Imperative', 'Infinitive Construct', 'Infinitive Absolute', 'Participle']) {
+      expect(block).toContain(column);
+    }
+  });
+
+  it('asks no paradigm question that a homework already asks word for word', () => {
+    const homeworkPrompts = new Set(
+      [hw2, hw3, hw4, hw5, hw6, hw7, hw8, hw9, hw10, hw11]
+        .flatMap((m) => Object.values(m.sectionQuestions).flat() as { question?: string; hebrew?: string }[])
+        .map((q) => `${q.question}|${q.hebrew ?? ''}`),
+    );
+    const copies = class13GrammarQuestions.filter((q) => homeworkPrompts.has(`${q.question}|${q.hebrew ?? ''}`)).map((q) => q.id);
+    expect(copies).toEqual([]);
   });
 });

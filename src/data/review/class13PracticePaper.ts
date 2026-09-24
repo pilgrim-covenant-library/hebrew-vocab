@@ -2,8 +2,10 @@
  * Class 13 Practice Paper — the cumulative capstone (Guided Practice)
  * CourseGuide for BBH (Pratico/Van Pelt), Chapters 1-35 — the whole course.
  *
- * Section 1: Grammar MCQ (40 questions spanning Chapters 1-35, including
- *           Root & Binyan patterns, syntax & discourse, and reading)
+ * Section 1: Grammar MCQ (60 questions spanning Chapters 1-35, including
+ *           Root & Binyan patterns, syntax & discourse, reading, and the
+ *           derived-stem chart: what each stem and conjugation means and how
+ *           each stem conjugates)
  * Section 2: Vocabulary MCQ (40 questions from BBH frequency lists + synonym pairs)
  * Section 3: Verse Analysis — matching + translation (5 anchor verses)
  *
@@ -17,7 +19,7 @@ import type { PracticeMCQ, PracticeVerseAnalysis } from './practicePaper';
 export type { PracticeMCQ, MatchingPair, PracticeVerseAnalysis } from './practicePaper';
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// Section 1: Grammar MCQ — 40 questions across Chapters 1-35
+// Section 1: Grammar MCQ — 60 questions across Chapters 1-35
 // ═══════════════════════════════════════════════════════════════════════════════
 
 export const class13GrammarQuestions: PracticeMCQ[] = [
@@ -450,6 +452,157 @@ export const class13GrammarQuestions: PracticeMCQ[] = [
     ],
     correctIndex: 0,
     explanation: 'יְהוָה רֹעִי is a nominal clause: Subject (יְהוָה) + Predicate (רֹעֶה participle + ־ִי suffix = "my shepherd").',
+  },
+
+  // --- Derived stems: what each stem and conjugation means, and how each stem
+  // conjugates (the strong-verb chart, with קָטַל). Items 41-60. ---
+  {
+    id: 'c13-g41',
+    question: 'What kind of action does the Perfect conjugation typically present?',
+    options: ['action viewed as complete', 'action still in progress', 'a direct command', 'a purpose or intention'],
+    correctIndex: 0,
+    explanation: 'The Perfect presents an action as a whole, complete — usually rendered with an English past tense, as in שָׁמַר "he kept". The Imperfect presents it as incomplete or future.',
+  },
+  {
+    id: 'c13-g42',
+    question: 'The Imperative is used for:',
+    options: ['wishes in the third person', 'direct commands in the second person', 'statements of completed action', 'emphasis on a following verb'],
+    correctIndex: 1,
+    explanation: 'The Imperative gives a direct command, and only in the second person: שְׁמַע "hear!". A wish or command in the third person is a Jussive.',
+  },
+  {
+    id: 'c13-g43',
+    question: 'What is an Infinitive Construct?',
+    options: ['a verbal adjective, often used as a noun', 'an unconjugated form, used for emphasis', 'a verbal noun, often after a preposition', 'a completed action, often in narrative'],
+    correctIndex: 2,
+    explanation: 'The Infinitive Construct is a verbal noun. It usually follows a preposition — לְ for purpose (לִשְׁמֹר "to keep"), בְּ or כְּ for time ("when he kept") — and can take suffixes.',
+  },
+  {
+    id: 'c13-g44',
+    question: 'What is an Infinitive Absolute?',
+    options: ['a verbal noun that follows a preposition', 'a verbal adjective for ongoing action', 'a command addressed to a second person', 'an unconjugated form that intensifies its verb'],
+    correctIndex: 3,
+    explanation: 'The Infinitive Absolute never takes prefixes or suffixes. Beside a finite verb of the same root it intensifies it — מוֹת תָּמוּת "you shall surely die" (Genesis 2:17) — and it can stand in for a command.',
+  },
+  {
+    id: 'c13-g45',
+    question: 'What is a Participle?',
+    options: ['a verbal adjective for ongoing action', 'a verbal noun after a preposition', 'an unconjugated form for emphasis', 'a completed action seen as a whole'],
+    correctIndex: 0,
+    explanation: 'A Participle is a verbal adjective: it describes ongoing action and agrees with its noun in gender and number, and it can stand as a noun itself — שֹׁמֵר "one who keeps, a keeper".',
+  },
+  {
+    id: 'c13-g46',
+    question: 'The Pual is the passive counterpart of which stem?',
+    options: ['the Qal', 'the Piel', 'the Hiphil', 'the Niphal'],
+    correctIndex: 1,
+    explanation: 'The Pual is the passive of the Piel, as the Hophal is the passive of the Hiphil: קִדֵּשׁ "he sanctified" (Piel), קֻדַּשׁ "it was sanctified" (Pual).',
+  },
+  {
+    id: 'c13-g47',
+    question: 'Which stem typically expresses reflexive action — the subject acting on itself?',
+    options: ['the Qal', 'the Hophal', 'the Pual', 'the Hithpael'],
+    correctIndex: 3,
+    explanation: 'The Hithpael is typically reflexive: הִתְקַדֵּשׁ "he sanctified himself". It can also be reciprocal ("to one another") or iterative ("to walk about").',
+  },
+  {
+    id: 'c13-g48',
+    question: 'Parse this paradigm form of קָטַל:',
+    hebrew: 'יִקָּטֵל',
+    options: ['Qal Imperfect 3ms', 'Niphal Imperfect 3ms', 'Piel Imperfect 3ms', 'Hiphil Imperfect 3ms'],
+    correctIndex: 1,
+    explanation: 'The Niphal נ has assimilated into the first root letter, hence the Dagesh Forte in ק under a Hireq preformative. In the Perfect נִקְטַל the נ still shows.',
+  },
+  {
+    id: 'c13-g49',
+    question: 'Parse this paradigm form of קָטַל:',
+    hebrew: 'נִקְטוֹל',
+    options: ['Niphal Perfect 3ms', 'Niphal Participle ms', 'Niphal Infinitive Absolute', 'Qal Infinitive Absolute'],
+    correctIndex: 2,
+    explanation: 'A נ prefix with a Holem before the last root letter: the Niphal Infinitive Absolute. The Niphal Perfect נִקְטַל and Participle נִקְטָל have Pathach and Qamets there instead.',
+  },
+  {
+    id: 'c13-g50',
+    question: 'Parse this paradigm form of קָטַל:',
+    hebrew: 'יַקְטִיל',
+    options: ['Qal Imperfect 3ms', 'Hophal Imperfect 3ms', 'Piel Imperfect 3ms', 'Hiphil Imperfect 3ms'],
+    correctIndex: 3,
+    explanation: 'Pathach under the preformative and Hireq Yod before the last root letter mark the Hiphil Imperfect. The Hophal Imperfect is יָקְטַל, with Qamets Hatuf under the preformative.',
+  },
+  {
+    id: 'c13-g51',
+    question: 'Parse this paradigm form of קָטַל:',
+    hebrew: 'הַקְטִיל',
+    options: ['Hiphil Infinitive Construct', 'Hiphil Perfect 3ms', 'Hiphil Imperative 2ms', 'Hophal Perfect 3ms'],
+    correctIndex: 0,
+    explanation: 'הַ with Pathach and a Hireq Yod: the Hiphil Infinitive Construct. The Perfect is הִקְטִיל (Hireq under ה); the Imperative and Infinitive Absolute are הַקְטֵל (Tsere, no Yod).',
+  },
+  {
+    id: 'c13-g52',
+    question: 'Parse this paradigm form of קָטַל:',
+    hebrew: 'מָקְטָל',
+    options: ['Hiphil Participle ms', 'Piel Participle ms', 'Hophal Participle ms', 'Pual Participle ms'],
+    correctIndex: 2,
+    explanation: 'A Qamets Hatuf under the prefix marks every Hophal form — הָקְטַל, יָקְטַל, מָקְטָל. The Hiphil Participle is מַקְטִיל and the Pual Participle מְקֻטָּל.',
+  },
+  {
+    id: 'c13-g53',
+    question: 'Parse this paradigm form of קָטַל:',
+    hebrew: 'יְקַטֵּל',
+    options: ['Qal Imperfect 3ms', 'Pual Imperfect 3ms', 'Hithpael Imperfect 3ms', 'Piel Imperfect 3ms'],
+    correctIndex: 3,
+    explanation: 'Shewa under the preformative, Pathach under the first root letter and a Dagesh Forte in the second: the Piel Imperfect. The Pual has Qibbuts under the first root letter, יְקֻטַּל.',
+  },
+  {
+    id: 'c13-g54',
+    question: 'Parse this paradigm form of קָטַל:',
+    hebrew: 'מְקֻטָּל',
+    options: ['Pual Participle ms', 'Piel Participle ms', 'Hophal Participle ms', 'Niphal Participle ms'],
+    correctIndex: 0,
+    explanation: 'A מְ prefix, Qibbuts under the first root letter and a Dagesh Forte in the second: the Pual Participle, "being killed". The Piel Participle is מְקַטֵּל.',
+  },
+  {
+    id: 'c13-g55',
+    question: 'Parse this paradigm form of קָטַל:',
+    hebrew: 'יִתְקַטֵּל',
+    options: ['Piel Imperfect 3ms', 'Hithpael Imperfect 3ms', 'Niphal Imperfect 3ms', 'Hiphil Imperfect 3ms'],
+    correctIndex: 1,
+    explanation: 'A ת after the preformative, with a Dagesh Forte in the middle root letter, marks the Hithpael Imperfect. The Hithpael keeps its ת in every form: הִתְקַטֵּל, יִתְקַטֵּל, מִתְקַטֵּל.',
+  },
+  {
+    id: 'c13-g56',
+    question: 'What marks every Piel form of קָטַל, from קִטֵּל to מְקַטֵּל?',
+    options: ['a ה prefix before the root', 'a Dagesh Forte in the middle root letter', 'a Hireq Yod before the last root letter', 'a נ prefix before the root'],
+    correctIndex: 1,
+    explanation: 'The doubled middle root letter runs through the whole Piel — Perfect קִטֵּל, Imperfect יְקַטֵּל, Imperative and both Infinitives קַטֵּל, Participle מְקַטֵּל. The Pual and Hithpael share it.',
+  },
+  {
+    id: 'c13-g57',
+    question: 'In the derived-stem chart, which letter begins the Participle of the Piel, Pual, Hiphil, Hophal and Hithpael?',
+    options: ['נ', 'ה', 'מ', 'י'],
+    correctIndex: 2,
+    explanation: 'Every derived-stem Participle except the Niphal begins with מ: מְקַטֵּל, מְקֻטָּל, מַקְטִיל, מָקְטָל, מִתְקַטֵּל. The Niphal Participle keeps its נ, נִקְטָל.',
+  },
+  {
+    id: 'c13-g58',
+    question: 'Which two derived stems show no Imperative or Infinitives in the standard paradigm?',
+    options: ['the Niphal and Hiphil', 'the Piel and Hithpael', 'the Pual and Hophal', 'the Hiphil and Piel'],
+    correctIndex: 2,
+    explanation: 'The Pual and Hophal are the passives of the Piel and Hiphil. A passive has no imperative, and their infinitives are so rare that the paradigm leaves them out: only Perfect, Imperfect and Participle.',
+  },
+  {
+    id: 'c13-g59',
+    question: 'In the Hithpael of קָטַל, which forms are all spelled הִתְקַטֵּל?',
+    options: ['the Perfect, Imperative and both Infinitives', 'the Imperfect, Participle and both Infinitives', 'the Perfect, Imperfect and the Participle', 'the Imperative and the Participle only'],
+    correctIndex: 0,
+    explanation: 'הִתְקַטֵּל is the Hithpael Perfect, Imperative, Infinitive Construct and Infinitive Absolute alike; only the Imperfect יִתְקַטֵּל and Participle מִתְקַטֵּל differ. Context decides which it is.',
+  },
+  {
+    id: 'c13-g60',
+    question: 'Which two Niphal forms of קָטַל share the spelling הִקָּטֵל?',
+    options: ['the Perfect and Participle', 'the Imperative and Infinitive Construct', 'the Imperfect and Infinitive Absolute', 'the Imperative and Infinitive Absolute'],
+    correctIndex: 1,
+    explanation: 'The Niphal Imperative and Infinitive Construct are both הִקָּטֵל: a ה prefix, and the Dagesh Forte of the assimilated נ. The Infinitive Absolute is נִקְטוֹל.',
   },
 ];
 
