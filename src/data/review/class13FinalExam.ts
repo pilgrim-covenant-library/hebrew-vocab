@@ -8,8 +8,8 @@
  *
  * The slice drops the last ten practice-paper grammar items and replaces them
  * with ten unseen items (testing root/binyan shifts, syntax, and reading on new verses).
- * Vocab drops the last six practice items and swaps in six unseen items (including
- * advanced Chapter 29-35 vocabulary and synonym discriminations).
+ * Vocab takes the first 34 of the practice paper's 35 items and adds six unseen
+ * ones (including advanced Chapter 29-35 vocabulary and synonym discriminations).
  */
 
 import {

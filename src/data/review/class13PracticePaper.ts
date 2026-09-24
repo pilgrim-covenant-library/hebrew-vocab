@@ -6,7 +6,7 @@
  *           Root & Binyan patterns, syntax & discourse, reading, and the
  *           derived-stem chart: what each stem and conjugation means and how
  *           each stem conjugates)
- * Section 2: Vocabulary MCQ (40 questions from BBH frequency lists + synonym pairs)
+ * Section 2: Vocabulary MCQ (35 questions from BBH frequency lists + synonym pairs)
  * Section 3: Verse Analysis — matching + translation (5 anchor verses)
  *
  * Structure mirrors the Koine practice paper: guided mode shows the
@@ -607,7 +607,7 @@ export const class13GrammarQuestions: PracticeMCQ[] = [
 ];
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// Section 2: Vocabulary MCQ — 40 questions across BBH Lists & Synonym Pairs
+// Section 2: Vocabulary MCQ — 35 questions across BBH Lists & Synonym Pairs
 // ═══════════════════════════════════════════════════════════════════════════════
 
 export const class13VocabQuestions: PracticeMCQ[] = [
@@ -617,7 +617,7 @@ export const class13VocabQuestions: PracticeMCQ[] = [
   // familiar words are still fair game as distractors — a distractor the student
   // has never met is one they can eliminate without knowing the answer.
 
-  // --- Standard BBH High-Frequency Vocabulary (Items 1-28) ---
+  // --- Standard BBH High-Frequency Vocabulary (Items 1-24) ---
   {
     id: 'c13-v01',
     question: 'What does the verb יָרַשׁ mean?',
@@ -657,14 +657,6 @@ export const class13VocabQuestions: PracticeMCQ[] = [
     options: ['morning', 'noon', 'night', 'dusk'],
     correctIndex: 2,
     explanation: 'לַיְלָה is night. Despite the ־ָה ending that usually marks a feminine noun, it is grammatically masculine — an irregularity worth memorising.',
-  },
-  {
-    id: 'c13-v06',
-    question: 'What does the noun שַׁעַר mean?',
-    hebrew: 'שַׁעַר',
-    options: ['tower, fortress', 'wall, rampart', 'gate, city entrance', 'courtyard, enclosure'],
-    correctIndex: 2,
-    explanation: 'שַׁעַר is the gate of a city — and so the place where elders sat, judgment was given and business was done (Ruth 4:1).',
   },
   {
     id: 'c13-v07',
@@ -747,14 +739,6 @@ export const class13VocabQuestions: PracticeMCQ[] = [
     explanation: 'אָרוֹן is a chest — above all the ark of the covenant, though it is also the coffin Joseph is laid in (Genesis 50:26).',
   },
   {
-    id: 'c13-v17',
-    question: 'What does the noun חֹדֶשׁ mean?',
-    hebrew: 'חֹדֶשׁ',
-    options: ['week, seven days', 'new moon, month', 'year, annual cycle', 'evening, nightfall'],
-    correctIndex: 1,
-    explanation: 'חֹדֶשׁ comes from חָדָשׁ ("new"): it is the new moon, and by extension the lunar month it begins.',
-  },
-  {
     id: 'c13-v18',
     question: 'What does the verb קָבַר mean?',
     hebrew: 'קָבַר',
@@ -803,14 +787,6 @@ export const class13VocabQuestions: PracticeMCQ[] = [
     explanation: 'חֹשֶׁךְ means darkness (Genesis 1:2: "darkness was over the face of the deep").',
   },
   {
-    id: 'c13-v24',
-    question: 'What does the verb פָּקַד mean?',
-    hebrew: 'פָּקַד',
-    options: ['to hide, conceal oneself', 'to pour out, spill', 'to visit, attend to, muster', 'to laugh, mock'],
-    correctIndex: 2,
-    explanation: 'פָּקַד is to visit with attention — in mercy or in judgment — and so also to muster troops, number a people, or appoint an overseer.',
-  },
-  {
     id: 'c13-v25',
     question: 'What is the meaning of the verb עָזַר?',
     hebrew: 'עָזַר',
@@ -834,18 +810,10 @@ export const class13VocabQuestions: PracticeMCQ[] = [
     correctIndex: 1,
     explanation: 'אֹזֶן is the ear. Its denominative Hiphil הֶאֱזִין means "to give ear, listen", frequent in poetry.',
   },
-  {
-    id: 'c13-v28',
-    question: 'What does the verb סוּר mean?',
-    hebrew: 'סוּר',
-    options: ['to draw near, approach', 'to turn aside, depart', 'to stand firm, endure', 'to gather, assemble'],
-    correctIndex: 1,
-    explanation: 'סוּר means "turn aside, depart". In the Hiphil הֵסִיר it is transitive: "remove, take away" — used of removing idols and high places.',
-  },
 
-  // --- Vocabulary Synonym & Semantic Discrimination Items (Items 29-34) ---
+  // --- Vocabulary Synonym & Semantic Discrimination Items (Items 25-30) ---
 
-  // --- Vocabulary Synonym & Semantic Discrimination Items (Items 29-34) ---
+  // --- Vocabulary Synonym & Semantic Discrimination Items (Items 25-30) ---
   {
     id: 'c13-v29',
     question: 'Which directions do צָפוֹן and נֶגֶב name?',
@@ -895,7 +863,7 @@ export const class13VocabQuestions: PracticeMCQ[] = [
     explanation: 'פֶּתַח is an opening or doorway, from פָּתַח ("to open") — Abraham sits פֶּתַח הָאֹהֶל, at the door of the tent.',
   },
 
-  // --- Further High-Frequency Vocabulary (Items 35-40) ---
+  // --- Further High-Frequency Vocabulary (Items 31-35) ---
   {
     id: 'c13-v35',
     question: 'What is the meaning of the core relational verb אָהַב?',
@@ -903,14 +871,6 @@ export const class13VocabQuestions: PracticeMCQ[] = [
     options: ['to love / care for', 'to fear / revere', 'to hate / despise', 'to serve / minister'],
     correctIndex: 0,
     explanation: 'אָהַב means to love (Deut 6:5: וְאָהַבְתָּ אֵת יְהוָה אֱלֹהֶיךָ).',
-  },
-  {
-    id: 'c13-v36',
-    question: 'What does the verb יָרַד mean?',
-    hebrew: 'יָרַד',
-    options: ['to walk about, wander', 'to go down, descend', 'to flee, escape', 'to go up, ascend'],
-    correctIndex: 1,
-    explanation: 'יָרַד ("go down, descend") is the counterpart of עָלָה, and is used conventionally of going down to Egypt whatever the terrain.',
   },
   {
     id: 'c13-v37',

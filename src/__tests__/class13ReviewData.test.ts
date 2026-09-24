@@ -85,12 +85,15 @@ const papers: Array<{
 ];
 
 describe.each(papers)('$name', ({ name, grammar, vocab, verses, sections }) => {
-  // The practice paper grew 20 grammar items so it tests the derived-stem chart;
-  // the exam keeps the Koine shape, drawing its first 30 from the paper.
-  it('has its shape: 60 (paper) or 40 (exam) grammar, 40 vocab, 5 verse-analysis items', () => {
-    expect(grammar).toHaveLength(name === 'Class 13 practice paper' ? 60 : 40);
-    expect(vocab).toHaveLength(40);
+  // The practice paper is 100 questions: 60 grammar (20 of them testing the
+  // derived-stem chart), 35 vocabulary and 5 verses. The exam keeps the Koine
+  // shape, drawing 30 grammar and 34 vocabulary items from the paper.
+  it('has its shape: 60/35/5 = 100 (paper) or 40/40/5 (exam)', () => {
+    const isPaper = name === 'Class 13 practice paper';
+    expect(grammar).toHaveLength(isPaper ? 60 : 40);
+    expect(vocab).toHaveLength(isPaper ? 35 : 40);
     expect(verses).toHaveLength(5);
+    if (isPaper) expect(grammar.length + vocab.length + verses.length).toBe(100);
   });
 
   it('advertises section counts that match the banks', () => {
