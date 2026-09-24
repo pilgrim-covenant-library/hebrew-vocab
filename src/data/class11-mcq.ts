@@ -3,10 +3,10 @@
 // 30-33 "You Should Know" vocabulary and verse translation whose grammar stays
 // within Chapters 1-33.
 //
-// RELEASED as part of week 11 at /class-practice/class-11-mcq. Class 10 draws
-// its strong Piel (Ch 30) and strong Pual (Ch 32) from this bank, so week 11
-// uses only the weak chapters here and adds the Hithpael from class12-mcq —
-// see class11Practice.ts.
+// Class 10 draws its strong Piel (Ch 30) and strong Pual (Ch 32) from this bank.
+// Week 11 (/class-practice/class-11-mcq) uses only its vocabulary: that week is
+// the Hithpael, from class12-mcq, and the weak Piel and Pual (Ch 31, 33) are not
+// taught — see class11Practice.ts.
 
 import type { PracticeQuestion, PracticeQuestionGroup } from '@/types/class-practice';
 

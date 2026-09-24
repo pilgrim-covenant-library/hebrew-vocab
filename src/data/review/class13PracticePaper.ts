@@ -539,11 +539,11 @@ export const class13VocabQuestions: PracticeMCQ[] = [
   },
   {
     id: 'c13-v10',
-    question: 'What is the meaning of the verb דָּרַשׁ?',
-    hebrew: 'דָּרַשׁ',
-    options: ['to proclaim / utter', 'to seek / inquire of', 'to walk upon / tread', 'to know / perceive'],
+    question: 'What does the verb שָׁאַל mean?',
+    hebrew: 'שָׁאַל',
+    options: ['to answer, reply', 'to ask, inquire', 'to command, charge', 'to refuse, deny'],
     correctIndex: 1,
-    explanation: 'דָּרַשׁ means to seek or inquire of God (cf. Ezra 7:10).',
+    explanation: 'שָׁאַל is to ask — a question, a request, or to inquire of God. It is the verb behind the name שָׁאוּל, Saul, "asked for".',
   },
   {
     id: 'c13-v11',
@@ -579,11 +579,11 @@ export const class13VocabQuestions: PracticeMCQ[] = [
   },
   {
     id: 'c13-v15',
-    question: 'What does the noun שָׂדֶה mean?',
-    hebrew: 'שָׂדֶה',
-    options: ['field, open country', 'vineyard, orchard', 'threshing floor', 'desert, wasteland'],
-    correctIndex: 0,
-    explanation: 'שָׂדֶה is cultivated or open country as opposed to the town — the field where flocks graze and battles are fought.',
+    question: 'What does the noun כִּסֵּא mean?',
+    hebrew: 'כִּסֵּא',
+    options: ['crown, diadem', 'sceptre, rod', 'throne, seat', 'palace, court'],
+    correctIndex: 2,
+    explanation: 'כִּסֵּא is a seat of honour, above all a throne — and so royal rule itself: כִּסֵּא דָוִד, "the throne of David".',
   },
   {
     id: 'c13-v16',
@@ -761,11 +761,11 @@ export const class13VocabQuestions: PracticeMCQ[] = [
   },
   {
     id: 'c13-v37',
-    question: 'What does the verb שָׁחָה mean?',
-    hebrew: 'שָׁחָה',
-    options: ['to lift up, raise, exalt', 'to run, hurry, hasten', 'to bow down, prostrate oneself', 'to call out, summon'],
+    question: 'What does the verb רָדַף mean?',
+    hebrew: 'רָדַף',
+    options: ['to flee, escape', 'to hide, lie low', 'to pursue, chase', 'to gather, muster'],
     correctIndex: 2,
-    explanation: 'שָׁחָה appears almost always in the Hishtaphel הִשְׁתַּחֲוָה — bowing low, whether before a king or in worship of God.',
+    explanation: 'רָדַף is to pursue — an enemy in battle, or, in a good sense, peace itself: "seek peace and pursue it" (Psalm 34:14).',
   },
   {
     id: 'c13-v38',

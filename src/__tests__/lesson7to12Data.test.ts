@@ -58,7 +58,7 @@ const classCases: ClassCase[] = [
   { name: 'Class 8 (ch 20-22)', slug: 'class-8-mcq', config: CLASS8_CONFIG, modes: CLASS8_MODES, build: buildClass8Session },
   { name: 'Class 9 (ch 23-25)', slug: 'class-9-mcq', config: CLASS9_CONFIG, modes: CLASS9_MODES, build: buildClass9Session },
   { name: 'Class 10 (ch 26-29 + strong Piel/Pual)', slug: 'class-10-mcq', config: CLASS10_CONFIG, modes: CLASS10_MODES, build: buildClass10Session, allModeSize: 40 },
-  { name: 'Class 11 (ch 31, 33-35: the rest after Class 10)', slug: 'class-11-mcq', config: CLASS11_CONFIG, modes: CLASS11_MODES, build: buildClass11Session },
+  { name: 'Class 11 (ch 34-35: the Hithpael)', slug: 'class-11-mcq', config: CLASS11_CONFIG, modes: CLASS11_MODES, build: buildClass11Session },
   { name: 'Class 12 (ch 34-35)', slug: 'class-12-mcq', config: CLASS12_CONFIG, modes: CLASS12_MODES, build: buildClass12Session },
 ];
 
@@ -67,7 +67,7 @@ const homeworkCases: HomeworkCase[] = [
   { name: 'HW8 (ch 20-22)', id: 'hw8', meta: hw8Meta, sections: hw8Sections },
   { name: 'HW9 (ch 23-25)', id: 'hw9', meta: hw9Meta, sections: hw9Sections },
   { name: 'HW10 (ch 26-29 + strong Piel/Pual)', id: 'hw10', meta: hw10Meta, sections: hw10Sections, questionTotal: 46 },
-  { name: 'HW11 (ch 31, 33-35: the rest after HW10)', id: 'hw11', meta: hw11Meta, sections: hw11Sections, questionTotal: 48 },
+  { name: 'HW11 (ch 34-35: the Hithpael)', id: 'hw11', meta: hw11Meta, sections: hw11Sections, questionTotal: 49 },
   { name: 'HW12 (ch 34-35)', id: 'hw12', meta: hw12Meta, sections: hw12Sections },
 ];
 
@@ -107,12 +107,9 @@ describe.each(classCases)('$name practice data', ({ config, modes, build, allMod
     for (const chapter of config.chapters) {
       expect(chapter.memoryGroups.length).toBeGreaterThanOrEqual(config.chapterSample);
       expect(chapter.groups.length).toBeGreaterThan(chapter.memoryGroups.length);
-      // Four, except where passages on weak roots were deliberately filtered out
-      // — and Class 11's Ch 33, which also carries the two weak-root Pual
-      // passages Class 10 left for it (Gen 2:1 כָּלָה, Isa 1:6 זָרָה).
-      const handedOn = config === CLASS11_CONFIG && chapter.id === 'ch33' ? 2 : 0;
+      // Four, except where passages on weak roots were deliberately filtered out.
       expect(chapter.contextGroups.length).toBeGreaterThanOrEqual(config.contextSample / 4);
-      expect(chapter.contextGroups.length).toBeLessThanOrEqual(4 + handedOn);
+      expect(chapter.contextGroups.length).toBeLessThanOrEqual(4);
       for (const group of chapter.memoryGroups) {
         expect(chapter.groups).toContain(group);
       }
@@ -288,10 +285,10 @@ describe('HW7-HW11 and Class 7-11 are released', () => {
   });
 });
 
-// Week 10 already taught the STRONG Piel (Ch 30) and STRONG Pual (Ch 32), so
-// week 11 is everything after that: the weak Piel and Pual (Ch 31, 33) and the
-// Hithpael (Ch 34-35), with nothing a week-10 student has already answered.
-describe('Week 11 is the rest of the course after week 10', () => {
+// Week 10 already taught the STRONG Piel (Ch 30) and STRONG Pual (Ch 32); the
+// weak Piel and Pual (Ch 31, 33) are not taught. Week 11 is the Hithpael (Ch
+// 34-35), with nothing a week-10 student has already answered.
+describe('Week 11 is the Hithpael, after week 10', () => {
   // Cantillation off, vowels kept: עֵז "goat" and עֹז "strength" are different
   // words, so comparing bare consonants would call them a repeat.
   const CANTILLATION = /[\u0591-\u05AF\u05BD\u05C0\u05C3]/g;
@@ -314,11 +311,22 @@ describe('Week 11 is the rest of the course after week 10', () => {
   const hw11Questions = Object.values(hw11Sections).flat() as HomeworkQuestion[];
   const week10 = new Set([...class10Questions, ...hw10Questions].map((q) => key(q as never)));
 
-  it('practises exactly the chapters week 10 left: 31, 33, 34 and 35', () => {
-    expect(CLASS11_CONFIG.chapters.map((c) => c.id)).toEqual(['ch31', 'ch33', 'ch34', 'ch35']);
+  it('practises exactly the Hithpael chapters, 34 and 35', () => {
+    expect(CLASS11_CONFIG.chapters.map((c) => c.id)).toEqual(['ch34', 'ch35']);
     const titles = hw11Meta.sections.map((s) => s.title).join(' | ');
-    for (const chapter of ['Ch 31', 'Ch 33', 'Ch 34', 'Ch 35']) expect(titles).toContain(chapter);
-    expect(titles).not.toMatch(/Ch 30 —|Ch 32 —/);
+    for (const chapter of ['Ch 34', 'Ch 35']) expect(titles).toContain(chapter);
+    expect(titles).not.toMatch(/Ch 3[0-3] —/);
+  });
+
+  it('asks nothing about the weak Piel or Pual', () => {
+    // Chapter 31/33 grammar, however it is cited — but not a vocabulary item
+    // tagged "Ch 33 vocab": the chapter's word list is not its weak verbs.
+    const weakPielPual = /\b(Ch|Chapter) 3[13]\b(?! vocab)|weak (Piel|Pual)|(Piel|Pual) (stem, )?weak/i;
+    const explained = [
+      ...class11Questions.map((q) => `${q.id} ${q.prompt} ${q.explanation ?? ''}`),
+      ...hw11Questions.map((q) => `${q.id} ${'question' in q ? q.question : ''} ${'explanation' in q ? q.explanation : ''}`),
+    ].filter((text) => weakPielPual.test(text));
+    expect(explained).toEqual([]);
   });
 
   it('repeats no Class 10 or HW10 question in Class 11', () => {
