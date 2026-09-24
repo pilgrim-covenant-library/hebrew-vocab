@@ -27,6 +27,9 @@ const PREFIXES = new Set(['ו', 'ה', 'ב', 'כ', 'ל', 'מ', 'ש', 'ת', 'י', 
 /** Consonants only, final forms normalised, first word if several. */
 export function consonants(hebrew: string): string {
   const stripped = (hebrew ?? '')
+    // Maqqef first: it sits inside the points range, and stripping it with them
+    // fused אֶת־הָאֱלֹהִים into a single "word".
+    .replace(/־/g, ' ')
     .replace(/[֑-ׇ]/g, '')
     .split('')
     .map((c) => FINALS[c] ?? c)
@@ -62,12 +65,47 @@ function attestedStems(): Set<string> {
 }
 
 /**
+ * Where a Hithpael's root may be, once its prefix is off: הִתְ / יִתְ / מִתְ /
+ * נִתְ / אֶתְ / תִּתְ, perhaps behind a vav, with the ת swapped past a sibilant
+ * (הִשְׁתַּמֵּר from שָׁמַר) or assimilated after צ (הִצְטַדֵּק from צָדַק).
+ */
+function hithpaelResidues(word: string): string[] {
+  const residues: string[] = [];
+  const bodies = word.startsWith('ו') ? [word, word.slice(1)] : [word];
+  for (const body of bodies) {
+    if (body.length < 4 || !'היתאנמ'.includes(body[0])) continue;
+    const rest = body.slice(1);
+    if (rest[0] === 'ת') residues.push(rest.slice(1));
+    if ('שסצ'.includes(rest[0]) && rest[1] === 'ת') residues.push(rest[0] + rest.slice(2));
+    if (rest[0] === 'צ' && rest[1] === 'ט') residues.push('צ' + rest.slice(2));
+    if (rest[0] === 'ז' && rest[1] === 'ד') residues.push('ז' + rest.slice(2));
+  }
+  // I-yod roots show a ו in the Hithpael (וָאֶתְוַדֶּה from יָדָה).
+  return residues.flatMap((r) => (r.startsWith('ו') ? [r, `י${r.slice(1)}`] : [r]));
+}
+
+/** The first residue the lexicon attests as a stem, trying a weak final ו/י off too. */
+function attestedHithpaelStem(word: string): string | null {
+  for (const residue of hithpaelResidues(word)) {
+    const stem = withoutEndings(residue);
+    const candidates = stem.length === 3 && 'וי'.includes(stem[2]) ? [stem, stem.slice(0, 2)] : [stem];
+    const found = candidates.find((c) => attestedStems().has(c));
+    if (found) return found;
+  }
+  return null;
+}
+
+/**
  * The word's stem: endings removed, then one prefix letter removed only when what
  * remains is a stem the lexicon attests on its own, which keeps שָׁנִים from
- * losing its ש while letting נִשְׁמַר lose its נ.
+ * losing its ש while letting נִשְׁמַר lose its נ. A Hithpael loses its whole
+ * prefix the same way.
  */
 export function stemKey(hebrew: string): string {
-  const base = withoutEndings(consonants(hebrew));
+  const raw = consonants(hebrew);
+  const hithpael = raw.length >= 4 ? attestedHithpaelStem(raw) : null;
+  if (hithpael) return hithpael;
+  const base = withoutEndings(raw);
   if (base.length >= 4 && PREFIXES.has(base[0])) {
     const trimmed = withoutEndings(base.slice(1));
     if (attestedStems().has(trimmed)) return trimmed;

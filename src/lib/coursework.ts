@@ -14,9 +14,11 @@ import { COURSEWORK_WORDS } from '@/data/courseworkWords';
 
 /** A word's comparison key: consonants only, no pointing, no maqqef. */
 export function courseworkWordKey(hebrew: string): string {
-  return normalizeHebrew(hebrew ?? '')
-    .replace(/[־-]/g, ' ')
+  // Maqqef to a space BEFORE the points go: normalizeHebrew strips it with them,
+  // which fused אֶת־הָאֱלֹהִים into one "word".
+  return normalizeHebrew((hebrew ?? '').replace(/[־-]/g, ' '))
     .replace(/[^א-ת ]/g, ' ')
+    .replace(/\s+/g, ' ')
     .trim();
 }
 
