@@ -1,4 +1,4 @@
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 import { CLASS7_CONFIG, CLASS7_MODES, buildClass7Session } from '@/lib/class7Practice';
@@ -71,10 +71,10 @@ const homeworkCases: HomeworkCase[] = [
   { name: 'HW12 (ch 34-35)', id: 'hw12', meta: hw12Meta, sections: hw12Sections },
 ];
 
-// Week 12 stays dark: its Hithpael chapters are served inside week 11, which is
-// the last lesson week. The HW12 and Class 12 banks remain the source of those
-// questions, not a separate assignment.
-const DARK_HOMEWORK_IDS = ['hw12'];
+// Week 12 stays dark: its Hithpael chapters are served inside Class 11, the last
+// lesson week. HW11 is dark too — week 11 has class practice but no homework —
+// though its bank stays built and checked below.
+const DARK_HOMEWORK_IDS = ['hw11', 'hw12'];
 const DARK_CLASS_SLUGS = ['class-12-mcq'];
 
 describe.each(classCases)('$name practice data', ({ config, modes, build, allModeSize }) => {
@@ -227,7 +227,7 @@ describe.each(homeworkCases)('$name data', ({ meta, sections, questionTotal }) =
   });
 });
 
-describe('HW12 and Class 12 are built but still DARK', () => {
+describe('HW11, HW12 and Class 12 are built but still DARK', () => {
   it('keeps every new homework out of the active registry', () => {
     for (const id of DARK_HOMEWORK_IDS) {
       expect(getHomework(id)).toBeUndefined();
@@ -244,8 +244,8 @@ describe('HW12 and Class 12 are built but still DARK', () => {
   });
 });
 
-describe('HW7-HW11 and Class 7-11 are released', () => {
-  it('wires HW7 through HW11 into the active homework registry', () => {
+describe('HW7-HW10 and Class 7-11 are released', () => {
+  it('wires HW7 through HW10 into the active homework registry', () => {
     expect(getHomework('hw7')).toBe(hw7Meta);
     expect(EXTENDED_HOMEWORK_ORDER).toContain('hw7');
     expect(Object.keys(EXTENDED_HOMEWORKS)).toContain('hw7');
@@ -261,10 +261,13 @@ describe('HW7-HW11 and Class 7-11 are released', () => {
     expect(getHomework('hw10')).toBe(hw10Meta);
     expect(EXTENDED_HOMEWORK_ORDER).toContain('hw10');
     expect(Object.keys(EXTENDED_HOMEWORKS)).toContain('hw10');
+  });
 
-    expect(getHomework('hw11')).toBe(hw11Meta);
-    expect(EXTENDED_HOMEWORK_ORDER).toContain('hw11');
-    expect(Object.keys(EXTENDED_HOMEWORKS)).toContain('hw11');
+  it('links no homework from the Class Practice hub that the registry does not serve', () => {
+    const hub = readFileSync(join(process.cwd(), 'src/app/class-practice/page.tsx'), 'utf8');
+    const linked = [...hub.matchAll(/href="\/homework\/(hw\d+)"/g)].map((m) => m[1]);
+    const unserved = linked.filter((id) => id !== 'hw1' && !getHomework(id));
+    expect(unserved).toEqual([]);
   });
 
   it('provides valid routes for Class 7, Class 8, Class 9, and Class 10 practice', () => {

@@ -165,7 +165,7 @@ export default function Dashboard() {
               href="/class-practice"
               icon={<ClipboardList className="w-6 h-6" />}
               title="Class Practice and Homework"
-              description="Class 1–11 practice and matching homework"
+              description="Class 1–11 practice and Homework 1–10"
               color="bg-cyan-600"
             />
             <LearningModeCard

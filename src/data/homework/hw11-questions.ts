@@ -1,7 +1,8 @@
 // HW11 — the last homework: the Hithpael (Ch 34-35), from HW12's banks, with the
 // Chapter 30-33 vocabulary kept here.
 //
-// RELEASED: wired into the active extended-registry and reachable at /homework/hw11.
+// NOT RELEASED: week 11 has class practice but no homework, so this assignment
+// is out of the active extended-registry. The bank stays built and tested.
 // HW10 already teaches the STRONG Piel (Ch 30) and STRONG Pual (Ch 32) in its
 // sections 7 and 8; the weak Piel and Pual (Ch 31, 33) are not taught.
 

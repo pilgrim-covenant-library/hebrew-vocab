@@ -242,14 +242,6 @@ export default function ClassPracticePage() {
           />
 
           <ClassPracticeCard
-            title="Homework 11"
-            description="MCQ assignment on the Hithpael strong and weak, Chapter 30–35 vocabulary, and verse translation"
-            icon={ClipboardList}
-            href="/homework/hw11"
-            color="amber"
-          />
-
-          <ClassPracticeCard
             title="Practice Paper"
             description="Comprehensive guided review covering Chapters 1–35 with 60 grammar MCQ, 40 vocab MCQ, and 5 verse analyses"
             icon={FileText}
