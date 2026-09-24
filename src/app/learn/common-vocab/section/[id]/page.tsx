@@ -14,81 +14,10 @@ import { AchievementToast } from '@/components/AchievementToast';
 import { Button } from '@/components/ui/Button';
 import { Card, CardContent } from '@/components/ui/Card';
 import { cn, shuffle } from '@/lib/utils';
+import { generateQuizQuestion } from '@/lib/commonVocabQuiz';
 import vocabularyData from '@/data/vocabulary.json';
 import type { VocabularyWord, QuizQuestion, Achievement } from '@/types';
 
-function generateQuizQuestion(
-  word: VocabularyWord,
-  allWords: VocabularyWord[]
-): QuizQuestion {
-  if (!word || !word.gloss || !Array.isArray(allWords) || allWords.length === 0) {
-    return {
-      word: word || ({ id: '', hebrew: '', transliteration: '', gloss: 'Unknown', definition: '', partOfSpeech: 'noun', frequency: 0, tier: 1, strongs: '' } as VocabularyWord),
-      options: [word?.gloss || 'Unknown', 'Option A', 'Option B', 'Option C'],
-      correctIndex: 0,
-    };
-  }
-
-  const allGlosses = new Set(allWords.map((w) => w.gloss));
-  allGlosses.delete(word.gloss);
-
-  const sameOrAdjacentTier = allWords.filter(
-    (w) =>
-      w.id !== word.id &&
-      Math.abs(w.tier - word.tier) <= 1 &&
-      w.gloss !== word.gloss &&
-      // Never offer a homograph's gloss: אֵת is both the object marker and the
-      // preposition "with", so both would be right for the prompt on screen.
-      w.hebrew !== word.hebrew
-  );
-
-  const usedGlosses = new Set<string>();
-  const distractors: string[] = [];
-
-  const shuffledSameTier = shuffle([...sameOrAdjacentTier]);
-  for (const w of shuffledSameTier) {
-    if (!usedGlosses.has(w.gloss) && distractors.length < 3) {
-      usedGlosses.add(w.gloss);
-      distractors.push(w.gloss);
-    }
-  }
-
-  if (distractors.length < 3) {
-    const otherWords = allWords.filter(
-      (w) =>
-        w.id !== word.id &&
-        w.gloss !== word.gloss &&
-        w.hebrew !== word.hebrew &&
-        !usedGlosses.has(w.gloss)
-    );
-    const shuffledOther = shuffle([...otherWords]);
-    for (const w of shuffledOther) {
-      if (!usedGlosses.has(w.gloss) && distractors.length < 3) {
-        usedGlosses.add(w.gloss);
-        distractors.push(w.gloss);
-      }
-    }
-  }
-
-  const fallbackOptions = ['(unknown)', '(not listed)', '(other meaning)'];
-  let fallbackIndex = 0;
-  while (distractors.length < 3 && fallbackIndex < fallbackOptions.length) {
-    const fallback = fallbackOptions[fallbackIndex];
-    if (!usedGlosses.has(fallback)) {
-      distractors.push(fallback);
-    }
-    fallbackIndex++;
-  }
-
-  const options = shuffle([word.gloss, ...distractors]);
-  const correctIndex = options.indexOf(word.gloss);
-
-  return {
-    word,
-    options,
-    correctIndex,
-  };
-}
 
 const VALID_SECTION_IDS = new Set([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 
