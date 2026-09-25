@@ -4,7 +4,7 @@
 
 import vocabularyData from '@/data/vocabulary.json';
 import { getCommonOTVocab, isProperName } from '@/lib/commonVocab';
-import { generateQuizQuestion, leadingSense } from '@/lib/commonVocabQuiz';
+import { generateChallengeQuestion, generateQuizQuestion, leadingSense } from '@/lib/commonVocabQuiz';
 import type { VocabularyWord } from '@/types';
 
 const allWords = vocabularyData.words as VocabularyWord[];
@@ -69,5 +69,31 @@ describe('generateQuizQuestion distractors', () => {
       }
     }
     expect([...new Set(offered)]).toEqual([]);
+  });
+});
+
+describe('generateChallengeQuestion', () => {
+  // Wrong options drawn from all 8,674 entries were raw Strong's prose at the
+  // deeper levels ("Almug sticks", "Properly") beside a cleaned answer, so the
+  // answer was the only polished option. They now come from the challenge itself.
+  it('should draw every option from the challenge\'s own glosses', () => {
+    const challengeGlosses = new Set(getCommonOTVocab().map((w) => w.gloss));
+    const outside: string[] = [];
+    for (let round = 0; round < 3; round++) {
+      for (const word of getCommonOTVocab()) {
+        for (const option of generateChallengeQuestion(word).options) {
+          if (!challengeGlosses.has(option)) outside.push(option);
+        }
+      }
+    }
+    expect([...new Set(outside)]).toEqual([]);
+  });
+
+  it('should still offer four distinct options with the answer among them', () => {
+    for (const word of getCommonOTVocab()) {
+      const q = generateChallengeQuestion(word);
+      expect(new Set(q.options).size).toBe(4);
+      expect(q.options[q.correctIndex]).toBe(word.gloss);
+    }
   });
 });

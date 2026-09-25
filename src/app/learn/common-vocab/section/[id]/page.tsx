@@ -14,9 +14,8 @@ import { AchievementToast } from '@/components/AchievementToast';
 import { Button } from '@/components/ui/Button';
 import { Card, CardContent } from '@/components/ui/Card';
 import { cn, shuffle } from '@/lib/utils';
-import { generateQuizQuestion } from '@/lib/commonVocabQuiz';
-import vocabularyData from '@/data/vocabulary.json';
-import type { VocabularyWord, QuizQuestion, Achievement } from '@/types';
+import { generateChallengeQuestion } from '@/lib/commonVocabQuiz';
+import type { QuizQuestion, Achievement } from '@/types';
 
 
 const VALID_SECTION_IDS = new Set([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
@@ -30,7 +29,7 @@ export default function CommonVocabSectionPage() {
   const sectionId = (isValidId ? parsedId : 1) as CommonVocabSectionId;
 
   const { user } = useAuthStore();
-  const { stats, progress, reviewWord, initializeWord, checkAndUnlockAchievements, recordSession, recordCommonVocabSectionScore, syncToCloud } = useUserStore();
+  const { stats, reviewWord, initializeWord, checkAndUnlockAchievements, recordSession, recordCommonVocabSectionScore, syncToCloud } = useUserStore();
   const {
     isActive,
     mode,
@@ -121,9 +120,8 @@ export default function CommonVocabSectionPage() {
 
     if (isActive && mode === 'quiz') {
       if (words.length > 0 && questions.length === 0) {
-        const allWords = vocabularyData.words as VocabularyWord[];
         const generatedQuestions = words.map((word) =>
-          generateQuizQuestion(word, allWords)
+          generateChallengeQuestion(word)
         );
         setQuestions(generatedQuestions);
       }
@@ -138,9 +136,8 @@ export default function CommonVocabSectionPage() {
       if (sessionWords.length > 0) {
         sessionWords.forEach((w) => initializeWord(w.id));
 
-        const allWords = vocabularyData.words as VocabularyWord[];
         const generatedQuestions = sessionWords.map((word) =>
-          generateQuizQuestion(word, allWords)
+          generateChallengeQuestion(word)
         );
         setQuestions(generatedQuestions);
         startSession('quiz', sessionWords);

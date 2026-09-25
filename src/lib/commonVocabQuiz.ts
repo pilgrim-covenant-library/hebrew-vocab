@@ -1,4 +1,4 @@
-import { isProperName } from '@/lib/commonVocab';
+import { getCommonOTVocab, isProperName } from '@/lib/commonVocab';
 import { shuffle } from '@/lib/utils';
 import type { QuizQuestion, VocabularyWord } from '@/types';
 
@@ -81,4 +81,12 @@ export function generateQuizQuestion(
     options,
     correctIndex,
   };
+}
+
+/**
+ * A Vocab Challenge question: wrong options come from the challenge's own words,
+ * whose glosses are all cleaned, so the answer is not the only polished option.
+ */
+export function generateChallengeQuestion(word: VocabularyWord): QuizQuestion {
+  return generateQuizQuestion(word, getCommonOTVocab());
 }
