@@ -1,3 +1,4 @@
+import { isProperName } from '@/lib/commonVocab';
 import { shuffle } from '@/lib/utils';
 import type { QuizQuestion, VocabularyWord } from '@/types';
 
@@ -26,11 +27,15 @@ export function generateQuizQuestion(
   // Never offer a homograph's gloss (אֵת is both the object marker and "with"),
   // nor a synonym's (שָׁלַךְ and יָרָה both open "To throw"): either would make a
   // second option defensible for the word on screen.
+  // Nor a name, which a student rules out without knowing the word, nor an
+  // entry with no gloss, which would show as a blank option.
   const isFairDistractor = (w: VocabularyWord) =>
     w.id !== word.id &&
+    w.gloss.trim() !== '' &&
     w.gloss !== word.gloss &&
     w.hebrew !== word.hebrew &&
-    leadingSense(w.gloss) !== answerSense;
+    leadingSense(w.gloss) !== answerSense &&
+    !isProperName(w);
 
   const sameOrAdjacentTier = allWords.filter(
     (w) => Math.abs(w.tier - word.tier) <= 1 && isFairDistractor(w)

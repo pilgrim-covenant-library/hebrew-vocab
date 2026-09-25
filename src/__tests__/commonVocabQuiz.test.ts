@@ -3,7 +3,7 @@
 // צִפּוֹר both "Bird" — would make a distractor read as a second right answer.
 
 import vocabularyData from '@/data/vocabulary.json';
-import { getCommonOTVocab } from '@/lib/commonVocab';
+import { getCommonOTVocab, isProperName } from '@/lib/commonVocab';
 import { generateQuizQuestion, leadingSense } from '@/lib/commonVocabQuiz';
 import type { VocabularyWord } from '@/types';
 
@@ -51,5 +51,23 @@ describe('leadingSense', () => {
     expect(leadingSense('To throw, cast, hurl')).toBe(leadingSense('To throw, shoot; to teach'));
     expect(leadingSense('Bird, sparrow')).toBe(leadingSense('Bird, flying creatures'));
     expect(leadingSense('To praise')).not.toBe(leadingSense('To pray, intercede'));
+  });
+});
+
+describe('generateQuizQuestion distractors', () => {
+  it('should never offer a name or a blank as a wrong option', () => {
+    // A gloss is a name's only if no ordinary word shares it ("Seven" is שֶׁבַע too).
+    const ordinaryGlosses = new Set(allWords.filter((w) => !isProperName(w)).map((w) => w.gloss));
+    const names = new Set([...allWords.filter(isProperName).map((w) => w.gloss).filter((g) => !ordinaryGlosses.has(g)), '']);
+    const offered: string[] = [];
+    for (let round = 0; round < 3; round++) {
+      for (const word of getCommonOTVocab()) {
+        const q = generateQuizQuestion(word, allWords);
+        q.options.forEach((option, i) => {
+          if (i !== q.correctIndex && names.has(option)) offered.push(option);
+        });
+      }
+    }
+    expect([...new Set(offered)]).toEqual([]);
   });
 });
