@@ -116,7 +116,7 @@ export default function Dashboard() {
           </section>
         )}
 
-        {/* Common OT Vocab Challenge */}
+        {/* Vocab Challenge */}
         <section className="mb-8">
           <Card className="overflow-hidden">
             <div className="h-1 bg-gradient-to-r from-amber-400 to-amber-600" />
@@ -126,9 +126,9 @@ export default function Dashboard() {
                   <Crown className="w-6 h-6" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-semibold">Common OT Vocab</h3>
+                  <h3 className="font-semibold">Vocab Challenge</h3>
                   <p className="text-sm text-muted-foreground">
-                    Master the 300 most frequent words
+                    300 harder words, beyond the homework
                   </p>
                 </div>
                 <ProgressRing progress={commonVocabProgress.percentage} size={60} strokeWidth={5}>
@@ -171,8 +171,8 @@ export default function Dashboard() {
             <LearningModeCard
               href="/learn/common-vocab"
               icon={<Crown className="w-6 h-6" />}
-              title="Common OT Vocab"
-              description="Master the 300 most frequent Old Testament words"
+              title="Vocab Challenge"
+              description="300 harder Old Testament words, beyond the homework and practice paper"
               color="bg-amber-500"
             />
             <LearningModeCard

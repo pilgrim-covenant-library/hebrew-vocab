@@ -118,9 +118,9 @@ export default function CommonVocabOverviewPage() {
                 <Crown className="w-6 h-6" />
               </div>
             </div>
-            <h1 className="text-3xl font-bold">Common OT Vocabulary</h1>
+            <h1 className="text-3xl font-bold">Vocab Challenge</h1>
             <p className="text-lg text-muted-foreground">
-              Master the 300 most common Old Testament Hebrew words
+              300 harder Old Testament words, beyond the homework and practice paper
             </p>
           </div>
 

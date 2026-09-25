@@ -4,12 +4,13 @@ import { familyKey } from '@/lib/hebrewStem';
 import type { VocabularyWord } from '@/types';
 
 /**
- * Number of words to include in the "Common OT Vocab" challenge.
+ * Number of words in the Vocab Challenge.
  *
- * These are the 300 most frequently occurring words in the Hebrew Old Testament
- * whose root family the coursework does not already drill. Homework is the
- * baseline and the practice paper comes next, so this list starts below both: no
- * word here, and no cognate of one, appears anywhere a student has already been.
+ * The challenge tests what homework and the practice paper leave out: the 300
+ * most frequent OT words whose root family no other bank drills, and no names.
+ * That puts first the common words nothing else covers — so none goes untaught —
+ * and fills the rest from below the practice paper's rarest word, which makes
+ * the bulk of it harder than either bank. vocabChallenge.test.ts holds it to that.
  */
 export const COMMON_VOCAB_COUNT = 300;
 
@@ -36,34 +37,49 @@ export interface CommonVocabSection {
 // checks every term against the section's glosses, because the membership moves
 // whenever the coursework does and hand-written captions silently went stale.
 export const COMMON_VOCAB_SECTION_META: Record<CommonVocabSectionId, { title: string; description: string }> = {
-  1:  { title: 'Most Common (1–30)',          description: 'City, gate and camp; water, stone and blood; go down, visit and turn aside; Joshua, Pharaoh and Moab' },
-  2:  { title: 'Very Common (31–60)',         description: 'Statute, assembly and abomination; chariot, river and bull; set out, capture and weep; Samuel, Zion and Gilead' },
-  3:  { title: 'Very Common (61–90)',         description: 'Atonement, redeem and forget; small, width and length; wing, vineyard and cherub; Absalom, Jeroboam and Ahab' },
-  4:  { title: 'Common (91–120)',             description: 'Offering, lot and reproach; iron, horn and bow; door, wall and cedar; Jehoshaphat, Eleazar and Gad' },
-  5:  { title: 'Common (121–150)',            description: 'Heal, flee and stumble; dream, drink offering and shield; hill, valley and burden; Hebron, Beersheba and Reuben' },
-  6:  { title: 'Frequent (151–180)',          description: 'Vow, ransom and praise; vine, rock and rope; feast, psalm and widow; Balaam, Elisha and Nebuchadnezzar' },
-  7:  { title: 'Frequent (181–210)',          description: 'Honey, harvest and camel; toil, measure and tomorrow; signet ring, board and beauty; Daniel, Naphtali and Jehoiada' },
-  8:  { title: 'Moderately Common (211–240)', description: 'Passover, guilt and ephod; sheep, shadow and chamber; forgive, strike and overtake; Rachel, Ishmael and Rehoboam' },
-  9:  { title: 'Moderately Common (241–270)', description: 'Garden, lyre and lampstand; jealousy, understanding and scarlet; bind, despise and refuse; Jonathan, Balak and Gilgal' },
-  10: { title: 'Building Breadth (271–300)',  description: 'Fig, olive and new wine; rain, grain and flock; neck, rib and cave; Gideon, Samson and Sodom' },
+  1:  { title: 'Level 1 (1–30)',     description: 'City, gate and camp; water, stone and blood; mouth, lip and wine; go down, turn aside and set out' },
+  2:  { title: 'Level 2 (31–60)',    description: 'Statute, assembly and abomination; chariot, river and bull; atonement, redeem and forget; weep, run and capture' },
+  3:  { title: 'Level 3 (61–90)',    description: 'Door, wall and vineyard; offering, shekel and lot; iron, horn and bow; rule, sell and reject' },
+  4:  { title: 'Level 4 (91–120)',   description: 'Heal, flee and stumble; dream, drink offering and shield; hill, valley and cedar; fool, burden and reproach' },
+  5:  { title: 'Level 5 (121–150)',  description: 'Vow, ransom and praise; vine, honey and harvest; feast, psalm and widow; rope, rock and camel' },
+  6:  { title: 'Level 6 (151–180)',  description: 'Passover, ephod and signet ring; beauty, pride and discipline; dread, shadow and tomorrow; wander, strike and overtake' },
+  7:  { title: 'Level 7 (181–210)',  description: 'Guilt, forgive and compassion; sheep, garden and scarlet; tablet, chamber and dwelling place; bind, gird and despise' },
+  8:  { title: 'Level 8 (211–240)',  description: 'Lyre, lampstand and purple; fig, olive and grain; neck, rib and cave; mourn, tremble and refuse' },
+  9:  { title: 'Level 9 (241–270)',  description: 'Rain, well and new wine; star, world and abyss; vision, wonder and shout; kneel, take refuge and oppress' },
+  10: { title: 'Level 10 (271–300)', description: 'Dove, dog and calf; grass, root and hope; citadel, window and porch; avenge, refine and conceal' },
 };
 // Module-level cache to avoid re-sorting on every call
 let cachedCommonVocab: VocabularyWord[] | null = null;
 
 /**
- * Strong's entries kept out of a top-300 *Hebrew* list: two Biblical Aramaic
- * words (מֶלֶךְ H4430, דִּי H1768), and ילך H3212, which is the same verb as
- * הלך H1980 — their counts are combined under H1980 so it is drilled once.
+ * Strong's entries kept out of a *Hebrew* list: Biblical Aramaic words — the
+ * data carries no language field, so these are listed by hand as the list
+ * reaches them (מֶלֶךְ H4430, דִּי H1768, פְּשַׁר H6591, חֲזָא H2370, and the Aramaic
+ * spelling נְבוּכַדְנֶצַּר H5020) — and ילך H3212, the same verb as הלך H1980,
+ * counted under H1980 so it is drilled once.
  */
-const EXCLUDED_IDS = new Set(['H4430', 'H1768', 'H3212']);
+export const EXCLUDED_IDS: ReadonlySet<string> = new Set(['H4430', 'H1768', 'H6591', 'H2370', 'H5020', 'H3212']);
+
+/** Sheol, which Strong's defines by the capitalised "Hades", is not a name. */
+const ORDINARY_WORDS_DEFINED_BY_A_NAME: ReadonlySet<string> = new Set(['H7585']);
 
 /**
- * Get the 300 most frequently occurring Old Testament words that the coursework
- * does not already drill, sorted by frequency (highest first).
- *
- * Skipping the coursework words costs frequency: the list reaches further down
- * the frequency table than a raw top-300 would, and the words it picks up there
- * are exactly the ones a student never meets in the homeworks or the papers.
+ * People, places, peoples and deities, which the challenge does not test. Strong's
+ * starts a name's definition with the capitalised name ("Ester, the Jewish
+ * heroine") or people ("a Kenaanite or inhabitant of Kenaan"), and an ordinary
+ * word's in lower case ("iron (as cutting)") — except the pronoun "I".
+ */
+export function isProperName(word: VocabularyWord): boolean {
+  if (ORDINARY_WORDS_DEFINED_BY_A_NAME.has(word.id)) return false;
+  const definition = (word.definition ?? '').replace(/^\{/, '').trim();
+  if (/^I\b/.test(definition)) return false;
+  return /^[A-Z]/.test(definition) || /^an? [A-Z]/.test(definition);
+}
+
+/**
+ * The Vocab Challenge: the 300 most frequent OT words, no names, whose root
+ * family the coursework does not already drill, sorted by frequency (highest
+ * first) — the common words nothing else covers, then harder and harder ones.
  */
 export function getCommonOTVocab(): VocabularyWord[] {
   if (!cachedCommonVocab) {
@@ -72,6 +88,7 @@ export function getCommonOTVocab(): VocabularyWord[] {
     cachedCommonVocab = [...words]
       .filter((w) => !EXCLUDED_IDS.has(w.id))
       .filter((w) => typeof w.frequency === 'number' && w.frequency > 0)
+      .filter((w) => !isProperName(w))
       .filter((w) => !isCourseworkWord(w.hebrew))
       .sort((a, b) => b.frequency - a.frequency)
       // One entry per root family, which also means one per spelling: the drill

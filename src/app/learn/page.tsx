@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { ArrowLeft, BookOpen, Brain, Keyboard, ChevronRight, Check, Zap, Languages, Crown } from 'lucide-react';
 import { useUserStore } from '@/stores/userStore';
 import { Button } from '@/components/ui/Button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
+import { Card, CardContent } from '@/components/ui/Card';
 import { cn } from '@/lib/utils';
 import vocabularyData from '@/data/vocabulary.json';
 
@@ -118,8 +118,8 @@ export default function LearnPage() {
             <LearningModeCard
               href="/learn/common-vocab"
               icon={<Crown className="w-6 h-6" />}
-              title="Common OT Vocab"
-              description="Master the 300 most frequently used words in the Old Testament."
+              title="Vocab Challenge"
+              description="300 harder Old Testament words that the homework and practice paper do not cover."
               color="bg-amber-500"
               recommended
             />
