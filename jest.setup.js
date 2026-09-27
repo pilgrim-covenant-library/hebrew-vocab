@@ -1,11 +1,15 @@
 // Learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom'
 
-// Polyfill fetch and related APIs for Firebase
-global.fetch = jest.fn()
-global.Request = jest.fn()
-global.Response = jest.fn()
-global.Headers = jest.fn()
+// Polyfill fetch and related APIs for Firebase. Node-environment tests (API
+// routes) keep Node's real Request/Response.
+const isBrowserEnv = typeof window !== 'undefined'
+if (isBrowserEnv) {
+  global.fetch = jest.fn()
+  global.Request = jest.fn()
+  global.Response = jest.fn()
+  global.Headers = jest.fn()
+}
 
 // Mock localStorage with actual storage
 const localStorageData = {}
@@ -32,7 +36,7 @@ const sessionStorageMock = {
 global.sessionStorage = sessionStorageMock
 
 // Mock window.matchMedia
-Object.defineProperty(window, 'matchMedia', {
+if (isBrowserEnv) Object.defineProperty(window, 'matchMedia', {
   writable: true,
   value: jest.fn().mockImplementation(query => ({
     matches: false,

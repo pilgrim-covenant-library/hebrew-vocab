@@ -28,29 +28,19 @@ export type { PracticeMCQ, MatchingPair, PracticeVerseAnalysis } from './practic
 const class13ExamGrammarReplacements: PracticeMCQ[] = [
   {
     id: 'c13-fe-g01',
-    question: 'Read and parse the narrative clause וַיֹּאמֶר אֱלֹהִים:',
-    hebrew: 'וַיֹּאמֶר אֱלֹהִים',
-    options: [
-      'Qal wayyiqtol 3ms ("and God said")',
-      'Qal perfect 3ms ("God rested")',
-      'Piel wayyiqtol 3ms ("and God spoke")',
-      'Qal imperfect 3ms ("God will say")',
-    ],
+    question: 'Parse נִשְׁבַּר from שָׁבַר ("to break"):',
+    hebrew: 'נִשְׁבַּר',
+    options: ['Niphal Perfect 3ms', 'Niphal Participle ms', 'Qal Perfect 3ms', 'Piel Perfect 3ms'],
     correctIndex: 0,
-    explanation: 'וַיֹּאמֶר אֱלֹהִים = "and God said" — the recurrent Wayyiqtol formula opening creative fiats.',
+    explanation: 'A נ prefix with Pathach under the second root letter: Niphal Perfect 3ms, "it was broken" (the passive of Qal שָׁבַר). The Niphal Participle נִשְׁבָּר has Qamets there instead.',
   },
   {
     id: 'c13-fe-g02',
-    question: 'Read and identify the mood of יְהִי אוֹר (Genesis 1:3):',
-    hebrew: 'יְהִי אוֹר',
-    options: [
-      'Qal perfect 3ms ("there was light")',
-      'Qal jussive 3ms ("let there be light")',
-      'Qal imperative 2ms ("make light")',
-      'Hiphil imperfect 3ms ("he made light")',
-    ],
+    question: 'Parse מְדַבֵּר from the Piel verb דִּבֶּר ("to speak"):',
+    hebrew: 'מְדַבֵּר',
+    options: ['Pual Participle ms', 'Piel Participle ms', 'Hiphil Participle ms', 'Piel Imperfect 3ms'],
     correctIndex: 1,
-    explanation: 'יְהִי is the apocopated Qal Jussive 3ms expressing divine fiat: "let there be light".',
+    explanation: 'A מ prefix with Shewa, Pathach under the first root letter, Dagesh Forte in the second and Tsere under it: Piel Participle ms, "speaking". The Pual Participle would be מְדֻבָּר.',
   },
   {
     id: 'c13-fe-g03',

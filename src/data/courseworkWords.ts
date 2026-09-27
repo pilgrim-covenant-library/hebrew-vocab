@@ -446,6 +446,7 @@ export const COURSEWORK_WORDS: readonly string[] = [
   'נקטל',
   'נרי',
   'נשא',
+  'נשבר',
   'נשיא',
   'נשים',
   'נשמר',

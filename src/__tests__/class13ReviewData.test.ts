@@ -238,9 +238,10 @@ describe('Class 13 exam composition', () => {
 });
 
 describe('Practice Paper is released and live', () => {
+  // The final exam page reaches its questions through src/lib/finalExam.ts.
   const routes = [
     'src/app/grammar/review/practice-paper/page.tsx',
-    'src/app/grammar/review/final-exam/page.tsx',
+    'src/lib/finalExam.ts',
   ];
 
   it('is imported by both live review routes', () => {
