@@ -10,7 +10,7 @@ import {
 } from '@/data/review/class13FinalExam';
 import type { PersistedQuestionRef } from '@/stores/finalExamStore';
 
-export const FINAL_EXAM_ACCESS_CODE = 'hebrew';
+export const FINAL_EXAM_ACCESS_CODE = 'shalom';
 export const EXAM_TITLE = 'Grammar Review Final Exam';
 export const EXAM_DURATION_MS = 2 * 60 * 60 * 1000;
 

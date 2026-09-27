@@ -23,11 +23,11 @@ const examOnlyVerses = class13ExamVerseAnalysisQuestions.filter((q) => !paperIds
 const examTotal = examMcqs.length + class13ExamVerseAnalysisQuestions.length;
 
 describe('final exam access code', () => {
-  it.each(['hebrew', 'Hebrew', ' HEBREW '])('should accept %p', (code) => {
+  it.each(['shalom', 'Shalom', ' SHALOM '])('should accept %p', (code) => {
     expect(isFinalExamAccessCode(code)).toBe(true);
   });
 
-  it.each(['shalom', 'greek', '', 'hebrews'])('should reject %p', (code) => {
+  it.each(['hebrew', 'greek', '', 'shaloms'])('should reject %p', (code) => {
     expect(isFinalExamAccessCode(code)).toBe(false);
   });
 });
