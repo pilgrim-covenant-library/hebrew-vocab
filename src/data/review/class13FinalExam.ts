@@ -3,19 +3,18 @@
  * CourseGuide for BBH (Pratico/Van Pelt), Chapters 1-35.
  *
  * Composed the same way as the Koine final exam: most items are drawn from the
- * Class 13 practice paper, and over 20% of the marks are on exam-only items:
+ * Class 13 practice paper, and over 30% of the marks are on exam-only items:
  * 40 grammar MCQ + 40 vocab MCQ + 5 verse-analysis items (4 marks each) = 100.
  *
  * Grammar takes the first 35 practice-paper items and adds 5 unseen stem
  * parsings. Vocab takes the first 34 of the paper's 35 items and adds six unseen
  * ones (including advanced Chapter 29-35 vocabulary and synonym discriminations).
- * Verses take the paper's first 2 and add 3 verses used nowhere else in the course.
+ * Verses are five passages used nowhere else in the course.
  */
 
 import {
   class13GrammarQuestions,
   class13VocabQuestions,
-  class13VerseAnalysisQuestions,
 } from './class13PracticePaper';
 import type { PracticeMCQ, PracticeVerseAnalysis } from './practicePaper';
 
@@ -144,7 +143,7 @@ const class13ExamVocabReplacements: PracticeMCQ[] = [
 ];
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// Exam-only verse analysis (3 verses used nowhere else in the course)
+// Exam-only verse analysis (5 verses used nowhere else in the course)
 // ═══════════════════════════════════════════════════════════════════════════════
 
 const class13ExamVerseAnalysisReplacements: PracticeVerseAnalysis[] = [
@@ -210,9 +209,50 @@ const class13ExamVerseAnalysisReplacements: PracticeVerseAnalysis[] = [
       'Definite direct object marker (Ch 6)',
     ],
   },
+  {
+    id: 'c13-fe-va04',
+    reference: 'Genesis 28:12',
+    hebrew: 'וַיַּחֲלֹם וְהִנֵּה סֻלָּם מֻצָּב אַרְצָה',
+    transliteration: 'way·yaḥ·lōm wə·hin·nêh sul·lām mu·ṣṣāḇ ʾar·ṣāh',
+    referenceTranslation: 'And he dreamed, and behold, a ladder set up on the earth.',
+    keyTerms: ['dreamed', 'behold', 'ladder', 'set', 'earth'],
+    matchingPairs: [
+      { hebrew: 'וַיַּחֲלֹם', category: 'Waw Consecutive + Qal Imperfect 3ms, with a guttural (Ch 17)' },
+      { hebrew: 'וְהִנֵּה', category: 'Particle of attention, "and behold" (Ch 23)' },
+      { hebrew: 'סֻלָּם', category: 'Masculine singular noun, the subject (Ch 4)' },
+      { hebrew: 'מֻצָּב', category: 'Hophal Participle ms, "set up" (Ch 28)' },
+      { hebrew: 'אַרְצָה', category: 'Noun + directional ־ָה, "to the earth" (Ch 9)' },
+    ],
+    distractorCategories: [
+      'Niphal Participle ms (Ch 24)',
+      'Piel Participle ms (Ch 30)',
+      'Noun + 3fs pronominal suffix (Ch 9)',
+      'Qal Infinitive Construct (Ch 20)',
+    ],
+  },
+  {
+    id: 'c13-fe-va05',
+    reference: 'Ruth 1:16',
+    hebrew: 'אֶל־אֲשֶׁר תֵּלְכִי אֵלֵךְ וּבַאֲשֶׁר תָּלִינִי אָלִין',
+    transliteration: 'ʾel-ʾă·šer tê·lə·ḵî ʾê·lêḵ û·ḇa·ʾă·šer tā·lî·nî ʾā·lîn',
+    referenceTranslation: 'Where you go I will go, and where you lodge I will lodge.',
+    keyTerms: ['where', 'go', 'lodge'],
+    matchingPairs: [
+      { hebrew: 'אֶל־אֲשֶׁר', category: 'Preposition + relative particle, "to where" (Ch 6)' },
+      { hebrew: 'תֵּלְכִי', category: 'Qal Imperfect 2fs, with the י ending (Ch 15)' },
+      { hebrew: 'אֵלֵךְ', category: 'Qal Imperfect 1cs — the א preformative marks "I" (Ch 15)' },
+      { hebrew: 'תָּלִינִי', category: 'Qal Imperfect 2fs of hollow לוּן, with the נ ending (Ch 15)' },
+    ],
+    distractorCategories: [
+      'Qal Imperative 2fs (Ch 18)',
+      'Hiphil Imperfect 1cs (Ch 26)',
+      'Qal Perfect 3fs (Ch 13)',
+      'Waw Consecutive + Qal Imperfect 3ms (Ch 17)',
+    ],
+  },
 ];
 
-// Compose the exam: 35 practice + 5 new = 40 grammar; 34 + 6 = 40 vocab; 2 + 3 = 5 verse.
+// Compose the exam: 35 practice + 5 new = 40 grammar; 34 + 6 = 40 vocab; 5 new verses.
 export const class13ExamGrammarQuestions: PracticeMCQ[] = [
   ...class13GrammarQuestions.slice(0, 35),
   ...class13ExamGrammarReplacements,
@@ -224,7 +264,6 @@ export const class13ExamVocabQuestions: PracticeMCQ[] = [
 ];
 
 export const class13ExamVerseAnalysisQuestions: PracticeVerseAnalysis[] = [
-  ...class13VerseAnalysisQuestions.slice(0, 2),
   ...class13ExamVerseAnalysisReplacements,
 ];
 

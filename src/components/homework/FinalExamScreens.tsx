@@ -210,7 +210,7 @@ export function Intro({
                   <GraduationCap className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                   <div>
                     <p className="font-medium">Final exam variant</p>
-                    <p className="text-sm text-muted-foreground">This uses the practice-paper format with 20% final-exam-only questions.</p>
+                    <p className="text-sm text-muted-foreground">This uses the practice-paper format, with 16 final-exam-only questions and all five verses new (31 of the 100 marks).</p>
                   </div>
                 </div>
               </div>
