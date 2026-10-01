@@ -205,10 +205,9 @@ describe('Class 13 exam composition', () => {
   it('reuses most of the practice paper and adds exam-only items', () => {
     expect(class13ExamGrammarQuestions.slice(0, 35)).toEqual(class13GrammarQuestions.slice(0, 35));
     expect(class13ExamVocabQuestions.slice(0, 34)).toEqual(class13VocabQuestions.slice(0, 34));
-    expect(class13ExamVerseAnalysisQuestions.slice(0, 2)).toEqual(class13VerseAnalysisQuestions.slice(0, 2));
       });
 
-  it('adds 5 grammar, 6 vocabulary and 3 verse items the paper does not have', () => {
+  it('adds 5 grammar, 6 vocabulary and 5 verse items the paper does not have', () => {
     const practiceIds = new Set(
       [...class13GrammarQuestions, ...class13VocabQuestions].map((q) => q.id),
     );
@@ -219,7 +218,7 @@ describe('Class 13 exam composition', () => {
 
     const practiceVerseIds = new Set(class13VerseAnalysisQuestions.map((v) => v.id));
     const unseenVerses = class13ExamVerseAnalysisQuestions.filter((v) => !practiceVerseIds.has(v.id));
-    expect(unseenVerses).toHaveLength(3);
+    expect(unseenVerses).toHaveLength(5);
   });
 
   it('drops the practice grammar items after the 35th and swaps in five unseen ones', () => {

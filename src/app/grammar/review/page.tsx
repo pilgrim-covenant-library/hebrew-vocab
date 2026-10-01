@@ -130,7 +130,7 @@ export default function ReviewHubPage() {
           <ul className="text-sm text-muted-foreground space-y-1.5">
             <li><strong>HW1–HW9</strong> — Independent drilling, one topic at a time. Mastery first.</li>
             <li><strong>Practice Paper</strong> — Guided review with explanations. 85 questions across Chapters 1–35.</li>
-            <li><strong>Final Exam</strong> — Same format with 14 final-exam-only questions including three new verses, 2-hour timer, no reveal until submission.</li>
+            <li><strong>Final Exam</strong> — Same format with 16 final-exam-only questions and five new verses, 2-hour timer, no reveal until submission.</li>
             <li>Aim for 80%+ on the Practice Paper before attempting the Final Exam.</li>
           </ul>
         </div>

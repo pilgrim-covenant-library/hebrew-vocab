@@ -3,19 +3,18 @@
  * CourseGuide for BBH (Pratico/Van Pelt), Chapters 1-35.
  *
  * Composed the same way as the Koine final exam: most items are drawn from the
- * Class 13 practice paper, and over 20% of the marks are on exam-only items:
+ * Class 13 practice paper, and over 30% of the marks are on exam-only items:
  * 40 grammar MCQ + 40 vocab MCQ + 5 verse-analysis items (4 marks each) = 100.
  *
  * Grammar takes the first 35 practice-paper items and adds 5 unseen stem
  * parsings. Vocab takes the first 34 of the paper's 35 items and adds six unseen
  * ones (including advanced Chapter 29-35 vocabulary and synonym discriminations).
- * Verses take the paper's first 2 and add 3 passages used nowhere else in the course.
+ * Verses are five passages used nowhere else in the course.
  */
 
 import {
   class13GrammarQuestions,
   class13VocabQuestions,
-  class13VerseAnalysisQuestions,
 } from './class13PracticePaper';
 import type { PracticeMCQ, PracticeVerseAnalysis } from './practicePaper';
 
@@ -144,7 +143,7 @@ const class13ExamVocabReplacements: PracticeMCQ[] = [
 ];
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// Exam-only verse analysis (3 verses used nowhere else in the course)
+// Exam-only verse analysis (5 verses used nowhere else in the course)
 // ═══════════════════════════════════════════════════════════════════════════════
 
 const class13ExamVerseAnalysisReplacements: PracticeVerseAnalysis[] = [
@@ -209,9 +208,52 @@ const class13ExamVerseAnalysisReplacements: PracticeVerseAnalysis[] = [
       'Waw Consecutive + Qal Imperfect 3ms (Ch 17)',
     ],
   },
+  {
+    id: 'c13-fe-va04',
+    reference: 'Psalm 119:105',
+    hebrew: 'נֵר־לְרַגְלִי דְבָרֶךָ וְאוֹר לִנְתִיבָתִי',
+    transliteration: 'nêr-lə·raḡ·lî ḏə·ḇā·reḵā wə·ʾôr lin·ṯî·ḇā·ṯî',
+    referenceTranslation: 'Your word is a lamp to my feet and a light to my path.',
+    keyTerms: ['word', 'lamp', 'feet', 'light', 'path'],
+    matchingPairs: [
+      { hebrew: 'נֵר', category: 'Masculine singular noun, the predicate "a lamp" (Ch 4)' },
+      { hebrew: 'לְרַגְלִי', category: 'Inseparable preposition + feminine noun + 1cs suffix, "to my foot" (Ch 6, 9)' },
+      { hebrew: 'דְבָרֶךָ', category: 'Noun + 2ms pronominal suffix, "your word" (Ch 9)' },
+      { hebrew: 'וְאוֹר', category: 'Conjunction + masculine noun, "and light" (Ch 4)' },
+      { hebrew: 'לִנְתִיבָתִי', category: 'Inseparable preposition + feminine noun + 1cs suffix, "to my path" (Ch 6, 9)' },
+    ],
+    distractorCategories: [
+      'Qal active participle + 1cs suffix (Ch 9, 22)',
+      'Construct chain, masculine plural (Ch 10)',
+      'Qal Infinitive Construct (Ch 20)',
+      'Definite direct object marker (Ch 6)',
+    ],
+  },
+  {
+    id: 'c13-fe-va05',
+    reference: 'Proverbs 3:5',
+    hebrew: 'בְּטַח אֶל־יְהוָה בְּכָל־לִבֶּךָ וְאֶל־בִּינָתְךָ אַל־תִּשָּׁעֵן',
+    transliteration: 'bə·ṭaḥ ʾel-YHWH bə·ḵol-lib·be·ḵā wə·ʾel-bî·nā·ṯə·ḵā ʾal-tiš·šā·ʿên',
+    referenceTranslation: 'Trust in the LORD with all your heart, and do not lean on your own understanding.',
+    keyTerms: ['trust', 'LORD', 'heart', 'understanding', 'lean'],
+    matchingPairs: [
+      { hebrew: 'בְּטַח', category: 'Qal Imperative 2ms, with a Pathach stem vowel before the guttural (Ch 18)' },
+      { hebrew: 'אֶל־יְהוָה', category: 'Preposition + divine name, "in the LORD" (Ch 6)' },
+      { hebrew: 'בְּכָל־לִבֶּךָ', category: 'Inseparable preposition + construct of "all" + noun + 2ms suffix, "with all your heart" (Ch 9, 10)' },
+      { hebrew: 'וְאֶל־בִּינָתְךָ', category: 'Conjunction + preposition + noun + 2ms suffix, "and on your understanding" (Ch 6, 9)' },
+      { hebrew: 'אַל־תִּשָּׁעֵן', category: 'Niphal Imperfect 2ms after the negative אַל, "do not lean" (Ch 24)' },
+    ],
+    distractorCategories: [
+      'Qal Imperfect 2ms (Ch 15)',
+      'Hiphil Imperative 2ms (Ch 26)',
+      'Piel Perfect 3ms (Ch 30)',
+      'Negative particle for a permanent negation (Ch 15)',
+      'Construct chain — "the name of the LORD" (Ch 10)',
+    ],
+  },
 ];
 
-// Compose the exam: 35 practice + 5 new = 40 grammar; 34 + 6 = 40 vocab; 2 + 3 = 5 verse.
+// Compose the exam: 35 practice + 5 new = 40 grammar; 34 + 6 = 40 vocab; 5 new verses.
 export const class13ExamGrammarQuestions: PracticeMCQ[] = [
   ...class13GrammarQuestions.slice(0, 35),
   ...class13ExamGrammarReplacements,
@@ -223,7 +265,6 @@ export const class13ExamVocabQuestions: PracticeMCQ[] = [
 ];
 
 export const class13ExamVerseAnalysisQuestions: PracticeVerseAnalysis[] = [
-  ...class13VerseAnalysisQuestions.slice(0, 2),
   ...class13ExamVerseAnalysisReplacements,
 ];
 
