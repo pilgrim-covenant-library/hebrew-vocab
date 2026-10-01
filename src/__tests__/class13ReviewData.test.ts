@@ -203,37 +203,35 @@ describe.each(papers)('$name', ({ name, grammar, vocab, verses, sections }) => {
 
 describe('Class 13 exam composition', () => {
   it('reuses most of the practice paper and adds exam-only items', () => {
-    expect(class13ExamGrammarQuestions.slice(0, 30)).toEqual(class13GrammarQuestions.slice(0, 30));
+    expect(class13ExamGrammarQuestions.slice(0, 35)).toEqual(class13GrammarQuestions.slice(0, 35));
     expect(class13ExamVocabQuestions.slice(0, 34)).toEqual(class13VocabQuestions.slice(0, 34));
-    expect(class13ExamVerseAnalysisQuestions.slice(0, 4)).toEqual(class13VerseAnalysisQuestions.slice(0, 4));
+    expect(class13ExamVerseAnalysisQuestions.slice(0, 2)).toEqual(class13VerseAnalysisQuestions.slice(0, 2));
   });
 
-  it('makes roughly a fifth of the exam unseen', () => {
+  it('adds 5 grammar, 6 vocabulary and 3 verse items the paper does not have', () => {
     const practiceIds = new Set(
       [...class13GrammarQuestions, ...class13VocabQuestions].map((q) => q.id),
     );
     const examIds = [...class13ExamGrammarQuestions, ...class13ExamVocabQuestions].map((q) => q.id);
     const unseen = examIds.filter((id) => !practiceIds.has(id));
 
-    expect(unseen).toHaveLength(16);
-    expect(unseen.length / examIds.length).toBeGreaterThan(0.15);
-    expect(unseen.length / examIds.length).toBeLessThan(0.25);
+    expect(unseen).toHaveLength(11);
 
     const practiceVerseIds = new Set(class13VerseAnalysisQuestions.map((v) => v.id));
     const unseenVerses = class13ExamVerseAnalysisQuestions.filter((v) => !practiceVerseIds.has(v.id));
-    expect(unseenVerses).toHaveLength(1);
+    expect(unseenVerses).toHaveLength(3);
   });
 
-  it('drops the last ten practice grammar items and swaps in unseen ones', () => {
-    const dropped = class13GrammarQuestions.slice(30).map((q) => q.id);
+  it('drops the practice grammar items after the 35th and swaps in five unseen ones', () => {
+    const dropped = class13GrammarQuestions.slice(35).map((q) => q.id);
     const examIds = class13ExamGrammarQuestions.map((q) => q.id);
     for (const id of dropped) {
       expect(examIds).not.toContain(id);
     }
-    // The ten swapped-in items are the exam-only replacements (ids not in the paper).
+    // The swapped-in items are the exam-only replacements (ids not in the paper).
     const paperIds = new Set(class13GrammarQuestions.map((q) => q.id));
     const examOnly = class13ExamGrammarQuestions.filter((q) => !paperIds.has(q.id));
-    expect(examOnly).toHaveLength(10);
+    expect(examOnly).toHaveLength(5);
   });
 });
 

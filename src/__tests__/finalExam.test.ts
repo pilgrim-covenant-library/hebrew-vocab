@@ -1,4 +1,4 @@
-// The final exam is the practice paper with at least 20% of it replaced by
+// The final exam is the practice paper with at least 20% of its marks replaced by
 // questions the paper never asks, behind a Hebrew-course access code.
 
 import {
@@ -20,7 +20,6 @@ const paperIds = new Set([...paperMcqs, ...class13VerseAnalysisQuestions].map((q
 const examMcqs = [...class13ExamGrammarQuestions, ...class13ExamVocabQuestions];
 const examOnlyMcqs = examMcqs.filter((q) => !paperIds.has(q.id));
 const examOnlyVerses = class13ExamVerseAnalysisQuestions.filter((q) => !paperIds.has(q.id));
-const examTotal = examMcqs.length + class13ExamVerseAnalysisQuestions.length;
 
 describe('final exam access code', () => {
   it.each(['shalom', 'Shalom', ' SHALOM '])('should accept %p', (code) => {
@@ -37,8 +36,14 @@ describe('final exam vs the practice paper', () => {
     expect([class13ExamGrammarQuestions.length, class13ExamVocabQuestions.length, class13ExamVerseAnalysisQuestions.length]).toEqual([40, 40, 5]);
   });
 
-  it('should make at least 20% of the exam questions the paper does not have', () => {
-    expect((examOnlyMcqs.length + examOnlyVerses.length) / examTotal).toBeGreaterThanOrEqual(0.2);
+  it('should add 5 new grammar, 6 new vocabulary and 3 new verse items', () => {
+    const newGrammar = class13ExamGrammarQuestions.filter((q) => !paperIds.has(q.id)).length;
+    expect([newGrammar, examOnlyMcqs.length - newGrammar, examOnlyVerses.length]).toEqual([5, 6, 3]);
+  });
+
+  it('should put at least 20% of the marks on questions the paper does not have', () => {
+    // MCQs are worth 1 mark each, verse items 4 (2 matching + 2 translation), out of 100.
+    expect(examOnlyMcqs.length + 4 * examOnlyVerses.length).toBeGreaterThanOrEqual(20);
   });
 
   it('should not re-ask any practice-paper Hebrew under a new id', () => {

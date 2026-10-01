@@ -3,13 +3,13 @@
  * CourseGuide for BBH (Pratico/Van Pelt), Chapters 1-35.
  *
  * Composed the same way as the Koine final exam: most items are drawn from the
- * Class 13 practice paper, and roughly 20% are exam-only. Same shape as the
- * practice paper — 40 grammar MCQ + 40 vocab MCQ + 5 verse-analysis items.
+ * Class 13 practice paper, and over 20% of the marks are on exam-only items:
+ * 40 grammar MCQ + 40 vocab MCQ + 5 verse-analysis items (4 marks each) = 100.
  *
- * The slice drops the last ten practice-paper grammar items and replaces them
- * with ten unseen items (testing root/binyan shifts, syntax, and reading on new verses).
- * Vocab takes the first 34 of the practice paper's 35 items and adds six unseen
+ * Grammar takes the first 35 practice-paper items and adds 5 unseen stem
+ * parsings. Vocab takes the first 34 of the paper's 35 items and adds six unseen
  * ones (including advanced Chapter 29-35 vocabulary and synonym discriminations).
+ * Verses take the paper's first 2 and add 3 verses used nowhere else in the course.
  */
 
 import {
@@ -22,7 +22,7 @@ import type { PracticeMCQ, PracticeVerseAnalysis } from './practicePaper';
 export type { PracticeMCQ, MatchingPair, PracticeVerseAnalysis } from './practicePaper';
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// Exam-only grammar replacements (10 items: Root/Binyan patterns, syntax, reading)
+// Exam-only grammar replacements (5 items: derived-stem form and meaning)
 // ═══════════════════════════════════════════════════════════════════════════════
 
 const class13ExamGrammarReplacements: PracticeMCQ[] = [
@@ -70,19 +70,6 @@ const class13ExamGrammarReplacements: PracticeMCQ[] = [
   },
   {
     id: 'c13-fe-g05',
-    question: 'Analyze the syntactic construction in the phrase הַכֹּהֵן הַגָּדוֹל:',
-    hebrew: 'הַכֹּהֵן הַגָּדוֹל',
-    options: [
-      'predicative adjective ("the priest is great")',
-      'vocative phrase ("O great priest!")',
-      'construct chain ("priest of greatness")',
-      'attributive adjective ("the high priest")',
-    ],
-    correctIndex: 3,
-    explanation: 'Both noun and adjective carry the definite article in agreement, signifying an attributive modification: "the high / great priest".',
-  },
-  {
-    id: 'c13-fe-g06',
     question: 'In biblical legal and covenantal commands, what tense/aspect is conveyed by וְשָׁמַרְתָּ (Waw-consecutive Perfect)?',
     hebrew: 'וְשָׁמַרְתָּ',
     options: [
@@ -93,43 +80,6 @@ const class13ExamGrammarReplacements: PracticeMCQ[] = [
     ],
     correctIndex: 2,
     explanation: 'A Waw-consecutive Perfect (וְ + Perfect 2ms) following an initial command or imperfect carries instructional future force: "and you shall keep".',
-  },
-  {
-    id: 'c13-fe-g07',
-    question: 'The pronominal suffix ־ָם attached to a noun (e.g. סוּסָם) represents:',
-    hebrew: 'סוּסָם',
-    options: ['"my (1cs)"', '"your (2mp)"', '"our (1cp)"', '"their (3mp)"'],
-    correctIndex: 3,
-    explanation: '־ָם is the 3mp possessive suffix attached to singular nouns: סוּסָם = "their horse".',
-  },
-  {
-    id: 'c13-fe-g08',
-    question: 'What is the syntactic function of the relative particle אֲשֶׁר in narrative clauses?',
-    hebrew: 'הָאִישׁ אֲשֶׁר־בָּא',
-    options: [
-      'it negates the following verb ("not")',
-      'it introduces a relative clause ("who/which")',
-      'it marks the definite direct object ("et")',
-      'it marks existential possession ("there is")',
-    ],
-    correctIndex: 1,
-    explanation: 'אֲשֶׁר is the uninflected relative particle introducing relative subordinate clauses ("the man who came").',
-  },
-  {
-    id: 'c13-fe-g09',
-    question: 'Read and translate the construct phrase בְּנֵי יִשְׂרָאֵל:',
-    hebrew: 'בְּנֵי יִשְׂרָאֵל',
-    options: ['"the sons of Israel"', '"the land of Israel"', '"the God of Israel"', '"the leaders of Israel"'],
-    correctIndex: 0,
-    explanation: 'בְּנֵי is the masculine plural construct of בֵּן ("son"): בְּנֵי יִשְׂרָאֵל = "the sons / children of Israel".',
-  },
-  {
-    id: 'c13-fe-g10',
-    question: 'Read and translate the traditional Hebrew peace greeting שָׁלוֹם עֲלֵיכֶם:',
-    hebrew: 'שָׁלוֹם עֲלֵיכֶם',
-    options: ['"praise to the LORD"', '"grace and truth to you"', '"peace be upon you"', '"glory to God on high"'],
-    correctIndex: 2,
-    explanation: 'שָׁלוֹם ("peace / wholeness") + עֲלֵיכֶם ("upon you [mp]") = "peace be upon you".',
   },
 ];
 
@@ -194,34 +144,77 @@ const class13ExamVocabReplacements: PracticeMCQ[] = [
 ];
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// Exam-only verse analysis replacement (Genesis 22:1 — a Piel that looks like a Niphal)
+// Exam-only verse analysis (3 verses used nowhere else in the course)
 // ═══════════════════════════════════════════════════════════════════════════════
 
-const class13ExamVerseAnalysisReplacement: PracticeVerseAnalysis = {
-  id: 'c13-fe-va01',
-  reference: 'Genesis 22:1',
-  hebrew: 'וַיְהִי אַחַר הַדְּבָרִים הָאֵלֶּה וְהָאֱלֹהִים נִסָּה אֶת־אַבְרָהָם',
-  transliteration: 'way·hî ʾa·ḥar had·də·ḇā·rîm hā·ʾēl·leh wə·hā·ʾĕ·lō·hîm nis·sāh ʾeṯ-ʾaḇ·rā·hām',
-  referenceTranslation: 'After these things God tested Abraham.',
-  keyTerms: ['after', 'these', 'things', 'God', 'tested', 'Abraham'],
-  matchingPairs: [
-    { hebrew: 'וַיְהִי', category: 'Waw Consecutive + Qal Imperfect 3ms, III-ה, shortened (Ch 17)' },
-    { hebrew: 'אַחַר', category: 'Independent preposition, "after" (Ch 6)' },
-    { hebrew: 'הַדְּבָרִים הָאֵלֶּה', category: 'Article + noun + demonstrative, "these things" (Ch 8)' },
-    { hebrew: 'נִסָּה', category: 'Piel Perfect 3ms, III-ה — the נ is a root letter (Ch 30, 31)' },
-    { hebrew: 'אֶת־אַבְרָהָם', category: 'Object marker + proper noun (Ch 6)' },
-  ],
-  distractorCategories: [
-    'Niphal Perfect 3ms, III-ה (Ch 25)',
-    'Hithpael Perfect 3ms (Ch 34)',
-    'Construct chain, masculine plural (Ch 10)',
-    'Qal Infinitive Construct (Ch 20)',
-  ],
-};
+const class13ExamVerseAnalysisReplacements: PracticeVerseAnalysis[] = [
+  {
+    id: 'c13-fe-va01',
+    reference: 'Genesis 22:1',
+    hebrew: 'וַיְהִי אַחַר הַדְּבָרִים הָאֵלֶּה וְהָאֱלֹהִים נִסָּה אֶת־אַבְרָהָם',
+    transliteration: 'way·hî ʾa·ḥar had·də·ḇā·rîm hā·ʾēl·leh wə·hā·ʾĕ·lō·hîm nis·sāh ʾeṯ-ʾaḇ·rā·hām',
+    referenceTranslation: 'After these things God tested Abraham.',
+    keyTerms: ['after', 'these', 'things', 'God', 'tested', 'Abraham'],
+    matchingPairs: [
+      { hebrew: 'וַיְהִי', category: 'Waw Consecutive + Qal Imperfect 3ms, III-ה, shortened (Ch 17)' },
+      { hebrew: 'אַחַר', category: 'Independent preposition, "after" (Ch 6)' },
+      { hebrew: 'הַדְּבָרִים הָאֵלֶּה', category: 'Article + noun + demonstrative, "these things" (Ch 8)' },
+      { hebrew: 'נִסָּה', category: 'Piel Perfect 3ms, III-ה — the נ is a root letter (Ch 30, 31)' },
+      { hebrew: 'אֶת־אַבְרָהָם', category: 'Object marker + proper noun (Ch 6)' },
+    ],
+    distractorCategories: [
+      'Niphal Perfect 3ms, III-ה (Ch 25)',
+      'Hithpael Perfect 3ms (Ch 34)',
+      'Construct chain, masculine plural (Ch 10)',
+      'Qal Infinitive Construct (Ch 20)',
+    ],
+  },
+  {
+    id: 'c13-fe-va02',
+    reference: '1 Samuel 3:10',
+    hebrew: 'וַיָּבֹא יְהוָה וַיִּתְיַצַּב וַיִּקְרָא כְפַעַם־בְּפַעַם שְׁמוּאֵל שְׁמוּאֵל',
+    transliteration: 'way·yā·ḇō YHWH way·yiṯ·yaṣ·ṣaḇ way·yiq·rā ḵə·p̄a·ʿam-bə·p̄a·ʿam šə·mû·ʾêl šə·mû·ʾêl',
+    referenceTranslation: 'And the LORD came and stood, and called as at other times, "Samuel! Samuel!"',
+    keyTerms: ['LORD', 'came', 'stood', 'called', 'Samuel'],
+    matchingPairs: [
+      { hebrew: 'וַיָּבֹא', category: 'Waw Consecutive + Qal Imperfect 3ms of hollow בּוֹא (Ch 17)' },
+      { hebrew: 'יְהוָה', category: 'Divine name, subject following the verb (Ch 23)' },
+      { hebrew: 'וַיִּתְיַצַּב', category: 'Waw Consecutive + Hithpael Imperfect 3ms (Ch 17, 34)' },
+      { hebrew: 'וַיִּקְרָא', category: 'Waw Consecutive + Qal Imperfect 3ms, III-א (Ch 17)' },
+      { hebrew: 'שְׁמוּאֵל שְׁמוּאֵל', category: 'Proper noun repeated in direct address (Ch 23)' },
+    ],
+    distractorCategories: [
+      'Niphal Perfect 3ms, III-ה (Ch 25)',
+      'Hiphil Imperfect 3ms (Ch 26)',
+      'Qal Infinitive Construct (Ch 20)',
+      'Definite direct object marker (Ch 6)',
+    ],
+  },
+  {
+    id: 'c13-fe-va03',
+    reference: 'Exodus 3:2',
+    hebrew: 'וַיֵּרָא מַלְאַךְ יְהוָה אֵלָיו בְּלַבַּת־אֵשׁ',
+    transliteration: 'way·yê·rāʾ mal·ʾaḵ YHWH ʾê·lāw bə·lab·baṯ-ʾêš',
+    referenceTranslation: 'And the angel of the LORD appeared to him in a flame of fire.',
+    keyTerms: ['angel', 'LORD', 'appeared', 'flame', 'fire'],
+    matchingPairs: [
+      { hebrew: 'וַיֵּרָא', category: 'Waw Consecutive + Niphal Imperfect 3ms, III-ה — "appeared" (Ch 17, 25)' },
+      { hebrew: 'מַלְאַךְ יְהוָה', category: 'Construct chain — "the angel of the LORD" (Ch 10)' },
+      { hebrew: 'אֵלָיו', category: 'Preposition + 3ms suffix, "to him" (Ch 9)' },
+      { hebrew: 'בְּלַבַּת־אֵשׁ', category: 'Inseparable preposition + construct noun, "in a flame of fire" (Ch 6, 10)' },
+    ],
+    distractorCategories: [
+      'Hiphil Imperfect 3ms, III-ה (Ch 26)',
+      'Pual Participle ms (Ch 32)',
+      'Noun + 1cs pronominal suffix (Ch 9)',
+      'Definite direct object marker (Ch 6)',
+    ],
+  },
+];
 
-// Compose the exam: 30 practice + 10 new = 40 grammar; 34 + 6 = 40 vocab; 4 + 1 = 5 verse.
+// Compose the exam: 35 practice + 5 new = 40 grammar; 34 + 6 = 40 vocab; 2 + 3 = 5 verse.
 export const class13ExamGrammarQuestions: PracticeMCQ[] = [
-  ...class13GrammarQuestions.slice(0, 30),
+  ...class13GrammarQuestions.slice(0, 35),
   ...class13ExamGrammarReplacements,
 ];
 
@@ -231,8 +224,8 @@ export const class13ExamVocabQuestions: PracticeMCQ[] = [
 ];
 
 export const class13ExamVerseAnalysisQuestions: PracticeVerseAnalysis[] = [
-  ...class13VerseAnalysisQuestions.slice(0, 4),
-  class13ExamVerseAnalysisReplacement,
+  ...class13VerseAnalysisQuestions.slice(0, 2),
+  ...class13ExamVerseAnalysisReplacements,
 ];
 
 export const CLASS13_EXAM_SECTIONS = [
