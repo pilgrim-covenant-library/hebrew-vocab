@@ -194,28 +194,28 @@ const class13ExamVocabReplacements: PracticeMCQ[] = [
 ];
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// Exam-only verse analysis replacement (Genesis 5:24 with Hithpael)
+// Exam-only verse analysis replacement (Genesis 22:1 — a Piel that looks like a Niphal)
 // ═══════════════════════════════════════════════════════════════════════════════
 
 const class13ExamVerseAnalysisReplacement: PracticeVerseAnalysis = {
   id: 'c13-fe-va01',
-  reference: 'Genesis 5:24',
-  hebrew: 'וַיִּתְהַלֵּךְ חֲנוֹךְ אֶת־הָאֱלֹהִים',
-  transliteration: 'way·yiṯ·hal·lêḵ ḥă·nôḵ ʾet-hā·ʾĕ·lō·hîm',
-  referenceTranslation: 'And Enoch walked with God.',
-  keyTerms: ['walked', 'Enoch', 'God', 'with'],
+  reference: 'Genesis 22:1',
+  hebrew: 'וַיְהִי אַחַר הַדְּבָרִים הָאֵלֶּה וְהָאֱלֹהִים נִסָּה אֶת־אַבְרָהָם',
+  transliteration: 'way·hî ʾa·ḥar had·də·ḇā·rîm hā·ʾēl·leh wə·hā·ʾĕ·lō·hîm nis·sāh ʾeṯ-ʾaḇ·rā·hām',
+  referenceTranslation: 'After these things God tested Abraham.',
+  keyTerms: ['after', 'these', 'things', 'God', 'tested', 'Abraham'],
   matchingPairs: [
-    { hebrew: 'וַיִּתְהַלֵּךְ', category: 'Waw Consecutive + Hithpael Imperfect 3ms (Ch 17, 34)' },
-    { hebrew: 'יִתְ־', category: 'Hithpael Imperfect preformative, 3ms (Ch 34)' },
-    { hebrew: 'חֲנוֹךְ', category: 'Proper noun, subject following the verb (Ch 23)' },
-    { hebrew: 'אֶת־', category: 'Preposition "with" — not the object marker here (Ch 6)' },
-    { hebrew: 'הָאֱלֹהִים', category: 'Article with compensatory lengthening + noun (Ch 5)' },
+    { hebrew: 'וַיְהִי', category: 'Waw Consecutive + Qal Imperfect 3ms, III-ה, shortened (Ch 17)' },
+    { hebrew: 'אַחַר', category: 'Independent preposition, "after" (Ch 6)' },
+    { hebrew: 'הַדְּבָרִים הָאֵלֶּה', category: 'Article + noun + demonstrative, "these things" (Ch 8)' },
+    { hebrew: 'נִסָּה', category: 'Piel Perfect 3ms, III-ה — the נ is a root letter (Ch 30, 31)' },
+    { hebrew: 'אֶת־אַבְרָהָם', category: 'Object marker + proper noun (Ch 6)' },
   ],
   distractorCategories: [
-    'Niphal Perfect 3ms (Ch 24)',
-    'Definite direct object marker (Ch 6)',
+    'Niphal Perfect 3ms, III-ה (Ch 25)',
+    'Hithpael Perfect 3ms (Ch 34)',
+    'Construct chain, masculine plural (Ch 10)',
     'Qal Infinitive Construct (Ch 20)',
-    'Hophal Participle ms (Ch 28)',
   ],
 };
 

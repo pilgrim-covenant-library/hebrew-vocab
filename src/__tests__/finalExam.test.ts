@@ -60,9 +60,12 @@ describe('final exam vs the practice paper', () => {
     expect(repeats).toEqual([]);
   });
 
-  it('should not reuse a practice-paper verse', () => {
+  it('should not reuse a practice-paper verse, or Hebrew any paper question shows', () => {
     const paperRefs = new Set(class13VerseAnalysisQuestions.map((v) => v.reference));
-    expect(examOnlyVerses.filter((v) => paperRefs.has(v.reference)).map((v) => v.reference)).toEqual([]);
+    const paperHebrew = new Set(
+      [...paperMcqs, ...class13VerseAnalysisQuestions].map((q) => courseworkWordKey(q.hebrew ?? '')).filter(Boolean),
+    );
+    expect(examOnlyVerses.filter((v) => paperRefs.has(v.reference) || paperHebrew.has(courseworkWordKey(v.hebrew))).map((v) => v.reference)).toEqual([]);
   });
 });
 
