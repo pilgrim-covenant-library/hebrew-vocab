@@ -3,18 +3,19 @@
  * CourseGuide for BBH (Pratico/Van Pelt), Chapters 1-35.
  *
  * Composed the same way as the Koine final exam: most items are drawn from the
- * Class 13 practice paper, and over 30% of the marks are on exam-only items:
+ * Class 13 practice paper, and over 20% of the marks are on exam-only items:
  * 40 grammar MCQ + 40 vocab MCQ + 5 verse-analysis items (4 marks each) = 100.
  *
  * Grammar takes the first 35 practice-paper items and adds 5 unseen stem
  * parsings. Vocab takes the first 34 of the paper's 35 items and adds six unseen
  * ones (including advanced Chapter 29-35 vocabulary and synonym discriminations).
- * Verses are five passages used nowhere else in the course.
+ * Verses take the paper's first 2 and add 3 passages used nowhere else in the course.
  */
 
 import {
   class13GrammarQuestions,
   class13VocabQuestions,
+  class13VerseAnalysisQuestions,
 } from './class13PracticePaper';
 import type { PracticeMCQ, PracticeVerseAnalysis } from './practicePaper';
 
@@ -143,7 +144,7 @@ const class13ExamVocabReplacements: PracticeMCQ[] = [
 ];
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// Exam-only verse analysis (5 verses used nowhere else in the course)
+// Exam-only verse analysis (3 verses used nowhere else in the course)
 // ═══════════════════════════════════════════════════════════════════════════════
 
 const class13ExamVerseAnalysisReplacements: PracticeVerseAnalysis[] = [
@@ -170,27 +171,6 @@ const class13ExamVerseAnalysisReplacements: PracticeVerseAnalysis[] = [
   },
   {
     id: 'c13-fe-va02',
-    reference: '1 Samuel 3:10',
-    hebrew: 'וַיָּבֹא יְהוָה וַיִּתְיַצַּב וַיִּקְרָא כְפַעַם־בְּפַעַם שְׁמוּאֵל שְׁמוּאֵל',
-    transliteration: 'way·yā·ḇō YHWH way·yiṯ·yaṣ·ṣaḇ way·yiq·rā ḵə·p̄a·ʿam-bə·p̄a·ʿam šə·mû·ʾêl šə·mû·ʾêl',
-    referenceTranslation: 'And the LORD came and stood, and called as at other times, "Samuel! Samuel!"',
-    keyTerms: ['LORD', 'came', 'stood', 'called', 'Samuel'],
-    matchingPairs: [
-      { hebrew: 'וַיָּבֹא', category: 'Waw Consecutive + Qal Imperfect 3ms of hollow בּוֹא (Ch 17)' },
-      { hebrew: 'יְהוָה', category: 'Divine name, subject following the verb (Ch 23)' },
-      { hebrew: 'וַיִּתְיַצַּב', category: 'Waw Consecutive + Hithpael Imperfect 3ms (Ch 17, 34)' },
-      { hebrew: 'וַיִּקְרָא', category: 'Waw Consecutive + Qal Imperfect 3ms, III-א (Ch 17)' },
-      { hebrew: 'שְׁמוּאֵל שְׁמוּאֵל', category: 'Proper noun repeated in direct address (Ch 23)' },
-    ],
-    distractorCategories: [
-      'Niphal Perfect 3ms, III-ה (Ch 25)',
-      'Hiphil Imperfect 3ms (Ch 26)',
-      'Qal Infinitive Construct (Ch 20)',
-      'Definite direct object marker (Ch 6)',
-    ],
-  },
-  {
-    id: 'c13-fe-va03',
     reference: 'Exodus 3:2',
     hebrew: 'וַיֵּרָא מַלְאַךְ יְהוָה אֵלָיו בְּלַבַּת־אֵשׁ',
     transliteration: 'way·yê·rāʾ mal·ʾaḵ YHWH ʾê·lāw bə·lab·baṯ-ʾêš',
@@ -210,28 +190,7 @@ const class13ExamVerseAnalysisReplacements: PracticeVerseAnalysis[] = [
     ],
   },
   {
-    id: 'c13-fe-va04',
-    reference: 'Genesis 28:12',
-    hebrew: 'וַיַּחֲלֹם וְהִנֵּה סֻלָּם מֻצָּב אַרְצָה',
-    transliteration: 'way·yaḥ·lōm wə·hin·nêh sul·lām mu·ṣṣāḇ ʾar·ṣāh',
-    referenceTranslation: 'And he dreamed, and behold, a ladder set up on the earth.',
-    keyTerms: ['dreamed', 'behold', 'ladder', 'set', 'earth'],
-    matchingPairs: [
-      { hebrew: 'וַיַּחֲלֹם', category: 'Waw Consecutive + Qal Imperfect 3ms, with a guttural (Ch 17)' },
-      { hebrew: 'וְהִנֵּה', category: 'Particle of attention, "and behold" (Ch 23)' },
-      { hebrew: 'סֻלָּם', category: 'Masculine singular noun, the subject (Ch 4)' },
-      { hebrew: 'מֻצָּב', category: 'Hophal Participle ms, "set up" (Ch 28)' },
-      { hebrew: 'אַרְצָה', category: 'Noun + directional ־ָה, "to the earth" (Ch 9)' },
-    ],
-    distractorCategories: [
-      'Niphal Participle ms (Ch 24)',
-      'Piel Participle ms (Ch 30)',
-      'Noun + 3fs pronominal suffix (Ch 9)',
-      'Qal Infinitive Construct (Ch 20)',
-    ],
-  },
-  {
-    id: 'c13-fe-va05',
+    id: 'c13-fe-va03',
     reference: 'Ruth 1:16',
     hebrew: 'אֶל־אֲשֶׁר תֵּלְכִי אֵלֵךְ וּבַאֲשֶׁר תָּלִינִי אָלִין',
     transliteration: 'ʾel-ʾă·šer tê·lə·ḵî ʾê·lêḵ û·ḇa·ʾă·šer tā·lî·nî ʾā·lîn',
@@ -252,7 +211,7 @@ const class13ExamVerseAnalysisReplacements: PracticeVerseAnalysis[] = [
   },
 ];
 
-// Compose the exam: 35 practice + 5 new = 40 grammar; 34 + 6 = 40 vocab; 5 new verses.
+// Compose the exam: 35 practice + 5 new = 40 grammar; 34 + 6 = 40 vocab; 2 + 3 = 5 verse.
 export const class13ExamGrammarQuestions: PracticeMCQ[] = [
   ...class13GrammarQuestions.slice(0, 35),
   ...class13ExamGrammarReplacements,
@@ -264,6 +223,7 @@ export const class13ExamVocabQuestions: PracticeMCQ[] = [
 ];
 
 export const class13ExamVerseAnalysisQuestions: PracticeVerseAnalysis[] = [
+  ...class13VerseAnalysisQuestions.slice(0, 2),
   ...class13ExamVerseAnalysisReplacements,
 ];
 

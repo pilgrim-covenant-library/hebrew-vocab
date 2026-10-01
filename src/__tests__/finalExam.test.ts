@@ -36,14 +36,14 @@ describe('final exam vs the practice paper', () => {
     expect([class13ExamGrammarQuestions.length, class13ExamVocabQuestions.length, class13ExamVerseAnalysisQuestions.length]).toEqual([40, 40, 5]);
   });
 
-  it('should add 5 new grammar, 6 new vocabulary and 5 new verse items', () => {
+  it('should add 5 new grammar, 6 new vocabulary and 3 new verse items', () => {
     const newGrammar = class13ExamGrammarQuestions.filter((q) => !paperIds.has(q.id)).length;
-    expect([newGrammar, examOnlyMcqs.length - newGrammar, examOnlyVerses.length]).toEqual([5, 6, 5]);
+    expect([newGrammar, examOnlyMcqs.length - newGrammar, examOnlyVerses.length]).toEqual([5, 6, 3]);
   });
 
   it('should put at least 20% of the marks on questions the paper does not have', () => {
     // MCQs are worth 1 mark each, verse items 4 (2 matching + 2 translation), out of 100.
-    expect(examOnlyMcqs.length + 4 * examOnlyVerses.length).toBeGreaterThanOrEqual(30);
+    expect(examOnlyMcqs.length + 4 * examOnlyVerses.length).toBeGreaterThanOrEqual(20);
   });
 
   it('should not re-ask any practice-paper Hebrew under a new id', () => {

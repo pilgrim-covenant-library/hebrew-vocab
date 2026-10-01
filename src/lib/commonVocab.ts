@@ -43,10 +43,10 @@ export const COMMON_VOCAB_SECTION_META: Record<CommonVocabSectionId, { title: st
   4:  { title: 'Level 4 (91–120)',   description: 'Heal, flee and stumble; belly, drink offering and shield; hill, valley and bird; fool, burden and reproach' },
   5:  { title: 'Level 5 (121–150)',  description: 'Vow, ransom and praise; vine, honey and harvest; feast, psalm and widow; rope, rock and camel' },
   6:  { title: 'Level 6 (151–180)',  description: 'Passover, ephod and signet ring; beauty, pride and discipline; dread, shadow and tomorrow; wander, strike and overtake' },
-  7:  { title: 'Level 7 (181–210)',  description: 'Guilt, forgive and compassion; sheep, garden and scarlet; tablet, lyre and dwelling place; bind, gird and despise' },
+  7:  { title: 'Level 7 (181–210)',  description: 'Guilt, forgive and compassion; sheep, garden and scarlet; tablet, chamber and dwelling place; bind, gird and despise' },
   8:  { title: 'Level 8 (211–240)',  description: 'Chamber, rain and purple; fig, olive and grain; neck, rib and cave; mourn, tremble and refuse' },
-  9:  { title: 'Level 9 (241–270)',  description: 'Threshing floor, wheel and calf; star, world and abyss; vision, wonder and shout; kneel, take refuge and oppress' },
-  10: { title: 'Level 10 (271–300)', description: 'Dove, dog and rock badger; grass, root and hope; citadel, window and finger; wail, refine and conceal' },
+  9:  { title: 'Level 9 (241–270)',  description: 'Threshing floor, wheel and well; star, world and abyss; vision, wonder and shout; kneel, take refuge and oppress' },
+  10: { title: 'Level 10 (271–300)', description: 'Dove, dog and rock badger; grass, root and hope; citadel, window and porch; avenge, refine and conceal' },
 };
 // Module-level cache to avoid re-sorting on every call
 let cachedCommonVocab: VocabularyWord[] | null = null;
