@@ -270,6 +270,12 @@ describe('HW7-HW10 and Class 7-11 are released', () => {
     expect(unserved).toEqual([]);
   });
 
+  it('links the practice paper and the final exam from the Class Practice hub', () => {
+    const hub = readFileSync(join(process.cwd(), 'src/app/class-practice/page.tsx'), 'utf8');
+    expect(hub).toContain('href="/grammar/review/practice-paper"');
+    expect(hub).toContain('href="/grammar/review/final-exam"');
+  });
+
   it('provides valid routes for Class 7, Class 8, Class 9, and Class 10 practice', () => {
     const route7 = join(process.cwd(), 'src/app/class-practice', 'class-7-mcq', 'page.tsx');
     expect(existsSync(route7)).toBe(true);

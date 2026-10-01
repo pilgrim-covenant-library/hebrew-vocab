@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowLeft, ChevronRight, ClipboardList, GraduationCap, ListChecks, FileText } from 'lucide-react';
+import { ArrowLeft, ChevronRight, ClipboardList, GraduationCap, ListChecks, FileText, Lock } from 'lucide-react';
 import type { ElementType } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Card, CardContent } from '@/components/ui/Card';
@@ -20,6 +20,7 @@ function ClassPracticeCard({ title, description, icon: Icon, href, color }: Clas
     cyan: 'bg-cyan-500/10 text-cyan-700 dark:text-cyan-300',
     amber: 'bg-amber-500/10 text-amber-700 dark:text-amber-300',
     purple: 'bg-purple-500/10 text-purple-700 dark:text-purple-300',
+    rose: 'bg-rose-500/10 text-rose-700 dark:text-rose-300',
   };
 
   return (
@@ -247,6 +248,14 @@ export default function ClassPracticePage() {
             icon={FileText}
             href="/grammar/review/practice-paper"
             color="purple"
+          />
+
+          <ClassPracticeCard
+            title="Final Exam"
+            description="The cumulative exam on Chapters 1–35: 40 grammar MCQ, 40 vocab MCQ and 5 verse analyses, timed for 2 hours. Your name and the access code are required."
+            icon={Lock}
+            href="/grammar/review/final-exam"
+            color="rose"
           />
         </div>
       </main>
